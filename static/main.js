@@ -1,4 +1,4 @@
-fetch( 'https://api.github.com/repositories/42366054/releases/latest' )
+fetch( 'https://api.github.com/repos/dertwist/Hammer5Tools/releases/latest' )
 	.then( function( response )
 	{
 		if( !response.ok )
@@ -12,7 +12,7 @@ fetch( 'https://api.github.com/repositories/42366054/releases/latest' )
 	{
 		for( const asset of response.assets )
 		{
-			if( asset.name === 'Source2Viewer.exe' )
+			if( asset.name === 'hammer5tools.zip' )
 			{
 				document.getElementById( 'js-download' ).href = asset.browser_download_url;
 				document.getElementById( 'js-download-header' ).href = asset.browser_download_url;
