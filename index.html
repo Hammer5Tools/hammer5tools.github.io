@@ -82,104 +82,73 @@
 			</div>
 		</div>
 
-		<div class="libraries">
+		<!-- <div class="libraries">
 			<div class="container">
 				<div class="library-list">
 					<div class="library">
 						<div class="library-icon">
-							<img src="static/libraries/console.png" alt="" width="64" height="64" aria-hidden="true">
+							<img src="static/logo.png" alt="" width="64" height="64" aria-hidden="true">
 						</div>
 						<div class="library-description">
-							<h2>Command line utility</h2>
-							<p>A cross-platform console application that can export and decompile Source 2 resources similar to the main application.</p>
-
-							<a href="https://github.com/dertwist/Hammer5Tools/releases">Download CLI for your OS from GitHub</a>
+							<h2>Loading Editor</h2>
+							<p>A tool that provides description and screenshots editing of a map</p>
 						</div>
 					</div>
 					<div class="library">
 						<div class="library-icon">
-							<img src="static/libraries/vrf.png" alt="" width="64" height="64" aria-hidden="true">
+							<img src="static/logo.png" alt="" width="64" height="64" aria-hidden="true">
 						</div>
 						<div class="library-description">
-							<h2>ValveResourceFormat</h2>
-							<p>.NET library that powers Source 2 Viewer, also known as VRF. This library can be used to open and extract Source 2 resource files programmatically.</p>
-
-							<a href="https://www.nuget.org/packages/ValveResourceFormat">Get ValveResourceFormat from NuGet</a> |
-							<a href="https://github.com/ValveResourceFormat/ValveResourceFormat">View on GitHub</a>
+							<h2>SoundEvent Editor</h2>
+							<p>Editing soundevents</p>
 						</div>
 					</div>
 					<div class="library">
 						<div class="library-icon">
-							<img src="static/libraries/vpk.png" alt="" width="64" height="64" aria-hidden="true">
+							<img src="static/logo.png" alt="" width="64" height="64" aria-hidden="true">
 						</div>
 						<div class="library-description">
-							<h2>ValvePak</h2>
-							<p>.NET library to read Valve Pak (VPK) archives. VPK files are uncompressed archives used to package game content. This library allows you to read and extract files out of these paks.</p>
-
-							<a href="https://www.nuget.org/packages/ValvePak">Get ValvePak from NuGet</a> |
-							<a href="https://github.com/ValveResourceFormat/ValvePak">View on GitHub</a>
+							<h2>SmartProp Editor</h2>
+							<p>Creating and editing vmsart files</p>
 						</div>
 					</div>
 					<div class="library">
 						<div class="library-icon">
-							<img src="static/libraries/vdf.png" alt="" width="64" height="64" aria-hidden="true">
+							<img src="static/logo.png" alt="" width="64" height="64" aria-hidden="true">
 						</div>
 						<div class="library-description">
-							<h2>ValveKeyValue</h2>
-							<p>.NET library to read and write files in Valve key value format. This library aims to be fully compatible with Valve's various implementations of KeyValues format parsing.</p>
+							<h2>BatchCreator</h2>
+							<p>Automaize rutine process</p>
+						</div>
+					</div>
+					<div class="library">
+						<div class="library-icon">
+							<img src="static/logo.png" alt="" width="64" height="64" aria-hidden="true">
+						</div>
+						<div class="library-description">
+							<h2>Hotkey Editor</h2>
+							<p>Editing keybindigs of Hammer map editor.</p>
+						</div>
+					</div>
 
-							<a href="https://www.nuget.org/packages/ValveKeyValue">Get ValveKeyValue from NuGet</a> |
-							<a href="https://github.com/ValveResourceFormat/ValveKeyValue">View on GitHub</a>
+					<div class="library">
+						<div class="library-icon">
+							<img src="static/logo.png" alt="" width="64" height="64" aria-hidden="true">
+						</div>
+						<div class="library-description">
+							<h2>Extended addon manipulation</h2>
+							<p>Export and import addons, create new with cutsom templates.</p>
 						</div>
 					</div>
 				</div>
 				<div class="library-code">
 					<span class="hljs-language">C#</span>
-					<pre class="hljs"><code><span class="hljs-comment">// Open package and read a file</span>
-<span class="hljs-keyword">using var</span> package = <span class="hljs-keyword">new</span> <a class="hljs-built_in" href="https://github.com/ValveResourceFormat/ValvePak/blob/master/ValvePak/ValvePak/Package.cs">Package</a>();
-package.<span class="hljs-built_in">Read</span>(<span class="hljs-string">"pak01_dir.vpk"</span>);
-
-<span class="hljs-keyword">var</span> packageEntry = package.<span class="hljs-built_in">FindEntry</span>(<span class="hljs-string">"textures/debug.vtex_c"</span>);
-package.<span class="hljs-built_in">ReadEntry</span>(packageEntry, <span class="hljs-keyword">out var</span> rawFile);
-
-<span class="hljs-comment">// Read file as a resource</span>
-<span class="hljs-keyword">using</span> var ms = <span class="hljs-keyword">new</span> <span class="hljs-built_in">MemoryStream</span>(rawFile);
-<span class="hljs-keyword">using</span> var resource = <span class="hljs-keyword">new</span> <a class="hljs-built_in" href="https://github.com/ValveResourceFormat/ValveResourceFormat/blob/master/ValveResourceFormat/Resource/Resource.cs">Resource</a>();
-resource.<span class="hljs-built_in">Read</span>(ms);
-
-Debug.<span class="hljs-built_in">Assert</span>(resource.<span class="hljs-built_in">ResourceType</span> == ResourceType.Texture);
-
-<span class="hljs-comment">// Get a png from the texture</span>
-<span class="hljs-keyword">var</span> texture = (Texture)resource.DataBlock;
-<span class="hljs-keyword">using var</span> bitmap = texture.<span class="hljs-built_in">GenerateBitmap</span>();
-<span class="hljs-keyword">var</span> png = TextureExtract.<span class="hljs-built_in">ToPngImage</span>(bitmap);
-
-File.<span class="hljs-built_in">WriteAllBytes</span>(<span class="hljs-string">"image.png"</span>, png);</code></pre>
+					<div class="hero-right">
+						<img src="static/screen_hero.png" alt="" class="hero-screenshot">
+					</div>
 				</div>
 			</div>
-		</div>
-
-		<div class="container screenshots">
-			<figure>
-				<figcaption>View and export files in VPK packages</figcaption>
-				<img src="static/screen_package.png" alt="" loading="lazy">
-			</figure>
-
-			<figure>
-				<figcaption>Preview maps and models in 3D space</figcaption>
-				<img src="static/screen_map.png" alt="" loading="lazy">
-			</figure>
-
-			<figure>
-				<figcaption>View and export textures along with other resources</figcaption>
-				<img src="static/screen_texture.png" alt="" loading="lazy">
-			</figure>
-
-			<figure>
-				<figcaption>Use the command line utility</figcaption>
-				<img src="static/screen_cli.png" alt="" loading="lazy">
-			</figure>
-		</div>
+		</div> -->
 
 
 		<div class="footer">
@@ -187,10 +156,6 @@ File.<span class="hljs-built_in">WriteAllBytes</span>(<span class="hljs-string">
 				<div class="footer-left">
 					Available under the <a href="https://github.com/dertwist/Hammer5Tools/blob/main/LICENSE">MIT license</a>.<br>
 					Created and maintained by <a href="https://x.com/der_twist">Twist</a>.
-				</div>
-				<div class="footer-right">
-					This project is not affiliated with Valve Software.<br>
-					Source 2 is a trademark and/or registered trademark of Valve Corporation.
 				</div>
 			</div>
 		</div>
