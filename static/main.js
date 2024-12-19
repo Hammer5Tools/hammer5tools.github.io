@@ -20,7 +20,7 @@ fetch( 'https://api.github.com/repos/dertwist/Hammer5Tools/releases/latest' )
 				const version = document.querySelector( '.download-version' );
 				version.href = response.html_url;
 
-				let string = `View release notes for v${response.tag_name}`;
+				let string = `View release notes for ${response.tag_name}`;
 
 				if( window.innerWidth > 500 )
 				{
