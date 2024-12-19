@@ -12,7 +12,7 @@ fetch( 'https://api.github.com/repos/dertwist/Hammer5Tools/releases/latest' )
 	{
 		for( const asset of response.assets )
 		{
-			if( asset.name === 'hammer5tools.zip' )
+			if( asset.name === 'hammer5tools_setup.exe' )
 			{
 				document.getElementById( 'js-download' ).href = asset.browser_download_url;
 				document.getElementById( 'js-download-header' ).href = asset.browser_download_url;
