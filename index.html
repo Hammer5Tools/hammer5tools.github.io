@@ -21,7 +21,6 @@
   <meta property="twitter:card" content="summary_large_image">
   <link rel="icon" href="favicon.ico" sizes="16x16 24x24 32x32 48x48 72x72 256x256">
   <link rel="icon" href="static/logo.png" sizes="512x512">
-  <script src="static/main.js" defer></script>
   <script type="application/ld+json">
 		{
 			"@context": "https://schema.org",
@@ -163,9 +162,7 @@
           </p>
         </div>
         <div class="tool-preview">
-          <video autoplay loop muted playsinline poster="static/soundevent_editor.png">
-            <source src="static/soundevent_editor.mp4" type="video/mp4">
-          </video>
+          <img src="static/soundevent_editor.png" alt="SoundEvent Editor" />
         </div>
       </div>
 
@@ -181,9 +178,7 @@
           </p>
         </div>
         <div class="tool-preview">
-          <video autoplay loop muted playsinline poster="static/map_builder.png">
-            <source src="static/map_builder.mp4" type="video/mp4">
-          </video>
+          <img src="static/map_builder.png" alt="Map Builder" />
         </div>
       </div>
 
@@ -199,9 +194,7 @@
           </p>
         </div>
         <div class="tool-preview">
-          <video autoplay loop muted playsinline poster="static/cleanup_tool.png">
-            <source src="static/cleanup_tool.mp4" type="video/mp4">
-          </video>
+          <img src="static/cleanup_tool.png" alt="Cleanup Tool" />
         </div>
       </div>
 
@@ -217,9 +210,7 @@
           </p>
         </div>
         <div class="tool-preview">
-          <video autoplay loop muted playsinline poster="static/export_import_addon.png">
-            <source src="static/export_import_addon.mp4" type="video/mp4">
-          </video>
+          <img src="static/export_import_addon.png" alt="Export / Import Addon" />
         </div>
       </div>
 
@@ -235,9 +226,7 @@
           </p>
         </div>
         <div class="tool-preview">
-          <video autoplay loop muted playsinline poster="static/assetgroup_maker.png">
-            <source src="static/assetgroup_maker.mp4" type="video/mp4">
-          </video>
+          <img src="static/assetgroup_maker.png" alt="AssetGroup Maker" />
         </div>
       </div>
 
@@ -253,9 +242,7 @@
           </p>
         </div>
         <div class="tool-preview">
-          <video autoplay loop muted playsinline poster="static/hotkeyeditor.png">
-            <source src="static/hotkeyeditor.mp4" type="video/mp4">
-          </video>
+          <img src="static/hotkeyeditor.png" alt="Hotkey Editor" />
         </div>
       </div>
 
@@ -298,6 +285,23 @@
   </footer>
 
   <script>
+    /* ── Main App Logic ── */
+    fetch('https://api.github.com/repos/dertwist/Hammer5Tools/releases/latest')
+      .then(response => {
+        if (!response.ok) throw new Error('Failed to fetch github release');
+        return response.json();
+      })
+      .then(response => {
+        for (const asset of response.assets) {
+          if (asset.name === 'hammer5tools_setup.exe') {
+            const downloadBtn = document.getElementById('js-download');
+            if (downloadBtn) downloadBtn.href = asset.browser_download_url;
+            break;
+          }
+        }
+      })
+      .catch(console.error);
+
     /* ── Video / GIF Gallery ── */
     const galleryData = {
       'smartprop-gallery': {

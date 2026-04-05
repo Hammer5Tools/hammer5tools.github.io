@@ -203,12 +203,13 @@ a:active {
 .hero-right {
 	display: flex;
 	flex-direction: column;
+	flex: 1;
+	min-width: 0;
 	gap: 2px;
 }
 
 .hero-screenshot {
 	width: 100%;
-	width: calc(100vw / 2 - 5%);
 	max-width: 1200px;
 	aspect-ratio: 1800 / 1200;
 	border-radius: 10px;
@@ -533,28 +534,24 @@ a.hljs-built_in {
 .video-gallery-frame {
 	position: relative;
 	width: 100%;
-	aspect-ratio: 16 / 9;
-	border-radius: 12px;
-	overflow: hidden;
-	background: transparent;
-	border: 1px solid rgba(255, 255, 255, 0.1);
-	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+	display: grid;
 }
 
-.video-gallery-frame video {
-	position: absolute;
-	inset: 0;
+.video-gallery-frame video,
+.video-gallery-frame img {
+	grid-area: 1 / 1;
 	width: 100%;
-	height: 100%;
+	height: auto;
 	object-fit: contain;
-	border-radius: 0;
-	border: none;
-	box-shadow: none;
+	border-radius: 12px;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+	border: 1px solid rgba(255, 255, 255, 0.1);
 	background: transparent;
 	transition: opacity 0.25s ease;
 }
 
-.video-gallery-frame video.fading {
+.video-gallery-frame video.fading,
+.video-gallery-frame img.fading {
 	opacity: 0;
 }
 
@@ -697,24 +694,6 @@ a.hljs-built_in {
 	cursor: not-allowed;
 }
 
-/* Gallery GIF support */
-.video-gallery-frame img {
-	position: absolute;
-	inset: 0;
-	width: 100%;
-	height: 100%;
-	object-fit: contain;
-	border-radius: 0;
-	border: none;
-	box-shadow: none;
-	background: transparent;
-	transition: opacity 0.2s ease;
-}
-
-.video-gallery-frame img.fading {
-	opacity: 0;
-}
-
 /* Footer */
 .footer {
 	margin-top: 4rem;
@@ -776,7 +755,6 @@ a.hljs-built_in {
 /* Hero Video */
 .hero-video {
 	width: 100%;
-	width: calc(100vw / 2 - 5%);
 	max-width: 1200px;
 	border-radius: 10px;
 	box-shadow: rgb(71 168 255 / 43%) 0 0 80px 0;
@@ -786,6 +764,20 @@ a.hljs-built_in {
 @media (max-width: 1300px) {
 	.hero .container {
 		flex-direction: column;
+		gap: 3rem;
+	}
+	
+	.hero-left {
+		max-width: 100%;
+		text-align: center;
+	}
+
+	.hero .download .btn {
+		margin: 0 auto;
+	}
+	
+	.hero .download-footer {
+		justify-content: center;
 	}
 
 	.hero-screenshot,
@@ -798,6 +790,11 @@ a.hljs-built_in {
 	.tool-feature:nth-child(even) {
 		flex-direction: column;
 		gap: 2rem;
+		text-align: center;
+	}
+	
+	.tool-preview {
+		width: 100%;
 	}
 }
 
@@ -833,35 +830,51 @@ a.hljs-built_in {
 
 	.hero .download .btn {
 		display: flex;
+		margin: 0;
+		justify-content: center;
 	}
 
-	.hero .download-notes {
-		text-align: center;
-	}
-
-	.hero .download-version {
-		text-decoration: underline;
-		font-size: 1rem;
-		margin-top: 1rem;
-		margin-left: 0;
+	.hero .download-footer {
+		flex-direction: column;
+		gap: 0.5rem;
+		align-items: center;
 	}
 
 	.footer .container {
 		flex-direction: column;
-		align-items: unset;
-	}
-
-	.footer .footer-left,
-	.footer .footer-right {
+		align-items: center;
 		text-align: center;
 	}
 
+	.footer .footer-links {
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
 	.hero-left h1 {
-		font-size: 1.8rem;
+		font-size: 2rem;
 	}
 
 	.hero-left h2 {
 		font-size: 1.1rem;
+	}
+	
+	.tools-showcase {
+		padding: 3rem 0;
+		border-radius: 2rem;
+		margin-top: 3rem;
+	}
+	
+	.tool-title {
+		font-size: 1.8rem;
+	}
+	
+	#changelog h2 {
+		font-size: 1.8rem;
+	}
+	
+	.changelog-release {
+		padding: 1.25rem;
 	}
 }
 
