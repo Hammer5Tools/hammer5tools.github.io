@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="color-scheme" content="dark">
-		<meta name="theme-color" content="#0c121c">
-		<title>Hammer 5 Tools</title>
-		<link rel="preconnect" href="https://api.github.com">
-		<link rel="preload" href="static/Manrope.woff2" as="font" type="font/woff2" crossorigin>
-		<link rel="stylesheet" href="static/style.css">
-		<link rel="canonical" href="https://hammer5tools.github.io/">
-		<link rel="image_src" href="https://hammer5tools.github.io/static/preview.jpg">
-		<meta name="description" content="A bunch of tools for Counter Strike 2 Workshop Tools : SoundEvent Editor, SmartProp Editor, Hotkey Editor, Loading Editor">
-		<meta property="og:description" content="A bunch of tools for Counter Strike 2 Workshop Tools : SoundEvent Editor, SmartProp Editor, Hotkey Editor, Loading Editor">
-		<meta property="og:image" content="https://hammer5tools.github.io/static/preview.jpg">
-		<meta property="og:title" content="Hammer 5 Tools">
-		<meta property="twitter:card" content="summary_large_image">
-		<link rel="icon" href="favicon.ico" sizes="16x16 24x24 32x32 48x48 72x72 256x256">
-		<link rel="icon" href="static/logo.png" sizes="512x512">
-		<script src="static/main.js" defer></script>
-		<script type="application/ld+json">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0c121c">
+  <title>Hammer 5 Tools</title>
+  <link rel="preconnect" href="https://api.github.com">
+  <link rel="preload" href="static/Manrope.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="static/style.css">
+  <link rel="canonical" href="https://hammer5tools.github.io/">
+  <link rel="image_src" href="https://hammer5tools.github.io/static/preview.jpg">
+  <meta name="description"
+    content="A powerful toolkit for Counter-Strike 2 Workshop Tools: SmartProp Editor, SoundEvent Editor, Map Builder, Cleanup Tool, and more.">
+  <meta property="og:description"
+    content="A powerful toolkit for Counter-Strike 2 Workshop Tools: SmartProp Editor, SoundEvent Editor, Map Builder, Cleanup Tool, and more.">
+  <meta property="og:image" content="https://hammer5tools.github.io/static/preview.jpg">
+  <meta property="og:title" content="Hammer 5 Tools">
+  <meta property="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.ico" sizes="16x16 24x24 32x32 48x48 72x72 256x256">
+  <link rel="icon" href="static/logo.png" sizes="512x512">
+  <script src="static/main.js" defer></script>
+  <script type="application/ld+json">
 		{
 			"@context": "https://schema.org",
 			"@type": "SoftwareApplication",
@@ -35,269 +38,408 @@
 			"releaseNotes": "https://github.com/dertwist/Hammer5Tools/releases",
 			"image": "https://hammer5tools.github.io/static/preview.jpg"
 		}
-		</script>
-	</head>
-	<body>
-		<header>
-			<div class="container">
-				<h1><img src="static/logo.png" alt="" width="64" height="64" aria-hidden="true"> Hammer 5 Tools</h1>
-				<div class="header-buttons">
-					<a href="https://github.com/dertwist/Hammer5Tools" class="header-github" title="View on GitHub">
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="40" height="40" aria-hidden="true">
-							<path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z" fill="currentColor" />
-						</svg>
-					</a>
-					<a href="https://github.com/dertwist/Hammer5Tools/releases" class="header-download" id="js-download-header" title="Download Source 2 Viewer">
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" aria-hidden="true">
-							<path d="M2.75 14A1.75 1.75 0 0 1 1 12.25v-2.5a.75.75 0 0 1 1.5 0v2.5c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25v-2.5a.75.75 0 0 1 1.5 0v2.5A1.75 1.75 0 0 1 13.25 14Z" fill="currentColor"/><path d="M7.25 7.689V2a.75.75 0 0 1 1.5 0v5.689l1.97-1.969a.749.749 0 1 1 1.06 1.06l-3.25 3.25a.749.749 0 0 1-1.06 0L4.22 6.78a.749.749 0 1 1 1.06-1.06l1.97 1.969Z" fill="currentColor" />
-						</svg>
-						DOWNLOAD
-					</a>
-				</div>
-			</div>
-		</header>
-
-	  <div class="hero">
-		<div class="container">
-		  <div class="hero-left">
-			<p class="hero-fluff">
-			  Hammer 5 Tools is a powerful tool for Counter-Strike 2 Workshop Tools
-			  that allows you to <b>edit sound events</b>, <b>create smart props</b>,
-			  create loading screens for maps, and <b>edit keybindings</b>.
-			</p>
-
-			<div class="download">
-			  <div>
-				<a href="https://github.com/dertwist/Hammer5Tools/releases" class="btn" id="js-download">
-				  <svg width="30" height="30" viewBox="0 0 36 36" aria-hidden="true">
-					<path fill="currentColor" d="M1 0h15c.6 0 1 .4 1 1v15c0 .6-.4 1-1 1H1a1 1 0 0 1-1-1V1c0-.6.4-1 1-1ZM19 16V1c0-.6.5-1 1-1h15c.6 0 1 .4 1 1v15c0 .5-.4 1-1 1H20a1 1 0 0 1-1-1ZM1 19h15c.6 0 1 .4 1 1v15c0 .6-.4 1-1 1H1a1 1 0 0 1-1-1V20c0-.6.4-1 1-1ZM19 35V20c0-.6.4-1 1-1h15c.6 0 1 .4 1 1v15c0 .6-.4 1-1 1H20a1 1 0 0 1-1-1Z"/>
-				  </svg>
-				  <span class="download-text">Download <span>Hammer 5 Tools</span></span>
-				</a>
-			  </div>
-
-			  <!-- slight gap between buttons -->
-			  <div style="margin-top: 8px;">
-				<a href="https://twist-1.gitbook.io/hammer5tools" class="btn" id="js-docs">
-				  <svg width="30" height="30" viewBox="0 0 36 36" aria-hidden="true">
-					<path fill="currentColor" d="M18 0C8.06 0 0 8.06 0 18s8.06 18 18 18 18-8.06 18-18S27.94 0 18 0zm0 33C9.16 33 2 25.84 2 18S9.16 3 18 3s16 7.16 16 15-7.16 15-16 15z"/>
-					<path fill="currentColor" d="M25.5 12.5h-15v2h15v-2zm0 4h-15v2h15v-2zm0 4h-15v2h15v-2z"/>
-				  </svg>
-				  <span class="download-text">Documentation</span>
-				</a>
-			  </div>
-
-			  <div class="download-notes">
-				<a href="https://github.com/dertwist/Hammer5Tools/releases" class="download-version">View release notes</a>
-			  </div>
-			  <div class="download-reqs">Requirements: Windows 10+ 64-bit, Counter Strike 2 Workshop Tools</div>
-			</div>
-		  </div>
-
-		  <div class="hero-right">
-			<img src="static/screen_hero.png" alt="Hammer 5 Tools screenshot" class="hero-screenshot" />
-		  </div>
-		</div>
-	  </div>
-
-		<br>
-		<br>
-		<br>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Project Tools</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    /* Global Styles */
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
-
-    /* Tools Section */
-    .tools {
-      margin: 0;
-      padding: 1rem;
-    }
-    .container {
-      max-width: 1440px;
-      width: 100%;
-      margin: 0 auto;
-    }
-
-    /* Tool Row */
-    .tool {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      margin-bottom: 2.5rem;
-      padding-bottom: 2rem;
-      justify-content: center;
-      align-items: stretch;
-      position: relative;
-      max-height: 350px; /* Limit the tool row height if desired */
-    }
-    .tool-left {
-      flex: 0 0 48%;
-      min-width: 300px;
-      padding-right: 1.5rem;
-      text-align: left;
-      position: relative;
-    }
-    .tool-left::after {
-      content: "";
-      position: absolute;
-      right: 0;
-      top: 20%;
-      bottom: 20%;
-      width: 1px;
-      background-color: #ccc; /* Divider line between left and right content */
-    }
-    .tool-right {
-      flex: 0 0 48%;
-      min-width: 300px;
-      text-align: left;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    /* Text */
-    .tool-title {
-      margin: 0 0 1rem;
-      font-size: 1.25rem;
-    }
-    .tool-description {
-      margin-bottom: 1rem;
-      line-height: 1.6;
-    }
-
-    /* Images */
-    .tool-image {
-      width: 100%;
-      max-width: 100%;
-      height: auto;
-      border: none;
-      display: block;
-    }
-  </style>
+  </script>
 </head>
+
 <body>
-  <div class="tools">
+	<svg class="background-pattern" aria-hidden="true">
+		<defs>
+			<pattern id="grid" width="64" height="64" x="-1" y="-1" patternUnits="userSpaceOnUse">
+				<path d="M.5 200V.5H200" fill="none" />
+			</pattern>
+		</defs>
+		<rect width="100%" height="100%" stroke-width="0" fill="url(#grid)" />
+	</svg>
+
+  <nav class="floating-nav">
+    <a href="#" class="nav-home" aria-label="Hammer 5 Tools - Back to top">
+      <img src="static/logo.png" alt="" width="32" height="32" aria-hidden="true">
+    </a>
+    <a href="#tools">Tools</a>
+    <a href="#changelog">Changelog</a>
+    <a href="https://twist-1.gitbook.io/hammer5tools">
+      <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" style="fill:none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 7v14"/>
+        <path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/>
+      </svg>
+      Docs
+    </a>
+    <a href="https://discord.com/invite/DvCXEyhssd">
+      <svg aria-hidden="true" viewBox="0 0 16 16" width="16" height="16">
+        <path fill="currentColor" d="M13.54 2.9a13.2 13.2 0 00-3.25-1c-.02 0-.04 0-.05.02-.15.25-.3.58-.41.83a12.18 12.18 0 00-3.66 0 8.4 8.4 0 00-.41-.83.05.05 0 00-.05-.02 13.16 13.16 0 00-3.28 1.03 13.5 13.5 0 00-2.34 9.14c1.37 1 2.7 1.61 4 2.02.01 0 .04 0 .05-.02.3-.42.58-.86.82-1.33a.05.05 0 00-.03-.07 8.76 8.76 0 01-1.25-.6.05.05 0 010-.08l.24-.2a.05.05 0 01.05 0 9.46 9.46 0 008.05 0h.05l.25.2c.03.02.02.07 0 .09-.4.23-.82.43-1.26.59a.05.05 0 00-.02.07c.24.47.51.91.81 1.33.02.02.04.03.06.02a13.23 13.23 0 004.02-2.06 13.41 13.41 0 00-2.39-9.12zm-8.2 7.31c-.78 0-1.43-.72-1.43-1.6 0-.9.64-1.62 1.44-1.62.8 0 1.45.73 1.43 1.61 0 .89-.63 1.61-1.43 1.61zm5.32 0c-.79 0-1.43-.72-1.43-1.6 0-.9.63-1.62 1.43-1.62.81 0 1.45.73 1.44 1.61 0 .89-.63 1.61-1.44 1.61z"/>
+      </svg>
+      Discord
+    </a>
+    <a href="https://github.com/dertwist/Hammer5Tools" aria-label="GitHub repository">
+      <svg aria-hidden="true" viewBox="0 0 16 16" width="16" height="16">
+        <path fill="currentColor" d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/>
+      </svg>
+      GitHub
+    </a>
+  </nav>
+
+  <main class="hero">
+    <div class="container">
+      <div class="hero-left">
+        <h1>
+          <img src="static/logo.png" alt="" width="56" height="56" aria-hidden="true" class="main-logo">
+          Hammer 5 Tools
+        </h1>
+        <h2>
+          A powerful toolkit for Counter-Strike 2 Workshop Tools.
+          <strong>Edit sound events</strong>, <strong>create smart props</strong>,
+          <strong>build maps</strong>, and <strong>manage keybindings</strong>.
+        </h2>
+        <h3>Free, open-source, and built for mapmakers.</h3>
+
+        <div class="download">
+          <a href="https://github.com/dertwist/Hammer5Tools/releases" class="btn" id="js-download">
+            <span class="download-text">Download</span>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 17V3" />
+              <path d="m6 11 6 6 6-6" />
+              <path d="M19 21H5" />
+            </svg>
+          </a>
+          <div class="download-footer">
+            <a href="https://github.com/dertwist/Hammer5Tools/releases">Download dev build</a>
+            <span>Windows 10+ 64-bit
+              <svg width="14" height="14" viewBox="0 0 36 36" aria-hidden="true">
+                <path fill="currentColor"
+                  d="M1 0h15c.6 0 1 .4 1 1v15c0 .6-.4 1-1 1H1a1 1 0 0 1-1-1V1c0-.6.4-1 1-1ZM19 16V1c0-.6.5-1 1-1h15c.6 0 1 .4 1 1v15c0 .5-.4 1-1 1H20a1 1 0 0 1-1-1ZM1 19h15c.6 0 1 .4 1 1v15c0 .6-.4 1-1 1H1a1 1 0 0 1-1-1V20c0-.6.4-1 1-1ZM19 35V20c0-.6.4-1 1-1h15c.6 0 1 .4 1 1v15c0 .6-.4 1-1 1H20a1 1 0 0 1-1-1Z" />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <video class="hero-video" autoplay loop muted playsinline poster="static/smartprop_editor.png">
+          <source src="videos/hero.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </main>
+
+  <div class="tools-showcase" id="tools">
     <div class="container">
 
-      <!-- SoundEvent Editor -->
-      <div class="tool">
-        <div class="tool-left">
-          <h2 class="tool-title">SoundEvent Editor</h2>
-          <p class="tool-description">
-            Manage in-game sounds with ease. This editor works with Counter-Strike 2
-            sounds (vsnd files) and lets you explore, preview, and set up sounds in a sound event.
-            Use presets to quickly add sound events,
-            or create your own presets. This tool edits the soundevents_addon.vsndevts file.
-          </p>
-        </div>
-        <div class="tool-right">
-          <img
-            src="static/soundevent_editor.png"
-            alt="SoundEvent Editor Preview"
-            class="tool-image"
-          />
-        </div>
-      </div>
-
-      <!-- SmartProp Editor -->
-      <div class="tool">
-        <div class="tool-left">
+      <!-- 1. SmartProp Editor -->
+      <div class="tool-feature">
+        <div class="tool-info">
           <h2 class="tool-title">SmartProp Editor</h2>
           <p class="tool-description">
-            Edit Vsmart files with an easy interface. This tool supports many properties
-            and preserves compatibility with older formats. You can edit properties in real-time, usefully to adjust position or rotation of models.
-		  	Use presets to quickly create repeatedly elements.
+            Edit .vsmart files using an intuitive interface. The tool supports all essential
+            properties while maintaining compatibility with older formats. Modify properties in
+            real-time to precisely adjust the position, rotation, and scaling of your models.
+            Utilize presets to rapidly construct repetitive elements.
           </p>
         </div>
-        <div class="tool-right">
-          <img
-            src="static/smartprop_editor.png"
-            alt="SmartProp Editor Preview"
-            class="tool-image"
-          />
+        <div class="tool-preview">
+          <div class="video-gallery" id="smartprop-gallery">
+            <div class="video-gallery-frame">
+              <video autoplay loop muted playsinline>
+                <source src="videos/smartprops/cs2_AcmbKL2goU.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="video-gallery-controls">
+              <button class="gallery-btn" onclick="galleryNav('smartprop-gallery', -1)" aria-label="Previous video">‹</button>
+              <span class="gallery-counter">1 / 8</span>
+              <button class="gallery-btn" onclick="galleryNav('smartprop-gallery', 1)" aria-label="Next video">›</button>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Loading Editor -->
-      <div class="tool">
-        <div class="tool-left">
-          <h2 class="tool-title">Loading Editor</h2>
+      <!-- 2. SoundEvent Editor -->
+      <div class="tool-feature">
+        <div class="tool-info">
+          <h2 class="tool-title">SoundEvent Editor</h2>
           <p class="tool-description">
-			Customize loading screens with images, descriptions, and icons.
-            Make them unique and appealing for community maps. You can preview screenshots
-            captured with the "png_screenshot" console command or add your own images.
+            Manage in-game sounds seamlessly. The editor works directly with Counter-Strike 2
+            sounds (.vsnd files) and allows you to explore, preview, and configure sound events.
+            Use presets to quickly set up sound events or define your own custom configurations.
+            Edits the <code>soundevents_addon.vsndevts</code> file directly.
           </p>
         </div>
-        <div class="tool-right">
-          <img
-            src="static/loading_editor.png"
-            alt="Loading Editor Preview"
-            class="tool-image"
-          />
+        <div class="tool-preview">
+          <video autoplay loop muted playsinline poster="static/soundevent_editor.png">
+            <source src="static/soundevent_editor.mp4" type="video/mp4">
+          </video>
         </div>
       </div>
 
-      <!-- Hotkey Editor -->
-      <div class="tool">
-        <div class="tool-left">
-          <h2 class="tool-title">Hotkey Editor</h2>
+      <!-- 3. Map Builder -->
+      <div class="tool-feature">
+        <div class="tool-info">
+          <h2 class="tool-title">Map Builder</h2>
           <p class="tool-description">
-            Set and manage keyboard shortcuts for many tasks. This tool can simplify
-            your workflow by making important functions easy to reach. You can store
-            several hotkey presets for different projects and switch between them as needed.
+            Streamline the map compilation process with a dedicated and powerful interface.
+            Access fast, full, or custom compile options such as building geometry, visibility,
+            or baking lighting. Configure settings like lightmap resolution and quality
+            while monitoring CPU, RAM, and GPU usage during the build in real-time.
           </p>
         </div>
-        <div class="tool-right">
-          <img
-            src="static/hotkeyeditor.png"
-            alt="Hotkey Editor Preview"
-            class="tool-image"
-          />
+        <div class="tool-preview">
+          <video autoplay loop muted playsinline poster="static/map_builder.png">
+            <source src="static/map_builder.mp4" type="video/mp4">
+          </video>
         </div>
       </div>
 
-      <!-- AssetGroup Maker -->
-      <div class="tool">
-        <div class="tool-left">
+      <!-- 4. Cleanup Tool -->
+      <div class="tool-feature">
+        <div class="tool-info">
+          <h2 class="tool-title">Cleanup Tool</h2>
+          <p class="tool-description">
+            Effortlessly remove unused and redundant files from your addon's content folder.
+            By scanning your project's .vmap file, the tool identifies and keeps only the
+            actively referenced assets, freeing up valuable storage space and simplifying
+            project management.
+          </p>
+        </div>
+        <div class="tool-preview">
+          <video autoplay loop muted playsinline poster="static/cleanup_tool.png">
+            <source src="static/cleanup_tool.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <!-- 5. Export / Import Addon -->
+      <div class="tool-feature">
+        <div class="tool-info">
+          <h2 class="tool-title">Export / Import Addon</h2>
+          <p class="tool-description">
+            Simplify the distribution of your projects by exporting and importing entire addons
+            seamlessly. Filter out unnecessary folders or VCS files, and include compiled maps,
+            materials, or models effortlessly. Ideal for packaging your map for release or
+            collaborating with other developers.
+          </p>
+        </div>
+        <div class="tool-preview">
+          <video autoplay loop muted playsinline poster="static/export_import_addon.png">
+            <source src="static/export_import_addon.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <!-- 6. AssetGroup Maker -->
+      <div class="tool-feature">
+        <div class="tool-info">
           <h2 class="tool-title">AssetGroup Maker</h2>
           <p class="tool-description">
-            Create many assets at once for Source 2. You only need a simple config file
-            and a folder scan to generate files for large asset sets. This system keeps
-            everything consistent across your assets and saves time by avoiding manual edits.
+            Batch-create assets for Source 2 effortlessly. By utilizing a straightforward
+            configuration file and a folder scan, you can automatically generate files for
+            massive asset sets. This ensures consistency across all your assets and
+            drastically minimizes time spent on manual edits.
           </p>
         </div>
-        <div class="tool-right">
-          <img
-            src="static/assetgroup_maker.png"
-            alt="AssetGroup Maker Preview"
-            class="tool-image"
-          />
+        <div class="tool-preview">
+          <video autoplay loop muted playsinline poster="static/assetgroup_maker.png">
+            <source src="static/assetgroup_maker.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <!-- 7. Hotkey Editor -->
+      <div class="tool-feature">
+        <div class="tool-info">
+          <h2 class="tool-title">Hotkey Editor</h2>
+          <p class="tool-description">
+            Configure and manage custom keyboard shortcuts for a wide variety of tasks.
+            Streamline your workflow by keeping essential functions right at your fingertips.
+            Store multiple hotkey presets tailored to different projects and switch between
+            them seamlessly.
+          </p>
+        </div>
+        <div class="tool-preview">
+          <video autoplay loop muted playsinline poster="static/hotkeyeditor.png">
+            <source src="static/hotkeyeditor.mp4" type="video/mp4">
+          </video>
         </div>
       </div>
 
     </div>
   </div>
+
+  <div class="container" id="changelog">
+    <h2>Changelog</h2>
+    <div id="js-changelog">Loading releases…</div>
+    <button class="btn-load-more" id="js-load-more" style="display:none" onclick="loadMoreReleases()">Load more releases</button>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div>
+        Available under the <a href="https://github.com/dertwist/Hammer5Tools/blob/main/LICENSE">MIT license</a>.
+        Created and maintained by <a href="https://x.com/der_twist">Twist</a>.
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/dertwist/Hammer5Tools">
+          <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+            <path fill="currentColor" d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/>
+          </svg>
+          GitHub
+        </a>
+        <a href="https://discord.com/invite/DvCXEyhssd">
+          <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+            <path fill="currentColor" d="M13.54 2.9a13.2 13.2 0 00-3.25-1c-.02 0-.04 0-.05.02-.15.25-.3.58-.41.83a12.18 12.18 0 00-3.66 0 8.4 8.4 0 00-.41-.83.05.05 0 00-.05-.02 13.16 13.16 0 00-3.28 1.03 13.5 13.5 0 00-2.34 9.14c1.37 1 2.7 1.61 4 2.02.01 0 .04 0 .05-.02.3-.42.58-.86.82-1.33a.05.05 0 00-.03-.07 8.76 8.76 0 01-1.25-.6.05.05 0 010-.08l.24-.2a.05.05 0 01.05 0 9.46 9.46 0 008.05 0h.05l.25.2c.03.02.02.07 0 .09-.4.23-.82.43-1.26.59a.05.05 0 00-.02.07c.24.47.51.91.81 1.33.02.02.04.03.06.02a13.23 13.23 0 004.02-2.06 13.41 13.41 0 00-2.39-9.12zm-8.2 7.31c-.78 0-1.43-.72-1.43-1.6 0-.9.64-1.62 1.44-1.62.8 0 1.45.73 1.43 1.61 0 .89-.63 1.61-1.43 1.61zm5.32 0c-.79 0-1.43-.72-1.43-1.6 0-.9.63-1.62 1.43-1.62.81 0 1.45.73 1.44 1.61 0 .89-.63 1.61-1.44 1.61z"/>
+          </svg>
+          Discord
+        </a>
+        <a href="https://x.com/der_twist">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+            <path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+          Twitter
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ── Video / GIF Gallery ── */
+    const galleryData = {
+      'smartprop-gallery': {
+        media: [
+          { src: 'videos/smartprops/cs2_AcmbKL2goU.mp4', type: 'video' },
+          { src: 'videos/smartprops/cs2_hQLAXjzItU.mp4', type: 'video' },
+          { src: 'videos/smartprops/cs2_jNkc1twTeM.mp4', type: 'video' },
+          { src: 'videos/smartprops/cs2_nwwzepiAKI.mp4', type: 'video' },
+          { src: 'videos/smartprops/cs2_zqeep7U88m.mp4', type: 'video' },
+          { src: 'videos/smartprops/cs2_fXp6MLDtSX.mp4', type: 'video' },
+          { src: 'videos/smartprops/cs2_N6sDTGM0hw.mp4', type: 'video' },
+          { src: 'videos/smartprops/cs2_7eLqSEaMAn.mp4', type: 'video' },
+          { src: 'videos/smartprops/cs2_CyvEYoz9PS.gif', type: 'gif' },
+          { src: 'videos/smartprops/cs2_TW8g0mwmQt.gif', type: 'gif' },
+          { src: 'videos/smartprops/cs2_oNEa8oEVnq.gif', type: 'gif' },
+          { src: 'videos/smartprops/cs2_plnhmB19qk.gif', type: 'gif' },
+        ],
+        current: 0
+      }
+    };
+
+    function galleryNav(galleryId, direction) {
+      const data = galleryData[galleryId];
+      if (!data) return;
+      const total = data.media.length;
+      data.current = (data.current + direction + total) % total;
+      const gallery = document.getElementById(galleryId);
+      const frame = gallery.querySelector('.video-gallery-frame');
+      const counter = gallery.querySelector('.gallery-counter');
+      const item = data.media[data.current];
+
+      // Fade out current content
+      const currentEl = frame.querySelector('video, img');
+      if (currentEl) currentEl.classList.add('fading');
+
+      setTimeout(() => {
+        // Remove old element
+        frame.innerHTML = '';
+
+        if (item.type === 'video') {
+          const video = document.createElement('video');
+          video.autoplay = true;
+          video.loop = true;
+          video.muted = true;
+          video.playsInline = true;
+          video.src = item.src;
+          frame.appendChild(video);
+        } else {
+          const img = document.createElement('img');
+          img.src = item.src;
+          img.alt = 'SmartProp Editor demo';
+          frame.appendChild(img);
+        }
+
+        counter.textContent = (data.current + 1) + ' / ' + total;
+      }, 200);
+    }
+
+    /* ── Changelog ── */
+    let allReleases = [];
+    let changelogPage = 1;
+    const INITIAL_COUNT = 3;
+
+    function parseMarkdown(raw) {
+      if (!raw) return '';
+      let body = raw;
+      // Escape HTML
+      body = body.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      // Convert markdown links [text](url)
+      body = body.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+      // ## headings → styled h4
+      body = body.replace(/^## (.+)$/gm, '<h4 class="changelog-heading">$1</h4>');
+      // ### headings → styled h5
+      body = body.replace(/^### (.+)$/gm, '<h5 class="changelog-subheading">$1</h5>');
+      // Bold
+      body = body.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+      // Inline code
+      body = body.replace(/`([^`]+)`/g, '<code>$1</code>');
+      // List items (* or -)
+      body = body.replace(/^[*-] (.+)$/gm, '<li>$1</li>');
+      // Wrap consecutive <li> in <ul>
+      body = body.replace(/(<li>[\s\S]*?<\/li>(\n|$))+/g, match => '<ul>' + match + '</ul>');
+      // Clean up extra line breaks around block elements
+      body = body.replace(/\n{2,}/g, '<br>');
+      body = body.replace(/\n/g, '');
+      // Remove stray <br> right before/after block elements
+      body = body.replace(/<br>\s*(<h[45]|<ul|<\/ul)/g, '$1');
+      body = body.replace(/(<\/h[45]>|<\/ul>)\s*<br>/g, '$1');
+      return body;
+    }
+
+    function renderRelease(release) {
+      const date = new Date(release.published_at).toLocaleDateString('en-US', {
+        year: 'numeric', month: 'long', day: 'numeric'
+      });
+      const body = parseMarkdown(release.body);
+      const el = document.createElement('div');
+      el.className = 'changelog-release';
+      el.innerHTML = `
+        <h3><a href="${release.html_url}">${release.name || release.tag_name}</a></h3>
+        <div class="changelog-date">${date}</div>
+        <div class="changelog-body">${body}</div>
+      `;
+      return el;
+    }
+
+    function loadMoreReleases() {
+      const container = document.getElementById('js-changelog');
+      const btn = document.getElementById('js-load-more');
+      btn.textContent = 'Loading…';
+      btn.disabled = true;
+      changelogPage++;
+      fetch(`https://api.github.com/repos/dertwist/Hammer5Tools/releases?per_page=10&page=${changelogPage}`)
+        .then(r => r.json())
+        .then(releases => {
+          if (!releases.length) {
+            btn.style.display = 'none';
+            return;
+          }
+          releases.forEach(r => container.appendChild(renderRelease(r)));
+          btn.textContent = 'Load more releases';
+          btn.disabled = false;
+          if (releases.length < 10) btn.style.display = 'none';
+        })
+        .catch(() => {
+          btn.textContent = 'Failed to load. Try again.';
+          btn.disabled = false;
+        });
+    }
+
+    // Initial load: 3 releases
+    fetch('https://api.github.com/repos/dertwist/Hammer5Tools/releases?per_page=' + INITIAL_COUNT)
+      .then(r => r.json())
+      .then(releases => {
+        const container = document.getElementById('js-changelog');
+        container.innerHTML = '';
+        releases.forEach(r => container.appendChild(renderRelease(r)));
+        document.getElementById('js-load-more').style.display = 'inline-flex';
+      })
+      .catch(() => {
+        document.getElementById('js-changelog').textContent = 'Failed to load changelog.';
+      });
+  </script>
 </body>
-</html>
-
-
-		<div class="footer">
-			<div class="container">
-				<div class="footer-left">
-					Available under the <a href="https://github.com/dertwist/Hammer5Tools/blob/main/LICENSE">MIT license</a>.<br>
-					Created and maintained by <a href="https://x.com/der_twist">Twist</a>.
-				</div>
-			</div>
-		</div>
-	</body>
 </html>
