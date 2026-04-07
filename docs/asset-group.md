@@ -1,4 +1,4 @@
-# Batch Asset Creator
+# Asset Group maker
 
 Automate the creation of dozens of assets using simple configuration files.
 

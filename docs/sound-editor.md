@@ -1,20 +1,20 @@
-The Sound Event Editor allows you to manage in-game sound configurations seamlessly.
+The SoundEvent Editor allows you to manage in-game sound configurations seamlessly.
 
 ## Interface Overview
 
 | Action | Description | Hotkey |
 | --- | --- | --- |
 | Save | Saves the current soundevents file | Ctrl + S |
-| New Event | Creates a new sound event entry | Ctrl + N |
-| Duplicate | Duplicates the selected sound event | Ctrl + D |
+| New Event | Creates a new soundevent entry | Ctrl + N |
+| Duplicate | Duplicates the selected soundevent | Ctrl + D |
 | Remove | Deletes the selected event | Del |
 
 ## Working with VSND Files
-Import your `.vsnd` files directly by dragging and dropping them into the properties panel. You can preview sounds within the editor before adding them to your sound events.
+Import your `.vsnd` files directly by dragging and dropping them into the properties panel. You can preview sounds within the editor before adding them to your soundevents.
 
 ## Properties Reference
 
-Standard Source 2 sound event parameters including:
+Standard Source 2 soundevent parameters including:
 - **VSND Files**: List of sound files associated with the event.
 - **Volume**: Sound amplitude (0.0 to 1.0).
 - **Pitch**: Playback speed and pitch modifier.

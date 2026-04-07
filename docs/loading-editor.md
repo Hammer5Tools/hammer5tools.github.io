@@ -1,3 +1,5 @@
+# Loading Editor
+
 Create and customize your map's loading experience by managing screenshots and map icons.
 
 ## Screenshots Interface

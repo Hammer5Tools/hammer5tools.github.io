@@ -1,3 +1,5 @@
+# Hotkey Editor
+
 Customize your workshop tools shortcuts to match your workflow and improve productivity.
 
 ## Hotkey Configuration

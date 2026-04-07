@@ -1,3 +1,5 @@
+# SmartProp Editor
+
 Procedural placement systems in Source 2 which enable level designers to create complex, rule-based prop arrangements. 
 
 ## Key Concepts
