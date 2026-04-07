@@ -683,7 +683,7 @@
           const { href, title, text } = obj;
           if (href && (href.endsWith('.mp4') || href.endsWith('.webm'))) {
             return `
-              <video controls loop muted playsinline poster="${title || ''}">
+              <video autoplay controls loop muted playsinline poster="${title || ''}">
                 <source src="${href}" type="video/${href.split('.').pop()}">
                 Your browser does not support the video tag.
               </video>`;

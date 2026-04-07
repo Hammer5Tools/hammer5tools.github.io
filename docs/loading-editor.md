@@ -73,9 +73,3 @@ Add a rich-text description that players see on the loading screen.
 - Click **Apply Description** to write the file to `game/csgo_addons/{addon_name}/maps/{addon_name}.txt`.
 
 The file is written with a `COMMUNITYMAPCREDITS:` header followed by your description text.
-
-## Keyboard Shortcuts
-
-| Key | Action |
-| --- | --- |
-| `F` | Reset viewport camera position (when not focused on a text field) |
