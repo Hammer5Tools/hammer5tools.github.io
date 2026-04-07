@@ -105,6 +105,36 @@
       border-bottom: 1px solid var(--border-color);
     }
 
+    #sidebar-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      color: var(--text-main);
+      cursor: pointer;
+      padding: 0.5rem;
+      margin-left: -0.5rem;
+      border-radius: 4px;
+    }
+
+    #sidebar-toggle:hover {
+      background: var(--code-bg);
+    }
+
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+      z-index: 49;
+    }
+
+    .sidebar-overlay.visible {
+      display: block;
+    }
+
     .topbar-left {
       display: flex;
       align-items: center;
@@ -160,6 +190,22 @@
       pointer-events: none;
     }
 
+    #search-results {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      width: min(320px, calc(100vw - 2rem));
+      background: var(--bg-sidebar);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+      z-index: 100;
+      display: none;
+      max-height: 400px;
+      overflow-y: auto;
+      margin-top: 0.5rem;
+    }
+
     /* Sidebar */
     aside.sidebar {
       grid-area: sidebar;
@@ -192,13 +238,15 @@
     }
 
     .nav-link {
-      display: block;
-      padding: 0.4rem 0.75rem;
+      display: flex;
+      align-items: center;
+      padding: 0.6rem 0.75rem;
       text-decoration: none;
       color: var(--text-muted);
       font-size: 0.95rem;
-      border-radius: 4px;
-      transition: color 0.15s, background 0.15s;
+      border-radius: 6px;
+      transition: all 0.2s;
+      min-height: 40px;
     }
 
     .nav-link:hover {
@@ -208,7 +256,7 @@
 
     .nav-link.active {
       color: var(--color-primary);
-      font-weight: 600;
+      font-weight: 500;
       background: var(--color-primary-soft);
     }
 
@@ -244,9 +292,72 @@
     }
 
     .toc-title {
-      font-weight: 700;
-      margin-bottom: 1rem;
       color: var(--text-muted);
+    }
+
+    /* Mobile Responsiveness - Phase 1 & 3 */
+    @media (max-width: 767px) {
+      .app-container {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "topbar"
+          "content";
+      }
+
+      aside.sidebar {
+        position: fixed;
+        left: -280px;
+        top: 64px;
+        height: calc(100vh - 64px);
+        width: 280px;
+        transition: left 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        z-index: 50;
+        background: var(--bg-sidebar);
+        padding-top: 1rem;
+      }
+
+      aside.sidebar.open {
+        left: 0;
+      }
+
+      #sidebar-toggle {
+        display: flex;
+      }
+
+      main.content {
+        padding: 1.5rem 1rem;
+      }
+
+      header.topbar {
+        padding: 0 1rem;
+      }
+
+      .topbar-left span {
+        display: none;
+      }
+
+      .search-input {
+        width: 140px;
+      }
+
+      .search-input:focus {
+        width: 180px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .search-input {
+        width: 100px;
+      }
+
+      .search-input:focus {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: calc(100vw - 110px);
+        z-index: 10;
+      }
     }
 
     .toc-list {
@@ -269,17 +380,17 @@
       color: var(--color-primary);
     }
 
-    /* Typography Elements */
+    /* Typography Elements - Phase 4 Fluid Typography */
     h1 {
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
+      font-size: clamp(1.75rem, 5vw, 2.75rem);
+      margin-bottom: 1.5rem;
       border-bottom: 1px solid var(--border-color);
-      padding-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      line-height: 1.2;
     }
 
-    /* h2 Numbered Circles (GitBook Style) */
-    .prose h2 {
-      font-size: 1.75rem;
+    h2 {
+      font-size: clamp(1.4rem, 4vw, 1.85rem);
       margin-top: 2.5rem;
       margin-bottom: 1.25rem;
       display: flex;
@@ -288,13 +399,14 @@
     }
 
     h3 {
-      font-size: 1.25rem;
-      margin-top: 2rem;
+      font-size: clamp(1.15rem, 3vw, 1.35rem);
+      margin-top: 1.75rem;
       margin-bottom: 1rem;
     }
 
     p {
       margin-bottom: 1.25rem;
+      font-size: clamp(0.95rem, 1vw + 0.7rem, 1.05rem);
     }
 
     hr {
@@ -490,10 +602,19 @@
 <body>
   <div class="app-container">
     <header class="topbar">
-      <a href="index.html" class="topbar-left">
-        <img src="static/logo.png" alt="Hammer 5 Tools Logo">
-        <span>Hammer 5 Tools</span>
-      </a>
+      <div class="topbar-left">
+        <button id="sidebar-toggle" aria-label="Toggle Sidebar">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+        <a href="index.html" class="topbar-left">
+          <img src="static/logo.png" alt="Hammer 5 Tools Logo">
+          <span>Hammer 5 Tools</span>
+        </a>
+      </div>
       <div class="topbar-right">
         <div class="search-container">
           <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -501,7 +622,8 @@
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
-          <input type="text" class="search-input" placeholder="Search documentation..." id="search-input">
+          <input type="text" id="search-input" class="search-input" placeholder="Search docs... (Ctrl + K)">
+          <div id="search-results"></div>
         </div>
         <a href="https://github.com/dertwist/Hammer5Tools" class="theme-toggle" aria-label="GitHub">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -565,6 +687,8 @@
       </nav>
     </aside>
 
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
     <main class="content">
       <article class="prose" id="main-content">
         <div style="padding: 2rem; color: var(--text-muted);">Loading documentation...</div>
@@ -612,6 +736,34 @@
         this.initTheme();
         this.handleRouting();
         this.preloadSearch();
+
+        // Responsive Sidebar Listeners
+        const toggleBtn = document.getElementById('sidebar-toggle');
+        const sidebar = document.querySelector('.sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
+
+        if (toggleBtn) {
+          toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('visible');
+            document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : '';
+          });
+        }
+
+        if (overlay) {
+          overlay.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('visible');
+            document.body.style.overflow = '';
+          });
+        }
+
+        // Close sidebar on anchor clicks
+        window.addEventListener('hashchange', () => {
+          sidebar.classList.remove('open');
+          overlay.classList.remove('visible');
+          document.body.style.overflow = '';
+        });
       },
 
       showLocalFileError() {
@@ -734,16 +886,7 @@
         });
 
         const searchInput = document.getElementById('search-input');
-        const resultsDropdown = document.createElement('div');
-        resultsDropdown.id = 'search-results';
-        resultsDropdown.style.cssText = `
-          position: absolute; top: 100%; right: 0; width: 300px;
-          background: var(--bg-sidebar); border: 1px solid var(--border-color);
-          border-radius: 6px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
-          z-index: 100; display: none; max-height: 400px;
-          overflow-y: auto; margin-top: 0.5rem;
-        `;
-        document.querySelector('.search-container').appendChild(resultsDropdown);
+        const resultsDropdown = document.getElementById('search-results');
 
         searchInput.addEventListener('input', (e) => {
           const query = e.target.value.trim();
@@ -772,7 +915,6 @@
       },
 
       bindEvents() {
-        window.addEventListener('hashchange', () => this.handleRouting());
         document.getElementById('theme-toggle').addEventListener('click', () => {
           this.setTheme(this.theme === 'dark' ? 'light' : 'dark');
         });
@@ -844,6 +986,17 @@
           rendered += '</div>';
 
           contentArea.innerHTML = rendered;
+
+          // Table wrapping for responsive scroll - Phase 5
+          contentArea.querySelectorAll('table').forEach(table => {
+            const wrapper = document.createElement('div');
+            wrapper.style.cssText = 'overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 1.5rem 0; background: var(--bg-sidebar); border-radius: 8px; border: 1px solid var(--border-color);';
+            table.parentNode.insertBefore(wrapper, table);
+            wrapper.appendChild(table);
+            table.style.margin = '0';
+            table.style.minWidth = '600px';
+          });
+
           window.scrollTo(0, 0);
           this.generateTOC();
         } catch (e) {
