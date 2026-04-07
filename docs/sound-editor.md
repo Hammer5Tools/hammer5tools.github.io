@@ -1,74 +1,165 @@
 # SoundEvent Editor
 
-The SoundEvent Editor is a comprehensive tool for managing and configuring sound events within the Hammer 5 environment. This guide covers the interface, property management, and usage of presets.
+Create and manage sound events for your addon. The editor reads and writes `soundevents_addon.vsndevts` in your addon's content directory and keeps your sound files in the `sounds/` folder next to it.
 
 ---
 
-## Interface Overview
+## Layout
 
-The interface is divided into several functional areas designed for efficient navigation and editing.
+The editor is organized into a main window with a sidebar of tabs on the right and a properties panel in the center.
 
-![Interface Overview](docs/images/sound_editor/interface_overview.png)
-
-### Global Hotkeys
-*   **SPACE**: Play or Pause the selected SoundEvent.
-*   **Enter**: Performs the same action as a double-click (e.g., editing a property or expanding a folder).
-*   **Ctrl + Shift + F**: Opens Global Search.
-*   **Delete**: Deletes the selected SoundEvent.
-*   **F2**: Renames the selected SoundEvent.
-
-### Context Menu Actions
-
-#### SoundEvents Explorer
-Right-clicking a SoundEvent or an empty area in the explorer provides:
-*   **Add Soundevent**: Create a new soundevent entry.
-*   **Duplicate (Ctrl + D)**: Creates a copy of the selected soundevent.
-*   **Rename (F2)**: Change the name of the entry.
-*   **Delete (Delete)**: Remove the entry.
-*   **Copy SoundEvent name**: Copies the name to your clipboard.
-*   **Open soundevents file**: Opens the source file in your default text editor.
-
-#### Properties Editor
-Right-clicking within the properties panel allows:
-*   **Copy Value**: Copies the selected property's value.
-*   **Paste Value**: Pastes a value from the clipboard into the selected property.
-*   **Reset to Default**: Reverts the property to its baseline value.
-*   **Add Property**: Adds a new property field to the SoundEvent.
-*   **Remove Property**: Deletes the selected property from the entry.
+| Area | Description |
+|---|---|
+| **Hierarchy** | List of every sound event in `soundevents_addon.vsndevts`. |
+| **Properties** | Fields of the currently selected sound event. |
+| **Sound Explorer** | File tree rooted at your addon's `sounds/` directory. |
+| **Internal Sound Files** | Searchable flat list of every raw sound file found inside CS2's VPK. |
+| **Internal SoundEvents** | Searchable flat list of every compiled sound event from the base game. |
+| **History** | Undo/redo stack (docked, resizable). |
 
 ---
 
-## Property Reference
+## Getting Started
 
-Properties in the SoundEvent Editor come in various data types, each with its own interaction method.
+When you open the editor it automatically loads `soundevents/soundevents_addon.vsndevts` from your addon's content folder. If the file does not exist yet a dialog will ask whether you want to copy the default template from `addon_template`. Choosing **Yes** copies both the `.vsndevts` file and the default `sounds/` folder — note this may overwrite any WAV files already present there.
+
+You can also open a different `.vsndevts` file at any time with the **Load** button.
+
+---
+
+## Toolbar Buttons
+
+| Button | Action |
+|---|---|
+| **Load** | Open a file picker to load any `.vsndevts` file into the hierarchy. |
+| **Output** | Open the current `soundevents_addon.vsndevts` in your default text editor. |
+| **Save** | Write all hierarchy changes back to the file immediately. |
+| **Open Preset Manager** | Opens the Preset Manager window. |
+| **Realtime Save** (checkbox) | When checked, the file is saved automatically ~50 ms after every change. |
+
+---
+
+## Hierarchy
+
+The hierarchy shows every sound event by name. All operations respect the undo stack.
+
+### Hierarchy Context Menu
+
+Right-click anywhere in the hierarchy for:
+
+| Action | Shortcut | Description |
+|---|---|---|
+| Add Soundevent | — | Create a new blank sound event. |
+| Duplicate | `Ctrl+D` | Copy selected event(s) with a new unique name. |
+| Rename | `F2` | Rename the selected event inline. |
+| Delete | `Del` | Remove the selected event(s). |
+| Copy SoundEvent name | — | Copy the event name to the clipboard. |
+| Open soundevents file | — | Open the `.vsndevts` file in your text editor. |
+
+### Hierarchy Search Bar
+
+Type in the search bar above the hierarchy to filter events by name in real time.
+
+---
+
+## Properties Panel
+
+Selecting an event in the hierarchy loads its properties here. Each property is a collapsible frame showing the key and its value widget.
 
 ### Property Types
 
-*   **List (e.g., vsnd_files)**: Used for managing multiple assets. Click the **Plus (+)** icon to add an entry or the **Minus (-)** icon to remove one.
-    ![List Property](docs/images/sound_editor/list_property.png)
+| Type | Interaction |
+|---|---|
+| **Float / Number** | Left-click and drag horizontally to scrub; type a value directly. Drag generates a single undo entry on release. |
+| **List** (`vsnd_files`, etc.) | Use **+** / **–** buttons to add or remove list entries. |
+| **ComboBox** | Click to open a dropdown of predefined options. |
+| **Bool** | Click the checkbox to toggle. |
+| **Curve** | Click and drag curve points to adjust the shape. |
 
-*   **Float (Number)**: Numerical values like volume or pitch. Left-click and drag horizontally to adjust the value quickly.
-    ![Float Property](docs/images/sound_editor/float_property.png)
+### Properties Context Menu
 
-*   **ComboBox (Dropdown)**: Provides a list of predefined options. Left-click to open the list and select your desired value.
-    ![ComboBox Property](docs/images/sound_editor/combobox_property.png)
+Right-click the properties area for:
 
-*   **Line (Curve)**: Visualizes values over time or distance. Left-click and drag points to manipulate the curve shape.
-    ![Curve Property](docs/images/sound_editor/curve_property.png)
+| Action | Shortcut | Description |
+|---|---|---|
+| Undo | `Ctrl+Z` | Undo the last property change. |
+| Redo | `Ctrl+Y` / `Ctrl+Shift+Z` | Redo a previously undone change. |
+| New Property | `Ctrl+F` | Open the property picker popup to add a field. |
+| Paste | `Ctrl+V` | Paste a property from the clipboard. |
+| Collapse All | — | Collapse every property frame. |
+| Expand All | — | Expand every property frame. |
 
-*   **Bool (Checkbox)**: A simple toggle for features (e.g., `use_hrtf`). Left-click to check or uncheck.
-    ![Bool Property](docs/images/sound_editor/bool_property.png)
+### Comment Field
+
+Every event has a **Comment** text box at the top of the properties panel. The comment is stored in the `.vsndevts` file alongside the event data.
+
+### Read-only Mode
+
+Events loaded from the **Internal SoundEvents** tab for preview are displayed in read-only mode. All property frames are disabled and a badge indicates the state. The **Play** button remains active.
 
 ---
 
-## Using Presets
+## Playing Sound Events
 
-Presets allow you to quickly apply standard configurations to new SoundEvents.
+A **Play current event** button and a **Stop** button sit above the Preset Manager button in the left panel.
 
-### Creating Presets
-To create a custom preset, set up a SoundEvent with your desired parameters, right-click it in the explorer, and select **"Create Preset"**.
+- **Play current event** — Sends `snd_sos_stop_all_soundevents` followed by `snd_sos_start_soundevent <name>` to a running CS2 instance via netconsole (`-netconport 2121`). CS2 must already be running with that launch option.
+- **Stop** — Sends `snd_sos_stop_all_soundevents` to stop everything currently playing.
 
-### Preset Manager
-The Preset Manager, located in the Tools menu, allows you to view and delete presets. The explorer view helps organize these configurations within the `SoundEventEditor/Presets` directory.
+---
 
-![Preset Manager](docs/images/sound_editor/preset_manager.png)
+## Sound Explorer
+
+The **Sound Explorer** tab shows the file tree of your addon's `sounds/` directory. Clicking a file plays it through the built-in audio player (if **Play on click** is enabled in settings). The audio player bar appears at the top of the explorer section.
+
+---
+
+## Internal Sound Files
+
+The **Internal Sound Files** tab lists raw `.vsnd` files extracted from CS2's VPK. Use the search bar to filter by name. Clicking a file plays it through the audio player.
+
+---
+
+## Internal SoundEvents
+
+The **Internal SoundEvents** tab is a flat searchable list of every compiled sound event from the base game. The list is loaded in a background thread the first time the editor opens; compiled `.vsndevts_c` files are decompiled and cached locally so subsequent loads are instant.
+
+### Interactions
+
+| Action | Result |
+|---|---|
+| Single click | Plays the event in CS2 via netconsole (same as **Play current event**). |
+| Double click | Opens the event's properties in the Properties panel in read-only mode. |
+| Right-click → Copy Name(s) | Copies selected event name(s) to the clipboard. |
+| Right-click → Copy to Addon | Adds the event as a new entry in your addon hierarchy and saves. |
+
+---
+
+## Undo / Redo
+
+All hierarchy and property changes are tracked by a shared undo stack.
+
+| Action | Shortcut |
+|---|---|
+| Undo | `Ctrl+Z` |
+| Redo | `Ctrl+Y` or `Ctrl+Shift+Z` |
+
+The **History** dock on the right shows the full stack. Click any entry to jump to that state.
+
+---
+
+## Preset Manager
+
+Open the Preset Manager with the **Open Preset Manager** button. Presets are `.kv3` files stored in the `SoundEventEditor/Presets` directory.
+
+| Button | Action |
+|---|---|
+| **New** | Create a new blank preset file (`SE_Preset_N.kv3`). |
+| **Open** | Load the selected preset into the properties view. |
+| **Save** | Write the current properties back to the open preset file. |
+| **Open Folder** | Open the presets directory in Explorer. |
+
+Select a preset in the explorer on the left, then click **Open** to edit its properties. Click **Save** to persist changes.
+
+> [!TIP]
+> Presets store a set of sound event properties. Use them to quickly apply a known configuration to a new event — open the preset, copy the properties you need, then paste them into your event.
