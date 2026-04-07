@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentation | Hammer 5 Tools</title>
+  <meta name="description" content="Official documentation for Hammer 5 Tools: CS2 Workshop utilities.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+
+  <!-- External Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js"></script>
+  <script src="https://unpkg.com/fuse.js@7.3.0/dist/fuse.min.js"></script>
+
+  <style>
+    :root {
+      /* Nexus Dark Palette (Inspired) */
+      --bg-base: #0c121c;
+      --bg-sidebar: #0a0f18;
+      --bg-topbar: rgba(12, 18, 28, 0.8);
+      --border-color: rgba(255, 255, 255, 0.1);
+      --text-main: #e2e8f0;
+      --text-muted: #94a3b8;
+      --text-inverse: #000;
+      --color-primary: #4f98a3;
+      /* Teal Accent */
+      --color-primary-soft: rgba(79, 152, 163, 0.1);
+      --color-note: #4f98a3;
+      --color-warning: #f59e0b;
+      --color-tip: #10b981;
+      --color-caution: #ef4444;
+      --code-bg: rgba(255, 255, 255, 0.05);
+
+      --max-content-width: 72ch;
+      --sidebar-width: 280px;
+      --toc-width: 240px;
+    }
+
+    [data-theme="light"] {
+      --bg-base: #ffffff;
+      --bg-sidebar: #f8fafc;
+      --bg-topbar: rgba(255, 255, 255, 0.8);
+      --border-color: rgba(0, 0, 0, 0.1);
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --code-bg: rgba(0, 0, 0, 0.05);
+    }
+
+    a {
+      color: var(--color-primary);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      transition: color 0.15s, opacity 0.15s;
+    }
+
+    a:hover {
+      opacity: 0.8;
+      text-decoration-thickness: 2px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      line-height: 1.7;
+    }
+
+    /* Layout */
+    .app-container {
+      display: grid;
+      grid-template-areas:
+        "topbar topbar"
+        "sidebar content";
+      grid-template-columns: var(--sidebar-width) 1fr;
+      grid-template-rows: 64px 1fr;
+      height: 100vh;
+    }
+
+    header.topbar {
+      grid-area: topbar;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      background: var(--bg-topbar);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .topbar-left img {
+      height: 32px;
+      width: 32px;
+    }
+
+    .topbar-left span {
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: -0.01em;
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .search-container {
+      position: relative;
+    }
+
+    .search-input {
+      background: var(--code-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 0.4rem 0.75rem 0.4rem 2rem;
+      color: inherit;
+      font-size: 0.9rem;
+      width: 240px;
+      transition: width 0.2s, border-color 0.2s;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      width: 300px;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 0.6rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    /* Sidebar */
+    aside.sidebar {
+      grid-area: sidebar;
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border-color);
+      overflow-y: auto;
+      padding: 1.5rem 1rem;
+      position: sticky;
+      top: 64px;
+      height: calc(100vh - 64px);
+    }
+
+    .nav-group {
+      margin-bottom: 2rem;
+    }
+
+    .nav-group-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .nav-link {
+      display: block;
+      padding: 0.4rem 0.75rem;
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      border-radius: 4px;
+      transition: color 0.15s, background 0.15s;
+    }
+
+    .nav-link:hover {
+      color: var(--text-main);
+      background: var(--code-bg);
+    }
+
+    .nav-link.active {
+      color: var(--color-primary);
+      font-weight: 600;
+      background: var(--color-primary-soft);
+    }
+
+    /* Content Area */
+    main.content {
+      grid-area: content;
+      overflow-y: auto;
+      padding: 3rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    article.prose {
+      width: 100%;
+      max-width: var(--max-content-width);
+    }
+
+    /* TOC Panel */
+    .toc-panel {
+      position: sticky;
+      top: 3rem;
+      width: var(--toc-width);
+      flex-shrink: 0;
+      margin-left: 3rem;
+      font-size: 0.85rem;
+      display: none;
+    }
+
+    @media (min-width: 1280px) {
+      .toc-panel {
+        display: block;
+      }
+    }
+
+    .toc-title {
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text-muted);
+    }
+
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      border-left: 1px solid var(--border-color);
+    }
+
+    .toc-item {
+      padding-left: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .toc-link {
+      text-decoration: none;
+      color: var(--text-muted);
+    }
+
+    .toc-link:hover {
+      color: var(--color-primary);
+    }
+
+    /* Typography Elements */
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 1rem;
+    }
+
+    h2 {
+      font-size: 1.75rem;
+      margin-top: 2.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin-bottom: 1.25rem;
+    }
+
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      background: var(--code-bg);
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.9em;
+      color: var(--color-primary);
+    }
+
+    pre {
+      background: #0f172a;
+      /* Darker pre for code blocks */
+      padding: 1.25rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 1.5rem 0;
+      position: relative;
+    }
+
+    pre code {
+      background: transparent;
+      color: #f8fafc;
+      padding: 0;
+      font-size: 0.85rem;
+    }
+
+    .code-badge {
+      position: absolute;
+      top: 0;
+      right: 1.25rem;
+      background: var(--color-primary);
+      color: var(--text-inverse);
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 0.2rem 0.5rem;
+      border-radius: 0 0 4px 4px;
+      text-transform: uppercase;
+    }
+
+    /* Callouts */
+    .callout {
+      padding: 1rem 1.25rem;
+      border-left: 4px solid;
+      border-radius: 4px;
+      background: var(--code-bg);
+      margin: 1.5rem 0;
+    }
+
+    .callout-title {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .callout-note {
+      border-color: var(--color-note);
+    }
+
+    .callout-warning {
+      border-color: var(--color-warning);
+    }
+
+    .callout-tip {
+      border-color: var(--color-tip);
+    }
+
+    .callout-caution {
+      border-color: var(--color-caution);
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.9rem;
+    }
+
+    th {
+      text-align: left;
+      background: var(--code-bg);
+      padding: 0.75rem;
+      border-bottom: 2px solid var(--border-color);
+    }
+
+    td {
+      padding: 0.75rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    /* Media Elements */
+    .prose img,
+    .prose video {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      margin: 1.5rem 0;
+      display: block;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Pagination */
+    .doc-pagination {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .pagination-btn {
+      text-decoration: none;
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .pagination-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .pagination-title {
+      font-weight: 600;
+      color: var(--color-primary);
+    }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .theme-toggle:hover {
+      color: var(--text-main);
+      background: var(--code-bg);
+    }
+
+    /* Step Indicators (Ordered Lists) */
+    ol {
+      list-style: none;
+      padding-left: 2rem;
+      counter-reset: step-counter;
+    }
+
+    ol li {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    ol li::before {
+      content: counter(step-counter);
+      counter-increment: step-counter;
+      position: absolute;
+      left: -2.5rem;
+      top: 0.1rem;
+      width: 1.6rem;
+      height: 1.6rem;
+      background: var(--color-primary);
+      color: var(--text-inverse);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app-container">
+    <header class="topbar">
+      <a href="index.html" class="topbar-left">
+        <img src="static/logo.png" alt="Hammer 5 Tools Logo">
+        <span>Hammer 5 Tools</span>
+      </a>
+      <div class="topbar-right">
+        <div class="search-container">
+          <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" class="search-input" placeholder="Search documentation..." id="search-input">
+        </div>
+        <a href="https://github.com/dertwist/Hammer5Tools" class="theme-toggle" aria-label="GitHub">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+            </path>
+          </svg>
+        </a>
+        <button class="theme-toggle" id="theme-toggle" title="Toggle color theme">
+          <svg class="sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <aside class="sidebar">
+      <nav>
+        <div class="nav-group">
+          <div class="nav-group-title">Getting Started</div>
+          <ul class="nav-links">
+            <li><a href="#introduction" class="nav-link">Introduction</a></li>
+            <li><a href="#installation" class="nav-link">Installation & Setup</a></li>
+            <li><a href="#quick-start" class="nav-link">Quick Start</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <div class="nav-group-title">Tools</div>
+          <ul class="nav-links">
+            <li><a href="#sound-editor" class="nav-link">Sound Event Editor</a></li>
+            <li><a href="#smart-props" class="nav-link">Smart Props Editor</a></li>
+            <li><a href="#loading-screens" class="nav-link">Loading Screen Editor</a></li>
+            <li><a href="#keybinds" class="nav-link">Keybinding Manager</a></li>
+            <li><a href="#batch-asset" class="nav-link">Batch Asset Creator</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <div class="nav-group-title">Reference</div>
+          <ul class="nav-links">
+            <li><a href="#file-formats" class="nav-link">File Formats</a></li>
+            <li><a href="#commands" class="nav-link">Console Commands</a></li>
+            <li><a href="#faq" class="nav-link">FAQ & Troubleshooting</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <article class="prose" id="main-content">
+        <div style="padding: 2rem; color: var(--text-muted);">Loading documentation...</div>
+      </article>
+
+      <aside class="toc-panel" id="toc-panel">
+        <div class="toc-title">On this page</div>
+        <ul class="toc-list" id="toc-list">
+          <!-- TOC items injected here -->
+        </ul>
+      </aside>
+    </main>
+  </div>
+
+  <script>
+    // Metadata and structure
+    const contentMap = {
+      'introduction': { file: 'introduction.md', breadcrumb: 'Getting Started &rsaquo; Introduction', next: 'installation' },
+      'installation': { file: 'installation.md', breadcrumb: 'Getting Started &rsaquo; Installation', prev: 'introduction', next: 'quick-start' },
+      'quick-start': { file: 'quick-start.md', breadcrumb: 'Getting Started &rsaquo; Quick Start', prev: 'installation', next: 'sound-editor' },
+      'sound-editor': { file: 'sound-editor.md', breadcrumb: 'Tools &rsaquo; Sound Event Editor', prev: 'quick-start', next: 'smart-props' },
+      'smart-props': { file: 'smart-props.md', breadcrumb: 'Tools &rsaquo; Smart Props Editor', prev: 'sound-editor', next: 'loading-screens' },
+      'loading-screens': { file: 'loading-screens.md', breadcrumb: 'Tools &rsaquo; Loading Screen Editor', prev: 'smart-props', next: 'keybinds' },
+      'keybinds': { file: 'keybinds.md', breadcrumb: 'Tools &rsaquo; Keybinding Manager', prev: 'loading-screens', next: 'batch-asset' },
+      'batch-asset': { file: 'batch-asset.md', breadcrumb: 'Tools &rsaquo; Batch Asset Creator', prev: 'keybinds', next: 'file-formats' },
+      'file-formats': { file: 'file-formats.md', breadcrumb: 'Reference &rsaquo; File Formats', prev: 'batch-asset', next: 'commands' },
+      'commands': { file: 'commands.md', breadcrumb: 'Reference &rsaquo; Console Commands', prev: 'file-formats', next: 'faq' },
+      'faq': { file: 'faq.md', breadcrumb: 'Reference &rsaquo; FAQ', prev: 'commands' }
+    };
+
+    const app = {
+      theme: 'dark',
+      currentPath: '#introduction',
+      fuse: null,
+      searchData: [],
+
+      init() {
+        this.configureMarked();
+        this.bindEvents();
+        this.initTheme();
+        this.handleRouting();
+        this.preloadSearch();
+      },
+
+      // Helper to resolve paths correctly
+      getBasePath() {
+        return 'docs/';
+      },
+
+      configureMarked() {
+        // Custom renderer for Callouts and Media
+        const renderer = new marked.Renderer();
+        const originalBlockquote = renderer.blockquote.bind(renderer);
+        const originalImage = renderer.image.bind(renderer);
+
+        // Blockquote override for [!NOTE] callouts
+        renderer.blockquote = (obj) => {
+          const tokens = obj.tokens || [];
+          if (tokens.length > 0 && tokens[0].type === 'paragraph') {
+            const firstToken = tokens[0];
+            const text = firstToken.text;
+            const regex = /^\[!(NOTE|WARNING|TIP|CAUTION)\]\s*/i;
+            const match = text.match(regex);
+            
+            if (match) {
+              const type = match[1].toLowerCase();
+              const title = match[1].charAt(0).toUpperCase() + match[1].slice(1).toLowerCase();
+              
+              // Remove indicator from first token’s text
+              const firstTokenRaw = firstToken.raw.replace(regex, '').trim();
+              
+              // Parse the first line's markdown content
+              const firstLineHTML = marked.parseInline(firstTokenRaw);
+              
+              // Handle any additional tokens (extra paragraphs etc)
+              let extraHTML = '';
+              if (tokens.length > 1) {
+                extraHTML = marked.parser(tokens.slice(1));
+              }
+              
+              return `
+                <div class="callout callout-${type}">
+                  <div class="callout-title">${title}</div>
+                  <p>${firstLineHTML}</p>
+                  ${extraHTML}
+                </div>`;
+            }
+          }
+          return originalBlockquote(obj);
+        };
+
+        // Image override to support video formats
+        renderer.image = function (obj) {
+          const { href, title, text } = obj;
+          if (href && (href.endsWith('.mp4') || href.endsWith('.webm'))) {
+            return `
+              <video controls loop muted playsinline poster="${title || ''}">
+                <source src="${href}" type="video/${href.split('.').pop()}">
+                Your browser does not support the video tag.
+              </video>`;
+          }
+          return originalImage(obj);
+        };
+
+        marked.setOptions({ renderer });
+      },
+
+      initTheme() {
+        const saved = localStorage.getItem('theme') || 'dark';
+        this.setTheme(saved);
+      },
+
+      setTheme(theme) {
+        this.theme = theme;
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+      },
+
+      async preloadSearch() {
+        const data = [];
+        const base = this.getBasePath();
+        for (const [id, meta] of Object.entries(contentMap)) {
+          try {
+            const res = await fetch(base + meta.file);
+            const text = await res.text();
+            // Extract h1 for title
+            const titleMatch = text.match(/^#\s+(.+)$/m);
+            const title = titleMatch ? titleMatch[1] : id;
+            data.push({ id, title, body: text });
+          } catch (e) { console.error(`Search preload failed for ${id}`); }
+        }
+        this.searchData = data;
+        this.initSearch();
+      },
+
+      initSearch() {
+        if (typeof Fuse === 'undefined') {
+          console.warn('Fuse.js not loaded. Search will be disabled.');
+          return;
+        }
+        this.fuse = new Fuse(this.searchData, {
+          keys: ['title', 'body'],
+          threshold: 0.3,
+          ignoreLocation: true
+        });
+
+        const searchInput = document.getElementById('search-input');
+        const resultsDropdown = document.createElement('div');
+        resultsDropdown.id = 'search-results';
+        resultsDropdown.style.cssText = `
+          position: absolute; top: 100%; right: 0; width: 300px;
+          background: var(--bg-sidebar); border: 1px solid var(--border-color);
+          border-radius: 6px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+          z-index: 100; display: none; max-height: 400px;
+          overflow-y: auto; margin-top: 0.5rem;
+        `;
+        document.querySelector('.search-container').appendChild(resultsDropdown);
+
+        searchInput.addEventListener('input', (e) => {
+          const query = e.target.value.trim();
+          if (query.length < 2) {
+            resultsDropdown.style.display = 'none';
+            return;
+          }
+
+          const results = this.fuse.search(query);
+          if (results.length === 0) {
+            resultsDropdown.innerHTML = '<div style="padding: 1rem; color: var(--text-muted);">No results found.</div>';
+          } else {
+            resultsDropdown.innerHTML = results.map(r => `
+              <a href="#${r.item.id}" style="display: block; padding: 0.75rem 1rem; text-decoration: none; border-bottom: 1px solid var(--border-color);">
+                <div style="font-weight: 600; color: var(--color-primary); font-size: 0.9rem;">${r.item.title}</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${r.item.body.substring(0, 100)}...</div>
+              </a>
+            `).join('');
+          }
+          resultsDropdown.style.display = 'block';
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!e.target.closest('.search-container')) resultsDropdown.style.display = 'none';
+        });
+      },
+
+      bindEvents() {
+        window.addEventListener('hashchange', () => this.handleRouting());
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+          this.setTheme(this.theme === 'dark' ? 'light' : 'dark');
+        });
+      },
+
+      async handleRouting() {
+        const hash = window.location.hash || '#introduction';
+        this.currentPath = hash;
+        const pageId = hash.substring(1);
+
+        // TOC Scroll Anchor support
+        if (pageId.startsWith('heading-')) {
+          const el = document.getElementById(pageId);
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+          return;
+        }
+
+        const meta = contentMap[pageId];
+        const contentArea = document.getElementById('main-content');
+
+        // Sidebar UI update
+        document.querySelectorAll('.nav-link').forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === hash);
+        });
+
+        if (!meta) {
+          contentArea.innerHTML = `<h1>404</h1><p>The page <code>${pageId}</code> was not found.</p>`;
+          return;
+        }
+
+        try {
+          const url = this.getBasePath() + meta.file;
+          const res = await fetch(url);
+          if (!res.ok) throw new Error(`HTTP Error: ${res.status} ${res.statusText}`);
+          const text = await res.text();
+          
+          // Construct Full HTML with Breadcrumbs and Pagination
+          let rendered = `<div class="breadcrumb">${meta.breadcrumb}</div>`;
+          rendered += marked.parse(text);
+          
+          // Add Pagination
+          rendered += '<div class="doc-pagination">';
+          if (meta.prev) {
+            const p = contentMap[meta.prev];
+            rendered += `<a href="#${meta.prev}" class="pagination-btn">
+              <span class="pagination-label">Previous</span>
+              <span class="pagination-title">&larr; ${p.breadcrumb.split(' &rsaquo; ').pop()}</span>
+            </a>`;
+          } else { rendered += '<div></div>'; }
+          
+          if (meta.next) {
+            const n = contentMap[meta.next];
+            rendered += `<a href="#${meta.next}" class="pagination-btn">
+              <span class="pagination-label">Next</span>
+              <span class="pagination-title">${n.breadcrumb.split(' &rsaquo; ').pop()} &rarr;</span>
+            </a>`;
+          }
+          rendered += '</div>';
+
+          contentArea.innerHTML = rendered;
+          window.scrollTo(0, 0);
+          this.generateTOC();
+        } catch (e) {
+          console.error(`[Docs Error] Failed to load "${meta.file}" at ${this.getBasePath() + meta.file}`, e);
+          contentArea.innerHTML = `<h1>Error</h1><p>Failed to load doc: ${meta.file}</p><p style="font-size:0.8rem; color:var(--text-muted);">${e.message}</p>`;
+        }
+      },
+
+      generateTOC() {
+        const tocList = document.getElementById('toc-list');
+        const contentArea = document.getElementById('main-content');
+        tocList.innerHTML = '';
+
+        const headings = contentArea.querySelectorAll('h2, h3');
+        headings.forEach((heading, idx) => {
+          const id = `heading-${idx}`;
+          heading.id = id;
+          const li = document.createElement('li');
+          li.className = 'toc-item';
+          li.style.paddingLeft = heading.tagName === 'H3' ? '2rem' : '1rem';
+          const a = document.createElement('a');
+          a.href = `#${id}`;
+          a.className = 'toc-link';
+          a.textContent = heading.textContent;
+          a.onclick = (e) => {
+            e.preventDefault();
+            heading.scrollIntoView({ behavior: 'smooth' });
+            history.replaceState(null, null, `#${id}`);
+          };
+          li.appendChild(a);
+          tocList.appendChild(li);
+        });
+      }
+    };
+
+    app.init();
+  </script>
+</body>
+
+</html>
