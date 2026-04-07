@@ -760,6 +760,7 @@
 
         // Close sidebar on anchor clicks
         window.addEventListener('hashchange', () => {
+          this.handleRouting();
           sidebar.classList.remove('open');
           overlay.classList.remove('visible');
           document.body.style.overflow = '';
