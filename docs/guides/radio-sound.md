@@ -11,14 +11,14 @@ To ensure proper looping, we need to set marks on the sound. There are several w
 
 Ensure there are only two marks in the file.
 
-![Wavosaur Waveform](docs/images/radio-wavosaur-waveform.png)
+![SoundEvent Search](docs/images/radio-soundevent-props.png)
 
 We're done! Just save the file, and remember that the file name should not include spaces or special characters.
 
 ## Creating event
 We can start from basic preset and then modify it. Press **Ctrl + F** in the soundevents and choose **SoundDebug** and rename it.
 
-![SoundEvent Search](docs/images/radio-soundevent-props.png)
+![Distance Volume Mapping Curve](docs/images/radio-hammer-picker.png)
 
 Delete the **Position Relative To Player** property.
 
@@ -26,7 +26,8 @@ Next, remove the sound from the **Vsnd Files Track 01** property and add your ow
 
 Now, we need to create a **Distance Volume Mapping Curve**. After creating it, set the values as follows:
 
-![Distance Volume Mapping Curve](docs/images/radio-hammer-picker.png)
+
+![Wavosaur Waveform](docs/images/radio-wavosaur-waveform.png)
 
 The reason for this is to maintain the sound's state regardless of the player's position on the map. If the volume is set to 0, the soundevent will be unloaded from memory, causing the playtime state to be lost. To prevent this, set the volume to the lowest possible value, such as **0.01**.
 
