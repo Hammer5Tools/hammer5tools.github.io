@@ -23,8 +23,7 @@ Edit your addon's `soundevents_addon.vsndevts` file.
 1. Switch to the **Sound Event Editor** tab.
 2. Click **Add New Event** to create a sound event entry.
 3. Pick your `.vsnd` file using the file picker.
-4. Select a preset (e.g. `cs_default_3d`) to pre-fill common properties.
-5. Adjust any parameters (volume, pitch, distance), then **Save**.
+4. Adjust any parameters (volume, pitch, distance), then **Save**.
 
 The file is written directly to `content/csgo_addons/<addon>/soundevents/soundevents_addon.vsndevts`.
 
@@ -45,7 +44,7 @@ You can also double-click a `.vsmart` file in Windows Explorer to open it direct
 
 ## Asset Group Maker
 
-Batch-create `.vagrp` asset group files for your addon.
+Batch-create `.hbat` asset group batch files for your addon.
 
 1. Switch to the **Asset Group** tab.
 2. The tool scans the addon directory for assets.
@@ -63,7 +62,7 @@ Manage your map's loading screen screenshots, map icon, and description.
 3. **Map Icon** — drag and drop an SVG onto the icon canvas. Use **Fit Viewbox** to auto-size it, then save.
 4. **Descriptions** — enter your map description and credits, then save.
 
-See the [Loading Editor documentation](loading-editor.md) for the full reference.
+See the [Loading Editor documentation](#loading-editor) for the full reference.
 
 ---
 
@@ -88,7 +87,7 @@ Compile your map without leaving Hammer5Tools.
 4. Click **Build**. Output streams live in the right panel.
 5. When the build finishes, the map loads in CS2 automatically if **Load in Engine After Build** is enabled.
 
-See the [Map Builder documentation](map-builder.md) for all settings and cubemap baking details.
+See the [Map Builder documentation](#map-builder) for all settings and cubemap baking details.
 
 ---
 
@@ -105,7 +104,7 @@ Remove unused asset files from your addon's content directory.
 > [!WARNING]
 > After running Cleanup, also run **Clean Up** inside Hammer's Asset Browser to remove stale compiled assets from the game directory.
 
-See the [Cleanup documentation](cleanup.md) for the full reference.
+See the [Cleanup documentation](#cleanup) for the full reference.
 
 ---
 
