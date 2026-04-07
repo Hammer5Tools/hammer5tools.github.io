@@ -72,15 +72,6 @@ a:active {
 	background: rgba(255, 255, 255, 0.1);
 }
 
-.floating-nav .nav-home {
-	padding: 0.2rem;
-	margin-right: 0.25rem;
-}
-
-.floating-nav .nav-home img {
-	display: block;
-}
-
 .floating-nav svg {
 	flex-shrink: 0;
 }
@@ -592,6 +583,19 @@ a.hljs-built_in {
 	font-size: 0.85rem;
 	min-width: 3rem;
 	text-align: center;
+}
+
+.loading-spinner {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #666;
+	font-size: 0.9rem;
+	background: #0c121c;
+	border-radius: 12px;
+	border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Changelog */

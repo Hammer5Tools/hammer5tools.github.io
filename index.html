@@ -51,9 +51,6 @@
   </svg>
 
   <nav class="floating-nav">
-    <a href="#" class="nav-home" aria-label="Hammer 5 Tools - Back to top">
-      <img src="static/logo.png" alt="" width="28" height="28" aria-hidden="true">
-    </a>
     <a href="#tools">Tools</a>
     <a href="#changelog">Changelog</a>
     <a href="https://twist-1.gitbook.io/hammer5tools">
@@ -142,14 +139,12 @@
         <div class="tool-preview">
           <div class="video-gallery" id="smartprop-gallery">
             <div class="video-gallery-frame">
-              <video autoplay loop muted playsinline>
-                <source src="videos/smartprops/cs2_AcmbKL2goU.mp4" type="video/mp4">
-              </video>
+              <div class="loading-spinner">Loading gallery…</div>
             </div>
             <div class="video-gallery-controls">
               <button class="gallery-btn" onclick="galleryNav('smartprop-gallery', -1)"
                 aria-label="Previous video">‹</button>
-              <span class="gallery-counter">1 / 12</span>
+              <span class="gallery-counter">0 / 0</span>
               <button class="gallery-btn" onclick="galleryNav('smartprop-gallery', 1)"
                 aria-label="Next video">›</button>
             </div>
@@ -316,29 +311,70 @@
     /* ── Video / GIF Gallery ── */
     const galleryData = {
       'smartprop-gallery': {
-        media: [
-          { src: 'videos/smartprops/cs2_AcmbKL2goU.mp4', type: 'video' },
-          { src: 'videos/smartprops/cs2_hQLAXjzItU.mp4', type: 'video' },
-          { src: 'videos/smartprops/cs2_jNkc1twTeM.mp4', type: 'video' },
-          { src: 'videos/smartprops/cs2_nwwzepiAKI.mp4', type: 'video' },
-          { src: 'videos/smartprops/cs2_zqeep7U88m.mp4', type: 'video' },
-          { src: 'videos/smartprops/cs2_fXp6MLDtSX.mp4', type: 'video' },
-          { src: 'videos/smartprops/cs2_N6sDTGM0hw.mp4', type: 'video' },
-          { src: 'videos/smartprops/cs2_7eLqSEaMAn.mp4', type: 'video' },
-          { src: 'videos/smartprops/cs2_CyvEYoz9PS.gif', type: 'gif' },
-          { src: 'videos/smartprops/cs2_TW8g0mwmQt.gif', type: 'gif' },
-          { src: 'videos/smartprops/cs2_oNEa8oEVnq.gif', type: 'gif' },
-          { src: 'videos/smartprops/cs2_plnhmB19qk.gif', type: 'gif' },
-        ],
+        media: [],
         current: 0
       }
     };
 
+    function initGalleries() {
+      fetch('https://api.github.com/repos/hammer5tools/hammer5tools.github.io/contents/videos/smartprops')
+        .then(response => {
+          if (!response.ok) throw new Error('Failed to fetch gallery content');
+          return response.json();
+        })
+        .then(files => {
+          const media = files
+            .filter(file => file.name.endsWith('.mp4') || file.name.endsWith('.gif'))
+            .map(file => ({
+              src: file.path,
+              type: file.name.endsWith('.mp4') ? 'video' : 'img'
+            }));
+          
+          galleryData['smartprop-gallery'].media = media;
+          // Set initial content
+          updateGalleryUI('smartprop-gallery');
+        })
+        .catch(err => {
+          console.error('Gallery load error:', err);
+          // Fallback or error state
+          document.querySelector('#smartprop-gallery .gallery-counter').textContent = 'Error loading';
+        });
+    }
+
+    function updateGalleryUI(galleryId) {
+      const data = galleryData[galleryId];
+      if (!data || data.media.length === 0) return;
+      
+      const gallery = document.getElementById(galleryId);
+      const frame = gallery.querySelector('.video-gallery-frame');
+      const counter = gallery.querySelector('.gallery-counter');
+      const item = data.media[data.current];
+
+      frame.innerHTML = '';
+      if (item.type === 'video') {
+        const video = document.createElement('video');
+        video.autoplay = true;
+        video.loop = true;
+        video.muted = true;
+        video.playsInline = true;
+        video.src = item.src;
+        frame.appendChild(video);
+      } else {
+        const img = document.createElement('img');
+        img.src = item.src;
+        img.alt = 'SmartProp Editor demo';
+        frame.appendChild(img);
+      }
+      counter.textContent = (data.current + 1) + ' / ' + data.media.length;
+    }
+
     function galleryNav(galleryId, direction) {
       const data = galleryData[galleryId];
-      if (!data) return;
+      if (!data || data.media.length === 0) return;
+      
       const total = data.media.length;
       data.current = (data.current + direction + total) % total;
+      
       const gallery = document.getElementById(galleryId);
       const frame = gallery.querySelector('.video-gallery-frame');
       const counter = gallery.querySelector('.gallery-counter');
@@ -349,27 +385,11 @@
       if (currentEl) currentEl.classList.add('fading');
 
       setTimeout(() => {
-        // Remove old element
-        frame.innerHTML = '';
-
-        if (item.type === 'video') {
-          const video = document.createElement('video');
-          video.autoplay = true;
-          video.loop = true;
-          video.muted = true;
-          video.playsInline = true;
-          video.src = item.src;
-          frame.appendChild(video);
-        } else {
-          const img = document.createElement('img');
-          img.src = item.src;
-          img.alt = 'SmartProp Editor demo';
-          frame.appendChild(img);
-        }
-
-        counter.textContent = (data.current + 1) + ' / ' + total;
+        updateGalleryUI(galleryId);
       }, 200);
     }
+
+    initGalleries();
 
     /* ── Changelog ── */
     let allReleases = [];
