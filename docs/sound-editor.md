@@ -8,6 +8,8 @@ Create and manage sound events for your addon. The editor reads and writes `soun
 
 The editor is organized into a main window with a sidebar of tabs on the right and a properties panel in the center.
 
+![Interface Overview](docs/images/sound_editor/interface_overview.png)
+
 | Area | Description |
 |---|---|
 | **Hierarchy** | List of every sound event in `soundevents_addon.vsndevts`. |
@@ -68,13 +70,13 @@ Selecting an event in the hierarchy loads its properties here. Each property is 
 
 ### Property Types
 
-| Type | Interaction |
-|---|---|
-| **Float / Number** | Left-click and drag horizontally to scrub; type a value directly. Drag generates a single undo entry on release. |
-| **List** (`vsnd_files`, etc.) | Use **+** / **–** buttons to add or remove list entries. |
-| **ComboBox** | Click to open a dropdown of predefined options. |
-| **Bool** | Click the checkbox to toggle. |
-| **Curve** | Click and drag curve points to adjust the shape. |
+| Type | Interaction | Preview |
+|---|---|---|
+| **Float / Number** | Left-click and drag horizontally to scrub; type a value directly. | ![Float Property](docs/images/sound_editor/float_property.png) |
+| **List** (`vsnd_files`, etc.) | Use **+** / **–** buttons to add or remove list entries. | ![List Property](docs/images/sound_editor/list_property.png) |
+| **ComboBox** | Click to open a dropdown of predefined options. | ![ComboBox Property](docs/images/sound_editor/combobox_property.png) |
+| **Bool** | Click the checkbox to toggle. | ![Bool Property](docs/images/sound_editor/bool_property.png) |
+| **Curve** | Click and drag curve points to adjust the shape. | ![Curve Property](docs/images/sound_editor/curve_property.png) |
 
 ### Properties Context Menu
 
@@ -151,6 +153,8 @@ The **History** dock on the right shows the full stack. Click any entry to jump 
 ## Preset Manager
 
 Open the Preset Manager with the **Open Preset Manager** button. Presets are `.kv3` files stored in the `SoundEventEditor/Presets` directory.
+
+![Preset Manager](docs/images/sound_editor/preset_manager.png)
 
 | Button | Action |
 |---|---|
