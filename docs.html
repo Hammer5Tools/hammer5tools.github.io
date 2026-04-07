@@ -536,6 +536,14 @@
           </ul>
         </div>
         <div class="nav-group">
+          <div class="nav-group-title">Guides</div>
+          <ul class="nav-links">
+            <li><a href="#radio-sound" class="nav-link">Radio Sound Setup</a></li>
+            <li><a href="#prop-scatter" class="nav-link">Natural Prop Scatter</a></li>
+            <li><a href="#writing-docs" class="nav-link">Writing Documentation</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
           <div class="nav-group-title">Reference</div>
           <ul class="nav-links">
             <li><a href="#file-formats" class="nav-link">File Formats</a></li>
@@ -563,17 +571,20 @@
   <script>
     // Metadata and structure
     const contentMap = {
-      'introduction': { file: 'introduction.md', breadcrumb: 'Getting Started &rsaquo; Introduction', next: 'installation' },
-      'installation': { file: 'installation.md', breadcrumb: 'Getting Started &rsaquo; Installation', prev: 'introduction', next: 'quick-start' },
-      'quick-start': { file: 'quick-start.md', breadcrumb: 'Getting Started &rsaquo; Quick Start', prev: 'installation', next: 'sound-editor' },
-      'sound-editor': { file: 'sound-editor.md', breadcrumb: 'Tools &rsaquo; Sound Event Editor', prev: 'quick-start', next: 'smart-props' },
-      'smart-props': { file: 'smart-props.md', breadcrumb: 'Tools &rsaquo; Smart Props Editor', prev: 'sound-editor', next: 'loading-screens' },
-      'loading-screens': { file: 'loading-screens.md', breadcrumb: 'Tools &rsaquo; Loading Screen Editor', prev: 'smart-props', next: 'keybinds' },
-      'keybinds': { file: 'keybinds.md', breadcrumb: 'Tools &rsaquo; Keybinding Manager', prev: 'loading-screens', next: 'batch-asset' },
-      'batch-asset': { file: 'batch-asset.md', breadcrumb: 'Tools &rsaquo; Batch Asset Creator', prev: 'keybinds', next: 'file-formats' },
-      'file-formats': { file: 'file-formats.md', breadcrumb: 'Reference &rsaquo; File Formats', prev: 'batch-asset', next: 'commands' },
-      'commands': { file: 'commands.md', breadcrumb: 'Reference &rsaquo; Console Commands', prev: 'file-formats', next: 'faq' },
-      'faq': { file: 'faq.md', breadcrumb: 'Reference &rsaquo; FAQ', prev: 'commands' }
+      'introduction': { file: 'introduction.md', next: 'installation' },
+      'installation': { file: 'installation.md', prev: 'introduction', next: 'quick-start' },
+      'quick-start': { file: 'quick-start.md', prev: 'installation', next: 'sound-editor' },
+      'sound-editor': { file: 'sound-editor.md', prev: 'quick-start', next: 'smart-props' },
+      'smart-props': { file: 'smart-props.md', prev: 'sound-editor', next: 'loading-screens' },
+      'loading-screens': { file: 'loading-screens.md', prev: 'smart-props', next: 'keybinds' },
+      'keybinds': { file: 'keybinds.md', prev: 'loading-screens', next: 'batch-asset' },
+      'batch-asset': { file: 'batch-asset.md', prev: 'keybinds', next: 'radio-sound' },
+      'radio-sound': { file: 'guides/radio-sound.md', prev: 'batch-asset', next: 'prop-scatter' },
+      'prop-scatter': { file: 'guides/prop-scatter.md', prev: 'radio-sound', next: 'writing-docs' },
+      'writing-docs': { file: 'guides/writing-docs.md', prev: 'prop-scatter', next: 'file-formats' },
+      'file-formats': { file: 'file-formats.md', prev: 'writing-docs', next: 'commands' },
+      'commands': { file: 'commands.md', prev: 'file-formats', next: 'faq' },
+      'faq': { file: 'faq.md', prev: 'commands' }
     };
 
     const app = {
@@ -766,27 +777,47 @@
           const url = this.getBasePath() + meta.file;
           const res = await fetch(url);
           if (!res.ok) throw new Error(`HTTP Error: ${res.status} ${res.statusText}`);
-          const text = await res.text();
+          let text = await res.text();
           
+          let breadcrumbPrefix = '';
+          // Check for # Path: Header: Subheader...
+          const pathRegex = /^#\s*Path:\s*(.+)$/m;
+          const pathMatch = text.match(pathRegex);
+          if (pathMatch) {
+            breadcrumbPrefix = pathMatch[1].split(':').map(s => s.trim()).join(' &rsaquo; ');
+            text = text.replace(pathRegex, '').trim(); // Remove the path line from rendering
+          } else {
+            // Fallback to simple breadcrumb based on sidebar
+            const activeLink = document.querySelector('.nav-link.active');
+            if (activeLink) {
+              const group = activeLink.closest('.nav-group');
+              const title = group ? group.querySelector('.nav-group-title').textContent : '';
+              breadcrumbPrefix = `${title} &rsaquo; ${activeLink.textContent}`;
+            }
+          }
+
           // Construct Full HTML with Breadcrumbs and Pagination
-          let rendered = `<div class="breadcrumb">${meta.breadcrumb}</div>`;
+          let rendered = `<div class="breadcrumb">${breadcrumbPrefix}</div>`;
           rendered += marked.parse(text);
           
           // Add Pagination
           rendered += '<div class="doc-pagination">';
           if (meta.prev) {
             const p = contentMap[meta.prev];
+            // Compute display name for next/prev
+            const prevLabel = meta.prev.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ');
             rendered += `<a href="#${meta.prev}" class="pagination-btn">
               <span class="pagination-label">Previous</span>
-              <span class="pagination-title">&larr; ${p.breadcrumb.split(' &rsaquo; ').pop()}</span>
+              <span class="pagination-title">&larr; ${prevLabel}</span>
             </a>`;
           } else { rendered += '<div></div>'; }
           
           if (meta.next) {
             const n = contentMap[meta.next];
+            const nextLabel = meta.next.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ');
             rendered += `<a href="#${meta.next}" class="pagination-btn">
               <span class="pagination-label">Next</span>
-              <span class="pagination-title">${n.breadcrumb.split(' &rsaquo; ').pop()} &rarr;</span>
+              <span class="pagination-title">${nextLabel} &rarr;</span>
             </a>`;
           }
           rendered += '</div>';

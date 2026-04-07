@@ -329,7 +329,7 @@
               src: file.path,
               type: file.name.endsWith('.mp4') ? 'video' : 'img'
             }));
-          
+
           galleryData['smartprop-gallery'].media = media;
           // Set initial content
           updateGalleryUI('smartprop-gallery');
@@ -344,7 +344,7 @@
     function updateGalleryUI(galleryId) {
       const data = galleryData[galleryId];
       if (!data || data.media.length === 0) return;
-      
+
       const gallery = document.getElementById(galleryId);
       const frame = gallery.querySelector('.video-gallery-frame');
       const counter = gallery.querySelector('.gallery-counter');
@@ -371,10 +371,10 @@
     function galleryNav(galleryId, direction) {
       const data = galleryData[galleryId];
       if (!data || data.media.length === 0) return;
-      
+
       const total = data.media.length;
       data.current = (data.current + direction + total) % total;
-      
+
       const gallery = document.getElementById(galleryId);
       const frame = gallery.querySelector('.video-gallery-frame');
       const counter = gallery.querySelector('.gallery-counter');
