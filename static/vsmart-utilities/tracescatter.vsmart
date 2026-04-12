@@ -1,0 +1,762 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	generic_data_type = "CSmartPropRoot"
+	m_nContentVersion = 1
+	editor_info = 
+	{
+		name = "Hammer 5 Tools"
+		version = "5.0.0"
+		m_nElementID = 42
+	}
+	m_Variables = 
+	[
+		
+		{
+			_class = "CSmartPropVariable_Bool"
+			m_VariableName = "label1"
+			m_bExposeAsParameter = true
+			m_DefaultValue = ""
+			m_nElementID = 6
+			m_ParameterName = "              ====Scatter Settings===="
+		},
+		
+		{
+			_class = "CSmartPropVariable_Vector2D"
+			m_VariableName = "count"
+			m_bExposeAsParameter = true
+			m_DefaultValue = [1.0, 16.0]
+			m_nElementID = 19
+			m_ParameterName = "Count: Min[X]; Max[Y]"
+			m_sModelName = "None"
+		},
+		
+		{
+			_class = "CSmartPropVariable_Vector2D"
+			m_VariableName = "radius"
+			m_bExposeAsParameter = true
+			m_DefaultValue = [0.0, 512.0]
+			m_nElementID = 20
+			m_ParameterName = "Radius: Inner[X]; Out [Y]"
+			m_sModelName = "None"
+		},
+		
+		{
+			_class = "CSmartPropVariable_Bool"
+			m_VariableName = "label2"
+			m_bExposeAsParameter = true
+			m_DefaultValue = ""
+			m_nElementID = 17
+			m_ParameterName = "              ====Trace Settings===="
+		},
+		
+		{
+			_class = "CSmartPropVariable_Float"
+			m_VariableName = "OriginOffset"
+			m_bExposeAsParameter = true
+			m_DefaultValue = -500.0
+			m_nElementID = 32
+			m_flParamaterMinValue = -1000.0
+			m_flParamaterMaxValue = 1000.0
+			m_sModelName = "None"
+		},
+		
+		{
+			_class = "CSmartPropVariable_Float"
+			m_VariableName = "SurfaceUpInfluence"
+			m_bExposeAsParameter = true
+			m_DefaultValue = 1.0
+			m_nElementID = 31
+			m_flParamaterMinValue = 0.0
+			m_flParamaterMaxValue = 1.0
+			m_sModelName = "None"
+		},
+		
+		{
+			_class = "CSmartPropVariable_Float"
+			m_VariableName = "TraceLength"
+			m_bExposeAsParameter = true
+			m_DefaultValue = 1500.0
+			m_nElementID = 33
+			m_flParamaterMinValue = 0.0
+			m_flParamaterMaxValue = 4000.0
+			m_sModelName = "None"
+		},
+		
+		{
+			_class = "CSmartPropVariable_Bool"
+			m_VariableName = "label1_1"
+			m_bExposeAsParameter = true
+			m_DefaultValue = ""
+			m_nElementID = 8
+			m_ParameterName = "              ====Models Settings===="
+		},
+		
+		{
+			_class = "CSmartPropVariable_Bool"
+			m_VariableName = "DetailObject"
+			m_bExposeAsParameter = true
+			m_DefaultValue = ""
+			m_nElementID = 9
+		},
+		
+		{
+			_class = "CSmartPropVariable_Bool"
+			m_VariableName = "CastShadows"
+			m_bExposeAsParameter = true
+			m_DefaultValue = true
+			m_nElementID = 10
+		},
+		
+		{
+			_class = "CSmartPropVariable_Bool"
+			m_VariableName = "ForceStatic"
+			m_bExposeAsParameter = true
+			m_DefaultValue = true
+			m_nElementID = 11
+		},
+		
+		{
+			_class = "CSmartPropVariable_Float"
+			m_VariableName = "Scale"
+			m_bExposeAsParameter = true
+			m_DefaultValue = 1.0
+			m_nElementID = 22
+			m_flParamaterMinValue = 0.1
+			m_flParamaterMaxValue = 3.0
+			m_sModelName = "None"
+		},
+		
+		{
+			_class = "CSmartPropVariable_Bool"
+			m_VariableName = "RandomRotation90"
+			m_bExposeAsParameter = true
+			m_DefaultValue = true
+			m_nElementID = 25
+			m_ParameterName = "Random Rotation 90 [Z]"
+		},
+		
+		{
+			_class = "CSmartPropVariable_Vector2D"
+			m_VariableName = "random_scale"
+			m_bExposeAsParameter = true
+			m_DefaultValue = [0.95, 1.05]
+			m_nElementID = 27
+			m_ParameterName = "Random Scale: Min[X]; Max[Y]"
+			m_sModelName = "None"
+		},
+		
+		{
+			_class = "CSmartPropVariable_Vector3D"
+			m_VariableName = "RandomRotationMin"
+			m_bExposeAsParameter = true
+			m_DefaultValue = [-5.0, -5.0, -5.0]
+			m_nElementID = 35
+			m_sModelName = "None"
+		},
+		
+		{
+			_class = "CSmartPropVariable_Vector3D"
+			m_VariableName = "RandomRotationMax"
+			m_bExposeAsParameter = true
+			m_DefaultValue = [5.0, 5.0, 5.0]
+			m_nElementID = 36
+			m_sModelName = "None"
+		},
+		
+		{
+			_class = "CSmartPropVariable_Int"
+			m_VariableName = "LodLevel"
+			m_bExposeAsParameter = true
+			m_DefaultValue = 0
+			m_nElementID = 38
+			m_nParamaterMinValue = -1
+			m_nParamaterMaxValue = 4
+			m_sModelName = "None"
+		},
+		
+		{
+			_class = "CSmartPropVariable_Bool"
+			m_VariableName = "multiple_mdls"
+			m_bExposeAsParameter = true
+			m_DefaultValue = ""
+			m_nElementID = 2
+			m_ParameterName = "Multiple Models"
+		},
+		
+		{
+			_class = "CSmartPropVariable_Model"
+			m_VariableName = "mdl1"
+			m_bExposeAsParameter = true
+			m_DefaultValue = "models/chicken/chicken_animset.vmdl"
+			m_nElementID = 1
+			m_ParameterName = "Model"
+			m_sModelName = "None"
+		},
+		
+		{
+			_class = "CSmartPropVariable_Model"
+			m_VariableName = "mdl2"
+			m_bExposeAsParameter = true
+			m_DefaultValue = "models/chicken/chicken_animset.vmdl"
+			m_nElementID = 16
+			m_ParameterName = "Model"
+			m_sModelName = "None"
+			m_HideExpression = "multiple_mdls == false"
+		},
+		
+		{
+			_class = "CSmartPropVariable_Model"
+			m_VariableName = "mdl3"
+			m_bExposeAsParameter = true
+			m_DefaultValue = "models/chicken/chicken_animset.vmdl"
+			m_nElementID = 39
+			m_ParameterName = "Model"
+			m_sModelName = "None"
+			m_HideExpression = "multiple_mdls == false"
+		},
+		
+		{
+			_class = "CSmartPropVariable_Model"
+			m_VariableName = "mdl4"
+			m_bExposeAsParameter = true
+			m_DefaultValue = "models/chicken/chicken_animset.vmdl"
+			m_nElementID = 40
+			m_ParameterName = "Model"
+			m_sModelName = "None"
+			m_HideExpression = "multiple_mdls == false"
+		},
+		
+		{
+			_class = "CSmartPropVariable_Model"
+			m_VariableName = "mdl5"
+			m_bExposeAsParameter = true
+			m_DefaultValue = "models/chicken/chicken_animset.vmdl"
+			m_nElementID = 41
+			m_ParameterName = "Model"
+			m_sModelName = "None"
+			m_HideExpression = "multiple_mdls == false"
+		},
+		
+		{
+			_class = "CSmartPropVariable_Model"
+			m_VariableName = "mdl6"
+			m_bExposeAsParameter = true
+			m_DefaultValue = "models/chicken/chicken_animset.vmdl"
+			m_nElementID = 42
+			m_ParameterName = "Model"
+			m_sModelName = "None"
+			m_HideExpression = "multiple_mdls == false"
+		}
+	]
+	m_Choices = 
+	[
+
+	]
+	m_Children = 
+	[
+		
+		{
+			_class = "CSmartPropElement_Group"
+			m_Modifiers = []
+			m_SelectionCriteria = []
+			m_bEnabled = true
+			m_nElementID = 3
+			m_sLabel = "Root"
+			m_Children = [
+			{
+				_class = "CSmartPropElement_PlaceInSphere"
+				m_DistributionMode = "RANDOM"
+				m_Modifiers = []
+				m_PlacementMode = "SPHERE"
+				m_SelectionCriteria = []
+				m_bAlignOrientation = false
+				m_bEnabled = true
+				m_flPositionRadiusInner = 
+				{
+					m_Expression = "radius.x"
+				}
+				m_flPositionRadiusOuter = 
+				{
+					m_Expression = "radius.y"
+				}
+				m_nCountMax = 
+				{
+					m_Expression = "count.y"
+				}
+				m_nCountMin = 
+				{
+					m_Expression = "count.x"
+				}
+				m_nElementID = 5
+				m_sLabel = "Scatter"
+				m_Children = [
+				{
+					_class = "CSmartPropElement_PickOne"
+					m_Modifiers = [
+					{
+						_class = "CSmartPropOperation_TraceInDirection"
+						m_DirectionSpace = "WORLD"
+						m_bEnabled = true
+						m_flOriginOffset = 
+						{
+							m_SourceName = "OriginOffset"
+						}
+						m_flSurfaceUpInfluence = 
+						{
+							m_SourceName = "SurfaceUpInfluence"
+						}
+						m_flTraceLength = 
+						{
+							m_SourceName = "TraceLength"
+						}
+						m_nElementID = 18
+						m_nNoHitResult = "NOTHING"
+					}, 
+					{
+						_class = "CSmartPropOperation_RandomRotation"
+						m_bEnabled = true
+						m_nElementID = 34
+						m_vRandomRotationMax = {m_SourceName = "RandomRotationMax"}
+						m_vRandomRotationMin = {m_SourceName = "RandomRotationMin"}
+					}, 
+					{
+						_class = "CSmartPropOperation_Scale"
+						m_bEnabled = true
+						m_flScale = {m_SourceName = "Scale"}
+						m_nElementID = 21
+					}]
+					m_OutputChoiceVariableName = ""
+					m_SelectionCriteria = []
+					m_SpecificChildIndex = 1
+					m_bConfigurable = true
+					m_bEnabled = true
+					m_nElementID = 4
+					m_sLabel = "Models"
+					m_Children = [
+					{
+						_class = "CSmartPropElement_Model"
+						m_Modifiers = [
+						{
+							_class = "CSmartPropOperation_RandomScale"
+							m_bEnabled = true
+							m_flRandomScaleMax = {m_Expression = "random_scale.y"}
+							m_flRandomScaleMin = {m_Expression = "random_scale.x"}
+							m_nElementID = 26
+						}, 
+						{
+							_class = "CSmartPropOperation_RandomRotation"
+							m_bEnabled = {m_SourceName = "RandomRotation90"}
+							m_nElementID = 24
+							m_vRandomRotationMax = {m_Components = [0.0, 180.0, 0.0]}
+							m_vRandomRotationMin = {m_Components = [0.0, -180.0, 0.0]}
+							m_vSnapIncrement = 
+							{
+								m_Components = [0.0, 90.0, 0.0]
+							}
+						}]
+						m_SelectionCriteria = []
+						m_bCastShadows = 
+						{
+							m_SourceName = "CastShadows"
+						}
+						m_bDetailObject = 
+						{
+							m_SourceName = "DetailObject"
+						}
+						m_bEnabled = true
+						m_bForceStatic = 
+						{
+							m_SourceName = "ForceStatic"
+						}
+						m_bRigidDeformation = false
+						m_nElementID = 7
+						m_nLodLevel = 
+						{
+							m_SourceName = "LodLevel"
+						}
+						m_sModelName = {m_SourceName = "mdl1"}
+						m_sLabel = "Ref"
+					}, 
+					{
+						_class = "CSmartPropElement_Model"
+						m_Modifiers = [
+						{
+							_class = "CSmartPropOperation_RandomScale"
+							m_bEnabled = true
+							m_flRandomScaleMax = {m_Expression = "random_scale.y"}
+							m_flRandomScaleMin = {m_Expression = "random_scale.x"}
+							m_nElementID = 26
+						}, 
+						{
+							_class = "CSmartPropOperation_RandomRotation"
+							m_bEnabled = {m_SourceName = "RandomRotation90"}
+							m_nElementID = 24
+							m_vRandomRotationMax = {m_Components = [0.0, 180.0, 0.0]}
+							m_vRandomRotationMin = {m_Components = [0.0, -180.0, 0.0]}
+							m_vSnapIncrement = 
+							{
+								m_Components = [0.0, 90.0, 0.0]
+							}
+						}]
+						m_SelectionCriteria = []
+						m_bCastShadows = 
+						{
+							m_SourceName = "CastShadows"
+						}
+						m_bDetailObject = 
+						{
+							m_SourceName = "DetailObject"
+						}
+						m_bEnabled = {m_SourceName = "multiple_mdls"}
+						m_bForceStatic = 
+						{
+							m_SourceName = "ForceStatic"
+						}
+						m_bRigidDeformation = false
+						m_nElementID = 13
+						m_nLodLevel = 0
+						m_sModelName = {m_SourceName = "mdl2"}
+						m_nReferenceID = 7
+						m_sReferenceObjectID = "d421edd9-e330-47cb-9b86-1667a560b9fc"
+						m_sLabel = "mdl2"
+					}, 
+					{
+						_class = "CSmartPropElement_Model"
+						m_Modifiers = [
+						{
+							_class = "CSmartPropOperation_RandomScale"
+							m_bEnabled = true
+							m_flRandomScaleMax = {m_Expression = "random_scale.y"}
+							m_flRandomScaleMin = {m_Expression = "random_scale.x"}
+							m_nElementID = 26
+						}, 
+						{
+							_class = "CSmartPropOperation_RandomRotation"
+							m_bEnabled = {m_SourceName = "RandomRotation90"}
+							m_nElementID = 24
+							m_vRandomRotationMax = {m_Components = [0.0, 180.0, 0.0]}
+							m_vRandomRotationMin = {m_Components = [0.0, -180.0, 0.0]}
+							m_vSnapIncrement = 
+							{
+								m_Components = [0.0, 90.0, 0.0]
+							}
+						}]
+						m_SelectionCriteria = []
+						m_bCastShadows = 
+						{
+							m_SourceName = "CastShadows"
+						}
+						m_bDetailObject = 
+						{
+							m_SourceName = "DetailObject"
+						}
+						m_bEnabled = {m_SourceName = "multiple_mdls"}
+						m_bForceStatic = 
+						{
+							m_SourceName = "ForceStatic"
+						}
+						m_bRigidDeformation = false
+						m_nElementID = 44
+						m_nLodLevel = 0
+						m_sModelName = {m_SourceName = "mdl3"}
+						m_nReferenceID = 7
+						m_sReferenceObjectID = "f699626c-6f79-49ae-88fc-a7a335b14718"
+						m_sLabel = "mdl3"
+					}, 
+					{
+						_class = "CSmartPropElement_Model"
+						m_Modifiers = [
+						{
+							_class = "CSmartPropOperation_RandomScale"
+							m_bEnabled = true
+							m_flRandomScaleMax = {m_Expression = "random_scale.y"}
+							m_flRandomScaleMin = {m_Expression = "random_scale.x"}
+							m_nElementID = 26
+						}, 
+						{
+							_class = "CSmartPropOperation_RandomRotation"
+							m_bEnabled = {m_SourceName = "RandomRotation90"}
+							m_nElementID = 24
+							m_vRandomRotationMax = {m_Components = [0.0, 180.0, 0.0]}
+							m_vRandomRotationMin = {m_Components = [0.0, -180.0, 0.0]}
+							m_vSnapIncrement = 
+							{
+								m_Components = [0.0, 90.0, 0.0]
+							}
+						}]
+						m_SelectionCriteria = []
+						m_bCastShadows = 
+						{
+							m_SourceName = "CastShadows"
+						}
+						m_bDetailObject = 
+						{
+							m_SourceName = "DetailObject"
+						}
+						m_bEnabled = {m_SourceName = "multiple_mdls"}
+						m_bForceStatic = 
+						{
+							m_SourceName = "ForceStatic"
+						}
+						m_bRigidDeformation = false
+						m_nElementID = 45
+						m_nLodLevel = 0
+						m_sModelName = {m_SourceName = "mdl4"}
+						m_nReferenceID = 7
+						m_sReferenceObjectID = "75ea0421-ea9e-4fc9-b54a-6348c858404e"
+						m_sLabel = "mdl3"
+					}, 
+					{
+						_class = "CSmartPropElement_Model"
+						m_Modifiers = [
+						{
+							_class = "CSmartPropOperation_RandomScale"
+							m_bEnabled = true
+							m_flRandomScaleMax = {m_Expression = "random_scale.y"}
+							m_flRandomScaleMin = {m_Expression = "random_scale.x"}
+							m_nElementID = 26
+						}, 
+						{
+							_class = "CSmartPropOperation_RandomRotation"
+							m_bEnabled = {m_SourceName = "RandomRotation90"}
+							m_nElementID = 24
+							m_vRandomRotationMax = {m_Components = [0.0, 180.0, 0.0]}
+							m_vRandomRotationMin = {m_Components = [0.0, -180.0, 0.0]}
+							m_vSnapIncrement = 
+							{
+								m_Components = [0.0, 90.0, 0.0]
+							}
+						}]
+						m_SelectionCriteria = []
+						m_bCastShadows = 
+						{
+							m_SourceName = "CastShadows"
+						}
+						m_bDetailObject = 
+						{
+							m_SourceName = "DetailObject"
+						}
+						m_bEnabled = {m_SourceName = "multiple_mdls"}
+						m_bForceStatic = 
+						{
+							m_SourceName = "ForceStatic"
+						}
+						m_bRigidDeformation = false
+						m_nElementID = 46
+						m_nLodLevel = 0
+						m_sModelName = {m_SourceName = "mdl5"}
+						m_nReferenceID = 7
+						m_sReferenceObjectID = "46ed57b2-d6ba-4161-9c36-45d23b7ebc01"
+						m_sLabel = "mdl3"
+					}, 
+					{
+						_class = "CSmartPropElement_Model"
+						m_Modifiers = [
+						{
+							_class = "CSmartPropOperation_RandomScale"
+							m_bEnabled = true
+							m_flRandomScaleMax = {m_Expression = "random_scale.y"}
+							m_flRandomScaleMin = {m_Expression = "random_scale.x"}
+							m_nElementID = 26
+						}, 
+						{
+							_class = "CSmartPropOperation_RandomRotation"
+							m_bEnabled = {m_SourceName = "RandomRotation90"}
+							m_nElementID = 24
+							m_vRandomRotationMax = {m_Components = [0.0, 180.0, 0.0]}
+							m_vRandomRotationMin = {m_Components = [0.0, -180.0, 0.0]}
+							m_vSnapIncrement = 
+							{
+								m_Components = [0.0, 90.0, 0.0]
+							}
+						}]
+						m_SelectionCriteria = []
+						m_bCastShadows = 
+						{
+							m_SourceName = "CastShadows"
+						}
+						m_bDetailObject = 
+						{
+							m_SourceName = "DetailObject"
+						}
+						m_bEnabled = {m_SourceName = "multiple_mdls"}
+						m_bForceStatic = 
+						{
+							m_SourceName = "ForceStatic"
+						}
+						m_bRigidDeformation = false
+						m_nElementID = 47
+						m_nLodLevel = 0
+						m_sModelName = {m_SourceName = "mdl6"}
+						m_nReferenceID = 7
+						m_sReferenceObjectID = "22b3e5ba-4e1a-4bfa-8597-2e3d93bfed2c"
+						m_sLabel = "mdl3"
+					}]
+				}]
+			}]
+		}
+	]
+	m_ReferenceObjects = 
+	{
+		"d421edd9-e330-47cb-9b86-1667a560b9fc" = 
+		{
+			_class = "CSmartPropElement_Model"
+			m_Modifiers = 
+			[
+
+			]
+			m_SelectionCriteria = 
+			[
+
+			]
+			m_bCastShadows = 
+			{
+				m_SourceName = "CastShadows"
+			}
+			m_bDetailObject = 
+			{
+				m_SourceName = "DetailObject"
+			}
+			m_bEnabled = {m_SourceName = "multiple_mdls"}
+			m_bForceStatic = 
+			{
+				m_SourceName = "ForceStatic"
+			}
+			m_bRigidDeformation = false
+			m_nElementID = 13
+			m_nLodLevel = 0
+			m_nReferenceID = 7
+			m_sModelName = {m_SourceName = "mdl2"}
+			m_sReferenceObjectID = "d421edd9-e330-47cb-9b86-1667a560b9fc"
+			m_sLabel = "mdl2"
+		}
+		"f699626c-6f79-49ae-88fc-a7a335b14718" = 
+		{
+			_class = "CSmartPropElement_Model"
+			m_Modifiers = 
+			[
+
+			]
+			m_SelectionCriteria = 
+			[
+
+			]
+			m_bCastShadows = 
+			{
+				m_SourceName = "CastShadows"
+			}
+			m_bDetailObject = 
+			{
+				m_SourceName = "DetailObject"
+			}
+			m_bEnabled = {m_SourceName = "multiple_mdls"}
+			m_bForceStatic = 
+			{
+				m_SourceName = "ForceStatic"
+			}
+			m_bRigidDeformation = false
+			m_nElementID = 44
+			m_nLodLevel = 0
+			m_nReferenceID = 7
+			m_sModelName = {m_SourceName = "mdl3"}
+			m_sReferenceObjectID = "f699626c-6f79-49ae-88fc-a7a335b14718"
+			m_sLabel = "mdl3"
+		}
+		"75ea0421-ea9e-4fc9-b54a-6348c858404e" = 
+		{
+			_class = "CSmartPropElement_Model"
+			m_Modifiers = 
+			[
+
+			]
+			m_SelectionCriteria = 
+			[
+
+			]
+			m_bCastShadows = 
+			{
+				m_SourceName = "CastShadows"
+			}
+			m_bDetailObject = 
+			{
+				m_SourceName = "DetailObject"
+			}
+			m_bEnabled = {m_SourceName = "multiple_mdls"}
+			m_bForceStatic = 
+			{
+				m_SourceName = "ForceStatic"
+			}
+			m_bRigidDeformation = false
+			m_nElementID = 45
+			m_nLodLevel = 0
+			m_nReferenceID = 7
+			m_sModelName = {m_SourceName = "mdl4"}
+			m_sReferenceObjectID = "75ea0421-ea9e-4fc9-b54a-6348c858404e"
+			m_sLabel = "mdl3"
+		}
+		"46ed57b2-d6ba-4161-9c36-45d23b7ebc01" = 
+		{
+			_class = "CSmartPropElement_Model"
+			m_Modifiers = 
+			[
+
+			]
+			m_SelectionCriteria = 
+			[
+
+			]
+			m_bCastShadows = 
+			{
+				m_SourceName = "CastShadows"
+			}
+			m_bDetailObject = 
+			{
+				m_SourceName = "DetailObject"
+			}
+			m_bEnabled = {m_SourceName = "multiple_mdls"}
+			m_bForceStatic = 
+			{
+				m_SourceName = "ForceStatic"
+			}
+			m_bRigidDeformation = false
+			m_nElementID = 46
+			m_nLodLevel = 0
+			m_nReferenceID = 7
+			m_sModelName = {m_SourceName = "mdl5"}
+			m_sReferenceObjectID = "46ed57b2-d6ba-4161-9c36-45d23b7ebc01"
+			m_sLabel = "mdl3"
+		}
+		"22b3e5ba-4e1a-4bfa-8597-2e3d93bfed2c" = 
+		{
+			_class = "CSmartPropElement_Model"
+			m_Modifiers = 
+			[
+
+			]
+			m_SelectionCriteria = 
+			[
+
+			]
+			m_bCastShadows = 
+			{
+				m_SourceName = "CastShadows"
+			}
+			m_bDetailObject = 
+			{
+				m_SourceName = "DetailObject"
+			}
+			m_bEnabled = {m_SourceName = "multiple_mdls"}
+			m_bForceStatic = 
+			{
+				m_SourceName = "ForceStatic"
+			}
+			m_bRigidDeformation = false
+			m_nElementID = 47
+			m_nLodLevel = 0
+			m_nReferenceID = 7
+			m_sModelName = {m_SourceName = "mdl6"}
+			m_sReferenceObjectID = "22b3e5ba-4e1a-4bfa-8597-2e3d93bfed2c"
+			m_sLabel = "mdl3"
+		}
+	}
+}

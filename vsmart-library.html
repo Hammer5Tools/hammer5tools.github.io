@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VSmart Library | Hammer 5 Tools</title>
+  <meta name="description" content="Browse and download high-quality VSmart utilities for Hammer 5.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-base: #0c121c;
+      --bg-card: #151c27;
+      --bg-topbar: rgba(12, 18, 28, 0.8);
+      --border-color: rgba(255, 255, 255, 0.1);
+      --text-main: #e2e8f0;
+      --text-muted: #94a3b8;
+      --color-primary: #4f98a3;
+      --color-primary-hover: #5eb3bf;
+      --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    .app-container {
+      display: grid;
+      grid-template-areas:
+        "topbar"
+        "content";
+      grid-template-columns: 1fr;
+      grid-template-rows: 64px 1fr;
+      height: 100vh;
+    }
+
+    header.topbar {
+      grid-area: topbar;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      background: var(--bg-topbar);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .topbar-left img {
+      height: 32px;
+      width: 32px;
+    }
+
+    .topbar-left span {
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: -0.01em;
+    }
+
+    .content-area {
+      grid-area: content;
+      overflow-y: auto;
+      padding: 4rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-section {
+      text-align: center;
+      margin-bottom: 3rem;
+      max-width: 800px;
+    }
+
+    .hero-section h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #fff 0%, var(--color-primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-section p {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+    }
+
+    /* Filters & Search */
+    .filter-section {
+      width: 100%;
+      max-width: 1200px;
+      margin-bottom: 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .search-bar {
+      width: 100%;
+      max-width: 600px;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1rem 1rem 1rem 3rem;
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 4px rgba(79, 152, 163, 0.1);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    .filter-chips {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .filter-chip {
+      padding: 0.5rem 1.25rem;
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .filter-chip:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+
+    .filter-chip.active {
+      background: var(--color-primary);
+      color: #000;
+      border-color: var(--color-primary);
+    }
+
+    .browser-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 2rem;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .vsmart-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s, opacity 0.3s;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow);
+    }
+
+    .vsmart-card.hidden {
+      display: none;
+    }
+
+    .vsmart-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--color-primary);
+    }
+
+    .card-preview {
+      position: relative;
+      aspect-ratio: 16/9;
+      background: #000;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .card-preview video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.3s;
+    }
+
+    .expand-hint {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.6);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .card-preview:hover .expand-hint {
+      opacity: 1;
+    }
+
+    .card-content {
+      padding: 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+
+    .card-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .card-author {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .card-description {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .card-footer {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      margin-top: auto;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--color-primary);
+      color: #000;
+      flex: 1;
+    }
+
+    .btn-primary:hover {
+      background: var(--color-primary-hover);
+      transform: scale(1.02);
+    }
+
+    .btn-icon {
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-icon:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--color-primary);
+    }
+
+    /* Modal Styling */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: none;
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(8px);
+    }
+
+    .modal-content {
+      width: 90%;
+      max-width: 1200px;
+      max-height: 90vh;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content video {
+      max-width: 100%;
+      max-height: 80vh;
+      border-radius: 12px;
+      box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+      object-fit: contain;
+    }
+
+    .btn-close {
+      position: absolute;
+      top: -50px;
+      right: 0;
+      color: #fff;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+    }
+
+    .btn-close:hover {
+      color: var(--color-primary);
+    }
+
+    /* Badge */
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      background: rgba(79, 152, 163, 0.1);
+      color: var(--color-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .badge-content {
+      background: rgba(16, 185, 129, 0.1);
+      color: #10b981;
+    }
+
+    .badge-group {
+      display: flex;
+      gap: 0.5rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app-container">
+    <header class="topbar">
+      <a href="index.html" class="topbar-left">
+        <img src="static/logo.png" alt="Hammer 5 Tools Logo">
+        <span>Hammer 5 Tools</span>
+      </a>
+      <nav style="display: flex; gap: 2rem;">
+        <a href="docs.html" style="text-decoration: none; color: var(--text-muted); font-weight: 500;">Docs</a>
+        <a href="vsmart-library.html" style="text-decoration: none; color: var(--color-primary); font-weight: 600;">VSmart Library</a>
+      </nav>
+    </header>
+
+    <main class="content-area">
+      <section class="hero-section">
+        <h1>VSmart Library</h1>
+        <p>Explore high-performance SmartProps community-made and official utilities for Counter-Strike 2.</p>
+        <button class="btn btn-primary" style="margin-top: 1.5rem; background: rgba(79, 152, 163, 0.1); color: var(--color-primary); border: 1px solid var(--color-primary); width: auto;" onclick="toggleInstructions()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          How to install SmartProps?
+        </button>
+
+        <div id="install-guide" style="display: none; margin-top: 2rem; text-align: left; background: rgba(79, 152, 163, 0.05); border: 1px solid rgba(79, 152, 163, 0.2); padding: 2rem; border-radius: 16px; animation: slideDown 0.3s ease-out;">
+          <h3 style="margin-top: 0; color: var(--color-primary);">Installation Guide</h3>
+          <ol style="padding-left: 1.5rem; margin-bottom: 0;">
+            <li style="margin-bottom: 1rem;">
+              <strong>Setup Compiler:</strong> Download <a href="index.html" style="color: var(--color-primary);">Hammer5Tools</a> and open any addon. This action automatically configures the CS2 compiler to support <code>.vsmart</code> files.
+            </li>
+            <li>
+              <strong>Deploy File:</strong> Copy your downloaded <code>.vsmart</code> file into any of your content subfolders (e.g., <code>models</code>, <code>smartprops</code>, or even a custom one). It doesn't matter which folder you use!
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <style>
+        @keyframes slideDown {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      </style>
+
+      <section class="filter-section">
+        <div class="search-bar">
+          <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" class="search-input" id="library-search" placeholder="Search by name or description...">
+        </div>
+        <div class="filter-chips">
+          <button class="filter-chip active" data-filter="all">All Items</button>
+          <button class="filter-chip" data-filter="utility">Utilities</button>
+          <button class="filter-chip" data-filter="content">With Content</button>
+          <button class="filter-chip" data-filter="community">Community Maps</button>
+        </div>
+      </section>
+
+      <div class="browser-grid" id="library-grid">
+        <!-- TraceScatter Card -->
+        <article class="vsmart-card" data-type="utility" data-tags="utility">
+          <div class="card-preview" onclick="openModal('videos/vsmart-utilities/tracescatter.mp4')">
+            <video autoplay loop muted playsinline>
+              <source src="videos/vsmart-utilities/tracescatter_sm.mp4" type="video/mp4">
+            </video>
+            <div class="expand-hint">Click to expand</div>
+          </div>
+          <div class="card-content">
+            <div class="badge-group">
+              <span class="badge">Utility</span>
+            </div>
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">TraceScatter</h2>
+                <div class="card-author">By Twist</div>
+              </div>
+            </div>
+            <p class="card-description">
+              A powerful procedural scatter tool for natural rock and debris distribution. Uses trace logic to align props perfectly with any surface.
+            </p>
+            <div class="card-footer">
+              <a href="static/vsmart-utilities/tracescatter.vsmart" class="btn btn-primary" download title="Download .vsmart file">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download
+              </a>
+              <button class="btn btn-icon" onclick="openModal('videos/vsmart-utilities/tracescatter.mp4')" title="Expand preview">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Example of "With Content" card -->
+        <article class="vsmart-card" data-type="content" data-tags="content utility">
+          <div class="card-preview" onclick="openModal('videos/hero.mp4')">
+            <video autoplay loop muted playsinline>
+              <source src="videos/hero.mp4" type="video/mp4">
+            </video>
+            <div class="expand-hint">Click to expand</div>
+          </div>
+          <div class="card-content">
+            <div class="badge-group">
+              <span class="badge">Utility</span>
+              <span class="badge badge-content">Includes Content</span>
+            </div>
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Placeholder</h2>
+                <div class="card-author">By Twist</div>
+              </div>
+            </div>
+            <p class="card-description">
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+            </p>
+            <div class="card-footer">
+              <button class="btn btn-primary" disabled title="Coming soon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Soon
+              </button>
+              <button class="btn btn-icon" onclick="openModal('videos/hero.mp4')" title="Expand preview">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Sanctum Card -->
+        <article class="vsmart-card" data-type="community" data-tags="community content">
+          <div class="card-preview" onclick="openModal('videos/vsmart-utilities/sanctum_roof_01.mp4')">
+            <video autoplay loop muted playsinline>
+              <source src="videos/vsmart-utilities/sanctum_roof_01_sm.mp4" type="video/mp4">
+            </video>
+            <div class="expand-hint">Click to expand</div>
+          </div>
+          <div class="card-content">
+            <div class="badge-group">
+              <span class="badge" style="background: rgba(139, 92, 246, 0.1); color: #a78bfa;">Community Map</span>
+              <span class="badge badge-content">Includes Content</span>
+            </div>
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Sanctum: Roof Utility</h2>
+                <div class="card-author">By Twist</div>
+              </div>
+            </div>
+            <p class="card-description">
+              Asset collection from the community map de_sanctum. Features specialized roof geometry (sanctum_roof_01) and high-fidelity textures.
+            </p>
+            <div class="card-footer">
+              <a href="https://github.com/Hammer5Tools/hammer5tools.github.io/releases/download/0001/de_sanctum.zip" class="btn btn-primary" title="Download VSmart with content">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download (.zip)
+              </a>
+              <button class="btn btn-icon" onclick="openModal('videos/vsmart-utilities/sanctum_roof_01.mp4')" title="Expand preview">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Submission Section -->
+      <section style="margin-top: 6rem; text-align: center; max-width: 600px; padding: 3rem; background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: 24px;">
+        <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 1rem;">Share Your VSmart</h2>
+        <p style="color: var(--text-muted); margin-bottom: 2rem;">Help the community grow by sharing your own SmartProp creations!</p>
+        
+        <div style="display: flex; flex-direction: column; gap: 1rem; align-items: stretch;">
+          <a href="https://github.com/dertwist/Hammer5Tools/issues/new" class="btn btn-primary" style="padding: 1rem; border-radius: 12px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            Create GitHub Issue
+          </a>
+          <div style="font-size: 0.9rem; color: var(--text-muted); background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 12px; border: 1px solid var(--border-color);">
+            Attach your <code>.vsmart</code> and a video demo.
+          </div>
+          <div style="margin: 1rem 0; color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em;">or</div>
+          <div style="display: flex; align-items: center; justify-content: center; gap: 0.75rem; color: var(--text-main); font-weight: 500;">
+            <svg width="20" height="20" viewBox="0 0 16 16"><path fill="currentColor" d="M13.54 2.9a13.2 13.2 0 00-3.25-1c-.02 0-.04 0-.05.02-.15.25-.3.58-.41.83a12.18 12.18 0 00-3.66 0 8.4 8.4 0 00-.41-.83.05.05 0 00-.05-.02 13.16 13.16 0 00-3.28 1.03 13.5 13.5 0 00-2.34 9.14c1.37 1 2.7 1.61 4 2.02.01 0 .04 0 .05-.02.3-.42.58-.86.82-1.33a.05.05 0 00-.03-.07 8.76 8.76 0 01-1.25-.6.05.05 0 010-.08l.24-.2.05 0 9.46 0h.05l.25.2c.03.02.02.07 0 .09-.4.23-.82.43-1.26.59a.05.05 0 00-.02.07c.24.47.51.91.81 1.33.02.02.04.03.06.02a13.23 13.23 0 004.02-2.06 13.41 13.41 0 00-2.39-9.12zm-8.2 7.31c-.78 0-1.43-.72-1.43-1.6 0-.9.64-1.62 1.44-1.62.8 0 1.45.73 1.43 1.61 0 .89-.63 1.61-1.43 1.61zm5.32 0c-.79 0-1.43-.72-1.43-1.6 0-.9.63-1.62 1.43-1.62.81 0 1.45.73 1.44 1.61 0 .89-.63 1.61-1.44 1.61z"></path></svg>
+            <span>DM on Discord: <strong>dertwist</strong></span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modal" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <button class="btn-close" onclick="closeModal()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        Close
+      </button>
+      <video id="modal-video" controls autoplay loop playsinline>
+        <source src="" type="video/mp4">
+      </video>
+    </div>
+  </div>
+
+  <script>
+    let currentFilter = 'all';
+    let searchQuery = '';
+
+    function initLibrary() {
+      const searchInput = document.getElementById('library-search');
+      const chips = document.querySelectorAll('.filter-chip');
+
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value.toLowerCase();
+        applyFilters();
+      });
+
+      chips.forEach(chip => {
+        chip.addEventListener('click', () => {
+          chips.forEach(c => c.classList.remove('active'));
+          chip.classList.add('active');
+          currentFilter = chip.dataset.filter;
+          applyFilters();
+        });
+      });
+    }
+
+    function applyFilters() {
+      const cards = document.querySelectorAll('.vsmart-card');
+      cards.forEach(card => {
+        const title = card.querySelector('.card-title').textContent.toLowerCase();
+        const desc = card.querySelector('.card-description').textContent.toLowerCase();
+        const type = card.dataset.type;
+        
+        const matchesSearch = title.includes(searchQuery) || desc.includes(searchQuery);
+        const matchesFilter = currentFilter === 'all' || type === currentFilter;
+
+        if (matchesSearch && matchesFilter) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    function openModal(videoSrc) {
+      const modal = document.getElementById('modal');
+      const video = document.getElementById('modal-video');
+      video.src = videoSrc;
+      modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('modal');
+      const video = document.getElementById('modal-video');
+      video.pause();
+      video.src = '';
+      modal.style.display = 'none';
+    }
+
+    function toggleInstructions() {
+      const guide = document.getElementById('install-guide');
+      guide.style.display = guide.style.display === 'none' ? 'block' : 'none';
+    }
+
+    // Initialize
+    initLibrary();
+  </script>
+</body>
+
+</html>
