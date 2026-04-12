@@ -596,6 +596,32 @@
       font-size: 0.8rem;
       font-weight: 700;
     }
+    /* Custom Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+      text-decoration: none;
+      margin: 1rem 0;
+    }
+
+    .btn-primary {
+      background: var(--color-primary);
+      color: var(--text-inverse) !important;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
   </style>
 </head>
 
@@ -625,6 +651,9 @@
           <input type="text" id="search-input" class="search-input" placeholder="Search docs... (Ctrl + K)">
           <div id="search-results"></div>
         </div>
+        <nav style="display: flex; gap: 2rem; align-items: center; margin: 0 1.5rem;">
+          <a href="vsmart-library.html" style="text-decoration: none; color: var(--text-muted); font-weight: 500; font-size: 0.95rem;">VSmart Library</a>
+        </nav>
         <a href="https://github.com/dertwist/Hammer5Tools" class="theme-toggle" aria-label="GitHub">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round">

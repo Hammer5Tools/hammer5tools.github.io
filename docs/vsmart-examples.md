@@ -1,5 +1,3 @@
-# Path: Reference : VSmart Examples
-
 # VSmart Examples
 
 Explore various community examples and templates for SmartProps. These examples demonstrate key concepts and common patterns.
