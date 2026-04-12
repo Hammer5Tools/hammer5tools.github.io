@@ -1,0 +1,13 @@
+{
+  "name": "hammer5tools.github.io",
+  "version": "1.0.0",
+  "description": "Official documentation for Hammer 5 Tools",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "serve": "npx serve ."
+  },
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
+}

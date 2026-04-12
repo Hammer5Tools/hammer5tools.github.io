@@ -1,4 +1,3 @@
-# Path: Guides : Writing Documentation
 
 # Writing Documentation
 
@@ -13,7 +12,6 @@ All documentation files are `.md` (Markdown) files located in the `docs/` direct
 To automatically set the breadcrumb at the top of the page, include a `# Path:` directive on the **very first line** of your Markdown file. Use colons `:` to separate sections.
 
 ```markdown
-# Path: Tools : SmartProp Editor
 # Smart Prop Editor Header
 ...
 ```
