@@ -1,0 +1,66 @@
+[
+  {
+    "id": "tracescatter",
+    "title": "TraceScatter",
+    "author": "Twist",
+    "description": "A powerful procedural scatter tool for natural rock and debris distribution. Uses trace logic to align props perfectly with any surface.",
+    "tags": ["utility"],
+    "badges": [
+      { "label": "Utility", "color": "#4f98a3", "bg": "rgba(79, 152, 163, 0.1)" }
+    ],
+    "videoPreview": "videos/vsmart-utilities/tracescatter_sm.mp4",
+    "videoFull": "videos/vsmart-utilities/tracescatter.mp4",
+    "downloadUrl": "static/vsmart-utilities/tracescatter.vsmart",
+    "downloadLabel": "Download",
+    "isDirectFile": true
+  },
+  {
+    "id": "gray-box-smart-fence-b",
+    "title": "Gray Box Smart Fence B",
+    "author": "Twist",
+    "description": "A modular fence system optimized for rapid level grayboxing. Features parametric length, height, and automatic post distribution.",
+    "tags": ["props", "utility", "content"],
+    "badges": [
+      { "label": "Prop", "color": "#f59e0b", "bg": "rgba(245, 158, 11, 0.1)" },
+      { "label": "Includes Content", "color": "#10b981", "bg": "rgba(16, 185, 129, 0.1)" }
+    ],
+    "videoPreview": "videos/props/gray_box_smart_fence_b_sm.mp4",
+    "videoFull": "videos/props/gray_box_smart_fence_b.mp4",
+    "downloadUrl": "https://github.com/Hammer5Tools/hammer5tools.github.io/releases/download/0003/vsmart_library.zip",
+    "downloadLabel": "Download (.zip)",
+    "isDirectFile": false
+  },
+  {
+    "id": "test-steps-advanced",
+    "title": "Test Steps Advanced",
+    "author": "OrelStealth",
+    "description": "Enhanced staircase SmartProp with clockwise rotation, custom face styles, 9 surface properties for correct footsteps, and improved clipping.",
+    "tags": ["props", "utility", "content"],
+    "badges": [
+      { "label": "Prop", "color": "#f59e0b", "bg": "rgba(245, 158, 11, 0.1)" },
+      { "label": "Includes Content", "color": "#10b981", "bg": "rgba(16, 185, 129, 0.1)" }
+    ],
+    "videoPreview": "videos/props/test_steps_advanced_sm.mp4",
+    "videoFull": "videos/props/test_steps_advanced.mp4",
+    "downloadUrl": "https://github.com/Hammer5Tools/hammer5tools.github.io/releases/download/0002/vsmart_library.zip",
+    "downloadLabel": "Download (.zip)",
+    "isDirectFile": false
+  },
+  {
+    "id": "sanctum-roof-01",
+    "title": "Sanctum: Roof 01",
+    "author": "Twist",
+    "description": "Asset collection from the community map de_sanctum. Features specialized roof geometry (sanctum_roof_01) and high-fidelity textures.",
+    "tags": ["community", "content", "props"],
+    "badges": [
+      { "label": "Community Map", "color": "#a78bfa", "bg": "rgba(139, 92, 246, 0.1)" },
+      { "label": "Prop", "color": "#f59e0b", "bg": "rgba(245, 158, 11, 0.1)" },
+      { "label": "Includes Content", "color": "#10b981", "bg": "rgba(16, 185, 129, 0.1)" }
+    ],
+    "videoPreview": "videos/vsmart-utilities/sanctum_roof_01_sm.mp4",
+    "videoFull": "videos/vsmart-utilities/sanctum_roof_01.mp4",
+    "downloadUrl": "https://github.com/Hammer5Tools/hammer5tools.github.io/releases/download/0001/de_sanctum.zip",
+    "downloadLabel": "Download (.zip)",
+    "isDirectFile": false
+  }
+]

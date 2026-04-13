@@ -394,14 +394,61 @@
       margin-bottom: 0.5rem;
     }
 
-    .badge-content {
-      background: rgba(16, 185, 129, 0.1);
-      color: #10b981;
-    }
-
     .badge-group {
       display: flex;
       gap: 0.5rem;
+    }
+
+    /* Loading state */
+    .grid-loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 4rem 2rem;
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    .grid-loading .spinner {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--border-color);
+      border-top-color: var(--color-primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Empty state */
+    .grid-empty {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--text-muted);
+    }
+
+    .grid-empty svg {
+      margin-bottom: 1rem;
+      opacity: 0.4;
+    }
+
+    /* Card entrance animation */
+    @keyframes cardIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .vsmart-card {
+      animation: cardIn 0.4s ease-out both;
     }
   </style>
 </head>
@@ -475,194 +522,17 @@
           </svg>
           <input type="text" class="search-input" id="library-search" placeholder="Search by name or description...">
         </div>
-        <div class="filter-chips">
-          <button class="filter-chip active" data-filter="all">All Items</button>
-          <button class="filter-chip" data-filter="utility">Utilities</button>
-          <button class="filter-chip" data-filter="props">Props</button>
-          <button class="filter-chip" data-filter="content">With Content</button>
-          <button class="filter-chip" data-filter="community">Community Maps</button>
+        <div class="filter-chips" id="filter-chips">
+          <!-- Filter chips are generated dynamically from data -->
         </div>
       </section>
 
       <div class="browser-grid" id="library-grid">
-        <!-- TraceScatter Card -->
-        <article class="vsmart-card" data-type="utility" data-tags="utility">
-          <div class="card-preview" onclick="openModal('videos/vsmart-utilities/tracescatter.mp4')">
-            <video autoplay loop muted playsinline>
-              <source src="videos/vsmart-utilities/tracescatter_sm.mp4" type="video/mp4">
-            </video>
-            <div class="expand-hint">Click to expand</div>
-          </div>
-          <div class="card-content">
-            <div class="badge-group">
-              <span class="badge">Utility</span>
-            </div>
-            <div class="card-header">
-              <div>
-                <h2 class="card-title">TraceScatter</h2>
-                <div class="card-author">By Twist</div>
-              </div>
-            </div>
-            <p class="card-description">
-              A powerful procedural scatter tool for natural rock and debris distribution. Uses trace logic to align
-              props perfectly with any surface.
-            </p>
-            <div class="card-footer">
-              <a href="static/vsmart-utilities/tracescatter.vsmart" class="btn btn-primary" download
-                title="Download .vsmart file">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                  <polyline points="7 10 12 15 17 10" />
-                  <line x1="12" y1="15" x2="12" y2="3" />
-                </svg>
-                Download
-              </a>
-              <button class="btn btn-icon" onclick="openModal('videos/vsmart-utilities/tracescatter.mp4')"
-                title="Expand preview">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </article>
-
-        <!-- Gray Box Smart Fence B Card -->
-        <article class="vsmart-card" data-type="props" data-tags="props utility content">
-          <div class="card-preview" onclick="openModal('videos/props/gray_box_smart_fence_b.mp4')">
-            <video autoplay loop muted playsinline>
-              <source src="videos/props/gray_box_smart_fence_b_sm.mp4" type="video/mp4">
-            </video>
-            <div class="expand-hint">Click to expand</div>
-          </div>
-          <div class="card-content">
-            <div class="badge-group">
-              <span class="badge" style="background: rgba(245, 158, 11, 0.1); color: #f59e0b;">Prop</span>
-              <span class="badge badge-content">Includes Content</span>
-            </div>
-            <div class="card-header">
-              <div>
-                <h2 class="card-title">Gray Box Smart Fence B</h2>
-                <div class="card-author">By Twist</div>
-              </div>
-            </div>
-            <p class="card-description">
-              A modular fence system optimized for rapid level grayboxing. Features parametric length, height, and
-              automatic post distribution.
-            </p>
-            <div class="card-footer">
-              <a href="https://github.com/Hammer5Tools/hammer5tools.github.io/releases/download/0003/vsmart_library.zip"
-                class="btn btn-primary" title="Download VSmart with content">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                  <polyline points="7 10 12 15 17 10" />
-                  <line x1="12" y1="15" x2="12" y2="3" />
-                </svg>
-                Download (.zip)
-              </a>
-              <button class="btn btn-icon" onclick="openModal('videos/props/gray_box_smart_fence_b.mp4')"
-                title="Expand preview">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </article>
-
-        <!-- Test Steps Advanced Card -->
-        <article class="vsmart-card" data-type="props" data-tags="props utility content">
-          <div class="card-preview" onclick="openModal('videos/props/test_steps_advanced.mp4')">
-            <video autoplay loop muted playsinline>
-              <source src="videos/props/test_steps_advanced_sm.mp4" type="video/mp4">
-            </video>
-            <div class="expand-hint">Click to expand</div>
-          </div>
-          <div class="card-content">
-            <div class="badge-group">
-              <span class="badge" style="background: rgba(245, 158, 11, 0.1); color: #f59e0b;">Prop</span>
-              <span class="badge badge-content">Includes Content</span>
-            </div>
-            <div class="card-header">
-              <div>
-                <h2 class="card-title">Test Steps Advanced</h2>
-                <div class="card-author">By OrelStealth</div>
-              </div>
-            </div>
-            <p class="card-description">
-              Enhanced staircase SmartProp with clockwise rotation, custom face styles, 9 surface properties for correct
-              footsteps, and improved clipping.
-            </p>
-            <div class="card-footer">
-              <a href="https://github.com/Hammer5Tools/hammer5tools.github.io/releases/download/0002/vsmart_library.zip"
-                class="btn btn-primary" title="Download VSmart with content">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                  <polyline points="7 10 12 15 17 10" />
-                  <line x1="12" y1="15" x2="12" y2="3" />
-                </svg>
-                Download (.zip)
-              </a>
-              <button class="btn btn-icon" onclick="openModal('videos/props/test_steps_advanced.mp4')"
-                title="Expand preview">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </article>
-        <!-- Sanctum Card -->
-        <article class="vsmart-card" data-type="props" data-tags="community content props">
-          <div class="card-preview" onclick="openModal('videos/vsmart-utilities/sanctum_roof_01.mp4')">
-            <video autoplay loop muted playsinline>
-              <source src="videos/vsmart-utilities/sanctum_roof_01_sm.mp4" type="video/mp4">
-            </video>
-            <div class="expand-hint">Click to expand</div>
-          </div>
-          <div class="card-content">
-            <div class="badge-group">
-              <span class="badge" style="background: rgba(139, 92, 246, 0.1); color: #a78bfa;">Community Map</span>
-              <span class="badge" style="background: rgba(245, 158, 11, 0.1); color: #f59e0b;">Prop</span>
-              <span class="badge badge-content">Includes Content</span>
-            </div>
-            <div class="card-header">
-              <div>
-                <h2 class="card-title">Sanctum: Roof 01</h2>
-                <div class="card-author">By Twist</div>
-              </div>
-            </div>
-            <p class="card-description">
-              Asset collection from the community map de_sanctum. Features specialized roof geometry (sanctum_roof_01)
-              and high-fidelity textures.
-            </p>
-            <div class="card-footer">
-              <a href="https://github.com/Hammer5Tools/hammer5tools.github.io/releases/download/0001/de_sanctum.zip"
-                class="btn btn-primary" title="Download VSmart with content">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                  <polyline points="7 10 12 15 17 10" />
-                  <line x1="12" y1="15" x2="12" y2="3" />
-                </svg>
-                Download (.zip)
-              </a>
-              <button class="btn btn-icon" onclick="openModal('videos/vsmart-utilities/sanctum_roof_01.mp4')"
-                title="Expand preview">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </article>
+        <!-- Cards are rendered dynamically from data/vsmart-library.json -->
+        <div class="grid-loading" id="grid-loading">
+          <div class="spinner"></div>
+          Loading library&hellip;
+        </div>
       </div>
 
       <!-- Submission Section -->
@@ -722,28 +592,160 @@
   </div>
 
   <script>
+    /* ──────────────────────────────────────────────
+       VSmart Library – Data-driven rendering
+       All items live in data/vsmart-library.json.
+       To add a new item, just add a JSON object there.
+       ────────────────────────────────────────────── */
+
     let currentFilter = 'all';
     let searchQuery = '';
+    let libraryItems = [];
 
-    function initLibrary() {
-      const searchInput = document.getElementById('library-search');
-      const chips = document.querySelectorAll('.filter-chip');
+    // ── SVG icon templates (reused across all cards) ──
+    const ICON_DOWNLOAD = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>`;
+    const ICON_EXPAND = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>`;
 
-      searchInput.addEventListener('input', (e) => {
-        searchQuery = e.target.value.toLowerCase();
-        applyFilters();
+    // ── Tag display names for filter chips ──
+    const TAG_LABELS = {
+      utility: 'Utilities',
+      props: 'Props',
+      content: 'With Content',
+      community: 'Community Maps'
+    };
+
+    // ── Fetch the JSON database and bootstrap the page ──
+    async function loadLibrary() {
+      try {
+        const resp = await fetch('data/vsmart-library.json');
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        libraryItems = await resp.json();
+      } catch (err) {
+        console.error('Failed to load library data:', err);
+        document.getElementById('grid-loading').innerHTML =
+          '<span style="color:#ef4444;">Failed to load library data.</span>';
+        return;
+      }
+
+      buildFilterChips();
+      renderCards();
+      bindSearch();
+    }
+
+    // ── Dynamically build filter chips from data ──
+    function buildFilterChips() {
+      const tagSet = new Set();
+      libraryItems.forEach(item => item.tags.forEach(t => tagSet.add(t)));
+
+      const container = document.getElementById('filter-chips');
+      // "All Items" chip
+      const allChip = createChip('All Items', 'all', true);
+      container.appendChild(allChip);
+
+      // One chip per unique tag, in a stable display order
+      const ordered = Object.keys(TAG_LABELS).filter(t => tagSet.has(t));
+      ordered.forEach(tag => {
+        container.appendChild(createChip(TAG_LABELS[tag] || tag, tag, false));
       });
 
-      chips.forEach(chip => {
-        chip.addEventListener('click', () => {
-          chips.forEach(c => c.classList.remove('active'));
-          chip.classList.add('active');
-          currentFilter = chip.dataset.filter;
-          applyFilters();
-        });
+      // Any tags not in TAG_LABELS (future-proof)
+      tagSet.forEach(tag => {
+        if (!TAG_LABELS[tag]) {
+          container.appendChild(createChip(tag, tag, false));
+        }
       });
     }
 
+    function createChip(label, filter, isActive) {
+      const btn = document.createElement('button');
+      btn.className = 'filter-chip' + (isActive ? ' active' : '');
+      btn.dataset.filter = filter;
+      btn.textContent = label;
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        currentFilter = filter;
+        applyFilters();
+      });
+      return btn;
+    }
+
+    // ── Render all cards from data ──
+    function renderCards() {
+      const grid = document.getElementById('library-grid');
+      document.getElementById('grid-loading')?.remove();
+
+      libraryItems.forEach((item, idx) => {
+        const card = document.createElement('article');
+        card.className = 'vsmart-card';
+        card.dataset.tags = item.tags.join(' ');
+        card.style.animationDelay = `${idx * 0.07}s`;
+
+        // Build badge HTML
+        const badgesHtml = item.badges.map(b =>
+          `<span class="badge" style="background:${b.bg};color:${b.color};">${b.label}</span>`
+        ).join('');
+
+        // Download attribute only for direct .vsmart files
+        const dlAttr = item.isDirectFile ? ' download' : '';
+        const dlTitle = item.isDirectFile
+          ? 'Download .vsmart file'
+          : 'Download VSmart with content';
+
+        card.innerHTML = `
+          <div class="card-preview" data-video="${item.videoFull}">
+            <video autoplay loop muted playsinline>
+              <source src="${item.videoPreview}" type="video/mp4">
+            </video>
+            <div class="expand-hint">Click to expand</div>
+          </div>
+          <div class="card-content">
+            <div class="badge-group">${badgesHtml}</div>
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">${item.title}</h2>
+                <div class="card-author">By ${item.author}</div>
+              </div>
+            </div>
+            <p class="card-description">${item.description}</p>
+            <div class="card-footer">
+              <a href="${item.downloadUrl}" class="btn btn-primary" title="${dlTitle}"${dlAttr}>
+                ${ICON_DOWNLOAD}
+                ${item.downloadLabel}
+              </a>
+              <button class="btn btn-icon" data-video="${item.videoFull}" title="Expand preview">
+                ${ICON_EXPAND}
+              </button>
+            </div>
+          </div>
+        `;
+
+        // Wire up video expand clicks
+        card.querySelector('.card-preview').addEventListener('click', () => openModal(item.videoFull));
+        card.querySelector('.btn-icon').addEventListener('click', () => openModal(item.videoFull));
+
+        grid.appendChild(card);
+      });
+
+      if (libraryItems.length === 0) {
+        grid.innerHTML = `
+          <div class="grid-empty">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <p>No items in the library yet.</p>
+          </div>`;
+      }
+    }
+
+    // ── Search binding ──
+    function bindSearch() {
+      const input = document.getElementById('library-search');
+      input.addEventListener('input', (e) => {
+        searchQuery = e.target.value.toLowerCase();
+        applyFilters();
+      });
+    }
+
+    // ── Apply combined search + category filter ──
     function applyFilters() {
       const cards = document.querySelectorAll('.vsmart-card');
       cards.forEach(card => {
@@ -762,6 +764,7 @@
       });
     }
 
+    // ── Modal controls ──
     function openModal(videoSrc) {
       const modal = document.getElementById('modal');
       const video = document.getElementById('modal-video');
@@ -782,8 +785,8 @@
       guide.style.display = guide.style.display === 'none' ? 'block' : 'none';
     }
 
-    // Initialize
-    initLibrary();
+    // ── Initialize ──
+    loadLibrary();
   </script>
 </body>
 
