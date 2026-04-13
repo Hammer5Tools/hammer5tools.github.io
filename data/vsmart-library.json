@@ -19,7 +19,7 @@
     "title": "Gray Box Smart Fence B",
     "author": "Twist",
     "description": "A modular fence system optimized for rapid level grayboxing. Features parametric length, height, and automatic post distribution.",
-    "tags": ["props", "utility", "content"],
+    "tags": ["props", "content"],
     "badges": [
       { "label": "Prop", "color": "#f59e0b", "bg": "rgba(245, 158, 11, 0.1)" },
       { "label": "Includes Content", "color": "#10b981", "bg": "rgba(16, 185, 129, 0.1)" }
@@ -35,7 +35,7 @@
     "title": "Test Steps Advanced",
     "author": "OrelStealth",
     "description": "Enhanced staircase SmartProp with clockwise rotation, custom face styles, 9 surface properties for correct footsteps, and improved clipping.",
-    "tags": ["props", "utility", "content"],
+    "tags": ["props", "content"],
     "badges": [
       { "label": "Prop", "color": "#f59e0b", "bg": "rgba(245, 158, 11, 0.1)" },
       { "label": "Includes Content", "color": "#10b981", "bg": "rgba(16, 185, 129, 0.1)" }
