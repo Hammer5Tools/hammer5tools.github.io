@@ -5,9 +5,15 @@
     "author": "Twist",
     "authorLink": "https://x.com/der_twist",
     "description": "A powerful procedural scatter tool for natural rock and debris distribution. Uses trace logic to align props perfectly with any surface.",
-    "tags": ["utility"],
+    "tags": [
+      "utility"
+    ],
     "badges": [
-      { "label": "Utility", "color": "#4f98a3", "bg": "rgba(79, 152, 163, 0.1)" }
+      {
+        "label": "Utility",
+        "color": "#4f98a3",
+        "bg": "rgba(79, 152, 163, 0.1)"
+      }
     ],
     "videoPreview": "videos/vsmart-utilities/tracescatter_sm.mp4",
     "videoFull": "videos/vsmart-utilities/tracescatter.mp4",
@@ -17,14 +23,25 @@
   },
   {
     "id": "gray-box-smart-fence-b",
-    "title": "Gray Box Smart Fence B",
+    "title": "Smart Fence B",
     "author": "Twist",
     "authorLink": "https://x.com/der_twist",
     "description": "A modular fence system optimized for rapid level grayboxing. Features parametric length, height, and automatic post distribution.",
-    "tags": ["props", "content"],
+    "tags": [
+      "props",
+      "content"
+    ],
     "badges": [
-      { "label": "Prop", "color": "#f59e0b", "bg": "rgba(245, 158, 11, 0.1)" },
-      { "label": "Includes Content", "color": "#10b981", "bg": "rgba(16, 185, 129, 0.1)" }
+      {
+        "label": "Prop",
+        "color": "#f59e0b",
+        "bg": "rgba(245, 158, 11, 0.1)"
+      },
+      {
+        "label": "Includes Content",
+        "color": "#10b981",
+        "bg": "rgba(16, 185, 129, 0.1)"
+      }
     ],
     "videoPreview": "videos/props/gray_box_smart_fence_b_sm.mp4",
     "videoFull": "videos/props/gray_box_smart_fence_b.mp4",
@@ -38,10 +55,21 @@
     "author": "OrelStealth",
     "authorLink": "https://x.com/OrelStealth",
     "description": "Enhanced staircase SmartProp with clockwise rotation, custom face styles, 9 surface properties for correct footsteps, and improved clipping.",
-    "tags": ["props", "content"],
+    "tags": [
+      "props",
+      "content"
+    ],
     "badges": [
-      { "label": "Prop", "color": "#f59e0b", "bg": "rgba(245, 158, 11, 0.1)" },
-      { "label": "Includes Content", "color": "#10b981", "bg": "rgba(16, 185, 129, 0.1)" }
+      {
+        "label": "Prop",
+        "color": "#f59e0b",
+        "bg": "rgba(245, 158, 11, 0.1)"
+      },
+      {
+        "label": "Includes Content",
+        "color": "#10b981",
+        "bg": "rgba(16, 185, 129, 0.1)"
+      }
     ],
     "videoPreview": "videos/props/test_steps_advanced_sm.mp4",
     "videoFull": "videos/props/test_steps_advanced.mp4",
@@ -55,11 +83,27 @@
     "author": "Twist",
     "authorLink": "https://x.com/der_twist",
     "description": "Asset collection from the community map de_sanctum. Features specialized roof geometry (sanctum_roof_01) and high-fidelity textures.",
-    "tags": ["community", "content", "props"],
+    "tags": [
+      "community",
+      "content",
+      "props"
+    ],
     "badges": [
-      { "label": "Community Map", "color": "#a78bfa", "bg": "rgba(139, 92, 246, 0.1)" },
-      { "label": "Prop", "color": "#f59e0b", "bg": "rgba(245, 158, 11, 0.1)" },
-      { "label": "Includes Content", "color": "#10b981", "bg": "rgba(16, 185, 129, 0.1)" }
+      {
+        "label": "Community Map",
+        "color": "#a78bfa",
+        "bg": "rgba(139, 92, 246, 0.1)"
+      },
+      {
+        "label": "Prop",
+        "color": "#f59e0b",
+        "bg": "rgba(245, 158, 11, 0.1)"
+      },
+      {
+        "label": "Includes Content",
+        "color": "#10b981",
+        "bg": "rgba(16, 185, 129, 0.1)"
+      }
     ],
     "videoPreview": "videos/vsmart-utilities/sanctum_roof_01_sm.mp4",
     "videoFull": "videos/vsmart-utilities/sanctum_roof_01.mp4",
@@ -73,9 +117,15 @@
     "author": "GunnarKafel",
     "authorLink": "https://x.com/GunnarKafel",
     "description": "Procedural HVAC duct system. Includes straight sections, bends, and supports. Perfect for industrial roof and ceiling details.",
-    "tags": ["props"],
+    "tags": [
+      "props"
+    ],
     "badges": [
-      { "label": "Prop", "color": "#f59e0b", "bg": "rgba(245, 158, 11, 0.1)" }
+      {
+        "label": "Prop",
+        "color": "#f59e0b",
+        "bg": "rgba(245, 158, 11, 0.1)"
+      }
     ],
     "videoPreview": "videos/props/hvac_kit_sm.mp4",
     "videoFull": "videos/props/hvac_kit.mp4",
@@ -89,9 +139,15 @@
     "author": "GunnarKafel",
     "authorLink": "https://x.com/GunnarKafel",
     "description": "Fully parametric metal ladder with customizable height, width, and cage options. Correctly handles step spacing.",
-    "tags": ["props"],
+    "tags": [
+      "props"
+    ],
     "badges": [
-      { "label": "Prop", "color": "#f59e0b", "bg": "rgba(245, 158, 11, 0.1)" }
+      {
+        "label": "Prop",
+        "color": "#f59e0b",
+        "bg": "rgba(245, 158, 11, 0.1)"
+      }
     ],
     "videoPreview": "videos/props/metal_ladder_001_sm.mp4",
     "videoFull": "videos/props/metal_ladder_001.mp4",
@@ -105,9 +161,15 @@
     "author": "GunnarKafel",
     "authorLink": "https://x.com/GunnarKafel",
     "description": "Comprehensive pipe system with various diameters, materials, and connection types. Features automatic flange and support placement.",
-    "tags": ["props"],
+    "tags": [
+      "props"
+    ],
     "badges": [
-      { "label": "Prop", "color": "#f59e0b", "bg": "rgba(245, 158, 11, 0.1)" }
+      {
+        "label": "Prop",
+        "color": "#f59e0b",
+        "bg": "rgba(245, 158, 11, 0.1)"
+      }
     ],
     "videoPreview": "videos/props/pipe_kit_main_sm.mp4",
     "videoFull": "videos/props/pipe_kit_main.mp4",
@@ -121,9 +183,15 @@
     "author": "GunnarKafel",
     "authorLink": "https://x.com/GunnarKafel",
     "description": "Modular railing system for walkways, stairs, and balconies. Highly customizable post and rail distribution.",
-    "tags": ["props"],
+    "tags": [
+      "props"
+    ],
     "badges": [
-      { "label": "Prop", "color": "#f59e0b", "bg": "rgba(245, 158, 11, 0.1)" }
+      {
+        "label": "Prop",
+        "color": "#f59e0b",
+        "bg": "rgba(245, 158, 11, 0.1)"
+      }
     ],
     "videoPreview": "videos/props/railing_kit_main_sm.mp4",
     "videoFull": "videos/props/railing_kit_main.mp4",
@@ -137,9 +205,15 @@
     "author": "GunnarKafel",
     "authorLink": "https://x.com/GunnarKafel",
     "description": "Detailed scaffolding system. Parameters for width, height, and deck types. Ideal for construction site scenes.",
-    "tags": ["props"],
+    "tags": [
+      "props"
+    ],
     "badges": [
-      { "label": "Prop", "color": "#f59e0b", "bg": "rgba(245, 158, 11, 0.1)" }
+      {
+        "label": "Prop",
+        "color": "#f59e0b",
+        "bg": "rgba(245, 158, 11, 0.1)"
+      }
     ],
     "videoPreview": "videos/props/scaffolding_kit_main_sm.mp4",
     "videoFull": "videos/props/scaffolding_kit_main.mp4",
@@ -153,9 +227,15 @@
     "author": "GunnarKafel",
     "authorLink": "https://x.com/GunnarKafel",
     "description": "Versatile industrial fence system. Dynamically scales and adjusts to terrain and layout requirements.",
-    "tags": ["props"],
+    "tags": [
+      "props"
+    ],
     "badges": [
-      { "label": "Prop", "color": "#f59e0b", "bg": "rgba(245, 158, 11, 0.1)" }
+      {
+        "label": "Prop",
+        "color": "#f59e0b",
+        "bg": "rgba(245, 158, 11, 0.1)"
+      }
     ],
     "videoPreview": "videos/props/smart_fence_sm.mp4",
     "videoFull": "videos/props/smart_fence.mp4",
@@ -169,9 +249,15 @@
     "author": "Twist",
     "authorLink": "https://x.com/der_twist",
     "description": "A utility to automatically place props at the corners of a rectangular or custom polygonal area. Ideal for pillars, fences, or architectural accents.",
-    "tags": ["utility"],
+    "tags": [
+      "utility"
+    ],
     "badges": [
-      { "label": "Utility", "color": "#4f98a3", "bg": "rgba(79, 152, 163, 0.1)" }
+      {
+        "label": "Utility",
+        "color": "#4f98a3",
+        "bg": "rgba(79, 152, 163, 0.1)"
+      }
     ],
     "videoPreview": "videos/vsmart-utilities/place_corners_sm.mp4",
     "videoFull": "videos/vsmart-utilities/place_corners.mp4",
@@ -185,9 +271,15 @@
     "author": "Twist",
     "authorLink": "https://x.com/der_twist",
     "description": "Distribute SmartProps or models along a defined 3D path with precise control over spacing, rotation, and alignment.",
-    "tags": ["utility"],
+    "tags": [
+      "utility"
+    ],
     "badges": [
-      { "label": "Utility", "color": "#4f98a3", "bg": "rgba(79, 152, 163, 0.1)" }
+      {
+        "label": "Utility",
+        "color": "#4f98a3",
+        "bg": "rgba(79, 152, 163, 0.1)"
+      }
     ],
     "videoPreview": "videos/vsmart-utilities/place_on_path_sm.mp4",
     "videoFull": "videos/vsmart-utilities/place_on_path.mp4",
@@ -201,9 +293,15 @@
     "author": "Twist",
     "authorLink": "https://x.com/der_twist",
     "description": "Procedural archway generator for various architectural styles. Parametric control over width, height, curvature, and keystone details.",
-    "tags": ["utility"],
+    "tags": [
+      "utility"
+    ],
     "badges": [
-      { "label": "Utility", "color": "#4f98a3", "bg": "rgba(79, 152, 163, 0.1)" }
+      {
+        "label": "Utility",
+        "color": "#4f98a3",
+        "bg": "rgba(79, 152, 163, 0.1)"
+      }
     ],
     "videoPreview": "videos/vsmart-utilities/smart_arch_sm.mp4",
     "videoFull": "videos/vsmart-utilities/smart_arch.mp4",
@@ -217,10 +315,21 @@
     "author": "Twist",
     "authorLink": "https://x.com/der_twist",
     "description": "A high-fidelity modular fence system. Includes custom models and textures for a worn, industrial look. Fully parametric length and height.",
-    "tags": ["props", "content"],
+    "tags": [
+      "props",
+      "content"
+    ],
     "badges": [
-      { "label": "Prop", "color": "#f59e0b", "bg": "rgba(245, 158, 11, 0.1)" },
-      { "label": "Includes Content", "color": "#10b981", "bg": "rgba(16, 185, 129, 0.1)" }
+      {
+        "label": "Prop",
+        "color": "#f59e0b",
+        "bg": "rgba(245, 158, 11, 0.1)"
+      },
+      {
+        "label": "Includes Content",
+        "color": "#10b981",
+        "bg": "rgba(16, 185, 129, 0.1)"
+      }
     ],
     "videoPreview": "videos/props/smart_fence_a_sm.mp4",
     "videoFull": "videos/props/smart_fence_a.mp4",
@@ -234,10 +343,21 @@
     "author": "Twist",
     "authorLink": "https://x.com/der_twist",
     "description": "Decorative wrought iron fence system with intricate details. Includes matching gate models and automatic post alignment.",
-    "tags": ["props", "content"],
+    "tags": [
+      "props",
+      "content"
+    ],
     "badges": [
-      { "label": "Prop", "color": "#f59e0b", "bg": "rgba(245, 158, 11, 0.1)" },
-      { "label": "Includes Content", "color": "#10b981", "bg": "rgba(16, 185, 129, 0.1)" }
+      {
+        "label": "Prop",
+        "color": "#f59e0b",
+        "bg": "rgba(245, 158, 11, 0.1)"
+      },
+      {
+        "label": "Includes Content",
+        "color": "#10b981",
+        "bg": "rgba(16, 185, 129, 0.1)"
+      }
     ],
     "videoPreview": "videos/props/smart_fence_d_sm.mp4",
     "videoFull": "videos/props/smart_fence_d.mp4",
@@ -246,4 +366,3 @@
     "isDirectFile": false
   }
 ]
-
