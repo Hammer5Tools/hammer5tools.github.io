@@ -162,6 +162,88 @@
     "downloadUrl": "static/props/smart_fence.zip",
     "downloadLabel": "Download (.zip)",
     "isDirectFile": false
+  },
+  {
+    "id": "place-corners",
+    "title": "Place Corners",
+    "author": "Twist",
+    "authorLink": "https://x.com/der_twist",
+    "description": "A utility to automatically place props at the corners of a rectangular or custom polygonal area. Ideal for pillars, fences, or architectural accents.",
+    "tags": ["utility"],
+    "badges": [
+      { "label": "Utility", "color": "#4f98a3", "bg": "rgba(79, 152, 163, 0.1)" }
+    ],
+    "videoPreview": "videos/vsmart-utilities/place_corners_sm.mp4",
+    "videoFull": "videos/vsmart-utilities/place_corners.mp4",
+    "downloadUrl": "static/vsmart-utilities/place_corners.vsmart",
+    "downloadLabel": "Download",
+    "isDirectFile": true
+  },
+  {
+    "id": "place-on-path",
+    "title": "Place On Path",
+    "author": "Twist",
+    "authorLink": "https://x.com/der_twist",
+    "description": "Distribute SmartProps or models along a defined 3D path with precise control over spacing, rotation, and alignment.",
+    "tags": ["utility"],
+    "badges": [
+      { "label": "Utility", "color": "#4f98a3", "bg": "rgba(79, 152, 163, 0.1)" }
+    ],
+    "videoPreview": "videos/vsmart-utilities/place_on_path_sm.mp4",
+    "videoFull": "videos/vsmart-utilities/place_on_path.mp4",
+    "downloadUrl": "static/vsmart-utilities/place_on_path.vsmart",
+    "downloadLabel": "Download",
+    "isDirectFile": true
+  },
+  {
+    "id": "smart-arch",
+    "title": "Smart Arch",
+    "author": "Twist",
+    "authorLink": "https://x.com/der_twist",
+    "description": "Procedural archway generator for various architectural styles. Parametric control over width, height, curvature, and keystone details.",
+    "tags": ["utility"],
+    "badges": [
+      { "label": "Utility", "color": "#4f98a3", "bg": "rgba(79, 152, 163, 0.1)" }
+    ],
+    "videoPreview": "videos/vsmart-utilities/smart_arch_sm.mp4",
+    "videoFull": "videos/vsmart-utilities/smart_arch.mp4",
+    "downloadUrl": "static/vsmart-utilities/smart_arch.zip",
+    "downloadLabel": "Download (.zip)",
+    "isDirectFile": false
+  },
+  {
+    "id": "smart-fence-a",
+    "title": "Smart Fence A",
+    "author": "Twist",
+    "authorLink": "https://x.com/der_twist",
+    "description": "A high-fidelity modular fence system. Includes custom models and textures for a worn, industrial look. Fully parametric length and height.",
+    "tags": ["props", "content"],
+    "badges": [
+      { "label": "Prop", "color": "#f59e0b", "bg": "rgba(245, 158, 11, 0.1)" },
+      { "label": "Includes Content", "color": "#10b981", "bg": "rgba(16, 185, 129, 0.1)" }
+    ],
+    "videoPreview": "videos/props/smart_fence_a_sm.mp4",
+    "videoFull": "videos/props/smart_fence_a.mp4",
+    "downloadUrl": "static/props/smart_fence_a.zip",
+    "downloadLabel": "Download (.zip)",
+    "isDirectFile": false
+  },
+  {
+    "id": "smart-fence-d",
+    "title": "Smart Fence D",
+    "author": "Twist",
+    "authorLink": "https://x.com/der_twist",
+    "description": "Decorative wrought iron fence system with intricate details. Includes matching gate models and automatic post alignment.",
+    "tags": ["props", "content"],
+    "badges": [
+      { "label": "Prop", "color": "#f59e0b", "bg": "rgba(245, 158, 11, 0.1)" },
+      { "label": "Includes Content", "color": "#10b981", "bg": "rgba(16, 185, 129, 0.1)" }
+    ],
+    "videoPreview": "videos/props/smart_fence_d_sm.mp4",
+    "videoFull": "videos/props/smart_fence_d.mp4",
+    "downloadUrl": "static/props/smart_fence_d.zip",
+    "downloadLabel": "Download (.zip)",
+    "isDirectFile": false
   }
 ]
 
