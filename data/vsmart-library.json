@@ -3,6 +3,7 @@
     "id": "tracescatter",
     "title": "TraceScatter",
     "author": "Twist",
+    "authorLink": "https://x.com/der_twist",
     "description": "A powerful procedural scatter tool for natural rock and debris distribution. Uses trace logic to align props perfectly with any surface.",
     "tags": ["utility"],
     "badges": [
@@ -18,6 +19,7 @@
     "id": "gray-box-smart-fence-b",
     "title": "Gray Box Smart Fence B",
     "author": "Twist",
+    "authorLink": "https://x.com/der_twist",
     "description": "A modular fence system optimized for rapid level grayboxing. Features parametric length, height, and automatic post distribution.",
     "tags": ["props", "content"],
     "badges": [
@@ -34,6 +36,7 @@
     "id": "test-steps-advanced",
     "title": "Test Steps Advanced",
     "author": "OrelStealth",
+    "authorLink": "https://x.com/OrelStealth",
     "description": "Enhanced staircase SmartProp with clockwise rotation, custom face styles, 9 surface properties for correct footsteps, and improved clipping.",
     "tags": ["props", "content"],
     "badges": [
@@ -50,6 +53,7 @@
     "id": "sanctum-roof-01",
     "title": "Sanctum: Roof 01",
     "author": "Twist",
+    "authorLink": "https://x.com/der_twist",
     "description": "Asset collection from the community map de_sanctum. Features specialized roof geometry (sanctum_roof_01) and high-fidelity textures.",
     "tags": ["community", "content", "props"],
     "badges": [
@@ -62,5 +66,102 @@
     "downloadUrl": "https://github.com/Hammer5Tools/hammer5tools.github.io/releases/download/0001/de_sanctum.zip",
     "downloadLabel": "Download (.zip)",
     "isDirectFile": false
+  },
+  {
+    "id": "hvac-kit",
+    "title": "HVAC Kit",
+    "author": "GunnarKafel",
+    "authorLink": "https://x.com/GunnarKafel",
+    "description": "Procedural HVAC duct system. Includes straight sections, bends, and supports. Perfect for industrial roof and ceiling details.",
+    "tags": ["props"],
+    "badges": [
+      { "label": "Prop", "color": "#f59e0b", "bg": "rgba(245, 158, 11, 0.1)" }
+    ],
+    "videoPreview": "videos/props/hvac_kit_sm.mp4",
+    "videoFull": "videos/props/hvac_kit.mp4",
+    "downloadUrl": "static/props/hvac_kit.zip",
+    "downloadLabel": "Download (.zip)",
+    "isDirectFile": false
+  },
+  {
+    "id": "metal-ladder-001",
+    "title": "Metal Ladder 001",
+    "author": "GunnarKafel",
+    "authorLink": "https://x.com/GunnarKafel",
+    "description": "Fully parametric metal ladder with customizable height, width, and cage options. Correctly handles step spacing.",
+    "tags": ["props"],
+    "badges": [
+      { "label": "Prop", "color": "#f59e0b", "bg": "rgba(245, 158, 11, 0.1)" }
+    ],
+    "videoPreview": "videos/props/metal_ladder_001_sm.mp4",
+    "videoFull": "videos/props/metal_ladder_001.mp4",
+    "downloadUrl": "static/props/metal_ladder_001.zip",
+    "downloadLabel": "Download (.zip)",
+    "isDirectFile": false
+  },
+  {
+    "id": "pipe-kit-main",
+    "title": "Pipe Kit Main",
+    "author": "GunnarKafel",
+    "authorLink": "https://x.com/GunnarKafel",
+    "description": "Comprehensive pipe system with various diameters, materials, and connection types. Features automatic flange and support placement.",
+    "tags": ["props"],
+    "badges": [
+      { "label": "Prop", "color": "#f59e0b", "bg": "rgba(245, 158, 11, 0.1)" }
+    ],
+    "videoPreview": "videos/props/pipe_kit_main_sm.mp4",
+    "videoFull": "videos/props/pipe_kit_main.mp4",
+    "downloadUrl": "static/props/pipe_kit_main.zip",
+    "downloadLabel": "Download (.zip)",
+    "isDirectFile": false
+  },
+  {
+    "id": "railing-kit-main",
+    "title": "Railing Kit Main",
+    "author": "GunnarKafel",
+    "authorLink": "https://x.com/GunnarKafel",
+    "description": "Modular railing system for walkways, stairs, and balconies. Highly customizable post and rail distribution.",
+    "tags": ["props"],
+    "badges": [
+      { "label": "Prop", "color": "#f59e0b", "bg": "rgba(245, 158, 11, 0.1)" }
+    ],
+    "videoPreview": "videos/props/railing_kit_main_sm.mp4",
+    "videoFull": "videos/props/railing_kit_main.mp4",
+    "downloadUrl": "static/props/railing_kit_main.zip",
+    "downloadLabel": "Download (.zip)",
+    "isDirectFile": false
+  },
+  {
+    "id": "scaffolding-kit-main",
+    "title": "Scaffolding Kit Main",
+    "author": "GunnarKafel",
+    "authorLink": "https://x.com/GunnarKafel",
+    "description": "Detailed scaffolding system. Parameters for width, height, and deck types. Ideal for construction site scenes.",
+    "tags": ["props"],
+    "badges": [
+      { "label": "Prop", "color": "#f59e0b", "bg": "rgba(245, 158, 11, 0.1)" }
+    ],
+    "videoPreview": "videos/props/scaffolding_kit_main_sm.mp4",
+    "videoFull": "videos/props/scaffolding_kit_main.mp4",
+    "downloadUrl": "static/props/scaffolding_kit_main.zip",
+    "downloadLabel": "Download (.zip)",
+    "isDirectFile": false
+  },
+  {
+    "id": "smart-fence",
+    "title": "Smart Fence",
+    "author": "GunnarKafel",
+    "authorLink": "https://x.com/GunnarKafel",
+    "description": "Versatile industrial fence system. Dynamically scales and adjusts to terrain and layout requirements.",
+    "tags": ["props"],
+    "badges": [
+      { "label": "Prop", "color": "#f59e0b", "bg": "rgba(245, 158, 11, 0.1)" }
+    ],
+    "videoPreview": "videos/props/smart_fence_sm.mp4",
+    "videoFull": "videos/props/smart_fence.mp4",
+    "downloadUrl": "static/props/smart_fence.zip",
+    "downloadLabel": "Download (.zip)",
+    "isDirectFile": false
   }
 ]
+

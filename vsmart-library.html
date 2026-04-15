@@ -704,7 +704,7 @@
             <div class="card-header">
               <div>
                 <h2 class="card-title">${item.title}</h2>
-                <div class="card-author">By ${item.author}</div>
+                <div class="card-author">By ${item.authorLink ? `<a href="${item.authorLink}" target="_blank" style="color: inherit; text-decoration: underline; text-decoration-color: rgba(255,255,255,0.2); text-underline-offset: 2px;">${item.author}</a>` : item.author}</div>
               </div>
             </div>
             <p class="card-description">${item.description}</p>
