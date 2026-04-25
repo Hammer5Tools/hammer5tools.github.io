@@ -126,7 +126,7 @@
             </svg>
           </a>
           <div class="download-footer">
-            <a href="https://github.com/dertwist/Hammer5Tools/releases/tag/dev">Download dev build</a>
+            <a href="https://github.com/dertwist/Hammer5Tools/releases/tag/dev" id="js-dev-download">Download dev build</a>
             <span>Windows 10+ 64-bit
               <svg width="14" height="14" viewBox="0 0 36 36" aria-hidden="true">
                 <path fill="currentColor"
@@ -331,21 +331,25 @@
 
   <script>
     /* ── Main App Logic ── */
-    fetch('https://api.github.com/repos/dertwist/Hammer5Tools/releases/latest')
-      .then(response => {
-        if (!response.ok) throw new Error('Failed to fetch github release');
-        return response.json();
-      })
-      .then(response => {
-        for (const asset of response.assets) {
-          if (asset.name === 'hammer5tools_setup.exe') {
-            const downloadBtn = document.getElementById('js-download');
-            if (downloadBtn) downloadBtn.href = asset.browser_download_url;
-            break;
+    const updateDownloadLink = (repo, tag, fileName, elementId) => {
+      const url = tag === 'latest'
+        ? `https://api.github.com/repos/${repo}/releases/latest`
+        : `https://api.github.com/repos/${repo}/releases/tags/${tag}`;
+
+      fetch(url)
+        .then(response => response.ok ? response.json() : Promise.reject('Failed to fetch'))
+        .then(data => {
+          const asset = data.assets.find(a => a.name === fileName);
+          if (asset) {
+            const el = document.getElementById(elementId);
+            if (el) el.href = asset.browser_download_url;
           }
-        }
-      })
-      .catch(console.error);
+        })
+        .catch(console.error);
+    };
+
+    updateDownloadLink('dertwist/Hammer5Tools', 'latest', 'Hammer5Tools-stable-Setup.exe', 'js-download');
+    updateDownloadLink('dertwist/Hammer5Tools', 'dev', 'Hammer5Tools-dev-Setup.exe', 'js-dev-download');
 
     /* ── Video / GIF Gallery ── */
     const galleryData = {
