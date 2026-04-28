@@ -1,16 +1,16 @@
 # Cleanup
 
-Remove unused asset files from your addon's content directory by scanning what your `.vmap` actually references.
+Clean out junk files from an addon folder. It just scans the `\.vmap` to see what's actually being used and helps get rid of the rest.
 
 ## Overview
 
-The Cleanup tool walks the addon content folder, compares every file against the dependencies resolved from your map's `.vmap` file, and presents a list of files that are not referenced anywhere. You can then review, filter, and delete them in bulk.
+The Cleanup tool walks the addon content folder, compares every file against the dependencies resolved from the map's `.vmap` file, and presents a list of files that are not referenced anywhere. Review, filter, and delete them in bulk.
 
 > [!WARNING]
 > Deletion is permanent and **cannot be undone**. Double-check the file list before confirming.
 
 > [!NOTE]
-> After running Cleanup, you should also run **Clean Up** inside the Asset Browser in the Hammer editor to remove stale compiled assets from the game directory.
+> After running Cleanup, run **Clean Up** inside the Asset Browser in the Hammer editor to remove stale compiled assets from the game directory.
 
 ---
 
@@ -71,7 +71,7 @@ Selected: 42 | Visible: 42/187 | Size: 14.3 MB
 
 ### Recalculate
 
-Re-scans the addon directory and re-parses the vmap from disk. Use this if you have made changes to your map or assets since opening the dialog.
+Re-scans the addon directory and re-parses the vmap from disk. Use this if changes have been made to the map or assets since opening the dialog.
 
 ### Delete Selected Files
 
@@ -82,5 +82,5 @@ Deletes every checked file from the addon content directory. A confirmation dial
 ## Tips
 
 - Use the **File Type** filter to target specific asset types first — for example, clean up unused `.vtex` files before touching `.vmdl` files.
-- If you use shared assets across multiple maps, only run Cleanup against an addon that has a single primary map, or manually uncheck shared assets before deleting.
+- If shared assets across multiple maps, only run Cleanup against an addon that has a single primary map, or manually uncheck shared assets before deleting.
 - Run **Recalculate** after making layout changes in Hammer to get a fresh list before deleting.

@@ -1,10 +1,10 @@
 # Loading Editor
 
-Create and customize your map's loading experience by managing screenshots, map icons, and descriptions.
+Change what players see when a map loads. You can manage screenshots, set up the map icon, and write out descriptions.
 
 ## Screenshots Interface
 
-The Screenshots section displays all images found in the `screenshots/Hammer5Tools` directory inside your addon's game folder.
+The Screenshots section displays all images found in the `screenshots/Hammer5Tools` directory inside the addon's game folder.
 
 ![Screenshot](docs/images/loading_editor/01.png)
 
@@ -37,7 +37,7 @@ The screenshots panel has two tabs:
 
 ### How Apply Screenshots Works
 
-When you click **Apply Screenshots**, the tool:
+Clicking **Apply Screenshots**, the tool:
 
 1. Clears the `res` folder and existing resolution subfolders under `addon/panorama/images/map_icons/screenshots` (content directory).
 2. Reads every image from the `LoadingScreen` subfolder.
@@ -59,7 +59,7 @@ Output filenames follow this pattern:
 
 ## Map Icon
 
-The **Map Icon** section lets you set a custom SVG icon that appears next to your map in the CS2 UI.
+The **Map Icon** section lets you set a custom SVG icon that appears next to the map in the CS2 UI.
 
 - Drag and drop an `.svg` file onto the icon drop zone to preview it.
 - Click **Apply Icon** to copy the SVG to `addon/panorama/images/map_icons/map_icon_{addon_name}.svg` (content directory).
@@ -69,7 +69,7 @@ The **Map Icon** section lets you set a custom SVG icon that appears next to you
 
 Add a rich-text description that players see on the loading screen.
 
-- Type your description in the text field. Supports multi-line text.
+- Type the description in the text field. Supports multi-line text.
 - Click **Apply Description** to write the file to `game/csgo_addons/{addon_name}/maps/{addon_name}.txt`.
 
-The file is written with a `COMMUNITYMAPCREDITS:` header followed by your description text.
+The file is written with a `COMMUNITYMAPCREDITS:` header followed by the description text.

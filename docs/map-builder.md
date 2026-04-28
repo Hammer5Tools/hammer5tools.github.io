@@ -1,6 +1,6 @@
 # Map Builder
 
-Compile your CS2 map directly from Hammer5Tools — with preset management, batch compilation, cubemap baking, and real-time output.
+Compile CS2 maps without leaving Hammer5Tools. It handles presets, batch compiling, and baking cubemaps, all while showing the output in real-time.
 
 ## Overview
 

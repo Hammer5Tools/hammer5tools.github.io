@@ -1,6 +1,6 @@
 # Installation & Setup
 
-Follow these steps to get Hammer 5 Tools up and running on your system.
+Follow these steps to get Hammer 5 Tools up and running on the system.
 
 ## Prerequisites
 - Windows 10 or 11 (64-bit)
@@ -10,8 +10,8 @@ Follow these steps to get Hammer 5 Tools up and running on your system.
 ## Installation Steps
 1. Download the latest `Hammer5Tools-stable-Setup.exe` from the [GitHub Releases](https://github.com/dertwist/Hammer5Tools/releases) page.
 2. Run the installer and follow the on-screen instructions.
-3. Once installed, launch Hammer 5 Tools from your Start Menu.
+3. Once installed, launch Hammer 5 Tools from the Start Menu.
 
 > [!WARNING]
 > **Administrator Privileges**
-> If you install to `Program Files`, you may need to run the application as administrator for certain file operations.
+> Installing to `Program Files` may require running to run the application as administrator for certain file operations.

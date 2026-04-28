@@ -4,7 +4,7 @@ Explore various community examples and templates for SmartProps. These examples 
 
 ## GitHub Repository
 
-You can find even more examples and the latest updates in our GitHub repository:
+Find even more examples and the latest updates in the GitHub repository:
 [SmartProp Examples on GitHub](https://github.com/dertwist/Hammer5Tools/tree/main/Hammer5Tools/SmartPropEditor/Presets/examples)
 
 ---
@@ -31,7 +31,7 @@ Learn how to use modifiers to set boolean values and use them for conditional lo
 
 > [!NOTE]
 > **Modifier Ordering**
-> Modifier ordering is critical in this case. You must first set the boolean value before you can use it in subsequent elements or modifiers.
+> Modifier ordering is critical in this case. First set the boolean value before using it in subsequent elements or modifiers.
 
 ---
 

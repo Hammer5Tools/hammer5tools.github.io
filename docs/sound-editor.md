@@ -1,6 +1,6 @@
 # SoundEvent Editor
 
-Create and manage sound events for your addon. The editor reads and writes `soundevents_addon.vsndevts` in your addon's content directory and keeps your sound files in the `sounds/` folder next to it.
+Make and manage sound events for an addon. The editor reads and writes the `soundevents_addon.vsndevts` file straight from the content folder. It also keeps track of audio files in the `sounds/` folder next to it.
 
 ---
 
@@ -23,7 +23,7 @@ The editor is organized into a main window with a sidebar of tabs on the right a
 
 ## Getting Started
 
-When you open the editor it automatically loads `soundevents/soundevents_addon.vsndevts` from your addon's content folder. If the file does not exist yet a dialog will ask whether you want to copy the default template from `addon_template`. Choosing **Yes** copies both the `.vsndevts` file and the default `sounds/` folder — note this may overwrite any WAV files already present there.
+When you open the editor it automatically loads `soundevents/soundevents_addon.vsndevts` from the addon's content folder. If the file does not exist yet a dialog will ask whether to copy the default template from `addon_template`. Choosing **Yes** copies both the `.vsndevts` file and the default `sounds/` folder — note this may overwrite any WAV files already present there.
 
 You can also open a different `.vsndevts` file at any time with the **Load** button.
 
@@ -166,4 +166,4 @@ Open the Preset Manager with the **Open Preset Manager** button. Presets are `.k
 Select a preset in the explorer on the left, then click **Open** to edit its properties. Click **Save** to persist changes.
 
 > [!TIP]
-> Presets store a set of sound event properties. Use them to quickly apply a known configuration to a new event — open the preset, copy the properties you need, then paste them into your event.
+> Presets store a set of sound event properties. Use them to quickly apply a known configuration to a new event — open the preset, copy the properties you need, then paste them into ythe event.

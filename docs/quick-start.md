@@ -1,14 +1,14 @@
 # Quick Start
 
-Get up and running with Hammer5Tools. This page walks through the basic workflow for every editor and tool in the application.
+Get started with Hammer5Tools. This page goes over the basic workflow for each tool so you know what's going on.
 
 ---
 
 ## Initial Setup
 
 1. **Install** — run the installer or extract the release archive.
-2. **Launch** — Hammer5Tools auto-detects your CS2 installation. If it is not found, a prompt will appear letting you set the path manually via **Settings > General > CS2 Path**.
-3. **Select your addon** — pick your addon from the dropdown in the toolbar. If no addons exist yet, click **Create New Addon**.
+2. **Launch** — Hammer5Tools auto-detects the CS2 installation. If it is not found, a prompt will appear letting you set the path manually via **Settings > General > CS2 Path**.
+3. **Select an addon** — pick an addon from the dropdown in the toolbar. If no addons exist yet, click **Create New Addon**.
 4. The last-selected tab and window layout are remembered between sessions.
 
 > [!NOTE]
@@ -55,12 +55,12 @@ Batch-create `.hbat` asset group batch files for your addon.
 
 ## Loading Editor
 
-Manage your map's loading screen screenshots, map icon, and description.
+Manage the map's loading screen screenshots, map icon, and description.
 
 1. Switch to the **Loading Editor** tab.
 2. **Screenshots** — add images to the `screenshots/Hammer5Tools/LoadingScreen` folder (or import via the UI), then click **Apply Screenshots** to convert and compile them.
 3. **Map Icon** — drag and drop an SVG onto the icon canvas. Use **Fit Viewbox** to auto-size it, then save.
-4. **Descriptions** — enter your map description and credits, then save.
+4. **Descriptions** — enter the map description and credits, then save.
 
 See the [Loading Editor documentation](#loading-editor) for the full reference.
 
@@ -79,7 +79,7 @@ Customize CS2 / Hammer keyboard bindings stored in your addon.
 
 ## Map Builder
 
-Compile your map without leaving Hammer5Tools.
+Compile the map without leaving Hammer5Tools.
 
 1. Click **Map Builder** in the toolbar to open the build window.
 2. Select a **preset** (Fast Compile, Full Compile, Lighting Only, or Entities Only) or create your own.
@@ -93,12 +93,12 @@ See the [Map Builder documentation](#map-builder) for all settings and cubemap b
 
 ## Cleanup
 
-Remove unused asset files from your addon's content directory.
+Remove unused asset files from the addon's content directory.
 
 1. Click **Cleanup** in the toolbar.
 2. The tool parses your `.vmap` and lists every file in the content folder that is not referenced.
 3. Review the list — use the **Search** box and **File Type** filter to focus on specific assets.
-4. Uncheck any files you want to keep, then click **Delete Selected Files**.
+4. Uncheck any files to keep, then click **Delete Selected Files**.
 5. Click **Recalculate** after making changes in Hammer to refresh the list.
 
 > [!WARNING]

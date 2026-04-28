@@ -1,6 +1,6 @@
 # Asset Group maker
 
-Automate the creation of dozens of assets using simple configuration files. By utilizing a straightforward configuration file and a folder scan, you can automatically generate files for massive asset sets. This ensures consistency across all your assets and drastically minimizes time spent on manual edits.
+Make a bunch of assets at once using basic config files. Point it at a folder and it'll spit out files for massive asset sets. It keeps everything consistent and saves you from doing it all by hand.
 
 ![Demo](https://cdn.iframe.ly/files/713c52ce6c0a2e9ba6abfacfc330931c.mp4)
 
@@ -12,12 +12,12 @@ The Asset Group maker interface is divided into three key functional areas desig
 
 ![Interface Overview](docs/images/asset_group/interface.png)
 
-- **Explorer (Left)**: Manage your configuration files and trigger setup actions.
-- **Editor (Middle)**: Define your source template with dynamic replacement support.
-- **Process Actions**: Finalize and generate assets based on your rules.
+- **Explorer (Left)**: Manage configuration files and trigger setup actions.
+- **Editor (Middle)**: Define the source template with dynamic replacement support.
+- **Process Actions**: Finalize and generate assets based on defined rules.
 
 ### Editor
-Input your template or source file content here. You can use global and local replacements to dynamically swap values for each generated asset.
+Input your template or source file content here. Global and local replacements can be used to dynamically swap values for each generated asset.
 
 ---
 
@@ -40,7 +40,7 @@ Example:
 
 ## Process Settings
 
-The Process tab allows you to configure the logic for how assets are generated.
+The Process tab allows configuration of the logic for how assets are generated.
 
 ![Process Settings](docs/images/asset_group/process.png)
 
@@ -53,7 +53,7 @@ The Process tab allows you to configure the logic for how assets are generated.
 
 Referencing is a method that automatically loads content from a referenced file. The loaded content is then used for the Process Action. If any changes are made to the referenced file, the program will automatically trigger the Process Action, but only if there is a referenced file in the configuration.
 
-To select a reference file, you can either drag and drop the file or click the Select button in the Referencing section of the Explorer tab.
+To select a reference file, either drag and drop the file or click the Select button in the Referencing section of the Explorer tab.
 
 >[!WARNING]
-The referenced file must have a relative path. You cannot select a file outside of the add-on directory.
+The referenced file must have a relative path. Files cannot be selected a file outside of the add-on directory.

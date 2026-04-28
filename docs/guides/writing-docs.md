@@ -42,7 +42,7 @@ Use standard Markdown syntax for both images and videos. The system automaticall
 ```
 
 ## 4. Registering the Page
-After creating your `.md` file:
+After creating the `\.md` file:
 1. Open `docs.html`.
 2. Add a `<li>` to the sidebar HTML in the appropriate category.
 3. Add an entry to the `contentMap` variable in the `<script>` block to enable routing and next/prev navigation.

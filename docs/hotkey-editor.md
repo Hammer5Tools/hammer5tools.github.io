@@ -1,13 +1,13 @@
 # Hotkey Editor
 
-The Hotkey Editor allows you to customize and manage keyboard shortcuts for various Source 2 tools, helping you streamline your workflow and improve productivity.
+The Hotkey Editor lets you change keyboard shortcuts for different Source 2 tools. Keep things running smoothly by putting your most-used commands right where you want them.
 
 ---
 
 ## Keybindings Presets
 
 ### Editor Selector
-The editor selector allows you to choose presets for different editors, such as **ModelDoc**, **Map Editor**, etc. Each editor has its own set of presets.
+The editor selector allows selection of presets for different editors, such as **ModelDoc**, **Map Editor**, etc. Each editor has its own set of presets.
 
 ![Keybindings presets](docs/images/hotkey_editor/presets.png)
 
@@ -19,13 +19,13 @@ The editor selector allows you to choose presets for different editors, such as 
 
 ## Keybindings Editor
 
-The editor interface allows you to search for, modify, and save individual keybindings.
+The editor interface allows searching for, modify, and save individual keybindings.
 
 ![Keybindings editor](docs/images/hotkey_editor/editor.png)
 
 *   **Filters**: Use the **command filter** and **input filter** to quickly narrow down specific actions or key combinations.
-*   **Save Preset**: Saves the currently opened preset to your user profile.
+*   **Save Preset**: Saves the currently opened preset to the user profile.
 *   **Set and Restart**: Similar to "Set Current," but also saves the open preset and attempts to restart the corresponding tool to apply changes immediately.
 
 > [!NOTE]
-> Custom keybinds are stored in your user profile, making them persistent across different addons.
+> Custom keybinds are stored in the user profile, making them persistent across different addons.

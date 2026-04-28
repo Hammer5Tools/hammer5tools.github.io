@@ -1,16 +1,16 @@
 # SmartProp Editor
 
-A visual editor for creating and editing `.vsmart` / `.vdata` SmartProp files — the procedural prop-placement system used by Counter-Strike 2.
+A visual editor to create and tweak `.vsmart` or `.vdata` files. This is the system CS2 uses to procedurally place props.
 
 ## Overview
 
-SmartProps define how props are placed, scattered, scaled, tinted, and filtered in the world. Each `.vsmart` file is a tree of **Elements** driven by **Modifiers** (operators and filters), and optionally exposed to the user through **Variables**. The editor replaces the raw KV3 text workflow with a structured UI that compiles the file on save.
+SmartProps control how props are placed, scattered, scaled, and tinted. A `.vsmart` file is just a tree of **Elements** modified by operators and filters. You can expose settings via **Variables**. Instead of editing messy KV3 text files by hand, you get a real UI that compiles everything when you save.
 
 ## Interface Layout
 
 The editor window has three main areas:
 
-- **Explorer dock** (left) — file browser rooted at your addon's content folder. Use it to navigate and open `.vsmart` / `.vdata` files without leaving the editor.
+- **Explorer dock** (left) — file browser rooted at the addon's content folder. Use it to navigate and open `.vsmart` / `.vdata` files without leaving the editor.
 - **Document tab bar** (center) — each open file gets its own tab. Tabs show `*filename` when there are unsaved changes.
 - **Document panel** (center, per tab) — split into the Hierarchy, Properties, Variables, and Choices panels described below.
 
@@ -37,7 +37,7 @@ A second toolbar row adds:
 
 ## Document Tabs
 
-Each tab is an independent document. Switching tabs switches the active Hierarchy, Properties, Variables, and Choices panels. Clicking the `×` on a tab closes the document — you will be prompted if there are unsaved changes.
+Each tab is an independent document. Switching tabs switches the active Hierarchy, Properties, Variables, and Choices panels. Clicking the `×` on a tab closes the document — a prompt will appear if there are unsaved changes.
 
 Saving a file also triggers compilation via the CS2 resource compiler. The file must have a valid `.vsmart` or `.vdata` extension.
 
@@ -209,7 +209,7 @@ The Expression filter field offers autocompletion for common functions:
 
 ## Choices Panel
 
-The Choices panel appears when the selected element is a **PickOne**. It lists the weighted child options and lets you reorder, add, or remove choices. Each entry maps to a child element's `ChoiceWeight` selection criteria.
+The Choices panel appears when the selected element is a **PickOne**. It lists the weighted child options and allows reordering, add, or remove choices. Each entry maps to a child element's `ChoiceWeight` selection criteria.
 
 ## File Operations
 
