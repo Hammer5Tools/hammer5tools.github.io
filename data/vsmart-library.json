@@ -364,5 +364,386 @@
     "downloadUrl": "static/props/smart_fence_d.zip",
     "downloadLabel": "Download (.zip)",
     "isDirectFile": false
+  },
+  {
+    "id": "edge-decals-a",
+    "title": "Edge Decals Prefab Map",
+    "author": "Twist",
+    "authorLink": "https://github.com/dertwist",
+    "description": "Edge decals prefab map asset.",
+    "tags": [
+      "materials",
+      "prefabs",
+      "decals",
+      "vmap"
+    ],
+    "badges": [
+      {
+        "label": "Material",
+        "color": "#ec4899",
+        "bg": "rgba(236, 72, 153, 0.1)"
+      }
+    ],
+    "imagePreview": "https://raw.githubusercontent.com/dertwist/Source2AssetLibrary/main/assets/materials/edge_decals_a/thumb.png",
+    "downloadUrl": "https://raw.githubusercontent.com/dertwist/Source2AssetLibrary/main/assets/materials/edge_decals_a/asset.zip",
+    "downloadLabel": "Download (.zip)",
+    "isDirectFile": false
+  },
+  {
+    "id": "floor-tiles-set",
+    "title": "Floor Tiles Materials Set",
+    "author": "Twist",
+    "authorLink": "https://github.com/dertwist",
+    "description": "Floor tile VMAT materials set.",
+    "tags": [
+      "materials",
+      "floor",
+      "tile"
+    ],
+    "badges": [
+      {
+        "label": "Material",
+        "color": "#ec4899",
+        "bg": "rgba(236, 72, 153, 0.1)"
+      }
+    ],
+    "imagePreview": "https://raw.githubusercontent.com/dertwist/Source2AssetLibrary/main/assets/materials/floor_tiles_set/thumb.png",
+    "downloadUrl": "https://raw.githubusercontent.com/dertwist/Source2AssetLibrary/main/assets/materials/floor_tiles_set/asset.zip",
+    "downloadLabel": "Download (.zip)",
+    "isDirectFile": false
+  },
+  {
+    "id": "block-modular-05",
+    "title": "Block Modular Var 05",
+    "author": "Twist",
+    "authorLink": "https://github.com/dertwist",
+    "description": "Modular block set 05.",
+    "tags": [
+      "models",
+      "block",
+      "modular"
+    ],
+    "badges": [
+      {
+        "label": "Model",
+        "color": "#3b82f6",
+        "bg": "rgba(59, 130, 246, 0.1)"
+      },
+      {
+        "label": "Modular",
+        "color": "#10b981",
+        "bg": "rgba(16, 185, 129, 0.1)"
+      }
+    ],
+    "imagePreview": "https://raw.githubusercontent.com/dertwist/Source2AssetLibrary/main/assets/models/block_modular_05/thumb.png",
+    "downloadUrl": "https://raw.githubusercontent.com/dertwist/Source2AssetLibrary/main/assets/models/block_modular_05/asset.zip",
+    "downloadLabel": "Download (.zip)",
+    "isDirectFile": false
+  },
+  {
+    "id": "block-wide-01",
+    "title": "Block Wide Modular 01",
+    "author": "Twist",
+    "authorLink": "https://github.com/dertwist",
+    "description": "Block wide modular collection from de_sanctum.",
+    "tags": [
+      "models",
+      "modular",
+      "block"
+    ],
+    "badges": [
+      {
+        "label": "Model",
+        "color": "#3b82f6",
+        "bg": "rgba(59, 130, 246, 0.1)"
+      },
+      {
+        "label": "Modular",
+        "color": "#10b981",
+        "bg": "rgba(16, 185, 129, 0.1)"
+      }
+    ],
+    "imagePreview": "https://raw.githubusercontent.com/dertwist/Source2AssetLibrary/main/assets/models/block_wide_01/thumb.png",
+    "downloadUrl": "https://raw.githubusercontent.com/dertwist/Source2AssetLibrary/main/assets/models/block_wide_01/asset.zip",
+    "downloadLabel": "Download (.zip)",
+    "isDirectFile": false
+  },
+  {
+    "id": "pot-01",
+    "title": "Pot Props Var 01",
+    "author": "Twist",
+    "authorLink": "https://github.com/dertwist",
+    "description": "Pot prop collection from de_sanctum.",
+    "tags": [
+      "models",
+      "pot",
+      "props"
+    ],
+    "badges": [
+      {
+        "label": "Model",
+        "color": "#3b82f6",
+        "bg": "rgba(59, 130, 246, 0.1)"
+      }
+    ],
+    "imagePreview": "https://raw.githubusercontent.com/dertwist/Source2AssetLibrary/main/assets/models/pot_01/thumb.png",
+    "downloadUrl": "https://raw.githubusercontent.com/dertwist/Source2AssetLibrary/main/assets/models/pot_01/asset.zip",
+    "downloadLabel": "Download (.zip)",
+    "isDirectFile": false
+  },
+  {
+    "id": "power-plug-set-01",
+    "title": "Power Plug Set Var 01",
+    "author": "Twist",
+    "authorLink": "https://github.com/dertwist",
+    "description": "Power plug set prop collection.",
+    "tags": [
+      "models",
+      "props",
+      "power_plug"
+    ],
+    "badges": [
+      {
+        "label": "Model",
+        "color": "#3b82f6",
+        "bg": "rgba(59, 130, 246, 0.1)"
+      }
+    ],
+    "imagePreview": "https://raw.githubusercontent.com/dertwist/Source2AssetLibrary/main/assets/models/power_plug_set_01/thumb.png",
+    "downloadUrl": "https://raw.githubusercontent.com/dertwist/Source2AssetLibrary/main/assets/models/power_plug_set_01/asset.zip",
+    "downloadLabel": "Download (.zip)",
+    "isDirectFile": false
+  },
+  {
+    "id": "pz-tree-b",
+    "title": "PZ Tree B Model",
+    "author": "Twist",
+    "authorLink": "https://github.com/dertwist",
+    "description": "PZ Tree B model asset.",
+    "tags": [
+      "models",
+      "tree",
+      "nature"
+    ],
+    "badges": [
+      {
+        "label": "Model",
+        "color": "#3b82f6",
+        "bg": "rgba(59, 130, 246, 0.1)"
+      }
+    ],
+    "imagePreview": "https://raw.githubusercontent.com/dertwist/Source2AssetLibrary/main/assets/models/pz_tree_b/thumb.png",
+    "downloadUrl": "https://raw.githubusercontent.com/dertwist/Source2AssetLibrary/main/assets/models/pz_tree_b/asset.zip",
+    "downloadLabel": "Download (.zip)",
+    "isDirectFile": false
+  },
+  {
+    "id": "tarp-01",
+    "title": "Tarp Modular 01",
+    "author": "Twist",
+    "authorLink": "https://github.com/dertwist",
+    "description": "Modular tarp prop collection.",
+    "tags": [
+      "models",
+      "tarp",
+      "modular"
+    ],
+    "badges": [
+      {
+        "label": "Model",
+        "color": "#3b82f6",
+        "bg": "rgba(59, 130, 246, 0.1)"
+      },
+      {
+        "label": "Modular",
+        "color": "#10b981",
+        "bg": "rgba(16, 185, 129, 0.1)"
+      }
+    ],
+    "imagePreview": "https://raw.githubusercontent.com/dertwist/Source2AssetLibrary/main/assets/models/tarp_01/thumb.png",
+    "downloadUrl": "https://raw.githubusercontent.com/dertwist/Source2AssetLibrary/main/assets/models/tarp_01/asset.zip",
+    "downloadLabel": "Download (.zip)",
+    "isDirectFile": false
+  },
+  {
+    "id": "trim-roof-04",
+    "title": "Trim Roof Modular 04",
+    "author": "Twist",
+    "authorLink": "https://github.com/dertwist",
+    "description": "Trim roof modular set 04.",
+    "tags": [
+      "models",
+      "roof",
+      "trim"
+    ],
+    "badges": [
+      {
+        "label": "Model",
+        "color": "#3b82f6",
+        "bg": "rgba(59, 130, 246, 0.1)"
+      }
+    ],
+    "imagePreview": "https://raw.githubusercontent.com/dertwist/Source2AssetLibrary/main/assets/models/trim_roof_04/thumb.png",
+    "downloadUrl": "https://raw.githubusercontent.com/dertwist/Source2AssetLibrary/main/assets/models/trim_roof_04/asset.zip",
+    "downloadLabel": "Download (.zip)",
+    "isDirectFile": false
+  },
+  {
+    "id": "vines-a",
+    "title": "Vines Set A",
+    "author": "Twist",
+    "authorLink": "https://github.com/dertwist",
+    "description": "Vines asset set and SmartProp.",
+    "tags": [
+      "models",
+      "vines",
+      "nature"
+    ],
+    "badges": [
+      {
+        "label": "Model",
+        "color": "#3b82f6",
+        "bg": "rgba(59, 130, 246, 0.1)"
+      }
+    ],
+    "imagePreview": "https://raw.githubusercontent.com/dertwist/Source2AssetLibrary/main/assets/models/vines_a/thumb.png",
+    "downloadUrl": "https://raw.githubusercontent.com/dertwist/Source2AssetLibrary/main/assets/models/vines_a/asset.zip",
+    "downloadLabel": "Download (.zip)",
+    "isDirectFile": false
+  },
+  {
+    "id": "brick-01",
+    "title": "Brick Props Var 01",
+    "author": "Twist",
+    "authorLink": "https://github.com/dertwist",
+    "description": "Brick props SmartProp from de_sanctum.",
+    "tags": [
+      "smartprops",
+      "smartprop",
+      "brick",
+      "props"
+    ],
+    "badges": [
+      {
+        "label": "SmartProp",
+        "color": "#4f98a3",
+        "bg": "rgba(79, 152, 163, 0.1)"
+      }
+    ],
+    "imagePreview": "https://raw.githubusercontent.com/dertwist/Source2AssetLibrary/main/assets/smartprops/brick_01/thumb.png",
+    "downloadUrl": "https://raw.githubusercontent.com/dertwist/Source2AssetLibrary/main/assets/smartprops/brick_01/asset.zip",
+    "downloadLabel": "Download (.zip)",
+    "isDirectFile": false
+  },
+  {
+    "id": "construction-level-a",
+    "title": "Construction Level A",
+    "author": "Twist",
+    "authorLink": "https://github.com/dertwist",
+    "description": "Construction level prop collection SmartProp.",
+    "tags": [
+      "smartprops",
+      "smartprop",
+      "construction",
+      "props"
+    ],
+    "badges": [
+      {
+        "label": "SmartProp",
+        "color": "#4f98a3",
+        "bg": "rgba(79, 152, 163, 0.1)"
+      }
+    ],
+    "imagePreview": "https://raw.githubusercontent.com/dertwist/Source2AssetLibrary/main/assets/smartprops/construction_level_a/thumb.png",
+    "downloadUrl": "https://raw.githubusercontent.com/dertwist/Source2AssetLibrary/main/assets/smartprops/construction_level_a/asset.zip",
+    "downloadLabel": "Download (.zip)",
+    "isDirectFile": false
+  },
+  {
+    "id": "door-frame-01",
+    "title": "Door Frame Var 01",
+    "author": "Twist",
+    "authorLink": "https://github.com/dertwist",
+    "description": "Modular door frame SmartProp from de_sanctum.",
+    "tags": [
+      "smartprops",
+      "smartprop",
+      "door",
+      "modular"
+    ],
+    "badges": [
+      {
+        "label": "SmartProp",
+        "color": "#4f98a3",
+        "bg": "rgba(79, 152, 163, 0.1)"
+      },
+      {
+        "label": "Modular",
+        "color": "#10b981",
+        "bg": "rgba(16, 185, 129, 0.1)"
+      }
+    ],
+    "imagePreview": "https://raw.githubusercontent.com/dertwist/Source2AssetLibrary/main/assets/smartprops/door_frame_01/thumb.png",
+    "downloadUrl": "https://raw.githubusercontent.com/dertwist/Source2AssetLibrary/main/assets/smartprops/door_frame_01/asset.zip",
+    "downloadLabel": "Download (.zip)",
+    "isDirectFile": false
+  },
+  {
+    "id": "roof-end-01",
+    "title": "Roof End Var 01",
+    "author": "Twist",
+    "authorLink": "https://github.com/dertwist",
+    "description": "Roof end SmartProp from de_sanctum.",
+    "tags": [
+      "smartprops",
+      "smartprop",
+      "roof",
+      "modular"
+    ],
+    "badges": [
+      {
+        "label": "SmartProp",
+        "color": "#4f98a3",
+        "bg": "rgba(79, 152, 163, 0.1)"
+      },
+      {
+        "label": "Modular",
+        "color": "#10b981",
+        "bg": "rgba(16, 185, 129, 0.1)"
+      }
+    ],
+    "imagePreview": "https://raw.githubusercontent.com/dertwist/Source2AssetLibrary/main/assets/smartprops/roof_end_01/thumb.png",
+    "downloadUrl": "https://raw.githubusercontent.com/dertwist/Source2AssetLibrary/main/assets/smartprops/roof_end_01/asset.zip",
+    "downloadLabel": "Download (.zip)",
+    "isDirectFile": false
+  },
+  {
+    "id": "stairs-modular-01",
+    "title": "Modular Stairs Var 01",
+    "author": "Twist",
+    "authorLink": "https://github.com/dertwist",
+    "description": "Modular stairs SmartProp collection from de_sanctum.",
+    "tags": [
+      "smartprops",
+      "smartprop",
+      "stairs",
+      "modular"
+    ],
+    "badges": [
+      {
+        "label": "SmartProp",
+        "color": "#4f98a3",
+        "bg": "rgba(79, 152, 163, 0.1)"
+      },
+      {
+        "label": "Modular",
+        "color": "#10b981",
+        "bg": "rgba(16, 185, 129, 0.1)"
+      }
+    ],
+    "imagePreview": "https://raw.githubusercontent.com/dertwist/Source2AssetLibrary/main/assets/smartprops/stairs_modular_01/thumb.png",
+    "downloadUrl": "https://raw.githubusercontent.com/dertwist/Source2AssetLibrary/main/assets/smartprops/stairs_modular_01/asset.zip",
+    "downloadLabel": "Download (.zip)",
+    "isDirectFile": false
   }
 ]
