@@ -465,35 +465,135 @@
     initGalleries();
 
     /* ── Changelog ── */
-    let allReleases = [];
     let changelogPage = 1;
+    let changelogPool = [];
+    let changelogReachedEnd = false;
+    let isLoadingReleases = false;
     const INITIAL_COUNT = 3;
+    const PAGE_LOAD_COUNT = 5;
+
+    function isDevRelease(release) {
+      return (
+        release.prerelease ||
+        release.draft ||
+        (release.tag_name && release.tag_name.toLowerCase() === 'dev') ||
+        (release.name && release.name.toLowerCase() === 'dev')
+      );
+    }
 
     function parseMarkdown(raw) {
       if (!raw) return '';
       let body = raw;
-      // Escape HTML
+
+      // Normalize line breaks
+      body = body.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+
+      // Placeholders for media / HTML attachments
+      const mediaTokens = [];
+      const addMediaToken = (html) => {
+        const placeholder = '___MEDIA_TOKEN_' + mediaTokens.length + '___';
+        mediaTokens.push({ placeholder, html });
+        return '\n' + placeholder + '\n';
+      };
+
+      // 1. Extract HTML <img> tags: <img ... src="..." ... />
+      body = body.replace(/<img\b([^>]*?)\/?>/gi, (match, attrs) => {
+        const srcMatch = attrs.match(/\bsrc=["']([^"']+)["']/i);
+        const altMatch = attrs.match(/\balt=["']([^"']*)["']/i);
+        if (!srcMatch) return '';
+        const src = srcMatch[1];
+        const alt = altMatch ? altMatch[1] : 'Changelog image';
+        return addMediaToken(
+          `<a href="${src}" target="_blank" rel="noopener noreferrer" class="changelog-media-link" title="Click to view full image"><img src="${src}" alt="${alt}" loading="lazy" class="changelog-img" /></a>`
+        );
+      });
+
+      // 2. Extract HTML <video> tags: <video ...>...</video> or <video .../>
+      body = body.replace(/<video\b([^>]*?)>([\s\S]*?)<\/video>|<video\b([^>]*?)\/?>/gi, (match, attrs1, inner, attrs2) => {
+        const attrs = attrs1 || attrs2 || '';
+        let src = '';
+        const srcMatch = attrs.match(/\bsrc=["']([^"']+)["']/i);
+        if (srcMatch) {
+          src = srcMatch[1];
+        } else if (inner) {
+          const sourceMatch = inner.match(/<source\b[^>]*?\bsrc=["']([^"']+)["']/i);
+          if (sourceMatch) src = sourceMatch[1];
+        }
+        if (!src) return '';
+        return addMediaToken(
+          `<div class="changelog-video-wrap"><video controls playsinline preload="metadata" class="changelog-video" src="${src}">Your browser does not support the video tag.</video></div>`
+        );
+      });
+
+      // 3. Markdown images / videos: ![alt](url)
+      body = body.replace(/!\[([^\]]*)\]\(([^)]+?)(?:\s+"([^"]*)")?\)/g, (match, alt, url) => {
+        const cleanUrl = url.trim();
+        if (/\.(mp4|webm|mov)(\?.*)?$/i.test(cleanUrl)) {
+          return addMediaToken(
+            `<div class="changelog-video-wrap"><video controls playsinline preload="metadata" class="changelog-video" src="${cleanUrl}">Your browser does not support the video tag.</video></div>`
+          );
+        }
+        return addMediaToken(
+          `<a href="${cleanUrl}" target="_blank" rel="noopener noreferrer" class="changelog-media-link" title="Click to view full image"><img src="${cleanUrl}" alt="${alt || 'Changelog image'}" loading="lazy" class="changelog-img" /></a>`
+        );
+      });
+
+      // 4. Standalone GitHub user-attachment URLs on their own line
+      body = body.replace(/^https?:\/\/github\.com\/user-attachments\/assets\/([a-zA-Z0-9_-]+(\.[a-zA-Z0-9]+)?)$/gmi, (match, file) => {
+        const cleanUrl = match.trim();
+        if (/\.(mp4|webm|mov)$/i.test(file)) {
+          return addMediaToken(
+            `<div class="changelog-video-wrap"><video controls playsinline preload="metadata" class="changelog-video" src="${cleanUrl}">Your browser does not support the video tag.</video></div>`
+          );
+        }
+        return addMediaToken(
+          `<a href="${cleanUrl}" target="_blank" rel="noopener noreferrer" class="changelog-media-link" title="Click to view full image"><img src="${cleanUrl}" alt="Attachment" loading="lazy" class="changelog-img" /></a>`
+        );
+      });
+
+      // Escape remaining raw HTML
       body = body.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-      // Convert markdown links [text](url)
+
+      // Inline code (before markdown links / bold so code content isn't altered)
+      body = body.replace(/`([^`]+)`/g, '<code>$1</code>');
+
+      // Markdown links [text](url)
       body = body.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
-      // ## headings → styled h4
+
+      // Headings
+      body = body.replace(/^# (.+)$/gm, '<h4 class="changelog-heading">$1</h4>');
       body = body.replace(/^## (.+)$/gm, '<h4 class="changelog-heading">$1</h4>');
-      // ### headings → styled h5
       body = body.replace(/^### (.+)$/gm, '<h5 class="changelog-subheading">$1</h5>');
+      body = body.replace(/^#### (.+)$/gm, '<h5 class="changelog-subheading">$1</h5>');
+
       // Bold
       body = body.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-      // Inline code
-      body = body.replace(/`([^`]+)`/g, '<code>$1</code>');
-      // List items (* or -)
+
+      // Sublist items (indented by 2+ spaces or tabs)
+      body = body.replace(/^[ \t]{2,}[*-] (.+)$/gm, '<li class="changelog-subli">$1</li>');
+
+      // Root list items (* or -)
       body = body.replace(/^[*-] (.+)$/gm, '<li>$1</li>');
-      // Wrap consecutive <li> in <ul>
-      body = body.replace(/(<li>[\s\S]*?<\/li>(\n|$))+/g, match => '<ul>' + match + '</ul>');
+
+      // Wrap consecutive <li> / <li class=...> in <ul>
+      body = body.replace(/(<li[\s\S]*?<\/li>(\n|$))+/g, match => '<ul>' + match + '</ul>');
+
+      // Blockquotes: &gt; quote
+      body = body.replace(/^&gt;\s*(.+)$/gm, '<blockquote class="changelog-quote">$1</blockquote>');
+
+      // Restore media tokens
+      mediaTokens.forEach(({ placeholder, html }) => {
+        body = body.replace(new RegExp(placeholder, 'g'), html);
+      });
+
       // Clean up extra line breaks around block elements
       body = body.replace(/\n{2,}/g, '<br>');
-      body = body.replace(/\n/g, '');
-      // Remove stray <br> right before/after block elements
-      body = body.replace(/<br>\s*(<h[45]|<ul|<\/ul)/g, '$1');
-      body = body.replace(/(<\/h[45]>|<\/ul>)\s*<br>/g, '$1');
+      body = body.replace(/\n/g, '<br>');
+      body = body.replace(/(<br>\s*)+(<h[45]|<ul|<\/ul|<blockquote|<\/blockquote|<div class="changelog-video-wrap"|<a class="changelog-media-link")/g, '$2');
+      body = body.replace(/(<\/h[45]>|<\/ul>|<\/blockquote>|<\/div>|<\/a>)\s*(<br>\s*)+/g, '$1');
+      body = body.replace(/(<br>\s*)+$/g, '');
+      body = body.replace(/^(<br>\s*)+/g, '');
+
       return body;
     }
 
@@ -505,49 +605,88 @@
       const el = document.createElement('div');
       el.className = 'changelog-release';
       el.innerHTML = `
-        <h3><a href="${release.html_url}">${release.name || release.tag_name}</a></h3>
+        <h3><a href="${release.html_url}" target="_blank" rel="noopener">${release.name || release.tag_name}</a></h3>
         <div class="changelog-date">${date}</div>
         <div class="changelog-body">${body}</div>
       `;
       return el;
     }
 
-    function loadMoreReleases() {
+    async function fetchMoreReleasesFromApi() {
+      if (changelogReachedEnd) return [];
+      try {
+        const response = await fetch(
+          `https://api.github.com/repos/dertwist/Hammer5Tools/releases?per_page=15&page=${changelogPage}`
+        );
+        if (!response.ok) throw new Error('Network error');
+        const data = await response.json();
+        if (!Array.isArray(data) || data.length === 0) {
+          changelogReachedEnd = true;
+          return [];
+        }
+        if (data.length < 15) {
+          changelogReachedEnd = true;
+        }
+        changelogPage++;
+        return data.filter(r => !isDevRelease(r));
+      } catch (err) {
+        console.error('Error fetching releases:', err);
+        throw err;
+      }
+    }
+
+    async function loadReleases(count, isInitial = false) {
+      if (isLoadingReleases) return;
+      isLoadingReleases = true;
       const container = document.getElementById('js-changelog');
       const btn = document.getElementById('js-load-more');
-      btn.textContent = 'Loading…';
-      btn.disabled = true;
-      changelogPage++;
-      fetch(`https://api.github.com/repos/dertwist/Hammer5Tools/releases?per_page=10&page=${changelogPage}`)
-        .then(r => r.json())
-        .then(releases => {
-          if (!releases.length) {
-            btn.style.display = 'none';
-            return;
-          }
-          releases.forEach(r => container.appendChild(renderRelease(r)));
+
+      if (!isInitial && btn) {
+        btn.textContent = 'Loading…';
+        btn.disabled = true;
+      }
+
+      try {
+        while (changelogPool.length < count && !changelogReachedEnd) {
+          const freshReleases = await fetchMoreReleasesFromApi();
+          changelogPool.push(...freshReleases);
+          if (changelogReachedEnd) break;
+        }
+
+        if (isInitial) {
+          container.innerHTML = '';
+        }
+
+        const toRender = changelogPool.splice(0, count);
+        toRender.forEach(r => container.appendChild(renderRelease(r)));
+
+        if (btn) {
           btn.textContent = 'Load more releases';
           btn.disabled = false;
-          if (releases.length < 10) btn.style.display = 'none';
-        })
-        .catch(() => {
+          if (changelogPool.length === 0 && changelogReachedEnd) {
+            btn.style.display = 'none';
+          } else {
+            btn.style.display = 'inline-flex';
+          }
+        }
+      } catch (err) {
+        if (isInitial) {
+          container.textContent = 'Failed to load changelog.';
+        } else if (btn) {
           btn.textContent = 'Failed to load. Try again.';
           btn.disabled = false;
-        });
+        }
+      } finally {
+        isLoadingReleases = false;
+      }
+    }
+
+    function loadMoreReleases() {
+      loadReleases(PAGE_LOAD_COUNT);
     }
 
     // Initial load: 3 releases
-    fetch('https://api.github.com/repos/dertwist/Hammer5Tools/releases?per_page=' + INITIAL_COUNT)
-      .then(r => r.json())
-      .then(releases => {
-        const container = document.getElementById('js-changelog');
-        container.innerHTML = '';
-        releases.forEach(r => container.appendChild(renderRelease(r)));
-        document.getElementById('js-load-more').style.display = 'inline-flex';
-      })
-      .catch(() => {
-        document.getElementById('js-changelog').textContent = 'Failed to load changelog.';
-      });
+    loadReleases(INITIAL_COUNT, true);
   </script>
 </body>
 

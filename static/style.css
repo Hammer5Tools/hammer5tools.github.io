@@ -677,6 +677,62 @@ a.hljs-built_in {
 	font-weight: 600;
 }
 
+.changelog-subli {
+	margin-left: 1.25rem;
+	list-style-type: circle;
+}
+
+.changelog-quote {
+	margin: 0.6rem 0;
+	padding: 0.4rem 0.85rem;
+	border-left: 3px solid var(--color-accent);
+	background: rgba(255, 255, 255, 0.03);
+	border-radius: 0 6px 6px 0;
+	color: #aaa;
+	font-size: 0.9em;
+}
+
+.changelog-media-link {
+	display: inline-block;
+	max-width: 100%;
+	margin: 0.85rem 0;
+	border-radius: 8px;
+	overflow: hidden;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	background: rgba(0, 0, 0, 0.25);
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+	text-decoration: none;
+}
+
+.changelog-media-link:hover {
+	border-color: rgba(255, 255, 255, 0.25);
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.changelog-img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+	object-fit: contain;
+	border-radius: 7px;
+}
+
+.changelog-video-wrap {
+	max-width: 100%;
+	margin: 0.85rem 0;
+	border-radius: 8px;
+	overflow: hidden;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	background: #000;
+}
+
+.changelog-video {
+	display: block;
+	width: 100%;
+	max-height: 520px;
+	border-radius: 7px;
+}
+
 .btn-load-more {
 	display: inline-flex;
 	align-items: center;
