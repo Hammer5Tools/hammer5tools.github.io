@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VSmart & Asset Library | Hammer 5 Tools</title>
-  <meta name="description" content="Browse and download community-made and official VSmart utilities, CS2 models, materials, and prefabs for level design.">
+  <title>VSmart Library | Hammer 5 Tools</title>
+  <meta name="description" content="Browse and download community-made and official VSmart utilities for Counter-Strike 2 level design.">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -171,12 +171,9 @@
       border: 1px solid var(--border-color);
       color: var(--text-muted);
       cursor: pointer;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       font-weight: 600;
       transition: all 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
     }
 
     .filter-chip:hover {
@@ -188,15 +185,6 @@
       background: var(--color-primary);
       color: #000;
       border-color: var(--color-primary);
-    }
-
-    .chip-count {
-      opacity: 0.7;
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 0.1rem 0.4rem;
-      border-radius: 10px;
-      background: rgba(0, 0, 0, 0.2);
     }
 
     .browser-grid {
@@ -235,16 +223,11 @@
       cursor: pointer;
     }
 
-    .card-preview video,
-    .card-preview img {
+    .card-preview video {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: opacity 0.3s, transform 0.3s;
-    }
-
-    .card-preview:hover img {
-      transform: scale(1.03);
+      transition: opacity 0.3s;
     }
 
     .expand-hint {
@@ -252,7 +235,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.6);
       padding: 0.5rem 1rem;
       border-radius: 20px;
       font-size: 0.8rem;
@@ -261,7 +244,6 @@
       transition: opacity 0.3s;
       pointer-events: none;
       border: 1px solid rgba(255, 255, 255, 0.2);
-      color: #fff;
     }
 
     .card-preview:hover .expand-hint {
@@ -283,22 +265,21 @@
     }
 
     .card-title {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       font-weight: 700;
       margin: 0;
     }
 
     .card-author {
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       color: var(--text-muted);
     }
 
     .card-description {
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       color: var(--text-muted);
       margin-bottom: 1.5rem;
       flex-grow: 1;
-      line-height: 1.5;
     }
 
     .card-footer {
@@ -374,8 +355,7 @@
       justify-content: center;
     }
 
-    .modal-content video,
-    .modal-content img {
+    .modal-content video {
       max-width: 100%;
       max-height: 80vh;
       border-radius: 12px;
@@ -417,7 +397,6 @@
     .badge-group {
       display: flex;
       gap: 0.5rem;
-      flex-wrap: wrap;
     }
 
     /* Loading state */
@@ -449,7 +428,6 @@
       text-align: center;
       padding: 4rem 2rem;
       color: var(--text-muted);
-      grid-column: 1 / -1;
     }
 
     .grid-empty svg {
@@ -489,8 +467,8 @@
 
     <main class="content-area">
       <section class="hero-section">
-        <h1>VSmart & Asset Library</h1>
-        <p>A comprehensive catalog of official and community SmartProps, models, materials, and prefabs for Counter-Strike 2.</p>
+        <h1>VSmart Library</h1>
+        <p>A collection of community-made and official SmartProps for your Counter-Strike 2 maps.</p>
         <button class="btn btn-primary"
           style="margin-top: 1.5rem; background: rgba(79, 152, 163, 0.1); color: var(--color-primary); border: 1px solid var(--color-primary); width: auto;"
           onclick="toggleInstructions()">
@@ -500,7 +478,7 @@
             <line x1="12" y1="16" x2="12" y2="12"></line>
             <line x1="12" y1="8" x2="12.01" y2="8"></line>
           </svg>
-          How to install assets?
+          How to install SmartProps?
         </button>
 
         <div id="install-guide"
@@ -508,10 +486,11 @@
           <h3 style="margin-top: 0; color: var(--color-primary);">Installation Guide</h3>
           <ol style="padding-left: 1.5rem; margin-bottom: 0;">
             <li style="margin-bottom: 1rem;">
-              <strong>Hammer 5 Tools Integration:</strong> Open Hammer 5 Tools and navigate to <em>Marketplace</em>. Click Install directly onto your CS2 addon!
+              <strong>Setup Compiler:</strong> Download <a href="index.html"
+                style="color: var(--color-primary);">Hammer5Tools</a> and open an addon. It automatically sets up the CS2 compiler to handle <code>.vsmart</code> files.
             </li>
             <li>
-              <strong>Manual Deployment:</strong> Unzip the downloaded package directly into your CS2 addon's <code>content/csgo_addons/&lt;your_addon&gt;</code> directory.
+              <strong>Deploy File:</strong> Drop the downloaded <code>.vsmart</code> file into any content folder, like <code>models</code> or <code>smartprops</code>. It doesn't really matter which one.
             </li>
           </ol>
         </div>
@@ -538,7 +517,7 @@
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
-          <input type="text" class="search-input" id="library-search" placeholder="Search by name, description, or tag...">
+          <input type="text" class="search-input" id="library-search" placeholder="Search by name or description...">
         </div>
         <div class="filter-chips" id="filter-chips">
           <!-- Filter chips are generated dynamically from data -->
@@ -556,8 +535,8 @@
       <!-- Submission Section -->
       <section
         style="margin-top: 6rem; text-align: center; max-width: 600px; padding: 3rem; background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: 24px;">
-        <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 1rem;">Share Your Assets</h2>
-        <p style="color: var(--text-muted); margin-bottom: 2rem;">Made a cool SmartProp or 3D model set? Share it with the CS2 community.</p>
+        <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 1rem;">Share Your Stuff</h2>
+        <p style="color: var(--text-muted); margin-bottom: 2rem;">Made a cool SmartProp? Share it here.</p>
 
         <div style="display: flex; flex-direction: column; gap: 1rem; align-items: stretch;">
           <a href="https://github.com/dertwist/Hammer5Tools/issues/new" class="btn btn-primary"
@@ -572,7 +551,7 @@
           </a>
           <div
             style="font-size: 0.9rem; color: var(--text-muted); background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 12px; border: 1px solid var(--border-color);">
-            Attach your asset file or <code>.zip</code> package and a preview screenshot or video.
+            Just attach the <code>.vsmart</code> file and a quick video showing what it does.
           </div>
           <div
             style="margin: 1rem 0; color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em;">
@@ -602,43 +581,32 @@
         </svg>
         Close
       </button>
-      <video id="modal-video" controls autoplay loop playsinline style="display: none;">
+      <video id="modal-video" controls autoplay loop playsinline>
         <source src="" type="video/mp4">
       </video>
-      <img id="modal-img" src="" alt="Preview" style="display: none;">
     </div>
   </div>
 
   <script>
     /* ──────────────────────────────────────────────
-       VSmart & Asset Library – Data-driven rendering
+       VSmart Library – Data-driven rendering
        All items live in data/vsmart-library.json.
+       To add a new item, just add a JSON object there.
        ────────────────────────────────────────────── */
 
     let currentFilter = 'all';
     let searchQuery = '';
     let libraryItems = [];
 
-    // ── SVG icon templates ──
+    // ── SVG icon templates (reused across all cards) ──
     const ICON_DOWNLOAD = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>`;
     const ICON_EXPAND = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>`;
 
-    // ── Tag display names for category filter chips ──
+    // ── Tag display names for filter chips ──
     const TAG_LABELS = {
-      smartprops: 'SmartProps',
-      models: 'Models',
-      materials: 'Materials',
-      prefabs: 'Prefabs & Maps',
       utility: 'Utilities',
       props: 'Props',
-      modular: 'Modular Sets',
-      stairs: 'Stairs',
-      doors: 'Doors',
-      roofs: 'Roofs',
-      fences: 'Fences & Rails',
-      nature: 'Foliage & Nature',
-      decals: 'Decals',
-      content: 'Includes Content',
+      content: 'With Content',
       community: 'Community Maps'
     };
 
@@ -660,42 +628,35 @@
       bindSearch();
     }
 
-    // ── Dynamically build filter chips with counts from data ──
+    // ── Dynamically build filter chips from data ──
     function buildFilterChips() {
-      const tagCounts = {};
-      libraryItems.forEach(item => {
-        item.tags.forEach(t => {
-          tagCounts[t] = (tagCounts[t] || 0) + 1;
-        });
-      });
+      const tagSet = new Set();
+      libraryItems.forEach(item => item.tags.forEach(t => tagSet.add(t)));
 
       const container = document.getElementById('filter-chips');
-      container.innerHTML = '';
-
       // "All Items" chip
-      const allChip = createChip('All Items', 'all', libraryItems.length, true);
+      const allChip = createChip('All Items', 'all', true);
       container.appendChild(allChip);
 
-      // Ordered chips based on TAG_LABELS definition
-      Object.keys(TAG_LABELS).forEach(tag => {
-        if (tagCounts[tag]) {
-          container.appendChild(createChip(TAG_LABELS[tag], tag, tagCounts[tag], false));
-        }
+      // One chip per unique tag, in a stable display order
+      const ordered = Object.keys(TAG_LABELS).filter(t => tagSet.has(t));
+      ordered.forEach(tag => {
+        container.appendChild(createChip(TAG_LABELS[tag] || tag, tag, false));
       });
 
-      // Any remaining tags not defined in TAG_LABELS
-      Object.keys(tagCounts).forEach(tag => {
-        if (!TAG_LABELS[tag] && tag !== 'all') {
-          container.appendChild(createChip(tag.charAt(0).toUpperCase() + tag.slice(1), tag, tagCounts[tag], false));
+      // Any tags not in TAG_LABELS (future-proof)
+      tagSet.forEach(tag => {
+        if (!TAG_LABELS[tag]) {
+          container.appendChild(createChip(tag, tag, false));
         }
       });
     }
 
-    function createChip(label, filter, count, isActive) {
+    function createChip(label, filter, isActive) {
       const btn = document.createElement('button');
       btn.className = 'filter-chip' + (isActive ? ' active' : '');
       btn.dataset.filter = filter;
-      btn.innerHTML = `${label} <span class="chip-count">${count}</span>`;
+      btn.textContent = label;
       btn.addEventListener('click', () => {
         document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
         btn.classList.add('active');
@@ -709,13 +670,12 @@
     function renderCards() {
       const grid = document.getElementById('library-grid');
       document.getElementById('grid-loading')?.remove();
-      grid.innerHTML = '';
 
       libraryItems.forEach((item, idx) => {
         const card = document.createElement('article');
         card.className = 'vsmart-card';
         card.dataset.tags = item.tags.join(' ');
-        card.style.animationDelay = `${idx * 0.05}s`;
+        card.style.animationDelay = `${idx * 0.07}s`;
 
         // Build badge HTML
         const badgesHtml = item.badges.map(b =>
@@ -726,25 +686,14 @@
         const dlAttr = item.isDirectFile ? ' download' : '';
         const dlTitle = item.isDirectFile
           ? 'Download .vsmart file'
-          : 'Download package (.zip)';
-
-        const hasVideo = Boolean(item.videoPreview);
-        const previewUrl = hasVideo ? item.videoPreview : (item.imagePreview || 'https://raw.githubusercontent.com/dertwist/Source2AssetLibrary/main/images/placeholder.png');
-        const fullMediaUrl = hasVideo ? item.videoFull : (item.imagePreview || previewUrl);
-
-        const mediaPreviewHtml = hasVideo ? `
-          <video autoplay loop muted playsinline>
-            <source src="${previewUrl}" type="video/mp4">
-          </video>
-          <div class="expand-hint">Click to expand video</div>
-        ` : `
-          <img src="${previewUrl}" alt="${item.title}" loading="lazy">
-          <div class="expand-hint">Click to view preview</div>
-        `;
+          : 'Download VSmart with content';
 
         card.innerHTML = `
-          <div class="card-preview" data-media="${fullMediaUrl}" data-is-video="${hasVideo}">
-            ${mediaPreviewHtml}
+          <div class="card-preview" data-video="${item.videoFull}">
+            <video autoplay loop muted playsinline>
+              <source src="${item.videoPreview}" type="video/mp4">
+            </video>
+            <div class="expand-hint">Click to expand</div>
           </div>
           <div class="card-content">
             <div class="badge-group">${badgesHtml}</div>
@@ -756,20 +705,20 @@
             </div>
             <p class="card-description">${item.description}</p>
             <div class="card-footer">
-              <a href="${item.downloadUrl}" class="btn btn-primary" title="${dlTitle}"${dlAttr} target="_blank">
+              <a href="${item.downloadUrl}" class="btn btn-primary" title="${dlTitle}"${dlAttr}>
                 ${ICON_DOWNLOAD}
                 ${item.downloadLabel}
               </a>
-              <button class="btn btn-icon" data-media="${fullMediaUrl}" data-is-video="${hasVideo}" title="Expand preview">
+              <button class="btn btn-icon" data-video="${item.videoFull}" title="Expand preview">
                 ${ICON_EXPAND}
               </button>
             </div>
           </div>
         `;
 
-        // Wire up preview click events
-        card.querySelector('.card-preview').addEventListener('click', () => openModal(fullMediaUrl, hasVideo));
-        card.querySelector('.btn-icon').addEventListener('click', () => openModal(fullMediaUrl, hasVideo));
+        // Wire up video expand clicks
+        card.querySelector('.card-preview').addEventListener('click', () => openModal(item.videoFull));
+        card.querySelector('.btn-icon').addEventListener('click', () => openModal(item.videoFull));
 
         grid.appendChild(card);
       });
@@ -787,7 +736,7 @@
     function bindSearch() {
       const input = document.getElementById('library-search');
       input.addEventListener('input', (e) => {
-        searchQuery = e.target.value.toLowerCase().trim();
+        searchQuery = e.target.value.toLowerCase();
         applyFilters();
       });
     }
@@ -795,71 +744,35 @@
     // ── Apply combined search + category filter ──
     function applyFilters() {
       const cards = document.querySelectorAll('.vsmart-card');
-      let visibleCount = 0;
-
       cards.forEach(card => {
         const title = card.querySelector('.card-title').textContent.toLowerCase();
         const desc = card.querySelector('.card-description').textContent.toLowerCase();
         const tags = card.dataset.tags ? card.dataset.tags.split(' ') : [];
 
-        const matchesSearch = !searchQuery || title.includes(searchQuery) || desc.includes(searchQuery) || tags.some(t => t.includes(searchQuery));
+        const matchesSearch = title.includes(searchQuery) || desc.includes(searchQuery);
         const matchesFilter = currentFilter === 'all' || tags.includes(currentFilter);
 
         if (matchesSearch && matchesFilter) {
           card.classList.remove('hidden');
-          visibleCount++;
         } else {
           card.classList.add('hidden');
         }
       });
-
-      const grid = document.getElementById('library-grid');
-      let emptyMsg = grid.querySelector('.grid-empty');
-      if (visibleCount === 0) {
-        if (!emptyMsg) {
-          emptyMsg = document.createElement('div');
-          emptyMsg.className = 'grid-empty';
-          emptyMsg.innerHTML = `
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <p>No matching assets found.</p>`;
-          grid.appendChild(emptyMsg);
-        }
-      } else if (emptyMsg) {
-        emptyMsg.remove();
-      }
     }
 
     // ── Modal controls ──
-    function openModal(mediaSrc, isVideo) {
+    function openModal(videoSrc) {
       const modal = document.getElementById('modal');
       const video = document.getElementById('modal-video');
-      const img = document.getElementById('modal-img');
-
-      if (isVideo) {
-        img.style.display = 'none';
-        img.src = '';
-        video.style.display = 'block';
-        video.src = mediaSrc;
-        video.play();
-      } else {
-        video.pause();
-        video.style.display = 'none';
-        video.src = '';
-        img.style.display = 'block';
-        img.src = mediaSrc;
-      }
-
+      video.src = videoSrc;
       modal.style.display = 'flex';
     }
 
     function closeModal() {
       const modal = document.getElementById('modal');
       const video = document.getElementById('modal-video');
-      const img = document.getElementById('modal-img');
-
       video.pause();
       video.src = '';
-      img.src = '';
       modal.style.display = 'none';
     }
 
