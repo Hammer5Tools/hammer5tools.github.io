@@ -1,169 +1,90 @@
 # SoundEvent Editor
 
-Make and manage sound events for an addon. The editor reads and writes the `soundevents_addon.vsndevts` file straight from the content folder. It also keeps track of audio files in the `sounds/` folder next to it.
+Create, modify, preview, and manage sound events for Counter-Strike 2. The editor directly reads and writes `soundevents_addon.vsndevts` in your addon's content folder, providing live NetConsole previewing, internal sound decompilation, and seamless integration with the built-in [Audio Editor](#audio-editor).
 
 ---
 
-## Layout
+## Layout Overview
 
-The editor is organized into a main window with a sidebar of tabs on the right and a properties panel in the center.
-
-![Interface Overview](docs/images/sound_editor/interface_overview.png)
+The editor is organized into a primary hierarchy, a central properties inspector, and a docked suite of explorer panels:
 
 | Area | Description |
 |---|---|
-| **Hierarchy** | List of every sound event in `soundevents_addon.vsndevts`. |
-| **Properties** | Fields of the currently selected sound event. |
-| **Sound Explorer** | File tree rooted at your addon's `sounds/` directory. |
-| **Internal Sound Files** | Searchable flat list of every raw sound file found inside CS2's VPK. |
-| **Internal SoundEvents** | Searchable flat list of every compiled sound event from the base game. |
-| **History** | Undo/redo stack (docked, resizable). |
+| **Hierarchy (Left)** | Tree listing of every sound event defined in `soundevents_addon.vsndevts`. |
+| **Properties Inspector (Center)** | Collapsible property blocks for the selected sound event (volume, pitch, curves, vsnd files). |
+| **Sound Explorer** | File browser rooted at your addon's `sounds/` content folder. |
+| **Audio Player** | Built-in waveform playback bar with volume and scrubbing. |
+| **Internal Sound Files** | Searchable catalog of all raw `.vsnd` audio files packed inside base CS2 VPKs. |
+| **Internal SoundEvents** | Decompiled and cached database of all base game soundevents from CS2. |
+| **History Dock** | Complete undo/redo stack (`Ctrl+Z` / `Ctrl+Y`). |
 
 ---
 
-## Getting Started
-
-When you open the editor it automatically loads `soundevents/soundevents_addon.vsndevts` from the addon's content folder. If the file does not exist yet a dialog will ask whether to copy the default template from `addon_template`. Choosing **Yes** copies both the `.vsndevts` file and the default `sounds/` folder — note this may overwrite any WAV files already present there.
-
-You can also open a different `.vsndevts` file at any time with the **Load** button.
-
----
-
-## Toolbar Buttons
+## Toolbar Controls
 
 | Button | Action |
 |---|---|
-| **Load** | Open a file picker to load any `.vsndevts` file into the hierarchy. |
-| **Output** | Open the current `soundevents_addon.vsndevts` in your default text editor. |
-| **Save** | Write all hierarchy changes back to the file immediately. |
-| **Open Preset Manager** | Opens the Preset Manager window. |
-| **Realtime Save** (checkbox) | When checked, the file is saved automatically ~50 ms after every change. |
+| **Load** | Open a file dialog to load any custom `.vsndevts` file. |
+| **Output** | Opens `soundevents_addon.vsndevts` in your default system text editor. |
+| **Save** (`Ctrl+S`) | Writes all hierarchy and property changes back to disk immediately. |
+| **Open Preset Manager** | Opens the Presets window containing pre-configured audio templates. |
+| **Realtime Save** | Checkbox; automatically writes changes to disk ~50ms after every edit. |
+| **Play / Stop** | Sends commands to CS2 via NetConsole (`-netconport 2121`) to preview sounds in real time. |
 
 ---
 
-## Hierarchy
+## Hierarchy Operations
 
-The hierarchy shows every sound event by name. All operations respect the undo stack.
-
-### Hierarchy Context Menu
-
-Right-click anywhere in the hierarchy for:
+Right-click any event in the hierarchy for common actions:
 
 | Action | Shortcut | Description |
 |---|---|---|
-| Add Soundevent | — | Create a new blank sound event. |
-| Duplicate | `Ctrl+D` | Copy selected event(s) with a new unique name. |
-| Rename | `F2` | Rename the selected event inline. |
-| Delete | `Del` | Remove the selected event(s). |
-| Copy SoundEvent name | — | Copy the event name to the clipboard. |
-| Open soundevents file | — | Open the `.vsndevts` file in your text editor. |
+| **Add Soundevent** | `Ctrl+N` / Button | Creates a new blank sound event entry. |
+| **Duplicate** | `Ctrl+D` | Duplicates selected sound event with an auto-incremented name. |
+| **Rename** | `F2` | In-line rename of the event. |
+| **Delete** | `Del` | Removes the event from the addon. |
+| **Copy SoundEvent Name** | — | Copies the exact event name to the clipboard for pasting into Hammer entities. |
+| **Open in Text Editor** | — | Opens the raw file at the event's location. |
 
-### Hierarchy Search Bar
-
-Type in the search bar above the hierarchy to filter events by name in real time.
+Use the search filter bar above the hierarchy to filter events by name in real time.
 
 ---
 
-## Properties Panel
+## Properties Inspector
 
-Selecting an event in the hierarchy loads its properties here. Each property is a collapsible frame showing the key and its value widget.
+Selecting an event loads its fields into collapsible property groups.
 
-### Property Types
+### Common Property Types
+- **Float / Scrubbers**: Left-click and drag horizontally to scrub values; or double-click to type a numeric value.
+- **Resource Pickers / Lists (`vsnd_files`)**: Click **+** to add sound paths, or drag audio files directly from the **Sound Explorer** or **Internal Sound Files** tabs.
+- **ComboBoxes**: Select predefined enum values (e.g. `type = csgo_mega`, `spread_type`, `volume_falloff`).
+- **Booleans**: Checkbox toggles (`use_hrtf`, `occlusion_test`).
+- **Distance Volume Curves**: Visual curve editor to adjust volume falloff across minimum and maximum hearing distances.
 
-| Type | Interaction | Preview |
-|---|---|---|
-| **Float / Number** | Left-click and drag horizontally to scrub; type a value directly. | ![Float Property](docs/images/sound_editor/float_property.png) |
-| **List** (`vsnd_files`, etc.) | Use **+** / **–** buttons to add or remove list entries. | ![List Property](docs/images/sound_editor/list_property.png) |
-| **ComboBox** | Click to open a dropdown of predefined options. | ![ComboBox Property](docs/images/sound_editor/combobox_property.png) |
-| **Bool** | Click the checkbox to toggle. | ![Bool Property](docs/images/sound_editor/bool_property.png) |
-| **Curve** | Click and drag curve points to adjust the shape. | ![Curve Property](docs/images/sound_editor/curve_property.png) |
-
-### Properties Context Menu
-
-Right-click the properties area for:
-
-| Action | Shortcut | Description |
-|---|---|---|
-| Undo | `Ctrl+Z` | Undo the last property change. |
-| Redo | `Ctrl+Y` / `Ctrl+Shift+Z` | Redo a previously undone change. |
-| New Property | `Ctrl+F` | Open the property picker popup to add a field. |
-| Paste | `Ctrl+V` | Paste a property from the clipboard. |
-| Collapse All | — | Collapse every property frame. |
-| Expand All | — | Expand every property frame. |
-
-### Comment Field
-
-Every event has a **Comment** text box at the top of the properties panel. The comment is stored in the `.vsndevts` file alongside the event data.
-
-### Read-only Mode
-
-Events loaded from the **Internal SoundEvents** tab for preview are displayed in read-only mode. All property frames are disabled and a badge indicates the state. The **Play** button remains active.
+### Right-Click Context Menu
+- **Add New Property** (`Ctrl+F`): Opens a searchable popup to add standard Source 2 sound properties (pitch randomizers, occlusion parameters, reverb send, limiting groups).
+- **Copy / Paste Property**: Copy property values between events.
+- **Expand / Collapse All**: Toggles all property frames.
 
 ---
 
-## Playing Sound Events
+## Playing Sounds in Live CS2 (NetConsole)
 
-A **Play current event** button and a **Stop** button sit above the Preset Manager button in the left panel.
-
-- **Play current event** — Sends `snd_sos_stop_all_soundevents` followed by `snd_sos_start_soundevent <name>` to a running CS2 instance via netconsole (`-netconport 2121`). CS2 must already be running with that launch option.
-- **Stop** — Sends `snd_sos_stop_all_soundevents` to stop everything currently playing.
-
----
-
-## Sound Explorer
-
-The **Sound Explorer** tab shows the file tree of your addon's `sounds/` directory. Clicking a file plays it through the built-in audio player (if **Play on click** is enabled in settings). The audio player bar appears at the top of the explorer section.
+The **Play current event** button communicates with a running CS2 instance:
+1. Launch CS2 with `-netconport 2121` (configured via **Settings > SoundEvent** or Launch Options).
+2. Click **Play current event**.
+3. Hammer5Tools sends `snd_sos_stop_all_soundevents` followed by `snd_sos_start_soundevent <name>`.
+4. The sound plays inside CS2 with full spatialization and HRTF processing.
 
 ---
 
-## Internal Sound Files
+## Browsing Base Game SoundEvents & Files
 
-The **Internal Sound Files** tab lists raw `.vsnd` files extracted from CS2's VPK. Use the search bar to filter by name. Clicking a file plays it through the audio player.
-
----
-
-## Internal SoundEvents
-
-The **Internal SoundEvents** tab is a flat searchable list of every compiled sound event from the base game. The list is loaded in a background thread the first time the editor opens; compiled `.vsndevts_c` files are decompiled and cached locally so subsequent loads are instant.
-
-### Interactions
-
-| Action | Result |
-|---|---|
-| Single click | Plays the event in CS2 via netconsole (same as **Play current event**). |
-| Double click | Opens the event's properties in the Properties panel in read-only mode. |
-| Right-click → Copy Name(s) | Copies selected event name(s) to the clipboard. |
-| Right-click → Copy to Addon | Adds the event as a new entry in your addon hierarchy and saves. |
+- **Internal SoundEvents Tab**: Displays every compiled sound event shipped with CS2. Double-clicking opens it in read-only mode to inspect Valve's curves and parameters. Right-click and choose **Copy to Addon** to clone any official soundevent into your addon.
+- **Internal Sound Files Tab**: Displays extracted `.vsnd` references. Single-click to preview through the built-in player.
 
 ---
 
-## Undo / Redo
+## Working with Waveform Loops
 
-All hierarchy and property changes are tracked by a shared undo stack.
-
-| Action | Shortcut |
-|---|---|
-| Undo | `Ctrl+Z` |
-| Redo | `Ctrl+Y` or `Ctrl+Shift+Z` |
-
-The **History** dock on the right shows the full stack. Click any entry to jump to that state.
-
----
-
-## Preset Manager
-
-Open the Preset Manager with the **Open Preset Manager** button. Presets are `.kv3` files stored in the `SoundEventEditor/Presets` directory.
-
-![Preset Manager](docs/images/sound_editor/preset_manager.png)
-
-| Button | Action |
-|---|---|
-| **New** | Create a new blank preset file (`SE_Preset_N.kv3`). |
-| **Open** | Load the selected preset into the properties view. |
-| **Save** | Write the current properties back to the open preset file. |
-| **Open Folder** | Open the presets directory in Explorer. |
-
-Select a preset in the explorer on the left, then click **Open** to edit its properties. Click **Save** to persist changes.
-
-> [!TIP]
-> Presets store a set of sound event properties. Use them to quickly apply a known configuration to a new event — open the preset, copy the properties you need, then paste them into ythe event.
+To edit the underlying `.wav` files, add RIFF cue loop marks, or apply gain/fades, switch to the built-in [Audio Editor](#audio-editor) tab.

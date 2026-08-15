@@ -1,31 +1,40 @@
 # Hotkey Editor
 
-The Hotkey Editor lets you change keyboard shortcuts for different Source 2 tools. Keep things running smoothly by putting your most-used commands right where you want them.
+Customize, manage, and switch keyboard shortcut profiles across Source 2 tools (Hammer Editor, ModelDoc, Material Editor, and Particle Editor).
 
 ---
 
-## Keybindings Presets
+## Overview
 
-### Editor Selector
-The editor selector allows selection of presets for different editors, such as **ModelDoc**, **Map Editor**, etc. Each editor has its own set of presets.
-
-![Keybindings presets](docs/images/hotkey_editor/presets.png)
-
-*   **Set Current**: Applies the currently selected preset to the keybindings for the selected editor.
-*   **New Preset**: Creates a default preset based on the selected editor template.
-*   **Open Preset**: Loads an existing keybinding file into the editor.
+Source 2 stores keybindings across various tool configuration files in the user profile. The **Hotkey Editor** provides a centralized interface to search for tool commands, rebind shortcuts, create custom keybinding presets, and swap configurations between projects or team members.
 
 ---
 
-## Keybindings Editor
+## Interface Layout
 
-The editor interface allows searching for, modify, and save individual keybindings.
+The Hotkey Editor tab is divided into two sections:
 
-![Keybindings editor](docs/images/hotkey_editor/editor.png)
+| Section | Description |
+|---|---|
+| **Editor Selector (Left)** | Choose which Source 2 editor profile to configure (Hammer, ModelDoc, Material Editor, Subrect Editor). |
+| **Keybindings Table (Right)** | Searchable table of commands, assigned key combinations, and modifiers. |
 
-*   **Filters**: Use the **command filter** and **input filter** to quickly narrow down specific actions or key combinations.
-*   **Save Preset**: Saves the currently opened preset to the user profile.
-*   **Set and Restart**: Similar to "Set Current," but also saves the open preset and attempts to restart the corresponding tool to apply changes immediately.
+---
 
-> [!NOTE]
-> Custom keybinds are stored in the user profile, making them persistent across different addons.
+## Keybinding Profiles & Presets
+
+- **Set Current**: Activates the selected preset for the chosen editor.
+- **New Preset**: Creates a clean preset template based on default Valve hotkeys.
+- **Open Preset**: Loads an exported keybinding configuration file.
+- **Save Preset**: Persists changes to your user profile (`.keybinds`).
+- **Set and Restart**: Saves changes and automatically restarts the Source 2 tool to apply bindings immediately.
+
+---
+
+## Searching & Rebinding
+
+1. Select your target tool (e.g. **Map Editor**).
+2. Use the **Command Filter** to find actions (e.g. `Clip Tool`, `Vertex Tool`, `Grid Increase`).
+3. Double-click the hotkey cell or press the new key combination.
+4. Conflicts with existing bindings will be highlighted automatically.
+5. Click **Save Preset**.

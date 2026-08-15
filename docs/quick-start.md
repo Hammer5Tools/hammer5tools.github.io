@@ -1,115 +1,85 @@
 # Quick Start
 
-Get started with Hammer5Tools. This page goes over the basic workflow for each tool so you know what's going on.
+Get up to speed with Hammer 5 Tools. This guide walks through the primary workflow for every tool and editor in the suite.
 
 ---
 
-## Initial Setup
+## 1. Initial Setup
 
-1. **Install** — run the installer or extract the release archive.
-2. **Launch** — Hammer5Tools auto-detects the CS2 installation. If it is not found, a prompt will appear letting you set the path manually via **Settings > General > CS2 Path**.
-3. **Select an addon** — pick an addon from the dropdown in the toolbar. If no addons exist yet, click **Create New Addon**.
-4. The last-selected tab and window layout are remembered between sessions.
+1. **Install**: Run the installer (`Hammer5Tools-stable-Setup.exe`) or extract the release archive.
+2. **First Launch**: Hammer5Tools automatically detects your Counter-Strike 2 installation. If not found, set the path manually via **Settings > General > CS2 Path**.
+3. **Select Addon**: Pick an active addon from the dropdown in the bottom toolbar. If none exist, click **Addon Actions (`...`) > Create New Addon**.
+4. **File Associations**: When prompted, enable file associations so double-clicking `.vsmart` or `.vdata` files opens them directly in Hammer5Tools.
 
 > [!NOTE]
-> Hammer5Tools minimizes to the system tray by default when you close the window. Right-click the tray icon and choose **Exit** to close it fully.
+> Hammer5Tools runs as a single-instance application and minimizes to the system tray by default. Right-click the tray icon and choose **Exit** to shut it down completely.
 
 ---
 
-## Sound Event Editor
+## 2. Audio & Sound Design Workflow
 
-Edit your addon's `soundevents_addon.vsndevts` file.
+### Editing Sound Events (SoundEvent Editor)
+1. Switch to the **SoundEvent Editor** tab.
+2. The active addon's `soundevents_addon.vsndevts` file is loaded automatically.
+3. Click **Add SoundEvent** (or duplicate an existing preset).
+4. Add your `.vsnd` files, set volume, pitch, attenuation curves, and click **Save** (`Ctrl+S`).
 
-1. Switch to the **Sound Event Editor** tab.
-2. Click **Add New Event** to create a sound event entry.
-3. Pick your `.vsnd` file using the file picker.
-4. Adjust any parameters (volume, pitch, distance), then **Save**.
-
-The file is written directly to `content/csgo_addons/<addon>/soundevents/soundevents_addon.vsndevts`.
+### Preparing Audio Loops (Audio Editor)
+1. Switch to the **Audio Editor** tab.
+2. Double-click a sound file in the sidebar explorer.
+3. Select regions to trim, fade-in/out, or normalize.
+4. Press `M` to place **RIFF Cue Markers** at the start and end of loop sections for perfect in-game repeating audio.
+5. Save with `Ctrl+S`.
 
 ---
 
-## SmartProp Editor
-
-Create and edit `.vsmart` procedural prop files.
+## 3. Procedural Prop Creation (SmartProp Editor)
 
 1. Switch to the **SmartProp Editor** tab.
-2. Open an existing `.vsmart` file with **File > Open**, or create a new one.
-3. Add nodes in the node graph to build your prop variation rules.
-4. Save with **Ctrl+S** — the file is written back to your content directory.
-
-You can also double-click a `.vsmart` file in Windows Explorer to open it directly in a running Hammer5Tools instance via IPC.
-
----
-
-## Asset Group Maker
-
-Batch-create `.hbat` asset group batch files for your addon.
-
-1. Switch to the **Asset Group** tab.
-2. The tool scans the addon directory for assets.
-3. Configure grouping rules as needed.
-4. Click **Generate** — asset group files are written to the appropriate location in your content folder.
+2. Open an existing `.vsmart` / `.vdata` file from the explorer, or press `Ctrl+N` for a new document.
+3. Add elements (Models, Groups, Scatter, Fit on Line, Grid) and attach modifiers (Rotators, Translators, Filters).
+4. Configure variables in the **Variables** panel to expose user settings inside Hammer.
+5. Save with `Ctrl+S` — the asset is compiled immediately for Hammer Editor.
 
 ---
 
-## Loading Editor
+## 4. Material Layer Detail Props (DetailProp Editor)
 
-Manage the map's loading screen screenshots, map icon, and description.
-
-1. Switch to the **Loading Editor** tab.
-2. **Screenshots** — add images to the `screenshots/Hammer5Tools/LoadingScreen` folder (or import via the UI), then click **Apply Screenshots** to convert and compile them.
-3. **Map Icon** — drag and drop an SVG onto the icon canvas. Use **Fit Viewbox** to auto-size it, then save.
-4. **Descriptions** — enter the map description and credits, then save.
-
-See the [Loading Editor documentation](#loading-editor) for the full reference.
+1. Switch to the **DetailProp Editor** tab.
+2. The addon's `scripts/detail_prop_types.vdata` file loads automatically.
+3. Create a detail type (e.g. `grass_field`), set density and height bounds, and add one or more `.vmdl` variations.
+4. Save with `Ctrl+S`.
+5. In Hammer's Material Editor, assign your detail prop type to a material blend layer, then paint that material on your terrain and enable **Toggle Grass / Detail Props** in the viewport.
 
 ---
 
-## Hotkey Editor
+## 5. Compiling Maps (Map Builder)
 
-Customize CS2 / Hammer keyboard bindings stored in your addon.
-
-1. Switch to the **Hotkey Editor** tab.
-2. Browse the list of available actions.
-3. Click an action and press the new key combination to rebind it.
-4. Changes are saved automatically.
-
----
-
-## Map Builder
-
-Compile the map without leaving Hammer5Tools.
-
-1. Click **Map Builder** in the toolbar to open the build window.
-2. Select a **preset** (Fast Compile, Full Compile, Lighting Only, or Entities Only) or create your own.
-3. Set the **Map Path** — pick one `.vmap` file, or separate multiple paths with `;` for a batch build.
-4. Click **Build**. Output streams live in the right panel.
-5. When the build finishes, the map loads in CS2 automatically if **Load in Engine After Build** is enabled.
-
-See the [Map Builder documentation](#map-builder) for all settings and cubemap baking details.
+1. Click **Map Builder** (lightbulb icon) in the toolbar.
+2. Select a preset (**Fast Compile**, **Full Compile**, **Lighting Only**, **Entities Only**) or configure custom flags.
+3. Select your `.vmap` file (or separate multiple paths with `;` for batch builds).
+4. Enable **Build Cubemaps** if you want automated cubemap baking via NetConsole after compilation.
+5. Click **Build**. Telemetry and compiler logs stream live in the output window.
 
 ---
 
-## Cleanup
+## 6. Porting Legacy & External Assets
 
-Remove unused asset files from the addon's content directory.
-
-1. Click **Cleanup** in the toolbar.
-2. The tool parses your `.vmap` and lists every file in the content folder that is not referenced.
-3. Review the list — use the **Search** box and **File Type** filter to focus on specific assets.
-4. Uncheck any files to keep, then click **Delete Selected Files**.
-5. Click **Recalculate** after making changes in Hammer to refresh the list.
-
-> [!WARNING]
-> After running Cleanup, also run **Clean Up** inside Hammer's Asset Browser to remove stale compiled assets from the game directory.
-
-See the [Cleanup documentation](#cleanup) for the full reference.
+- **SourcePorter (GoldSrc / Source 1 -> Source 2)**: Go to **Utilities > SourcePorter** to decompile `.bsp` maps and convert `.mdl` models, `.vmt` materials, and `.vtf` textures into Source 2 formats. Use **Find Missing** to automatically fix broken dependencies.
+- **UnrealPorter (Unreal Engine 5 -> Source 2)**: Go to **Utilities > UnrealPorter** to transfer entire `.umap` levels, static meshes, PBR textures, material instances, and light entities into your CS2 addon.
 
 ---
 
-## Launch Tools
+## 7. Version Control & Team Collaboration (Git Sync)
 
-The **Launch Tools** button in the toolbar starts CS2 with your addon loaded and the configured launch options. If `-asset` is in your launch options, the button label changes to **Edit map** to reflect that Hammer will open instead of the game.
+1. Connect your addon repository to Git.
+2. The **Sync Button** in the toolbar tracks ahead/behind commit statuses and modified files.
+3. Click the Sync button to **Commit**, **Pull**, or **Push**.
+4. Teammates editing the same `.vmap` level concurrently are automatically merged using Hammer5Tools' intelligent **VMAP 3-Way Merge Driver**.
 
-Configure launch options with the **Launch Settings** button.
+---
+
+## 8. Addon Cleanup & Maintenance
+
+- **Content Cleanup**: Click **Utilities > Cleanup Content** to find and delete unreferenced junk assets in your addon.
+- **Lightmap Cache Cleanup**: Click **Utilities > Cleanup _vrad3 cache** to purge stale lightmap bakes across all addons and force a full rebuild.

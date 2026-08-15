@@ -1,75 +1,71 @@
 # Loading Editor
 
-Change what players see when a map loads. You can manage screenshots, set up the map icon, and write out descriptions.
+Create and manage loading screen screenshots, map icons, workshop descriptions, and animated development timelines for your Counter-Strike 2 map.
+
+---
+
+## Overview
+
+When players connect to a CS2 map, the game displays high-resolution loading screen screenshots, an SVG map icon, and map credits/descriptions.
+
+The **Loading Editor** automates this setup:
+- **NetConsole Camera Captures**: Sends automated camera commands to a running CS2 instance to capture panoramic in-game loading screens.
+- **Multi-Resolution Rescaling**: Automatically crops and scales screenshots to **1080p**, **720p**, and **360p**, generating matching `.vtex` files.
+- **Map Icon Importer**: Drag-and-drop SVG icon preview with automatic viewBox bounds fitting.
+- **Rich-Text Description**: Writes the `COMMUNITYMAPCREDITS:` metadata file.
+- **History Timeline & GIF Generation**: Tracks visual map progression over time and exports animated GIF timelapses.
+
+---
 
 ## Screenshots Interface
 
-The Screenshots section displays all images found in the `screenshots/Hammer5Tools` directory inside the addon's game folder.
-
-![Screenshot](docs/images/loading_editor/01.png)
+The screenshot panel features two viewing modes:
+- **Explorer**: Displays all images currently located in `screenshots/Hammer5Tools` with an interactive 2D preview.
+- **Timeline**: Groups snapshots by camera angles across past dates.
 
 ### Screenshot Actions
 
 | Action | Description |
-| --- | --- |
-| **Take Loading Screen Shots** | Sends camera commands to a running CS2 instance via netcon, clears previous loading screen shots, and captures new ones |
-| **Take History Shots** | Sends camera commands to CS2 to capture a history snapshot without clearing existing shots |
-| **Apply Screenshots** | Processes images from the `LoadingScreen` subfolder and outputs compiled textures to the game's `map_icons/screenshots` folders |
-| **Refresh** | Reloads the Timeline tab with the latest history data |
-| **Generate GIFs** | Exports all camera sequences from history as animated GIF files |
+|---|---|
+| **Take Loading Screen Shots** | Connects to CS2 via NetConsole (`-netconport 2121`), positions cameras, and captures fresh screenshots. |
+| **Take History Shots** | Captures a historical snapshot for the development timelapse timeline. |
+| **Apply Screenshots** | Scales images, generates `.vtex` descriptors, and compiles multi-resolution textures into the game directory. |
+| **Generate GIFs** | Compiles historical camera sequences into animated development GIF timelapses. |
 
-> [!NOTE]
-> **Take Loading Screen Shots** and **Take History Shots** require CS2 to be running with `-netconport 2121` in its launch options.
+---
 
-### Explorer & Timeline Tabs
+## How "Apply Screenshots" Works
 
-The screenshots panel has two tabs:
-
-- **Explorer** — shows all images currently in the `screenshots/Hammer5Tools` folder with a live viewport preview. Press **F** to reset the camera position in the preview.
-- **Timeline** — shows historical snapshots organised by camera. Select any image to preview it in the shared viewport. Use **Generate GIFs** to export a camera's sequence as a GIF.
-
-### Apply Screenshots Options
-
-| Option | Description |
-| --- | --- |
-| **Delete Existing** | When enabled, also removes previously compiled `.vtex_c` files from the game directory before processing |
-| **Camera Name Mode** | Reads the camera name from the image filename prefix (e.g. `Donut_0000.png` → label `Donut`) and overlays it on the screenshot |
-
-### How Apply Screenshots Works
-
-Clicking **Apply Screenshots**, the tool:
-
-1. Clears the `res` folder and existing resolution subfolders under `addon/panorama/images/map_icons/screenshots` (content directory).
-2. Reads every image from the `LoadingScreen` subfolder.
-3. Scales each image to three resolutions — **1080p**, **720p**, and **360p** — using smooth transformation.
-4. Saves the scaled PNG and writes a `.vtex` file for each resolution, then compiles it automatically.
-
-The compiled textures appear in:
-```
-addon/panorama/images/map_icons/screenshots/{1080p,720p,360p}/  (game directory)
-```
-
-Output filenames follow this pattern:
-
-- First image: `{addon_name}_png`
-- Subsequent images: `{addon_name}_{number}_png`
+1. Clears previously compiled textures in `addon/panorama/images/map_icons/screenshots/`.
+2. Reads every source image from the `LoadingScreen/` subfolder.
+3. Rescales each image using smooth bi-cubic filtering to:
+   - `1080p/` (Full HD)
+   - `720p/` (Standard HD)
+   - `360p/` (Low Bandwidth)
+4. Generates `.vtex` files and compiles them into `.vtex_c` resources automatically.
 
 > [!WARNING]
-> The game supports a maximum of **10** screenshots. Adding more than 10 images will trigger a warning and the extras will be ignored by CS2.
+> Counter-Strike 2 supports a maximum of **10** loading screen images per addon.
 
-## Map Icon
+---
 
-The **Map Icon** section lets you set a custom SVG icon that appears next to the map in the CS2 UI.
+## Map Icon (SVG)
 
-- Drag and drop an `.svg` file onto the icon drop zone to preview it.
-- Click **Apply Icon** to copy the SVG to `addon/panorama/images/map_icons/map_icon_{addon_name}.svg` (content directory).
-- Enable **Fit Viewbox** to automatically rescale the SVG viewBox to its content bounds before copying.
+1. Drag and drop your `.svg` vector icon into the icon drop zone.
+2. Enable **Fit Viewbox** to automatically crop unnecessary padding.
+3. Click **Apply Icon** — the file is copied to:
+   ```text
+   content/csgo_addons/<addon>/panorama/images/map_icons/map_icon_<addon>.svg
+   ```
 
-## Descriptions
+---
 
-Add a rich-text description that players see on the loading screen.
+## Descriptions & Credits
 
-- Type the description in the text field. Supports multi-line text.
-- Click **Apply Description** to write the file to `game/csgo_addons/{addon_name}/maps/{addon_name}.txt`.
-
-The file is written with a `COMMUNITYMAPCREDITS:` header followed by the description text.
+1. Enter your map backstory, author credits, and special thanks in the multi-line text editor.
+2. Click **Apply Description**.
+3. Hammer5Tools writes the text to:
+   ```text
+   game/csgo_addons/<addon>/maps/<addon>.txt
+   ```
+   Formatted with the required `COMMUNITYMAPCREDITS:` header.

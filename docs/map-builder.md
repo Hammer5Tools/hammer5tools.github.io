@@ -1,198 +1,96 @@
 # Map Builder
 
-Compile CS2 maps without leaving Hammer5Tools. It handles presets, batch compiling, and baking cubemaps, all while showing the output in real-time.
+A compile interface and automation tool for Counter-Strike 2 `.vmap` files. Map Builder wraps `resourcecompiler.exe` with customizable presets, batch queuing, live hardware telemetry, and automated NetConsole cubemap baking.
+
+---
 
 ## Overview
 
-The Map Builder wraps `resourcecompiler.exe` in a GUI so you can configure build flags, save them as named presets, queue multiple maps, and monitor progress without leaving the tool. After a successful build the map is optionally loaded straight into the game engine.
+Compiling maps in Source 2 involves managing multiple complex command-line flags across world geometry, VRAD3 lightmapping, physics meshes, visibility passes (PVS), navigation meshes, and baked audio acoustics.
+
+**Map Builder** provides a responsive interface with:
+- **One-Click Presets**: Fast preview builds, full lighting bakes, geometry-only, or custom configurations.
+- **Batch Compilation**: Queue multiple `.vmap` files separated by `;` to compile sequentially.
+- **Automated Cubemap Baking**: Launches CS2 in tools mode, activates the map via NetConsole, runs `buildcubemaps`, and confirms bake completion.
+- **Hardware Telemetry**: Real-time monitoring of CPU and RAM utilization.
+- **Live Output Log**: Real-time color-coded compiler stdout with phase tracking and line filtering.
 
 ---
 
 ## Interface Layout
 
-The window is split into two panels by a resizable splitter.
-
-| Panel | Contents |
+| Panel | Description |
 |---|---|
-| **Left** | Preset list, Build Settings, System Monitor |
-| **Right** | Compilation output log |
-
-A status bar at the bottom shows the elapsed compile time (live, with animated dots) or the duration of the last completed build.
-
----
-
-## Presets
-
-Presets store a complete set of build flags so you can switch between compile configurations with one click.
-
-### Built-in presets
-
-| Preset | Description |
-|---|---|
-| **Fast Compile** | No lighting, physics, vis, or nav — quick geometry test |
-| **Full Compile** | All passes enabled at High lighting quality |
-| **Lighting Only** | Bakes lighting at Ultra quality, skips everything else |
-| **Entities Only** | Updates entity data only, world geometry is untouched |
-
-Built-in presets cannot be renamed or deleted.
-
-### Custom presets
-
-Click **+** at the bottom of the preset list to create a new preset from the current settings. Right-click any preset button to get:
-
-- **Save Changes** — write the current settings back into this preset
-- **Rename** — give the preset a new name (custom presets only)
-- **Delete** — remove the preset permanently (custom presets only)
-
-Presets are stored inside the tool's global settings file — they carry over between addon projects.
+| **Left Panel** | Presets list, compilation flags (World, Lighting, Physics, Vis, Nav, Audio), and system telemetry. |
+| **Right Panel** | Live streamed terminal output from `resourcecompiler.exe`. |
+| **Status Bar** | Live elapsed timer, active phase status, and process control buttons (**Build** / **Abort**). |
 
 ---
 
-## Build Settings
+## Compilation Presets
 
-### Map Path
-
-Pick one or more `.vmap` files. Separate multiple paths with `;` to queue a batch. The tool processes each map sequentially using a single `resourcecompiler.exe` call per map.
-
-### World
-
-| Setting | Flag | Description |
+| Preset | Purpose | Flags Passed |
 |---|---|---|
-| Build World | `-world` | Compile world geometry |
-| Entities Only | `-entities` | Skip world, update entities only |
-| Build Vis Geometry | — | Include visibility geometry |
-| No Settle | `-nosettle` | Skip physics settling pass |
+| **Fast Compile** | Quick iteration on geometry | `-world -phys` (Lighting, Vis, Nav disabled) |
+| **Full Compile** | Production release build | `-world -phys -vis -nav -bakelighting -lightmapVRadQuality 2` |
+| **Lighting Only** | High-quality lightmap bake | `-bakelighting -lightmapVRadQuality 3` |
+| **Entities Only** | Fast entity property update | `-entities` |
 
-### Lightmapping
-
-| Setting | Flag | Description |
-|---|---|---|
-| Bake Lighting | `-bakelighting` | Run the vrad3 lightmapper |
-| Max Resolution | `-lightmapMaxResolution` | Maximum lightmap texel resolution (default 512) |
-| Quality | `-lightmapVRadQuality` | 0 = Low · 1 = Medium · 2 = High · 3 = Ultra |
-| Compression | — | Enable lightmap texture compression |
-| Filtering | `-lightmapDisableFiltering` | Noise-removal filter (on by default) |
-| No Light Calculations | `-disableLightingCalculations` | Skip vrad entirely (geometry pass only) |
-| VRad3 Large Block Size | `-vrad3LargeBlockSize` | Use larger bake blocks (may improve throughput on some hardware) |
-
-When lighting is disabled, `-nolightmaps` is passed instead.
-
-### Physics
-
-| Setting | Flag | Description |
-|---|---|---|
-| Build Physics | `-phys` | Compile physics collision mesh |
-| Legacy Collision Mesh | `-legacycompilecollisionmesh` | Use the old collision compiler |
-
-### Visibility
-
-| Setting | Flag | Description |
-|---|---|---|
-| Build Vis | `-vis` | Run the PVS visibility compiler |
-| Debug Vis Geo | `-debugvisgeo` | Output debug vis geometry |
-
-### Navigation
-
-| Setting | Flag | Description |
-|---|---|---|
-| Build Nav | `-nav` | Generate navigation mesh |
-| Nav Debug | `-navdbg` | Include debug nav data |
-| Grid Nav | `-gridnav` | Use grid-based nav generation |
-
-### Audio
-
-| Setting | Flag | Description |
-|---|---|---|
-| Build Reverb | `-sareverb` | Bake room reverb impulse responses |
-| Build Paths | `-sapaths` | Compile audio occlusion paths |
-| Bake Custom Audio | `-sacustomdata` | Bake custom audio zone data |
-| Audio Threads | `-sareverb_threads` / `-sapaths_threads` | Thread count for audio passes (defaults to main thread count) |
-
-### After Build
-
-| Setting | Description |
-|---|---|
-| Load in Engine After Build | Sends `map_workshop <addon> <map>` via netcon once compilation finishes |
-| Build Cubemaps | Queue a cubemap bake for this map immediately after the geometry compile |
+Click **+** to save the current configuration as a new custom preset.
 
 ---
 
-## Threads
+## Detailed Build Settings
 
-Set to `-1` (default) to auto-detect — the tool uses `os.cpu_count()`. Set a positive integer to cap thread usage.
+### 1. World & Geometry
+- **Build World** (`-world`): Compiles static geometry and displacement terrain.
+- **Entities Only** (`-entities`): Updates entity properties and entity logic without recompiling world meshes.
+- **No Settle** (`-nosettle`): Skips physics settling simulation for dynamic props.
 
----
+### 2. Lightmapping (VRAD3)
+- **Bake Lighting** (`-bakelighting`): Executes the VRAD3 lightmapper.
+- **Quality** (`-lightmapVRadQuality`): `0` = Low, `1` = Medium, `2` = High, `3` = Ultra.
+- **Max Resolution** (`-lightmapMaxResolution`): Texel density cap (default: 512, capped at 2048 for skyboxes).
+- **Filtering** (`-lightmapDisableFiltering`): Noise removal filter on lightmap textures.
+- **Large Block Size** (`-vrad3LargeBlockSize`): Optimizes bake throughput on high-core-count CPUs.
 
-## Batch Compilation
+### 3. Visibility & Navigation
+- **Build Vis** (`-vis`): Computes Potential Visible Sets (PVS) for occlusion culling.
+- **Build Nav** (`-nav`): Generates CS2 bot navigation mesh.
+- **Grid Nav** (`-gridnav`): Uses grid-based nav generation algorithm.
 
-Add multiple `.vmap` paths separated by `;` in the Map Path field. The tool:
-
-1. Logs a batch header showing how many maps are queued
-2. Calls `resourcecompiler.exe` once per map in order
-3. Logs per-map success/failure and elapsed time
-4. Moves to the next map regardless of whether the previous one failed
-
----
-
-## Cubemap Building
-
-Cubemaps can be baked automatically after compilation by enabling **Build Cubemaps** in the settings, or by queuing maps manually.
-
-The bake flow (handled by `BuildCubemapsThread`):
-
-1. Launches CS2 in tools mode (no map on the command line)
-2. Waits up to **3 minutes** for the netcon TCP port to become reachable
-3. Waits up to **5 minutes** for `CSGO_GAME_UI_STATE_MAINMENU` (main menu ready)
-4. Saves the current value of `r_always_render_all_windows` then forces it to `true`
-5. For each map in the cubemap queue:
-   - Sends `map_workshop <addon> <map>` and waits for `Host activate: Loading`
-   - Waits 5 seconds for the game to stabilize
-   - Sends `buildcubemaps` and listens for `Re-loading map`
-   - If the netcon connection drops during baking, reconnects and confirms completion
-6. Restores `r_always_render_all_windows` to its original value
-7. Leaves CS2 running
-
-> [!NOTE]
-> CS2 must be launched with `-netconport 2121` for cubemap baking to work. This is configured in the tool's global settings.
+### 4. Audio Acoustics
+- **Build Reverb** (`-sareverb`): Bakes acoustic impulse responses for spatial reverb.
+- **Build Paths** (`-sapaths`): Computes sound occlusion and diffraction paths around geometry.
 
 ---
 
-## Skybox Map Rules
+## Automated Cubemap Baking
 
-Any map whose filename ends with `skybox` is automatically treated differently:
-
-- `-nav` is **disabled**
-- `-vis` is **disabled**
-- `lightmapMaxResolution` is **capped at 2048**
-
-The output log will show a note when a skybox map is detected.
-
----
-
-## Output Log
-
-Every line from `resourcecompiler.exe` stdout is streamed live into the output panel. Right-click any line for a context menu to copy the text.
-
-Log lines are colour-coded by severity:
-
-| Colour | Meaning |
-|---|---|
-| White | Informational output |
-| Yellow | Warnings |
-| Red | Errors |
-| Green | Success messages |
-| Grey | Phase/section separators |
+When **Build Cubemaps** is enabled in settings:
+1. Map Builder completes the geometry and lighting compilation.
+2. Launches CS2 in tools mode (`-netconport 2121`).
+3. Connects via NetConsole and waits for `CSGO_GAME_UI_STATE_MAINMENU`.
+4. Sends `map_workshop <addon> <map>` to load the map into memory.
+5. Issues `buildcubemaps` and verifies cubemap `.vtex_c` generation.
+6. Restores render state and leaves the game ready for testing.
 
 ---
 
-## Aborting a Build
+## Batch Map Compilation
 
-Click **Abort** to stop the current compile. The tool sends `taskkill /F /T` to the `resourcecompiler.exe` process tree. If a cubemap bake is running, the netcon session is also terminated.
-
-Closing the window while a build is active shows a confirmation prompt — choosing **Yes** aborts and hides the window.
+To compile multiple maps sequentially:
+1. In the **Map Path** input, enter paths separated by a semicolon `;`:
+   ```text
+   maps/de_dust2.vmap;maps/de_dust2_skybox.vmap;maps/aim_map.vmap
+   ```
+2. Map Builder will execute builds sequentially and log per-map success and timing metrics.
 
 ---
 
-## System Monitor
+## Special Skybox Rules
 
-The left panel includes a live system monitor showing CPU and RAM usage so you can gauge the impact of the compile on your machine.
+Any map with a filename ending in `skybox` is automatically optimized:
+- `-nav` is automatically disabled.
+- `-vis` is automatically disabled.
+- `lightmapMaxResolution` is capped at 2048.

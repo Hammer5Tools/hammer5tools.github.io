@@ -1,228 +1,104 @@
 # SmartProp Editor
 
-A visual editor to create and tweak `.vsmart` or `.vdata` files. This is the system CS2 uses to procedurally place props.
+A visual node-based editor for creating and modifying Valve `.vsmart` and `.vdata` procedural prop files for Counter-Strike 2.
+
+---
 
 ## Overview
 
-SmartProps control how props are placed, scattered, scaled, and tinted. A `.vsmart` file is just a tree of **Elements** modified by operators and filters. You can expose settings via **Variables**. Instead of editing messy KV3 text files by hand, you get a real UI that compiles everything when you save.
+SmartProps represent Source 2's procedural placement and asset variation system. A `.vsmart` file defines a hierarchical graph of elements (models, scatters, grids, deformable lines) altered by operators (transforms, traces, color tints) and controlled by user-facing variables.
+
+Instead of writing verbose KeyValues3 text files by hand, the **SmartProp Editor** provides a rich interface with full undo/redo history, variable binding, expression evaluation, 3D viewport previewing, and instantaneous compilation on save.
+
+---
 
 ## Interface Layout
 
-The editor window has three main areas:
+The editor window is organized into docked workspaces:
 
-- **Explorer dock** (left) — file browser rooted at the addon's content folder. Use it to navigate and open `.vsmart` / `.vdata` files without leaving the editor.
-- **Document tab bar** (center) — each open file gets its own tab. Tabs show `*filename` when there are unsaved changes.
-- **Document panel** (center, per tab) — split into the Hierarchy, Properties, Variables, and Choices panels described below.
-
-## Explorer Dock
-
-The Explorer dock sits on the left side and is dockable/floatable. It provides three toolbar buttons:
-
-| Button | Shortcut | Action |
-|---|---|---|
-| **Open** | — | Open the selected file from the explorer into a new tab |
-| **Save** | `Ctrl+S` | Save and compile the active document |
-| **New file** | `Ctrl+N` | Create a new blank `.vsmart` document in a new tab |
-
-A second toolbar row adds:
-
-| Button | Shortcut | Action |
-|---|---|---|
-| **Save as** | `Ctrl+Shift+S` | Save the active document to a new path |
-| **Open as** | `Ctrl+O` | Open a file via the system file dialog |
-| **Realtime save** | — | Checkbox; auto-saves all modified documents on a timer (interval configurable in Settings) |
-
-> [!NOTE]
-> When **Realtime save** is active, the window can optionally become semi-transparent (configurable in Settings → SmartPropEditor → `transparency_window`).
-
-## Document Tabs
-
-Each tab is an independent document. Switching tabs switches the active Hierarchy, Properties, Variables, and Choices panels. Clicking the `×` on a tab closes the document — a prompt will appear if there are unsaved changes.
-
-Saving a file also triggers compilation via the CS2 resource compiler. The file must have a valid `.vsmart` or `.vdata` extension.
-
-## Hierarchy Panel
-
-The hierarchy is a tree of **Elements**. Each element is an instance of a `CSmartPropElement_*` class and can have child elements, modifiers (operators and filters), and selection criteria attached to it.
-
-### Element Types
-
-| Element | Class | Description |
-|---|---|---|
-| **Group** | `CSmartPropElement_Group` | Container for organizing child elements |
-| **ModifyState** | `CSmartPropElement_ModifyState` | Applies modifiers to the current transform state without placing anything |
-| **SmartProp** | `CSmartPropElement_SmartProp` | Embeds another `.vsmart` file by reference |
-| **Model** | `CSmartPropElement_Model` | Places a static prop model |
-| **ModelEntity** | `CSmartPropElement_ModelEntity` | Places a model as a dynamic entity |
-| **PropPhysics** | `CSmartPropElement_PropPhysics` | Places a physics prop with mass, health, and motion settings |
-| **PropDynamic** | `CSmartPropElement_PropDynamic` | Places an animated dynamic prop |
-| **PlaceInSphere** | `CSmartPropElement_PlaceInSphere` | Scatters children across a sphere or disc volume |
-| **PlaceMultiple** | `CSmartPropElement_PlaceMultiple` | Repeats children a set number of times |
-| **PlaceOnPath** | `CSmartPropElement_PlaceOnPath` | Distributes children along a path with configurable spacing |
-| **FitOnLine** | `CSmartPropElement_FitOnLine` | Fits children between two points with scale/orientation options |
-| **PickOne** | `CSmartPropElement_PickOne` | Randomly (or sequentially) selects one child to place |
-| **Grid** | `CSmartPropElement_Layout2DGrid` | Arranges children in a 2D grid |
-| **BendDeformer** | `CSmartPropElement_BendDeformer` | Bends child geometry along an arc |
-| **MidpointDeformer** | `CSmartPropElement_MidpointDeformer` | Deforms children along a spline midpoint curve |
-
-### Hierarchy Context Menu
-
-Right-clicking an element in the hierarchy opens a context menu with actions to add child elements, add modifiers (operators), add filters, add selection criteria, duplicate, delete, group selected, and bulk-import models.
-
-### Hierarchy Keyboard Shortcuts
-
-| Key | Action |
+| Panel | Description |
 |---|---|
-| `Ctrl+Z` | Undo |
-| `Ctrl+Y` / `Ctrl+Shift+Z` | Redo |
-| `Ctrl+C` | Copy selected element(s) |
-| `Ctrl+V` | Paste element(s) under selected parent |
-| `Ctrl+D` | Duplicate selected element(s) |
-| `Delete` | Delete selected element(s) |
-| `Ctrl+G` | Group selected elements into a new Group |
+| **Explorer Dock (Left)** | File browser rooted at your addon's content folder for quickly opening `.vsmart` and `.vdata` files. |
+| **Document Tabs (Center Top)** | Multi-document tab bar allowing multiple `.vsmart` files to be open concurrently. |
+| **Hierarchy Panel (Center Left)** | Tree view representing the element graph (`CSmartPropElement_*` nodes). |
+| **Properties Panel (Center Right)** | Inspector for element properties, attached modifiers (operators/filters), and selection criteria. |
+| **Variables Panel** | Exposes configurable parameters (Strings, Bools, Floats, Vectors, Colors, Materials, Angles) to Hammer users. |
+| **Choices Panel** | Manages weighted variations when a `PickOne` element is selected. |
 
-> [!TIP]
-> The undo system tracks per-property edits, structural changes (add/remove/reorder modifiers and criteria), variable edits, and choices edits as separate history entries. Consecutive edits to the *same property* of the *same element* are merged into a single undo step.
+---
 
-## Properties Panel
+## Element Types
 
-Selecting an element in the hierarchy shows its properties in the Properties panel. Properties are organized into collapsible groups:
+| Element | Valve Class | Description |
+|---|---|---|
+| **Group** | `CSmartPropElement_Group` | Organizational container for child elements. |
+| **ModifyState** | `CSmartPropElement_ModifyState` | Transforms state without placing physical geometry. |
+| **SmartProp** | `CSmartPropElement_SmartProp` | Sub-graph embedding another `.vsmart` file by reference. |
+| **Model** | `CSmartPropElement_Model` | Places a static Source 2 `.vmdl` model. |
+| **ModelEntity** | `CSmartPropElement_ModelEntity` | Places a model as an interactive dynamic entity. |
+| **PropPhysics** | `CSmartPropElement_PropPhysics` | Places a physics-enabled prop with mass and collision. |
+| **PropDynamic** | `CSmartPropElement_PropDynamic` | Places an animated dynamic prop. |
+| **PlaceInSphere** | `CSmartPropElement_PlaceInSphere` | Scatters instances across a spherical or planar disc volume. |
+| **PlaceMultiple** | `CSmartPropElement_PlaceMultiple` | Repeats child elements a set number of times. |
+| **PlaceOnPath** | `CSmartPropElement_PlaceOnPath` | Distributes children along a path with defined spacing. |
+| **FitOnLine** | `CSmartPropElement_FitOnLine` | Scales and distributes elements between two endpoints. |
+| **PickOne** | `CSmartPropElement_PickOne` | Selects one child from a weighted list of choices. |
+| **Grid** | `CSmartPropElement_Layout2DGrid` | Arranges children in a 2D rectangular grid. |
+| **BendDeformer** | `CSmartPropElement_BendDeformer` | Warps child geometry along an arc. |
+| **MidpointDeformer** | `CSmartPropElement_MidpointDeformer` | Deforms children along a spline curve. |
 
-- **Element properties** — the core fields of the selected element class (e.g. `m_sModelName`, `m_nCountMin`, `m_flSpacing`).
-- **Modifiers** — a list of attached operators and filters. Each can be expanded to edit its own fields. Reordering is supported via drag-and-drop.
-- **Selection Criteria** — conditions that control when/whether this element is selected by a parent `PickOne` or `PlaceOnPath`.
+---
 
-Property fields support variable binding — click the variable icon next to a field to bind it to a named variable defined in the Variables panel.
+## Modifiers: Operators & Filters
 
-### Operators
+Modifiers attach to elements in the Properties panel and execute sequentially from top to bottom.
 
-Operators transform the current placement state. They run in the order they appear under **Modifiers**.
-
-| Operator | Description |
-|---|---|
-| **Rotate** | Applies a fixed rotation |
-| **RandomRotation** | Applies a random rotation within min/max bounds |
-| **RandomRotationSnapped** | Random rotation snapped to an increment on a chosen axis |
-| **ResetRotation** | Zeroes out pitch/yaw/roll selectively |
-| **RotateTowards** | Orients toward a target position |
-| **SetOrientation** | Sets forward and up vectors explicitly |
-| **Scale** | Applies a fixed uniform scale |
-| **RandomScale** | Random scale within min/max, with optional snap |
-| **ResetScale** | Resets scale to 1 |
-| **Translate** | Applies a fixed position offset |
-| **RandomOffset** | Applies a random position offset within a bounding range |
-| **SetPosition** | Sets an absolute world/element-space position |
-| **SetTintColor** | Tints the prop color; supports multiply and other blend modes |
-| **MaterialOverride** | Replaces materials on the model |
-| **MaterialTint** | Tints a specific material by name or index |
-| **TraceInDirection** | Drops the element onto geometry via a raycast in a direction |
-| **Trace** | Casts a ray from a custom origin to find a surface |
-| **TraceToPoint** | Traces toward a specific point |
-| **TraceToLine** | Traces toward the closest point on a line segment |
-| **SaveState / RestoreState** | Saves and restores a named transform state |
-| **SavePosition / SaveDirection / SaveScale / SaveColor / SaveSurfaceNormal** | Writes the current value into a named variable |
-| **SetVariable** | Sets a named variable to an explicit value |
-| **SetMaterialGroupChoice** | Assigns a material group choice variable |
-| **CreateSizer** | Creates a box-sizer handle with per-axis constraints and output variables |
-| **CreateRotator** | Creates a rotator gizmo handle with axis, limits, and output variable |
-| **CreateLocator** | Creates a free-transform gizmo handle |
-| **ComputeDotProduct3D** | Computes a dot product between two vectors and writes to a variable |
-| **ComputeCrossProduct3D** | Computes a cross product and writes to a variable |
-| **ComputeDistance3D** | Computes the distance between two points and writes to a variable |
-| **ComputeNormalizedVector3D** | Normalizes a vector and writes to a variable |
-| **ComputeProjectVector3D** | Projects a vector onto a plane or axis |
-| **ComputeVectorBetweenPoints3D** | Computes the vector from point A to point B |
-| **Comment** | A non-functional note (Hammer5Tools extension) |
-
-> [!WARNING]
-> Operators marked `_WARN_NOT_VERIFIED` in the source have been added to the editor but may not yet be fully tested against all CS2 versions. Use them with care.
+### Common Operators
+- **Transformations**: `Rotate`, `RandomRotation`, `RandomRotationSnapped`, `ResetRotation`, `RotateTowards`, `SetOrientation`, `Translate`, `RandomOffset`, `SetPosition`, `Scale`, `RandomScale`, `ResetScale`.
+- **Materials & Appearance**: `SetTintColor`, `MaterialOverride`, `MaterialTint`, `SetMaterialGroupChoice`.
+- **Traces & Raycasts**: `TraceInDirection` (drops props onto floor/mesh), `TraceToPoint`, `TraceToLine`, `Trace`.
+- **Gizmo Handles**: `CreateSizer` (box-scale handle), `CreateRotator` (angle handle), `CreateLocator` (position handle).
+- **Math & Vectors**: `ComputeDotProduct3D`, `ComputeCrossProduct3D`, `ComputeDistance3D`, `ComputeNormalizedVector3D`, `ComputeVectorBetweenPoints3D`.
+- **State Management**: `SaveState`, `RestoreState`, `SavePosition`, `SaveDirection`, `SaveScale`, `SetVariable`.
 
 ### Filters
+Filters decide whether an element should be evaluated or skipped:
+- **Probability**: Spawns element with a random chance (0.0 to 1.0).
+- **Expression**: Spawns element if a mathematical/logical expression evaluates to true (e.g. `InstanceIndex() % 2 == 0`).
+- **SurfaceAngle**: Restricts placement based on terrain slope angle.
+- **SurfaceProperties**: Restricts placement to specific material surface types (e.g. `grass`, `wood`).
+- **VariableValue**: Compares variable values (`EQUAL`, `NOT_EQUAL`, `GREATER`, `LESS`).
 
-Filters are attached in **Modifiers** and control whether an element is placed at all.
+---
 
-| Filter | Description |
-|---|---|
-| **Probability** | Places the element with a given probability (0–1) |
-| **Expression** | Evaluates a KV3 expression; element is placed only when the result is truthy |
-| **SurfaceAngle** | Requires the surface slope to be within a min/max angle range |
-| **SurfaceProperties** | Allows or disallows placement based on named surface properties |
-| **VariableValue** | Compares a named variable against a value using `EQUAL`, `LESS`, `GREATER`, etc. |
-| **Comment** | A non-functional note (Hammer5Tools extension) |
+## Variables Panel & Hammer Exposure
 
-### Selection Criteria
+Variables created in the **Variables** panel are displayed as editable settings when placing the SmartProp in Hammer.
 
-Selection criteria are used by parent **PickOne** and **PlaceOnPath** elements to control which child is eligible.
+### Supported Variable Types
+- `String`, `Bool`, `Int`, `Float`
+- `Vector2D`, `Vector3D`, `Vector4D`
+- `Color` (RGBA)
+- `Angles` (Pitch, Yaw, Roll)
+- `Material`, `MaterialGroup`, `Model` asset references
+- `CoordinateSpace`, `DistributionMode`, `ChoiceSelectionMode`, `TraceNoHit`, `ScaleMode`
 
-| Criteria | Description |
-|---|---|
-| **ChoiceWeight** | Assigns a probability weight for random selection |
-| **EndCap** | Marks this child as the start cap, end cap, or both on a path |
-| **IsValid** | Marks this child as always valid for selection |
-| **LinearLength** | Selects based on the available span length (min/max) |
-| **PathPosition** | Selects based on path position: all, every Nth, at start, at end |
-| **Comment** | A non-functional note (Hammer5Tools extension) |
+To bind any property to a variable, click the **Variable Link** icon next to the property in the inspector.
 
-## Variables Panel
+---
 
-Variables expose configurable parameters to the user when the SmartProp is placed in Hammer. They are defined in the Variables panel and can be bound to any property in the Properties panel.
+## Expression Helpers
 
-### Variable Types
+In Expression filters and math operators, use built-in functions:
+- `InstanceIndex()`: Current instance index (0, 1, 2, ...).
+- `InstanceCount()`: Total instance count.
+- `RandomInt(min, max)` / `RandomFloat(min, max)`: Random value generator.
+- `LinearScale(val, in_min, in_max, out_min, out_max)`: Range remapping.
+- `Deg2rad(angle)` / `Rad2deg(radians)`: Angle conversion.
 
-| Type | Description |
-|---|---|
-| `String` | Text value |
-| `Bool` | True / False toggle |
-| `Int` | Integer number |
-| `Float` | Floating-point number |
-| `Vector2D / Vector3D / Vector4D` | 2, 3, or 4 component vectors |
-| `Color` | RGBA color |
-| `Angles` | Euler angles (pitch, yaw, roll) |
-| `Material` | Material asset reference |
-| `MaterialGroup` | Material group reference |
-| `Model` | Model asset reference |
-| `CoordinateSpace` | Enum: WORLD, ELEMENT, PARENT, etc. |
-| `Direction` | Directional vector enum |
-| `DistributionMode` | Random / sequential distribution enum |
-| `RadiusPlacementMode` | Sphere placement mode enum |
-| `ChoiceSelectionMode` | Random / sequence / specific enum |
-| `ApplyColorMode` | Color blend mode enum |
-| `TraceNoHit` | Behavior when a trace misses |
-| `ScaleMode` | Scale behavior enum |
-| `PickMode` | Pick sequence mode enum |
-| `GridPlacementMode` | Grid arrangement enum |
-| `GridOriginMode` | Grid origin alignment enum |
-| `PathPositions` | Path position type enum |
+---
 
-Each variable has a **name**, a **type**, and a **default value**. The name is what gets referenced in operator/filter property bindings and in **Expression** filter formulas.
+## Realtime Saving & Transparency
 
-### Expression Syntax Helpers
-
-The Expression filter field offers autocompletion for common functions:
-
-- `InstanceIndex()` — zero-based index of the current instance
-- `InstanceCount()` — total number of instances in the current placement
-- `RandomInt(min, max)` — random integer
-- `RandomFloat(min, max)` — random float
-- `LinearScale()` — linear interpolation helper
-- `Tan(Deg2rad(variable))` — trigonometric helpers
-
-## Choices Panel
-
-The Choices panel appears when the selected element is a **PickOne**. It lists the weighted child options and allows reordering, add, or remove choices. Each entry maps to a child element's `ChoiceWeight` selection criteria.
-
-## File Operations
-
-| Action | Notes |
-|---|---|
-| **New** (`Ctrl+N`) | Creates an untitled blank document. Prompted for name/path on first save. |
-| **Open** (`Ctrl+O` or Explorer double-click) | Accepts `.vsmart` and `.vdata`. Opening a file already in a tab switches to that tab instead of duplicating it. |
-| **Save** (`Ctrl+S`) | Saves to the current path and triggers CS2 compilation. |
-| **Save as** (`Ctrl+Shift+S`) | Saves to a new path. |
-| **Recompile file** | Re-runs the CS2 compiler on the current file without re-saving. |
-| **Recompile all in addon** | Recompiles all `.vsmart` files in the addon. |
-| **Convert all vsmart to vdata** | Batch-converts all `.vsmart` files in the addon to the `.vdata` format. |
-
-## Realtime Save
-
-When the **Realtime save** checkbox is enabled, a background timer periodically saves all modified open documents. The timer interval is set in **Settings → SmartPropEditor → `realtime_saving_delay`** (in seconds, default 5). This is useful when editing a SmartProp and watching the result update live in Hammer without pressing `Ctrl+S` manually.
+- **Realtime Save**: When enabled in the toolbar, Hammer5Tools auto-saves modified documents to disk whenever you make an edit (delay configurable in **Settings > SmartProp**).
+- **Window Transparency**: When enabled in settings, the window becomes semi-transparent during live editing so you can see Hammer updating directly behind it.

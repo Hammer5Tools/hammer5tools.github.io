@@ -690,29 +690,47 @@
           </ul>
         </div>
         <div class="nav-group">
-          <div class="nav-group-title">Tools</div>
+          <div class="nav-group-title">Visual Editors</div>
           <ul class="nav-links">
-            <li><a href="#sound-editor" class="nav-link">SoundEvent Editor</a></li>
             <li><a href="#smart-prop-editor" class="nav-link">SmartProp Editor</a></li>
-            <li><a href="#loading-editor" class="nav-link">Loading Editor</a></li>
+            <li><a href="#sound-editor" class="nav-link">SoundEvent Editor</a></li>
+            <li><a href="#audio-editor" class="nav-link">Audio Editor</a></li>
+            <li><a href="#detail-prop-editor" class="nav-link">DetailProp Editor</a></li>
+            <li><a href="#asset-group-maker" class="nav-link">AssetGroup Maker</a></li>
             <li><a href="#hotkey-editor" class="nav-link">Hotkey Editor</a></li>
-            <li><a href="#asset-group-maker" class="nav-link">Asset Group maker</a></li>
-            <li><a href="#map-builder" class="nav-link">Map Builder</a></li>
-            <li><a href="#cleanup" class="nav-link">Cleanup</a></li>
+            <li><a href="#loading-editor" class="nav-link">Loading Editor</a></li>
           </ul>
         </div>
         <div class="nav-group">
-          <div class="nav-group-title">Guides</div>
+          <div class="nav-group-title">Build & Workflow</div>
           <ul class="nav-links">
-            <li><a href="#radio-sound" class="nav-link">Radio</a></li>
+            <li><a href="#map-builder" class="nav-link">Map Builder</a></li>
+            <li><a href="#git-sync" class="nav-link">Git Sync & VMAP Merge</a></li>
+            <li><a href="#addon-manager" class="nav-link">Addon Manager & Exporter</a></li>
+            <li><a href="#cleanup" class="nav-link">Cleanup & Maintenance</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <div class="nav-group-title">Porting Tools</div>
+          <ul class="nav-links">
+            <li><a href="#unreal-porter" class="nav-link">UnrealPorter</a></li>
+            <li><a href="#source-porter" class="nav-link">SourcePorter</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <div class="nav-group-title">Guides & Examples</div>
+          <ul class="nav-links">
+            <li><a href="#smartprop-guide" class="nav-link">SmartProp Guide</a></li>
+            <li><a href="#radio-sound" class="nav-link">Radio & Audio Looping</a></li>
             <li><a href="#vsmart-examples" class="nav-link">VSmart Examples</a></li>
+            <li><a href="#writing-docs" class="nav-link">Writing Documentation</a></li>
           </ul>
         </div>
         <div class="nav-group">
           <div class="nav-group-title">Reference</div>
           <ul class="nav-links">
+            <li><a href="#preferences" class="nav-link">Preferences & Settings</a></li>
             <li><a href="#faq" class="nav-link">FAQ & Troubleshooting</a></li>
-            <li><a href="#writing-docs" class="nav-link">Writing Documentation</a></li>
           </ul>
         </div>
       </nav>
@@ -739,18 +757,26 @@
     const contentMap = {
       'introduction': { file: 'introduction.md', next: 'installation' },
       'installation': { file: 'installation.md', prev: 'introduction', next: 'quick-start' },
-      'quick-start': { file: 'quick-start.md', prev: 'installation', next: 'sound-editor' },
-      'sound-editor': { file: 'sound-editor.md', prev: 'quick-start', next: 'smart-prop-editor' },
-      'smart-prop-editor': { file: 'smart-prop-editor.md', prev: 'sound-editor', next: 'loading-editor' },
-      'loading-editor': { file: 'loading-editor.md', prev: 'smart-prop-editor', next: 'hotkey-editor' },
-      'hotkey-editor': { file: 'hotkey-editor.md', prev: 'loading-editor', next: 'asset-group-maker' },
-      'asset-group-maker': { file: 'asset-group.md', prev: 'hotkey-editor', next: 'map-builder' },
-      'map-builder': { file: 'map-builder.md', prev: 'asset-group-maker', next: 'cleanup' },
-      'cleanup': { file: 'cleanup.md', prev: 'map-builder', next: 'radio-sound' },
-      'radio-sound': { file: 'guides/radio-sound.md', prev: 'cleanup', next: 'vsmart-examples' },
-      'vsmart-examples': { file: 'vsmart-examples.md', prev: 'radio-sound', next: 'faq' },
-      'faq': { file: 'faq.md', prev: 'vsmart-examples', next: 'writing-docs' },
-      'writing-docs': { file: 'guides/writing-docs.md', prev: 'faq' }
+      'quick-start': { file: 'quick-start.md', prev: 'installation', next: 'smart-prop-editor' },
+      'smart-prop-editor': { file: 'smart-prop-editor.md', prev: 'quick-start', next: 'sound-editor' },
+      'sound-editor': { file: 'sound-editor.md', prev: 'smart-prop-editor', next: 'audio-editor' },
+      'audio-editor': { file: 'audio-editor.md', prev: 'sound-editor', next: 'detail-prop-editor' },
+      'detail-prop-editor': { file: 'detail-prop-editor.md', prev: 'audio-editor', next: 'asset-group-maker' },
+      'asset-group-maker': { file: 'asset-group.md', prev: 'detail-prop-editor', next: 'hotkey-editor' },
+      'hotkey-editor': { file: 'hotkey-editor.md', prev: 'asset-group-maker', next: 'loading-editor' },
+      'loading-editor': { file: 'loading-editor.md', prev: 'hotkey-editor', next: 'map-builder' },
+      'map-builder': { file: 'map-builder.md', prev: 'loading-editor', next: 'git-sync' },
+      'git-sync': { file: 'git-sync.md', prev: 'map-builder', next: 'addon-manager' },
+      'addon-manager': { file: 'addon-manager.md', prev: 'git-sync', next: 'cleanup' },
+      'cleanup': { file: 'cleanup.md', prev: 'addon-manager', next: 'unreal-porter' },
+      'unreal-porter': { file: 'unreal-porter.md', prev: 'cleanup', next: 'source-porter' },
+      'source-porter': { file: 'source-porter.md', prev: 'unreal-porter', next: 'smartprop-guide' },
+      'smartprop-guide': { file: 'guides/smartprop-guide.md', prev: 'source-porter', next: 'radio-sound' },
+      'radio-sound': { file: 'guides/radio-sound.md', prev: 'smartprop-guide', next: 'vsmart-examples' },
+      'vsmart-examples': { file: 'vsmart-examples.md', prev: 'radio-sound', next: 'writing-docs' },
+      'writing-docs': { file: 'guides/writing-docs.md', prev: 'vsmart-examples', next: 'preferences' },
+      'preferences': { file: 'preferences.md', prev: 'writing-docs', next: 'faq' },
+      'faq': { file: 'faq.md', prev: 'preferences' }
     };
 
     const app = {

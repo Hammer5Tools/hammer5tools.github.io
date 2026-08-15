@@ -1,59 +1,65 @@
-# Asset Group maker
+# AssetGroup Maker
 
-Make a bunch of assets at once using basic config files. Point it at a folder and it'll spit out files for massive asset sets. It keeps everything consistent and saves you from doing it all by hand.
-
-![Demo](https://cdn.iframe.ly/files/713c52ce6c0a2e9ba6abfacfc330931c.mp4)
+Batch-create hundreds of Source 2 models (`.vmdl`), materials (`.vmat`), and configuration scripts simultaneously using dynamic text templates.
 
 ---
 
-## Interface
+## Overview
 
-The Asset Group maker interface is divided into three key functional areas designed for maximum efficiency:
+When setting up large asset libraries (e.g. modular building kits, trim sheets, prop collections), manually authoring individual `.vmdl` or `.vmat` files is tedious.
 
-![Interface Overview](docs/images/asset_group/interface.png)
-
-- **Explorer (Left)**: Manage configuration files and trigger setup actions.
-- **Editor (Middle)**: Define the source template with dynamic replacement support.
-- **Process Actions**: Finalize and generate assets based on defined rules.
-
-### Editor
-Input your template or source file content here. Global and local replacements can be used to dynamically swap values for each generated asset.
+The **AssetGroup Maker** reads source folders, applies global and local variable substitutions to user-defined template strings, and generates complete Source 2 asset files in bulk.
 
 ---
 
-## Replacements (Global Config)
+## Interface Layout
 
-The program processes each file by replacing specified source strings with destination values for each asset.
-
-![Replacements](docs/images/asset_group/replacements.png)
-
-### Variables
-Right-clicking in the replacements fields opens a context menu with available variables:
-- `asset_name`: Automatically inserts the name of the asset being processed.
-- `folder_path`: Inserts the relative path of the folder containing the asset within the addon.
-
-Example:
-- input: `filename = "#$FOLDER_PATH$#/#$ASSET_NAME$#.fbx"`
-- output: `filename = "sounds/bird_01.fbx"`
+| Area | Description |
+|---|---|
+| **Explorer (Left)** | Manage configuration profiles and select target source asset directories. |
+| **Editor (Center)** | Template editor containing the base KV3 file structure with replacement tokens. |
+| **Process Actions (Right)** | Define matching algorithms, ignore lists, and trigger batch generation. |
 
 ---
 
-## Process Settings
+## Dynamic Replacement Tokens
 
-The Process tab allows configuration of the logic for how assets are generated.
+The editor evaluates special macro variables when generating each asset:
 
-![Process Settings](docs/images/asset_group/process.png)
+| Variable | Description |
+|---|---|
+| `#$ASSET_NAME$#` | Name of the current source file being processed (without extension). |
+| `#$FOLDER_PATH$#` | Relative folder path inside the addon content directory. |
+| `#$ADDON_NAME$#` | Current active addon name. |
 
-- **Files Selection**: Define which files in the selected folder should be included.
-- **Algorithms**: Choose the processing logic (e.g., "One to One" to create one asset for each file).
-- **Ignorelist**: Specify files or patterns to be skipped during the bulk creation process.
+### Example Template (Model Generation)
+```kv3
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-3596-4313-a41f-70c3226768f9} -->
+{
+    rootNode = 
+    {
+        _class = "RootNode"
+        children = 
+        [
+            {
+                _class = "RenderMeshList"
+                children = 
+                [
+                    {
+                        _class = "RenderMeshFile"
+                        filename = "#$FOLDER_PATH$#/#$ASSET_NAME$#.fbx"
+                    }
+                ]
+            }
+        ]
+    }
+}
+```
 
+---
 
-## Referencing
+## Processing Algorithms
 
-Referencing is a method that automatically loads content from a referenced file. The loaded content is then used for the Process Action. If any changes are made to the referenced file, the program will automatically trigger the Process Action, but only if there is a referenced file in the configuration.
-
-To select a reference file, either drag and drop the file or click the Select button in the Referencing section of the Explorer tab.
-
->[!WARNING]
-The referenced file must have a relative path. Files cannot be selected a file outside of the add-on directory.
+- **One-to-One**: Generates one output file for every matched source file.
+- **Referenced File**: Automatically re-generates assets whenever the referenced source template changes.
+- **Ignore List**: Excludes specific patterns (e.g. `*_lod*`, `*.tmp`).
