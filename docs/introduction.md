@@ -15,21 +15,21 @@ Welcome to the **Hammer 5 Tools** documentation. Hammer 5 Tools is a comprehensi
 Hammer 5 Tools unifies multiple specialized editors and utilities into a single integrated environment:
 
 ### Visual Editors
-- **[SmartProp Editor](#smart-prop-editor)**: Node-based visual editor for procedural props (`.vsmart`), supporting real-time 3D viewport previews, expressions, and deformers.
-- **[SoundEvent Editor](#sound-editor)**: Comprehensive editor for `soundevents_addon.vsndevts`, featuring live NetConsole playback, curve visualizers, and base game soundevent decompilation.
-- **[Audio Editor](#audio-editor)**: Built-in audio editor for inspecting waveforms, setting RIFF cue loop points, and applying DSP volume and fade ramps.
-- **[DetailProp Editor](#detail-prop-editor)**: Visual management of `scripts/detail_prop_types.vdata` for procedural grass, rocks, and clutter bound to material layers.
-- **[AssetGroup Maker](#asset-group-maker)**: Batch asset generator creating hundreds of Source 2 materials, models, and batch compile scripts from templates.
-- **[Hotkey Editor](#hotkey-editor)**: Customizable shortcut manager and preset switcher for Hammer, ModelDoc, and other Source 2 tools.
-- **[Loading Editor](#loading-editor)**: Multi-resolution loading screen screenshot generator, history timeline, and map icon / description manager.
+- <img src="icon/editors/smartprop_editor.png" class="inline-icon" alt=""> **[SmartProp Editor](#smart-prop-editor)**: Node-based visual editor for procedural props (`.vsmart`), supporting real-time 3D viewport previews, expressions, and deformers.
+- <img src="icon/editors/soundevent_editor.png" class="inline-icon" alt=""> **[SoundEvent Editor](#sound-editor)**: Comprehensive editor for `soundevents_addon.vsndevts`, featuring live NetConsole playback, curve visualizers, and base game soundevent decompilation.
+- <img src="icon/editors/audio_editor.png" class="inline-icon" alt=""> **[Audio Editor](#audio-editor)**: Built-in audio editor for inspecting waveforms, setting RIFF cue loop points, and applying DSP volume and fade ramps.
+- <img src="icon/editors/detail_prop_editor.png" class="inline-icon" alt=""> **[DetailProp Editor](#detail-prop-editor)**: Visual management of `scripts/detail_prop_types.vdata` for procedural grass, rocks, and clutter bound to material layers.
+- <img src="icon/editors/assetgroup_maker.png" class="inline-icon" alt=""> **[AssetGroup Maker](#asset-group-maker)**: Batch asset generator creating hundreds of Source 2 materials, models, and batch compile scripts from templates.
+- <img src="icon/editors/hotkey_editor.png" class="inline-icon" alt=""> **[Hotkey Editor](#hotkey-editor)**: Customizable shortcut manager and preset switcher for Hammer, ModelDoc, and other Source 2 tools.
+- <img src="icon/editors/loading_editor.png" class="inline-icon" alt=""> **[Loading Editor](#loading-editor)**: Multi-resolution loading screen screenshot generator, history timeline, and map icon / description manager.
 
 ### Build & Migration Pipeline
-- **[Map Builder](#map-builder)**: Fast, full, and batch compile manager for `.vmap` files with live telemetry (CPU/RAM) and automated cubemap baking via NetConsole.
-- **[UnrealPorter](#unreal-porter)**: Full-featured bridge converting Unreal Engine 5 levels, meshes, PBR materials, textures, and lights into Source 2 assets.
-- **[SourcePorter](#source-porter)**: Automated porting suite converting GoldSrc and Source 1 BSP maps, models, materials, and textures into Source 2 with issue auto-repair.
-- **[Git Sync & VMAP Merge](#git-sync)**: Team collaboration system with an intelligent 3-way merge driver specifically built for Source 2 `.vmap` files.
-- **[Addon Manager & Exporter](#addon-manager)**: Package, export, import, and organize CS2 addon projects with dependency resolution and clean release archiving.
-- **[Cleanup Tool](#cleanup)**: Sweeps unused assets from the addon content directory and purges the `_vrad3` lightmap cache.
+- <img src="icon/editors/map_builder.png" class="inline-icon" alt=""> **[Map Builder](#map-builder)**: Fast, full, and batch compile manager for `.vmap` files with live telemetry (CPU/RAM) and automated cubemap baking via NetConsole.
+- <img src="icon/editors/unreal_porter.png" class="inline-icon" alt=""> **[UnrealPorter](#unreal-porter)**: Full-featured bridge converting Unreal Engine 5 levels, meshes, PBR materials, textures, and lights into Source 2 assets.
+- <img src="icon/editors/source_porter.png" class="inline-icon" alt=""> **[SourcePorter](#source-porter)**: Automated porting suite converting GoldSrc and Source 1 BSP maps, models, materials, and textures into Source 2 with issue auto-repair.
+- <img src="icon/editors/git_sync.svg" class="inline-icon" alt=""> **[Git Sync & VMAP Merge](#git-sync)**: Team collaboration system with an intelligent 3-way merge driver specifically built for Source 2 `.vmap` files.
+- <img src="icon/editors/addon_manager.svg" class="inline-icon" alt=""> **[Addon Manager & Exporter](#addon-manager)**: Package, export, import, and organize CS2 addon projects with dependency resolution and clean release archiving.
+- <img src="icon/editors/cleanup.svg" class="inline-icon" alt=""> **[Cleanup Tool](#cleanup)**: Sweeps unused assets from the addon content directory and purges the `_vrad3` lightmap cache.
 
 ---
 

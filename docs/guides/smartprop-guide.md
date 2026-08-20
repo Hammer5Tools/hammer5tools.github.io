@@ -9,7 +9,8 @@ SmartProps are an intuitive system in Source 2 used to group objects and attach 
 
 ---
 
-## How to Use SmartProps in Hammer
+<details>
+<summary><h2>How to Use SmartProps in Hammer</h2></summary>
 
 Activate the **Selection Tool** (`Shift + S` or `Q`) in the Hammer viewport to display and interact with SmartProp control widgets.
 
@@ -55,6 +56,8 @@ All exposed SmartProp parameters and variables appear in the **Object Properties
 To bake a procedural SmartProp into standard static entities, right-click the prop in the viewport and select **Selected smart props → Collapse Smart Props**.
 
 ![Collapse Smart Props](docs/images/smartprop_guide/smartprop-collapse-menu.png)
+
+</details>
 
 ---
 

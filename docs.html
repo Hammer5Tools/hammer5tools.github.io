@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Documentation | Hammer 5 Tools</title>
   <meta name="description" content="Official documentation for Hammer 5 Tools: CS2 Workshop utilities.">
+  <meta name="color-scheme" content="dark light">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,9 +39,14 @@
       --color-caution: #ef4444;
       --code-bg: rgba(255, 255, 255, 0.05);
 
+      --scrollbar-thumb: rgba(255, 255, 255, 0.2);
+      --scrollbar-thumb-hover: rgba(255, 255, 255, 0.35);
+      --scrollbar-track: transparent;
+
       --max-content-width: 72ch;
       --sidebar-width: 280px;
       --toc-width: 240px;
+      color-scheme: dark;
     }
 
     [data-theme="light"] {
@@ -51,6 +57,11 @@
       --text-main: #1e293b;
       --text-muted: #64748b;
       --code-bg: rgba(0, 0, 0, 0.05);
+
+      --scrollbar-thumb: rgba(0, 0, 0, 0.2);
+      --scrollbar-thumb-hover: rgba(0, 0, 0, 0.35);
+      --scrollbar-track: transparent;
+      color-scheme: light;
     }
 
     a {
@@ -67,6 +78,30 @@
 
     * {
       box-sizing: border-box;
+      scrollbar-width: thin;
+      scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--scrollbar-track);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--scrollbar-thumb);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--scrollbar-thumb-hover);
+    }
+
+    ::-webkit-scrollbar-corner {
+      background: transparent;
     }
 
     html,
@@ -249,15 +284,43 @@
       min-height: 40px;
     }
 
+    .nav-icon {
+      width: 18px;
+      height: 18px;
+      margin-right: 0.65rem;
+      flex-shrink: 0;
+      object-fit: contain;
+      opacity: 0.85;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
     .nav-link:hover {
       color: var(--text-main);
       background: var(--code-bg);
+    }
+
+    .nav-link:hover .nav-icon,
+    .nav-link.active .nav-icon {
+      opacity: 1;
+      transform: scale(1.05);
     }
 
     .nav-link.active {
       color: var(--color-primary);
       font-weight: 500;
       background: var(--color-primary-soft);
+    }
+
+    .prose img.inline-icon {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      margin: 0 0.4rem 0 0;
+      vertical-align: -3px;
+      object-fit: contain;
     }
 
     /* Content Area */
@@ -489,6 +552,59 @@
       border-color: var(--color-caution);
     }
 
+    /* Collapsible Details */
+    details {
+      background: var(--code-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 0.85rem 1.25rem;
+      margin: 1.5rem 0;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    details[open] {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    [data-theme="light"] details[open] {
+      background: rgba(0, 0, 0, 0.02);
+      border-color: rgba(0, 0, 0, 0.15);
+    }
+
+    summary {
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      color: var(--color-primary);
+      user-select: none;
+      outline: none;
+      transition: opacity 0.15s;
+    }
+
+    summary h2,
+    summary h3 {
+      display: inline;
+      font-size: inherit;
+      font-weight: inherit;
+      color: inherit;
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    summary:hover {
+      opacity: 0.85;
+    }
+
+    details > *:not(summary) {
+      margin-top: 0.75rem;
+    }
+
+    details > *:last-child {
+      margin-bottom: 0;
+    }
+
     /* Tables */
     table {
       width: 100%;
@@ -524,7 +640,7 @@
     /* Pagination */
     .doc-pagination {
       display: flex;
-      justify-content: space-between;
+      gap: 1rem;
       margin-top: 4rem;
       padding-top: 2rem;
       border-top: 1px solid var(--border-color);
@@ -535,19 +651,107 @@
       color: var(--text-main);
       display: flex;
       flex-direction: column;
-      gap: 0.25rem;
+      gap: 0.35rem;
+      padding: 0.9rem 1.25rem;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background: var(--bg-sidebar);
+      flex: 1 1 0;
+      min-width: 0;
+      transition: border-color 0.2s, background-color 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+
+    .pagination-btn:hover {
+      border-color: var(--color-primary);
+      background: var(--color-primary-soft);
+      transform: translateY(-2px);
+      text-decoration: none;
+      opacity: 1;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+    }
+
+    .pagination-btn.prev {
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .pagination-btn.next {
+      align-items: flex-end;
+      text-align: right;
+      margin-left: auto;
     }
 
     .pagination-label {
       font-size: 0.75rem;
+      font-weight: 600;
       color: var(--text-muted);
       text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
     .pagination-title {
       font-weight: 600;
+      font-size: 0.95rem;
       color: var(--color-primary);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      line-height: 1.3;
+      max-width: 100%;
     }
+
+    .pagination-title-text {
+      white-space: normal;
+      word-break: break-word;
+    }
+
+    .pagination-arrow {
+      flex-shrink: 0;
+      color: var(--color-primary);
+      transition: transform 0.2s ease;
+    }
+
+    .pagination-btn.prev:hover .pagination-arrow {
+      transform: translateX(-3px);
+    }
+
+    .pagination-btn.next:hover .pagination-arrow {
+      transform: translateX(3px);
+    }
+
+    .prose .pagination-btn img,
+    .prose .doc-pagination img,
+    .pagination-icon {
+      width: 18px !important;
+      height: 18px !important;
+      min-width: 18px !important;
+      min-height: 18px !important;
+      max-width: 18px !important;
+      max-height: 18px !important;
+      object-fit: contain !important;
+      flex-shrink: 0 !important;
+      margin: 0 !important;
+      border: none !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      display: inline-block !important;
+      vertical-align: middle !important;
+    }
+
+    @media (max-width: 640px) {
+      .doc-pagination {
+        flex-direction: column;
+      }
+      .pagination-btn {
+        width: 100%;
+      }
+      .pagination-btn.next {
+        margin-left: 0;
+        align-items: flex-start;
+        text-align: left;
+      }
+    }
+
 
     /* Theme Toggle */
     .theme-toggle {
@@ -684,53 +888,53 @@
         <div class="nav-group">
           <div class="nav-group-title">Getting Started</div>
           <ul class="nav-links">
-            <li><a href="#introduction" class="nav-link">Introduction</a></li>
-            <li><a href="#installation" class="nav-link">Installation & Setup</a></li>
-            <li><a href="#quick-start" class="nav-link">Quick Start</a></li>
+            <li><a href="#introduction" class="nav-link"><img src="icon/editors/introduction.svg" class="nav-icon" alt=""><span>Introduction</span></a></li>
+            <li><a href="#installation" class="nav-link"><img src="icon/editors/installation.svg" class="nav-icon" alt=""><span>Installation & Setup</span></a></li>
+            <li><a href="#quick-start" class="nav-link"><img src="icon/editors/quick_start.svg" class="nav-icon" alt=""><span>Quick Start</span></a></li>
           </ul>
         </div>
         <div class="nav-group">
           <div class="nav-group-title">Visual Editors</div>
           <ul class="nav-links">
-            <li><a href="#smart-prop-editor" class="nav-link">SmartProp Editor</a></li>
-            <li><a href="#sound-editor" class="nav-link">SoundEvent Editor</a></li>
-            <li><a href="#audio-editor" class="nav-link">Audio Editor</a></li>
-            <li><a href="#detail-prop-editor" class="nav-link">DetailProp Editor</a></li>
-            <li><a href="#asset-group-maker" class="nav-link">AssetGroup Maker</a></li>
-            <li><a href="#hotkey-editor" class="nav-link">Hotkey Editor</a></li>
-            <li><a href="#loading-editor" class="nav-link">Loading Editor</a></li>
+            <li><a href="#smart-prop-editor" class="nav-link"><img src="icon/editors/smartprop_editor.png" class="nav-icon" alt=""><span>SmartProp Editor</span></a></li>
+            <li><a href="#sound-editor" class="nav-link"><img src="icon/editors/soundevent_editor.png" class="nav-icon" alt=""><span>SoundEvent Editor</span></a></li>
+            <li><a href="#audio-editor" class="nav-link"><img src="icon/editors/audio_editor.png" class="nav-icon" alt=""><span>Audio Editor</span></a></li>
+            <li><a href="#detail-prop-editor" class="nav-link"><img src="icon/editors/detail_prop_editor.png" class="nav-icon" alt=""><span>DetailProp Editor</span></a></li>
+            <li><a href="#asset-group-maker" class="nav-link"><img src="icon/editors/assetgroup_maker.png" class="nav-icon" alt=""><span>AssetGroup Maker</span></a></li>
+            <li><a href="#hotkey-editor" class="nav-link"><img src="icon/editors/hotkey_editor.png" class="nav-icon" alt=""><span>Hotkey Editor</span></a></li>
+            <li><a href="#loading-editor" class="nav-link"><img src="icon/editors/loading_editor.png" class="nav-icon" alt=""><span>Loading Editor</span></a></li>
           </ul>
         </div>
         <div class="nav-group">
           <div class="nav-group-title">Build & Workflow</div>
           <ul class="nav-links">
-            <li><a href="#map-builder" class="nav-link">Map Builder</a></li>
-            <li><a href="#git-sync" class="nav-link">Git Sync & VMAP Merge</a></li>
-            <li><a href="#addon-manager" class="nav-link">Addon Manager & Exporter</a></li>
-            <li><a href="#cleanup" class="nav-link">Cleanup & Maintenance</a></li>
+            <li><a href="#map-builder" class="nav-link"><img src="icon/editors/map_builder.png" class="nav-icon" alt=""><span>Map Builder</span></a></li>
+            <li><a href="#git-sync" class="nav-link"><img src="icon/editors/git_sync.svg" class="nav-icon" alt=""><span>Git Sync & VMAP Merge</span></a></li>
+            <li><a href="#addon-manager" class="nav-link"><img src="icon/editors/addon_manager.svg" class="nav-icon" alt=""><span>Addon Manager & Exporter</span></a></li>
+            <li><a href="#cleanup" class="nav-link"><img src="icon/editors/cleanup.svg" class="nav-icon" alt=""><span>Cleanup & Maintenance</span></a></li>
           </ul>
         </div>
         <div class="nav-group">
           <div class="nav-group-title">Porting Tools</div>
           <ul class="nav-links">
-            <li><a href="#unreal-porter" class="nav-link">UnrealPorter</a></li>
-            <li><a href="#source-porter" class="nav-link">SourcePorter</a></li>
+            <li><a href="#unreal-porter" class="nav-link"><img src="icon/editors/unreal_porter.png" class="nav-icon" alt=""><span>UnrealPorter</span></a></li>
+            <li><a href="#source-porter" class="nav-link"><img src="icon/editors/source_porter.png" class="nav-icon" alt=""><span>SourcePorter</span></a></li>
           </ul>
         </div>
         <div class="nav-group">
           <div class="nav-group-title">Guides & Examples</div>
           <ul class="nav-links">
-            <li><a href="#smartprop-guide" class="nav-link">SmartProp Guide</a></li>
-            <li><a href="#radio-sound" class="nav-link">Radio & Audio Looping</a></li>
-            <li><a href="#vsmart-examples" class="nav-link">VSmart Examples</a></li>
-            <li><a href="#writing-docs" class="nav-link">Writing Documentation</a></li>
+            <li><a href="#smartprop-guide" class="nav-link"><img src="icon/editors/smartprop_guide.svg" class="nav-icon" alt=""><span>SmartProp Guide</span></a></li>
+            <li><a href="#radio-sound" class="nav-link"><img src="icon/editors/radio_sound.png" class="nav-icon" alt=""><span>Radio & Audio Looping</span></a></li>
+            <li><a href="#vsmart-examples" class="nav-link"><img src="icon/editors/vsmart_examples.png" class="nav-icon" alt=""><span>VSmart Examples</span></a></li>
+            <li><a href="#writing-docs" class="nav-link"><img src="icon/editors/writing_docs.svg" class="nav-icon" alt=""><span>Writing Documentation</span></a></li>
           </ul>
         </div>
         <div class="nav-group">
           <div class="nav-group-title">Reference</div>
           <ul class="nav-links">
-            <li><a href="#preferences" class="nav-link">Preferences & Settings</a></li>
-            <li><a href="#faq" class="nav-link">FAQ & Troubleshooting</a></li>
+            <li><a href="#preferences" class="nav-link"><img src="icon/editors/preferences.svg" class="nav-icon" alt=""><span>Preferences & Settings</span></a></li>
+            <li><a href="#faq" class="nav-link"><img src="icon/editors/faq.svg" class="nav-icon" alt=""><span>FAQ & Troubleshooting</span></a></li>
           </ul>
         </div>
       </nav>
@@ -755,28 +959,28 @@
   <script>
     // Metadata and structure
     const contentMap = {
-      'introduction': { file: 'introduction.md', next: 'installation' },
-      'installation': { file: 'installation.md', prev: 'introduction', next: 'quick-start' },
-      'quick-start': { file: 'quick-start.md', prev: 'installation', next: 'smart-prop-editor' },
-      'smart-prop-editor': { file: 'smart-prop-editor.md', prev: 'quick-start', next: 'sound-editor' },
-      'sound-editor': { file: 'sound-editor.md', prev: 'smart-prop-editor', next: 'audio-editor' },
-      'audio-editor': { file: 'audio-editor.md', prev: 'sound-editor', next: 'detail-prop-editor' },
-      'detail-prop-editor': { file: 'detail-prop-editor.md', prev: 'audio-editor', next: 'asset-group-maker' },
-      'asset-group-maker': { file: 'asset-group.md', prev: 'detail-prop-editor', next: 'hotkey-editor' },
-      'hotkey-editor': { file: 'hotkey-editor.md', prev: 'asset-group-maker', next: 'loading-editor' },
-      'loading-editor': { file: 'loading-editor.md', prev: 'hotkey-editor', next: 'map-builder' },
-      'map-builder': { file: 'map-builder.md', prev: 'loading-editor', next: 'git-sync' },
-      'git-sync': { file: 'git-sync.md', prev: 'map-builder', next: 'addon-manager' },
-      'addon-manager': { file: 'addon-manager.md', prev: 'git-sync', next: 'cleanup' },
-      'cleanup': { file: 'cleanup.md', prev: 'addon-manager', next: 'unreal-porter' },
-      'unreal-porter': { file: 'unreal-porter.md', prev: 'cleanup', next: 'source-porter' },
-      'source-porter': { file: 'source-porter.md', prev: 'unreal-porter', next: 'smartprop-guide' },
-      'smartprop-guide': { file: 'guides/smartprop-guide.md', prev: 'source-porter', next: 'radio-sound' },
-      'radio-sound': { file: 'guides/radio-sound.md', prev: 'smartprop-guide', next: 'vsmart-examples' },
-      'vsmart-examples': { file: 'vsmart-examples.md', prev: 'radio-sound', next: 'writing-docs' },
-      'writing-docs': { file: 'guides/writing-docs.md', prev: 'vsmart-examples', next: 'preferences' },
-      'preferences': { file: 'preferences.md', prev: 'writing-docs', next: 'faq' },
-      'faq': { file: 'faq.md', prev: 'preferences' }
+      'introduction': { file: 'introduction.md', title: 'Introduction', next: 'installation', icon: 'icon/editors/introduction.svg' },
+      'installation': { file: 'installation.md', title: 'Installation & Setup', prev: 'introduction', next: 'quick-start', icon: 'icon/editors/installation.svg' },
+      'quick-start': { file: 'quick-start.md', title: 'Quick Start', prev: 'installation', next: 'smart-prop-editor', icon: 'icon/editors/quick_start.svg' },
+      'smart-prop-editor': { file: 'smart-prop-editor.md', title: 'SmartProp Editor', prev: 'quick-start', next: 'sound-editor', icon: 'icon/editors/smartprop_editor.png' },
+      'sound-editor': { file: 'sound-editor.md', title: 'SoundEvent Editor', prev: 'smart-prop-editor', next: 'audio-editor', icon: 'icon/editors/soundevent_editor.png' },
+      'audio-editor': { file: 'audio-editor.md', title: 'Audio Editor', prev: 'sound-editor', next: 'detail-prop-editor', icon: 'icon/editors/audio_editor.png' },
+      'detail-prop-editor': { file: 'detail-prop-editor.md', title: 'DetailProp Editor', prev: 'audio-editor', next: 'asset-group-maker', icon: 'icon/editors/detail_prop_editor.png' },
+      'asset-group-maker': { file: 'asset-group.md', title: 'AssetGroup Maker', prev: 'detail-prop-editor', next: 'hotkey-editor', icon: 'icon/editors/assetgroup_maker.png' },
+      'hotkey-editor': { file: 'hotkey-editor.md', title: 'Hotkey Editor', prev: 'asset-group-maker', next: 'loading-editor', icon: 'icon/editors/hotkey_editor.png' },
+      'loading-editor': { file: 'loading-editor.md', title: 'Loading Editor', prev: 'hotkey-editor', next: 'map-builder', icon: 'icon/editors/loading_editor.png' },
+      'map-builder': { file: 'map-builder.md', title: 'Map Builder', prev: 'loading-editor', next: 'git-sync', icon: 'icon/editors/map_builder.png' },
+      'git-sync': { file: 'git-sync.md', title: 'Git Sync & VMAP Merge', prev: 'map-builder', next: 'addon-manager', icon: 'icon/editors/git_sync.svg' },
+      'addon-manager': { file: 'addon-manager.md', title: 'Addon Manager & Exporter', prev: 'git-sync', next: 'cleanup', icon: 'icon/editors/addon_manager.svg' },
+      'cleanup': { file: 'cleanup.md', title: 'Cleanup & Maintenance', prev: 'addon-manager', next: 'unreal-porter', icon: 'icon/editors/cleanup.svg' },
+      'unreal-porter': { file: 'unreal-porter.md', title: 'UnrealPorter', prev: 'cleanup', next: 'source-porter', icon: 'icon/editors/unreal_porter.png' },
+      'source-porter': { file: 'source-porter.md', title: 'SourcePorter', prev: 'unreal-porter', next: 'smartprop-guide', icon: 'icon/editors/source_porter.png' },
+      'smartprop-guide': { file: 'guides/smartprop-guide.md', title: 'SmartProp Guide', prev: 'source-porter', next: 'radio-sound', icon: 'icon/editors/smartprop_guide.svg' },
+      'radio-sound': { file: 'guides/radio-sound.md', title: 'Radio & Audio Looping', prev: 'smartprop-guide', next: 'vsmart-examples', icon: 'icon/editors/radio_sound.png' },
+      'vsmart-examples': { file: 'vsmart-examples.md', title: 'VSmart Examples', prev: 'radio-sound', next: 'writing-docs', icon: 'icon/editors/vsmart_examples.png' },
+      'writing-docs': { file: 'guides/writing-docs.md', title: 'Writing Documentation', prev: 'vsmart-examples', next: 'preferences', icon: 'icon/editors/writing_docs.svg' },
+      'preferences': { file: 'preferences.md', title: 'Preferences & Settings', prev: 'writing-docs', next: 'faq', icon: 'icon/editors/preferences.svg' },
+      'faq': { file: 'faq.md', title: 'FAQ & Troubleshooting', prev: 'preferences', icon: 'icon/editors/faq.svg' }
     };
 
     const app = {
@@ -926,7 +1130,7 @@
             const text = await res.text();
             // Extract h1 for title
             const titleMatch = text.match(/^#\s+(.+)$/m);
-            const title = titleMatch ? titleMatch[1] : id;
+            const title = meta.title || (titleMatch ? titleMatch[1] : id);
             data.push({ id, title, body: text });
           } catch (e) { console.error(`Search preload failed for ${id}`); }
         }
@@ -959,12 +1163,19 @@
           if (results.length === 0) {
             resultsDropdown.innerHTML = '<div style="padding: 1rem; color: var(--text-muted);">No results found.</div>';
           } else {
-            resultsDropdown.innerHTML = results.map(r => `
+            resultsDropdown.innerHTML = results.map(r => {
+              const itemMeta = contentMap[r.item.id];
+              const iconHtml = itemMeta && itemMeta.icon ? `<img src="${itemMeta.icon}" style="width:16px;height:16px;object-fit:contain;flex-shrink:0;">` : '';
+              return `
               <a href="#${r.item.id}" style="display: block; padding: 0.75rem 1rem; text-decoration: none; border-bottom: 1px solid var(--border-color);">
-                <div style="font-weight: 600; color: var(--color-primary); font-size: 0.9rem;">${r.item.title}</div>
-                <div style="font-size: 0.8rem; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${r.item.body.substring(0, 100)}...</div>
+                <div style="display: flex; align-items: center; gap: 0.5rem; font-weight: 600; color: var(--color-primary); font-size: 0.9rem;">
+                  ${iconHtml}
+                  <span>${r.item.title}</span>
+                </div>
+                <div style="font-size: 0.8rem; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 0.2rem;">${r.item.body.substring(0, 100)}...</div>
               </a>
-            `).join('');
+            `;
+            }).join('');
           }
           resultsDropdown.style.display = 'block';
         });
@@ -978,6 +1189,14 @@
         document.getElementById('theme-toggle').addEventListener('click', () => {
           this.setTheme(this.theme === 'dark' ? 'light' : 'dark');
         });
+      },
+
+      getPageTitle(id) {
+        if (!id) return '';
+        if (contentMap[id] && contentMap[id].title) return contentMap[id].title;
+        const link = document.querySelector(`.nav-link[href="#${id}"] span`);
+        if (link && link.textContent.trim()) return link.textContent.trim();
+        return id.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ');
       },
 
       async handleRouting() {
@@ -1016,7 +1235,9 @@
           if (activeLink) {
             const group = activeLink.closest('.nav-group');
             const title = group ? group.querySelector('.nav-group-title').textContent : '';
-            breadcrumbPrefix = `${title} &rsaquo; ${activeLink.textContent}`;
+            const linkSpan = activeLink.querySelector('span');
+            const linkText = linkSpan ? linkSpan.textContent : activeLink.textContent;
+            breadcrumbPrefix = `${title} &rsaquo; ${linkText.trim()}`;
           }
 
           // Construct Full HTML with Breadcrumbs and Pagination
@@ -1024,26 +1245,36 @@
           rendered += marked.parse(text);
           
           // Add Pagination
-          rendered += '<div class="doc-pagination">';
-          if (meta.prev) {
-            const p = contentMap[meta.prev];
-            // Compute display name for next/prev
-            const prevLabel = meta.prev.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ');
-            rendered += `<a href="#${meta.prev}" class="pagination-btn">
-              <span class="pagination-label">Previous</span>
-              <span class="pagination-title">&larr; ${prevLabel}</span>
-            </a>`;
-          } else { rendered += '<div></div>'; }
-          
-          if (meta.next) {
-            const n = contentMap[meta.next];
-            const nextLabel = meta.next.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ');
-            rendered += `<a href="#${meta.next}" class="pagination-btn">
-              <span class="pagination-label">Next</span>
-              <span class="pagination-title">${nextLabel} &rarr;</span>
-            </a>`;
+          if (meta.prev || meta.next) {
+            rendered += '<div class="doc-pagination">';
+            if (meta.prev) {
+              const p = contentMap[meta.prev];
+              const prevTitle = (p && p.title) || this.getPageTitle(meta.prev);
+              const prevIcon = p && p.icon ? `<img src="${p.icon}" class="pagination-icon" alt="">` : '';
+              rendered += `<a href="#${meta.prev}" class="pagination-btn prev">
+                <span class="pagination-label">Previous</span>
+                <span class="pagination-title">
+                  <svg class="pagination-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                  ${prevIcon}
+                  <span class="pagination-title-text">${prevTitle}</span>
+                </span>
+              </a>`;
+            }
+            if (meta.next) {
+              const n = contentMap[meta.next];
+              const nextTitle = (n && n.title) || this.getPageTitle(meta.next);
+              const nextIcon = n && n.icon ? `<img src="${n.icon}" class="pagination-icon" alt="">` : '';
+              rendered += `<a href="#${meta.next}" class="pagination-btn next">
+                <span class="pagination-label">Next</span>
+                <span class="pagination-title">
+                  <span class="pagination-title-text">${nextTitle}</span>
+                  ${nextIcon}
+                  <svg class="pagination-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </span>
+              </a>`;
+            }
+            rendered += '</div>';
           }
-          rendered += '</div>';
 
           contentArea.innerHTML = rendered;
 
@@ -1083,6 +1314,10 @@
           a.textContent = heading.textContent;
           a.onclick = (e) => {
             e.preventDefault();
+            const parentDetails = heading.closest('details');
+            if (parentDetails) {
+              parentDetails.open = true;
+            }
             heading.scrollIntoView({ behavior: 'smooth' });
             history.replaceState(null, null, `#${id}`);
           };

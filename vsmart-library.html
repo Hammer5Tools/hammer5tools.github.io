@@ -7,6 +7,8 @@
   <title>VSmart Library | Hammer 5 Tools</title>
   <meta name="description" content="Browse and download community-made and official VSmart utilities for Counter-Strike 2 level design.">
 
+  <meta name="color-scheme" content="dark">
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,10 +27,38 @@
       --color-primary: #4f98a3;
       --color-primary-hover: #5eb3bf;
       --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+      --scrollbar-thumb: rgba(255, 255, 255, 0.2);
+      --scrollbar-thumb-hover: rgba(255, 255, 255, 0.35);
+      --scrollbar-track: transparent;
+      color-scheme: dark;
     }
 
     * {
       box-sizing: border-box;
+      scrollbar-width: thin;
+      scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--scrollbar-track);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--scrollbar-thumb);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--scrollbar-thumb-hover);
+    }
+
+    ::-webkit-scrollbar-corner {
+      background: transparent;
     }
 
     html,
