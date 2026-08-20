@@ -25,7 +25,7 @@ Hammer 5 Tools unifies multiple specialized editors and utilities into a single 
 
 ### Build & Migration Pipeline
 - <img src="icon/editors/map_builder.png" class="inline-icon" alt=""> **[Map Builder](#map-builder)**: Fast, full, and batch compile manager for `.vmap` files with live telemetry (CPU/RAM) and automated cubemap baking via NetConsole.
-- <img src="icon/editors/unreal_porter.png" class="inline-icon" alt=""> **[UnrealPorter](#unreal-porter)**: Full-featured bridge converting Unreal Engine 5 levels, meshes, PBR materials, textures, and lights into Source 2 assets.
+- <img src="icon/editors/unreal_porter.svg" class="inline-icon" alt=""> **[UnrealPorter](#unreal-porter)**: Full-featured bridge converting Unreal Engine 5 levels, meshes, PBR materials, textures, and lights into Source 2 assets.
 - <img src="icon/editors/source_porter.png" class="inline-icon" alt=""> **[SourcePorter](#source-porter)**: Automated porting suite converting GoldSrc and Source 1 BSP maps, models, materials, and textures into Source 2 with issue auto-repair.
 - <img src="icon/editors/git_sync.svg" class="inline-icon" alt=""> **[Git Sync & VMAP Merge](#git-sync)**: Team collaboration system with an intelligent 3-way merge driver specifically built for Source 2 `.vmap` files.
 - <img src="icon/editors/addon_manager.svg" class="inline-icon" alt=""> **[Addon Manager & Exporter](#addon-manager)**: Package, export, import, and organize CS2 addon projects with dependency resolution and clean release archiving.

@@ -7,77 +7,123 @@
   <title>Documentation | Hammer 5 Tools</title>
   <meta name="description" content="Official documentation for Hammer 5 Tools: CS2 Workshop utilities.">
   <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#0c141f">
+
+  <link rel="icon" href="favicon.ico" sizes="16x16 24x24 32x32 48x48 72x72 256x256">
+  <link rel="icon" href="static/logo.png" sizes="512x512">
+  <link rel="canonical" href="https://hammer5tools.github.io/docs.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Hammer 5 Tools Documentation">
+  <meta property="og:description" content="Documentation and guides for Hammer 5 Tools: Counter-Strike 2 Workshop utilities.">
+  <meta property="og:image" content="https://hammer5tools.github.io/static/preview.jpg">
+  <meta property="twitter:card" content="summary_large_image">
+
+  <!-- Theme init to prevent flash -->
+  <script>
+    (function () {
+      const saved = localStorage.getItem('vitepress-theme-appearance') || 'dark';
+      document.documentElement.setAttribute('data-theme', saved);
+    })();
+  </script>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- External Libraries -->
-  <!-- External Libraries (Local versions for offline/reliable loading) -->
   <script src="static/marked.umd.js"></script>
   <script src="static/fuse.min.js"></script>
 
   <style>
+    @font-face {
+      font-family: "Manrope";
+      font-style: normal;
+      font-weight: 200 800;
+      font-display: fallback;
+      src: url(static/Manrope.woff2) format("woff2");
+    }
+
     :root {
-      /* Nexus Dark Palette (Inspired) */
-      --bg-base: #0c121c;
-      --bg-sidebar: #0a0f18;
-      --bg-topbar: rgba(12, 18, 28, 0.8);
-      --border-color: rgba(255, 255, 255, 0.1);
-      --text-main: #e2e8f0;
-      --text-muted: #94a3b8;
-      --text-inverse: #000;
-      --color-primary: #4f98a3;
-      /* Teal Accent */
-      --color-primary-soft: rgba(79, 152, 163, 0.1);
-      --color-note: #4f98a3;
-      --color-warning: #f59e0b;
-      --color-tip: #10b981;
-      --color-caution: #ef4444;
-      --code-bg: rgba(255, 255, 255, 0.05);
-
-      --scrollbar-thumb: rgba(255, 255, 255, 0.2);
-      --scrollbar-thumb-hover: rgba(255, 255, 255, 0.35);
+      /* VitePress / S2V Dark Theme Tokens */
+      --vp-c-brand-1: #63a1ff;
+      --vp-c-brand-2: #82b4ff;
+      --vp-c-brand-3: #4085e6;
+      --vp-c-brand-soft: rgba(99, 161, 255, 0.12);
+      
+      /* Subtle, less-saturated green category header & accent */
+      --vp-c-green-2: #5ea886;
+      --vp-c-yellow-2: #eab308;
+      --vp-c-red-2: #f87171;
+      
+      --vp-c-bg: hsl(216 40% 8%);
+      --vp-c-bg-alt: hsl(216 40% 6%);
+      --vp-c-bg-elv: hsl(216 40% 10%);
+      --vp-c-bg-soft: hsl(216 40% 12%);
+      
+      --vp-c-border: rgba(255, 255, 255, 0.08);
+      --vp-c-divider: rgba(255, 255, 255, 0.06);
+      --vp-c-gutter: rgba(255, 255, 255, 0.04);
+      
+      --vp-c-text-1: #ffffff;
+      --vp-c-text-2: hsl(216 30% 75%);
+      --vp-c-text-3: rgba(235, 235, 245, 0.45);
+      
+      --vp-code-bg: hsl(216 40% 5%);
+      --vp-code-inline-bg: rgba(255, 255, 255, 0.06);
+      --vp-code-inline-color: #63a1ff;
+      
+      --vp-nav-height: 64px;
+      --vp-sidebar-width: 272px;
+      --vp-aside-width: 224px;
+      --vp-doc-max-width: 688px;
+      
+      --scrollbar-thumb: rgba(71, 168, 255, 0.3);
+      --scrollbar-thumb-hover: rgba(71, 168, 255, 0.5);
       --scrollbar-track: transparent;
-
-      --max-content-width: 72ch;
-      --sidebar-width: 280px;
-      --toc-width: 240px;
+      
       color-scheme: dark;
+      scrollbar-gutter: stable;
     }
 
     [data-theme="light"] {
-      --bg-base: #ffffff;
-      --bg-sidebar: #f8fafc;
-      --bg-topbar: rgba(255, 255, 255, 0.8);
-      --border-color: rgba(0, 0, 0, 0.1);
-      --text-main: #1e293b;
-      --text-muted: #64748b;
-      --code-bg: rgba(0, 0, 0, 0.05);
-
+      --vp-c-brand-1: #2563eb;
+      --vp-c-brand-2: #3b82f6;
+      --vp-c-brand-3: #1d4ed8;
+      --vp-c-brand-soft: rgba(37, 99, 235, 0.08);
+      
+      --vp-c-green-2: #2d7a5b;
+      --vp-c-yellow-2: #d97706;
+      --vp-c-red-2: #dc2626;
+      
+      --vp-c-bg: #ffffff;
+      --vp-c-bg-alt: #f8fafc;
+      --vp-c-bg-elv: #ffffff;
+      --vp-c-bg-soft: #f1f5f9;
+      
+      --vp-c-border: rgba(0, 0, 0, 0.08);
+      --vp-c-divider: rgba(0, 0, 0, 0.06);
+      --vp-c-gutter: rgba(0, 0, 0, 0.04);
+      
+      --vp-c-text-1: #0f172a;
+      --vp-c-text-2: #475569;
+      --vp-c-text-3: #94a3b8;
+      
+      --vp-code-bg: #f8fafc;
+      --vp-code-inline-bg: rgba(0, 0, 0, 0.05);
+      --vp-code-inline-color: #2563eb;
+      
       --scrollbar-thumb: rgba(0, 0, 0, 0.2);
-      --scrollbar-thumb-hover: rgba(0, 0, 0, 0.35);
-      --scrollbar-track: transparent;
+      --scrollbar-thumb-hover: rgba(0, 0, 0, 0.4);
+      
       color-scheme: light;
-    }
-
-    a {
-      color: var(--color-primary);
-      text-decoration: underline;
-      text-underline-offset: 2px;
-      transition: color 0.15s, opacity 0.15s;
-    }
-
-    a:hover {
-      opacity: 0.8;
-      text-decoration-thickness: 2px;
     }
 
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
       scrollbar-width: thin;
       scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
     }
@@ -100,887 +146,1611 @@
       background: var(--scrollbar-thumb-hover);
     }
 
-    ::-webkit-scrollbar-corner {
-      background: transparent;
-    }
-
-    html,
-    body {
-      margin: 0;
-      padding: 0;
+    html, body {
       height: 100%;
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-base);
-      color: var(--text-main);
-      line-height: 1.7;
+      font-family: "Manrope", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      background-color: var(--vp-c-bg);
+      color: var(--vp-c-text-1);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      transition: background-color 0.2s ease, color 0.2s ease;
     }
 
-    /* Layout */
-    .app-container {
-      display: grid;
-      grid-template-areas:
-        "topbar topbar"
-        "sidebar content";
-      grid-template-columns: var(--sidebar-width) 1fr;
-      grid-template-rows: 64px 1fr;
-      height: 100vh;
+    a {
+      color: var(--vp-c-brand-1);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      transition: color 0.15s ease, opacity 0.15s ease;
     }
 
-    header.topbar {
-      grid-area: topbar;
+    a:hover {
+      color: #ffffff;
+      opacity: 0.9;
+    }
+
+    [data-theme="light"] a:hover {
+      color: var(--vp-c-brand-3);
+    }
+
+    .VPApp {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* ==========================================================================
+       Top Navigation Bar (VPNav / VPNavBar)
+       ========================================================================== */
+    .VPNav {
       position: sticky;
       top: 0;
+      left: 0;
       z-index: 100;
+      width: 100%;
+      height: var(--vp-nav-height);
+      background-color: color-mix(in srgb, var(--vp-c-bg) 85%, transparent);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--vp-c-border);
+      transition: border-color 0.2s, background-color 0.2s;
+    }
+
+    .VPNavBar {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      height: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
       padding: 0 1.5rem;
-      background: var(--bg-topbar);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-color);
     }
 
-    #sidebar-toggle {
-      display: none;
-      align-items: center;
-      justify-content: center;
-      background: none;
-      border: none;
-      color: var(--text-main);
-      cursor: pointer;
-      padding: 0.5rem;
-      margin-left: -0.5rem;
-      border-radius: 4px;
-    }
-
-    #sidebar-toggle:hover {
-      background: var(--code-bg);
-    }
-
-    .sidebar-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(4px);
-      z-index: 49;
-    }
-
-    .sidebar-overlay.visible {
-      display: block;
-    }
-
-    .topbar-left {
+    .VPNavBar-left {
       display: flex;
       align-items: center;
       gap: 0.75rem;
+    }
+
+    .VPHamburger {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background: none;
+      border: none;
+      color: var(--vp-c-text-1);
+      cursor: pointer;
+      border-radius: 6px;
+      padding: 6px;
+    }
+
+    .VPHamburger:hover {
+      background: var(--vp-c-bg-soft);
+    }
+
+    .VPNavBarTitle {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
       text-decoration: none;
-      color: inherit;
-    }
-
-    .topbar-left img {
-      height: 32px;
-      width: 32px;
-    }
-
-    .topbar-left span {
+      color: var(--vp-c-text-1);
       font-weight: 700;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       letter-spacing: -0.01em;
     }
 
-    .topbar-right {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
+    .VPNavBarTitle:hover {
+      opacity: 0.85;
+      text-decoration: none;
     }
 
-    .search-container {
+    .VPNavBarTitle img {
+      width: 26px;
+      height: 26px;
+      display: block;
+    }
+
+    .VPNavBar-right {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    /* DocSearch Button */
+    .DocSearch-Button {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      background: var(--vp-c-bg-elv);
+      border: 1px solid var(--vp-c-border);
+      border-radius: 8px;
+      padding: 0.35rem 0.65rem;
+      color: var(--vp-c-text-2);
+      font-size: 0.82rem;
+      font-family: inherit;
+      cursor: pointer;
+      width: 180px;
+      transition: border-color 0.2s, background-color 0.2s, color 0.2s;
+    }
+
+    .DocSearch-Button:hover {
+      border-color: var(--vp-c-brand-1);
+      color: var(--vp-c-text-1);
+      background: var(--vp-c-bg-soft);
+    }
+
+    .DocSearch-Button-Container {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .DocSearch-Search-Icon {
+      width: 14px;
+      height: 14px;
+      opacity: 0.7;
+    }
+
+    .DocSearch-Button-Keys {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .DocSearch-Button-Key {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 4px;
+      font-family: inherit;
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--vp-c-text-3);
+      background: var(--vp-c-bg-alt);
+      border: 1px solid var(--vp-c-border);
+      border-radius: 4px;
+    }
+
+    /* Nav Links */
+    .VPNavBarMenu {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .VPNavBarMenuLink {
+      color: var(--vp-c-text-2);
+      font-size: 0.88rem;
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: color 0.15s;
+    }
+
+    .VPNavBarMenuLink:hover,
+    .VPNavBarMenuLink.active {
+      color: var(--vp-c-brand-1);
+      text-decoration: none;
+    }
+
+    .VPNavBarMenuLink .external-icon {
+      width: 11px;
+      height: 11px;
+      opacity: 0.6;
+    }
+
+    /* Divider */
+    .VPNavBar-divider {
+      width: 1px;
+      height: 20px;
+      background: var(--vp-c-border);
+    }
+
+    /* Appearance Switch (VitePress / S2V exact switch) */
+    .VPSwitch {
+      position: relative;
+      border-radius: 11px;
+      display: block;
+      width: 40px;
+      height: 22px;
+      flex-shrink: 0;
+      border: 1px solid var(--vp-c-border);
+      background-color: var(--vp-c-bg-elv);
+      cursor: pointer;
+      transition: border-color 0.25s, background-color 0.25s;
+      padding: 0;
+      outline: none;
+    }
+
+    .VPSwitch:hover {
+      border-color: var(--vp-c-brand-1);
+    }
+
+    .VPSwitch .check {
+      position: absolute;
+      top: 1px;
+      left: 1px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .VPSwitch .icon {
+      position: relative;
+      width: 12px;
+      height: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .VPSwitch .icon svg {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    /* Light Theme State: Knob on Left, Sun visible */
+    [data-theme="light"] .VPSwitch .check {
+      transform: translateX(0);
+      background-color: #ffffff;
+    }
+
+    [data-theme="light"] .VPSwitch .sun-icon {
+      opacity: 1;
+      transform: scale(1);
+      color: #ea580c;
+    }
+
+    [data-theme="light"] .VPSwitch .moon-icon {
+      opacity: 0;
+      transform: scale(0.6);
+      color: #ffffff;
+    }
+
+    /* Dark Theme State: Knob on Right (18px), Moon visible */
+    [data-theme="dark"] .VPSwitch .check {
+      transform: translateX(18px);
+      background-color: #182232;
+    }
+
+    [data-theme="dark"] .VPSwitch .sun-icon {
+      opacity: 0;
+      transform: scale(0.6);
+      color: #ea580c;
+    }
+
+    [data-theme="dark"] .VPSwitch .moon-icon {
+      opacity: 1;
+      transform: scale(1);
+      color: #f8fafc;
+    }
+
+    /* Social Links */
+    .VPSocialLinks {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .VPSocialLink {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      color: var(--vp-c-text-2);
+      border-radius: 6px;
+      text-decoration: none;
+      transition: color 0.15s, background-color 0.15s;
+    }
+
+    .VPSocialLink:hover {
+      color: var(--vp-c-text-1);
+      background-color: var(--vp-c-bg-soft);
+      text-decoration: none;
+    }
+
+    .VPSocialLink svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    /* ==========================================================================
+       Main Layout Grid
+       ========================================================================== */
+    .VPContent {
+      display: flex;
+      max-width: 1440px;
+      width: 100%;
+      margin: 0 auto;
+      flex: 1;
+    }
+
+    /* ==========================================================================
+       Left Sidebar Navigation (VPSidebar)
+       ========================================================================== */
+    .VPSidebar {
+      width: var(--vp-sidebar-width);
+      height: calc(100vh - var(--vp-nav-height));
+      position: sticky;
+      top: var(--vp-nav-height);
+      overflow-y: auto;
+      padding: 1.75rem 1rem 3rem 1.5rem;
+      background-color: var(--vp-c-bg);
+      border-right: 1px solid var(--vp-c-border);
+      flex-shrink: 0;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .VPSidebar-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .VPSidebarGroup {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .VPSidebarGroup-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--vp-c-green-2);
+      padding: 0.35rem 0.5rem;
+      margin-bottom: 0.25rem;
+      letter-spacing: 0.02em;
+    }
+
+    .VPSidebarGroup-items {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      list-style: none;
+    }
+
+    .VPSidebarItem {
       position: relative;
     }
 
-    .search-input {
-      background: var(--code-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 6px;
-      padding: 0.4rem 0.75rem 0.4rem 2rem;
-      color: inherit;
-      font-size: 0.9rem;
-      width: 240px;
-      transition: width 0.2s, border-color 0.2s;
-    }
-
-    .search-input:focus {
-      outline: none;
-      border-color: var(--color-primary);
-      width: 300px;
-    }
-
-    .search-icon {
-      position: absolute;
-      left: 0.6rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-muted);
-      pointer-events: none;
-    }
-
-    #search-results {
-      position: absolute;
-      top: 100%;
-      right: 0;
-      width: min(320px, calc(100vw - 2rem));
-      background: var(--bg-sidebar);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
-      z-index: 100;
-      display: none;
-      max-height: 400px;
-      overflow-y: auto;
-      margin-top: 0.5rem;
-    }
-
-    /* Sidebar */
-    aside.sidebar {
-      grid-area: sidebar;
-      background: var(--bg-sidebar);
-      border-right: 1px solid var(--border-color);
-      overflow-y: auto;
-      padding: 1.5rem 1rem;
-      position: sticky;
-      top: 64px;
-      height: calc(100vh - 64px);
-    }
-
-    .nav-group {
-      margin-bottom: 2rem;
-    }
-
-    .nav-group-title {
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 0.75rem;
-      letter-spacing: 0.05em;
-    }
-
-    .nav-links {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .nav-link {
+    .VPSidebarLink {
       display: flex;
       align-items: center;
-      padding: 0.6rem 0.75rem;
-      text-decoration: none;
-      color: var(--text-muted);
-      font-size: 0.95rem;
+      gap: 0.6rem;
+      padding: 0.4rem 0.65rem;
       border-radius: 6px;
-      transition: all 0.2s;
-      min-height: 40px;
-    }
-
-    .nav-icon {
-      width: 18px;
-      height: 18px;
-      margin-right: 0.65rem;
-      flex-shrink: 0;
-      object-fit: contain;
-      opacity: 0.85;
-      transition: opacity 0.2s, transform 0.2s;
-    }
-
-    .nav-link:hover {
-      color: var(--text-main);
-      background: var(--code-bg);
-    }
-
-    .nav-link:hover .nav-icon,
-    .nav-link.active .nav-icon {
-      opacity: 1;
-      transform: scale(1.05);
-    }
-
-    .nav-link.active {
-      color: var(--color-primary);
+      color: var(--vp-c-text-2);
+      font-size: 0.88rem;
       font-weight: 500;
-      background: var(--color-primary-soft);
+      text-decoration: none;
+      transition: color 0.15s, background-color 0.15s;
     }
 
-    .prose img.inline-icon {
-      display: inline-block;
-      width: 18px;
+    .VPSidebarLink:hover {
+      color: var(--vp-c-text-1);
+      background-color: var(--vp-c-bg-soft);
+      text-decoration: none;
+    }
+
+    .VPSidebarLink.active {
+      color: var(--vp-c-brand-1);
+      font-weight: 600;
+      background-color: var(--vp-c-brand-soft);
+      text-decoration: none;
+    }
+
+    .VPSidebarLink .indicator {
+      display: none;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3px;
       height: 18px;
-      border: none;
-      border-radius: 0;
-      box-shadow: none;
-      margin: 0 0.4rem 0 0;
+      background-color: var(--vp-c-brand-1);
+      border-radius: 2px;
+    }
+
+    .VPSidebarLink.active .indicator {
+      display: block;
+    }
+
+    .VPSidebarLink .icon {
+      width: 16px;
+      height: 16px;
+      object-fit: contain;
+      flex-shrink: 0;
+      opacity: 0.85;
+    }
+
+    .VPSidebarLink.active .icon,
+    .VPSidebarLink:hover .icon {
+      opacity: 1;
+    }
+
+    /* ==========================================================================
+       Document Content Area (VPDoc)
+       ========================================================================== */
+    .VPDoc {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      justify-content: center;
+      padding: 2.5rem 2rem 4rem 2.5rem;
+    }
+
+    .VPDoc-container {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      max-width: calc(var(--vp-doc-max-width) + var(--vp-aside-width) + 3rem);
+      gap: 3rem;
+    }
+
+    .VPDoc-main {
+      flex: 1;
+      min-width: 0;
+      max-width: var(--vp-doc-max-width);
+    }
+
+    /* Breadcrumbs */
+    .VPBreadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--vp-c-text-3);
+      margin-bottom: 1.25rem;
+      font-weight: 500;
+    }
+
+    .VPBreadcrumbs .divider {
+      opacity: 0.5;
+    }
+
+    .VPBreadcrumbs .current {
+      color: var(--vp-c-text-2);
+    }
+
+    /* Markdown Prose */
+    .vp-doc {
+      color: var(--vp-c-text-2);
+      line-height: 1.75;
+      font-size: 1rem;
+    }
+
+    .vp-doc h1,
+    .vp-doc h2,
+    .vp-doc h3,
+    .vp-doc h4 {
+      color: var(--vp-c-text-1);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      position: relative;
+    }
+
+    .vp-doc h1 {
+      font-size: 2.15rem;
+      line-height: 1.25;
+      margin-bottom: 1.25rem;
+    }
+
+    .vp-doc h2 {
+      font-size: 1.5rem;
+      line-height: 1.35;
+      margin-top: 2.75rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--vp-c-divider);
+    }
+
+    .vp-doc h3 {
+      font-size: 1.2rem;
+      line-height: 1.4;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .vp-doc h4 {
+      font-size: 1rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .vp-doc p {
+      margin-bottom: 1.25rem;
+    }
+
+    .vp-doc strong {
+      color: var(--vp-c-text-1);
+      font-weight: 600;
+    }
+
+    .vp-doc hr {
+      border: 0;
+      height: 1px;
+      background-color: var(--vp-c-divider);
+      margin: 2.5rem 0;
+    }
+
+    .vp-doc ul,
+    .vp-doc ol {
+      margin-bottom: 1.25rem;
+      padding-left: 1.5rem;
+    }
+
+    .vp-doc li {
+      margin-bottom: 0.4rem;
+    }
+
+    .vp-doc li > p {
+      margin-bottom: 0.4rem;
+    }
+
+    .vp-doc a {
+      color: var(--vp-c-brand-1);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .vp-doc a:hover {
+      color: #ffffff;
+    }
+
+    [data-theme="light"] .vp-doc a:hover {
+      color: var(--vp-c-brand-3);
+    }
+
+    /* Header Anchor */
+    .header-anchor {
+      opacity: 0;
+      margin-left: 0.35rem;
+      color: var(--vp-c-brand-1);
+      text-decoration: none !important;
+      font-weight: 400;
+      transition: opacity 0.15s;
+    }
+
+    .vp-doc h2:hover .header-anchor,
+    .vp-doc h3:hover .header-anchor,
+    .vp-doc h4:hover .header-anchor {
+      opacity: 1;
+    }
+
+    /* Inline Icons */
+    .inline-icon {
+      display: inline-block;
+      width: 17px;
+      height: 17px;
+      border: none !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      margin: 0 0.35rem 0 0 !important;
       vertical-align: -3px;
       object-fit: contain;
     }
 
-    /* Content Area */
-    main.content {
-      grid-area: content;
-      overflow-y: auto;
-      padding: 3rem;
-      display: flex;
-      justify-content: center;
+    /* Code & Pre */
+    .vp-doc code:not(pre code) {
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+      font-size: 0.85em;
+      background: var(--vp-code-inline-bg);
+      color: var(--vp-code-inline-color);
+      padding: 0.2em 0.4em;
+      border-radius: 4px;
     }
 
-    article.prose {
-      width: 100%;
-      max-width: var(--max-content-width);
+    .vp-code-block {
+      position: relative;
+      margin: 1.5rem 0;
+      background: var(--vp-code-bg);
+      border: 1px solid var(--vp-c-border);
+      border-radius: 8px;
+      overflow: hidden;
     }
 
-    /* TOC Panel */
-    .toc-panel {
-      position: sticky;
-      top: 3rem;
-      width: var(--toc-width);
-      flex-shrink: 0;
-      margin-left: 3rem;
-      font-size: 0.85rem;
-      display: none;
+    [data-theme="light"] .vp-code-block {
+      background: #0f172a;
     }
 
-    @media (min-width: 1280px) {
-      .toc-panel {
-        display: block;
-      }
+    .vp-code-lang {
+      position: absolute;
+      top: 8px;
+      right: 48px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--vp-c-text-3);
+      text-transform: uppercase;
+      user-select: none;
     }
 
-    .toc-title {
-      color: var(--text-muted);
-    }
-
-    /* Mobile Responsiveness - Phase 1 & 3 */
-    @media (max-width: 767px) {
-      .app-container {
-        grid-template-columns: 1fr;
-        grid-template-areas:
-          "topbar"
-          "content";
-      }
-
-      aside.sidebar {
-        position: fixed;
-        left: -280px;
-        top: 64px;
-        height: calc(100vh - 64px);
-        width: 280px;
-        transition: left 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        z-index: 50;
-        background: var(--bg-sidebar);
-        padding-top: 1rem;
-      }
-
-      aside.sidebar.open {
-        left: 0;
-      }
-
-      #sidebar-toggle {
-        display: flex;
-      }
-
-      main.content {
-        padding: 1.5rem 1rem;
-      }
-
-      header.topbar {
-        padding: 0 1rem;
-      }
-
-      .topbar-left span {
-        display: none;
-      }
-
-      .search-input {
-        width: 140px;
-      }
-
-      .search-input:focus {
-        width: 180px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .search-input {
-        width: 100px;
-      }
-
-      .search-input:focus {
-        position: absolute;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        width: calc(100vw - 110px);
-        z-index: 10;
-      }
-    }
-
-    .toc-list {
-      list-style: none;
-      padding: 0;
-      border-left: 1px solid var(--border-color);
-    }
-
-    .toc-item {
-      padding-left: 1rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .toc-link {
-      text-decoration: none;
-      color: var(--text-muted);
-    }
-
-    .toc-link:hover {
-      color: var(--color-primary);
-    }
-
-    /* Typography Elements - Phase 4 Fluid Typography */
-    h1 {
-      font-size: clamp(1.75rem, 5vw, 2.75rem);
-      margin-bottom: 1.5rem;
-      border-bottom: 1px solid var(--border-color);
-      padding-bottom: 0.75rem;
-      line-height: 1.2;
-    }
-
-    h2 {
-      font-size: clamp(1.4rem, 4vw, 1.85rem);
-      margin-top: 2.5rem;
-      margin-bottom: 1.25rem;
+    .vp-code-copy {
+      position: absolute;
+      top: 6px;
+      right: 8px;
       display: flex;
       align-items: center;
-      gap: 1rem;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      background: var(--vp-c-bg-elv);
+      border: 1px solid var(--vp-c-border);
+      border-radius: 5px;
+      color: var(--vp-c-text-2);
+      cursor: pointer;
+      opacity: 0.8;
+      transition: opacity 0.15s, color 0.15s, border-color 0.15s;
     }
 
-    h3 {
-      font-size: clamp(1.15rem, 3vw, 1.35rem);
-      margin-top: 1.75rem;
-      margin-bottom: 1rem;
-    }
-
-    p {
-      margin-bottom: 1.25rem;
-      font-size: clamp(0.95rem, 1vw + 0.7rem, 1.05rem);
-    }
-
-    hr {
-      border: 0;
-      height: 1px;
-      background: var(--border-color);
-      margin: 3rem 0;
+    .vp-code-copy:hover {
       opacity: 1;
+      color: var(--vp-c-text-1);
+      border-color: var(--vp-c-brand-1);
     }
 
-    code {
-      font-family: 'JetBrains Mono', monospace;
-      background: var(--code-bg);
-      padding: 0.2rem 0.4rem;
-      border-radius: 4px;
-      font-size: 0.9em;
-      color: var(--color-primary);
+    .vp-code-copy svg {
+      width: 14px;
+      height: 14px;
     }
 
-    pre {
-      background: #0f172a;
-      /* Darker pre for code blocks */
-      padding: 1.25rem;
-      border-radius: 8px;
+    .vp-doc pre {
+      padding: 1.25rem 1.5rem;
       overflow-x: auto;
-      margin: 1.5rem 0;
-      position: relative;
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: #e2e8f0;
+      margin: 0;
     }
 
-    pre code {
+    .vp-doc pre code {
       background: transparent;
-      color: #f8fafc;
       padding: 0;
-      font-size: 0.85rem;
+      font-size: inherit;
+      color: inherit;
     }
 
-    .code-badge {
-      position: absolute;
-      top: 0;
-      right: 1.25rem;
-      background: var(--color-primary);
-      color: var(--text-inverse);
-      font-size: 0.65rem;
-      font-weight: 700;
-      padding: 0.2rem 0.5rem;
-      border-radius: 0 0 4px 4px;
-      text-transform: uppercase;
-    }
-
-    /* Callouts */
-    .callout {
+    /* Callouts / Custom Blocks */
+    .custom-block {
+      border: 1px solid transparent;
+      border-left-width: 4px;
+      border-radius: 8px;
       padding: 1rem 1.25rem;
-      border-left: 4px solid;
-      border-radius: 4px;
-      background: var(--code-bg);
       margin: 1.5rem 0;
+      font-size: 0.95rem;
     }
 
-    .callout-title {
+    .custom-block .custom-block-title {
       font-weight: 700;
-      margin-bottom: 0.5rem;
+      font-size: 0.92rem;
+      margin-bottom: 0.4rem;
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
 
-    .callout-note {
-      border-color: var(--color-note);
+    .custom-block.note,
+    .custom-block.info {
+      border-color: var(--vp-c-brand-1);
+      background-color: var(--vp-c-brand-soft);
     }
 
-    .callout-warning {
-      border-color: var(--color-warning);
+    .custom-block.note .custom-block-title,
+    .custom-block.info .custom-block-title {
+      color: var(--vp-c-brand-1);
     }
 
-    .callout-tip {
-      border-color: var(--color-tip);
+    .custom-block.tip {
+      border-color: var(--vp-c-green-2);
+      background-color: rgba(94, 168, 134, 0.1);
     }
 
-    .callout-caution {
-      border-color: var(--color-caution);
+    .custom-block.tip .custom-block-title {
+      color: var(--vp-c-green-2);
     }
 
-    /* Collapsible Details */
-    details {
-      background: var(--code-bg);
-      border: 1px solid var(--border-color);
+    .custom-block.warning {
+      border-color: var(--vp-c-yellow-2);
+      background-color: rgba(234, 179, 8, 0.1);
+    }
+
+    .custom-block.warning .custom-block-title {
+      color: var(--vp-c-yellow-2);
+    }
+
+    .custom-block.danger,
+    .custom-block.caution {
+      border-color: var(--vp-c-red-2);
+      background-color: rgba(248, 113, 113, 0.1);
+    }
+
+    .custom-block.danger .custom-block-title,
+    .custom-block.caution .custom-block-title {
+      color: var(--vp-c-red-2);
+    }
+
+    /* Details Collapsible */
+    .vp-doc details {
+      background-color: var(--vp-c-bg-elv);
+      border: 1px solid var(--vp-c-border);
       border-radius: 8px;
       padding: 0.85rem 1.25rem;
       margin: 1.5rem 0;
-      transition: background 0.2s, border-color 0.2s;
+      transition: border-color 0.25s, background-color 0.25s;
     }
 
-    details[open] {
-      background: rgba(255, 255, 255, 0.03);
-      border-color: rgba(255, 255, 255, 0.15);
+    .vp-doc details[open] {
+      border-color: var(--vp-c-border);
     }
 
-    [data-theme="light"] details[open] {
-      background: rgba(0, 0, 0, 0.02);
-      border-color: rgba(0, 0, 0, 0.15);
-    }
-
-    summary {
+    .vp-doc summary {
       font-weight: 600;
-      font-size: 0.95rem;
+      font-size: 1rem;
+      color: var(--vp-c-text-1);
       cursor: pointer;
-      color: var(--color-primary);
       user-select: none;
       outline: none;
-      transition: opacity 0.15s;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      line-height: 1.4;
+      transition: color 0.15s ease;
     }
 
-    summary h2,
-    summary h3 {
-      display: inline;
-      font-size: inherit;
-      font-weight: inherit;
-      color: inherit;
-      margin: 0;
-      padding: 0;
-      border: 0;
+    .vp-doc summary::-webkit-details-marker,
+    .vp-doc summary::marker {
+      display: none;
     }
 
-    summary:hover {
-      opacity: 0.85;
+    /* Custom animated chevron indicator */
+    .vp-doc summary::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-top: 2px solid var(--vp-c-text-2);
+      border-right: 2px solid var(--vp-c-text-2);
+      transform: rotate(45deg);
+      transition: transform 0.2s ease, border-color 0.15s ease;
+      margin-right: 0.25rem;
+      flex-shrink: 0;
     }
 
-    details > *:not(summary) {
-      margin-top: 0.75rem;
+    .vp-doc details[open] > summary::before {
+      transform: rotate(135deg);
     }
 
-    details > *:last-child {
-      margin-bottom: 0;
+    .vp-doc summary:hover {
+      color: var(--vp-c-brand-1);
+    }
+
+    .vp-doc summary:hover::before {
+      border-color: var(--vp-c-brand-1);
+    }
+
+    /* Normalize headings / blocks inside summary */
+    .vp-doc summary h1,
+    .vp-doc summary h2,
+    .vp-doc summary h3,
+    .vp-doc summary h4,
+    .vp-doc summary p {
+      display: inline !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border: none !important;
+      font-size: inherit !important;
+      font-weight: inherit !important;
+      color: inherit !important;
+      line-height: inherit !important;
+      letter-spacing: inherit !important;
+    }
+
+    .vp-doc summary .header-anchor {
+      display: none !important;
+    }
+
+    .vp-doc details[open] > summary {
+      margin-bottom: 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--vp-c-divider);
+    }
+
+    .vp-doc details > *:not(summary):first-of-type {
+      margin-top: 0;
     }
 
     /* Tables */
-    table {
+    .vp-table-wrap {
+      overflow-x: auto;
+      margin: 1.5rem 0;
+      border: 1px solid var(--vp-c-border);
+      border-radius: 8px;
+      background: var(--vp-c-bg-elv);
+    }
+
+    .vp-doc table {
       width: 100%;
       border-collapse: collapse;
-      margin: 1.5rem 0;
       font-size: 0.9rem;
+      min-width: 550px;
     }
 
-    th {
+    .vp-doc th {
       text-align: left;
-      background: var(--code-bg);
-      padding: 0.75rem;
-      border-bottom: 2px solid var(--border-color);
+      background: var(--vp-c-bg-soft);
+      padding: 0.75rem 1rem;
+      font-weight: 600;
+      color: var(--vp-c-text-1);
+      border-bottom: 1px solid var(--vp-c-border);
     }
 
-    td {
-      padding: 0.75rem;
-      border-bottom: 1px solid var(--border-color);
+    .vp-doc td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--vp-c-divider);
     }
 
-    /* Media Elements */
-    .prose img,
-    .prose video {
+    .vp-doc tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Images & Videos */
+    .vp-doc img:not(.inline-icon):not(.pagination-icon),
+    .vp-doc video {
+      width: 100%;
       max-width: 100%;
       height: auto;
-      border-radius: 8px;
-      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      outline: 1px solid hsl(216 50% 20%);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
       margin: 1.5rem 0;
       display: block;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
 
-    /* Pagination */
-    .doc-pagination {
-      display: flex;
-      gap: 1rem;
-      margin-top: 4rem;
-      padding-top: 2rem;
-      border-top: 1px solid var(--border-color);
-    }
-
-    .pagination-btn {
-      text-decoration: none;
-      color: var(--text-main);
+    /* ==========================================================================
+       Right Aside / TOC (VPDocAside)
+       ========================================================================== */
+    .VPDocAside {
+      width: var(--vp-aside-width);
+      position: sticky;
+      top: calc(var(--vp-nav-height) + 2rem);
+      height: fit-content;
+      max-height: calc(100vh - var(--vp-nav-height) - 4rem);
+      overflow-y: auto;
+      flex-shrink: 0;
       display: flex;
       flex-direction: column;
-      gap: 0.35rem;
-      padding: 0.9rem 1.25rem;
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      background: var(--bg-sidebar);
-      flex: 1 1 0;
-      min-width: 0;
-      transition: border-color 0.2s, background-color 0.2s, transform 0.15s, box-shadow 0.2s;
+      gap: 1.5rem;
     }
 
-    .pagination-btn:hover {
-      border-color: var(--color-primary);
-      background: var(--color-primary-soft);
-      transform: translateY(-2px);
-      text-decoration: none;
+    .VPDocAsideOutline {
+      position: relative;
+    }
+
+    .VPDocAsideOutline-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--vp-c-text-1);
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.02em;
+    }
+
+    .VPDocAsideOutline-list {
+      list-style: none;
+      padding-left: 0.75rem;
+      border-left: 1px solid var(--vp-c-divider);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .VPDocAsideOutline-marker {
+      position: absolute;
+      top: 0;
+      left: -1px;
+      width: 2px;
+      height: 18px;
+      background-color: var(--vp-c-brand-1);
+      transition: top 0.2s cubic-bezier(0.16, 1, 0.3, 1), height 0.2s;
+      opacity: 0;
+    }
+
+    .VPDocAsideOutline-marker.visible {
       opacity: 1;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
     }
 
-    .pagination-btn.prev {
-      align-items: flex-start;
-      text-align: left;
+    .VPDocAsideOutline-item {
+      font-size: 0.82rem;
+      line-height: 1.4;
     }
 
-    .pagination-btn.next {
-      align-items: flex-end;
-      text-align: right;
-      margin-left: auto;
+    .VPDocAsideOutline-link {
+      display: block;
+      color: var(--vp-c-text-2);
+      text-decoration: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: color 0.15s;
     }
 
-    .pagination-label {
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+    .VPDocAsideOutline-link:hover,
+    .VPDocAsideOutline-link.active {
+      color: var(--vp-c-brand-1);
+      text-decoration: none;
     }
 
-    .pagination-title {
-      font-weight: 600;
-      font-size: 0.95rem;
-      color: var(--color-primary);
+    .VPDocAsideOutline-item.nested {
+      padding-left: 0.75rem;
+      font-size: 0.78rem;
+    }
+
+    /* ==========================================================================
+       Document Footer & Pagers (VPDocFooter)
+       ========================================================================== */
+    .VPDocFooter {
+      margin-top: 4rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--vp-c-divider);
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .VPDocFooter-editInfo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+    }
+
+    .VPDocFooter-editLink {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      line-height: 1.3;
-      max-width: 100%;
+      gap: 0.4rem;
+      color: var(--vp-c-brand-1);
+      text-decoration: none;
+      font-weight: 500;
     }
 
-    .pagination-title-text {
-      white-space: normal;
-      word-break: break-word;
+    .VPDocFooter-editLink:hover {
+      text-decoration: underline;
     }
 
-    .pagination-arrow {
+    .VPDocFooter-editLink svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .VPDocFooter-pager {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .VPDocFooter-pagerItem {
+      display: flex;
+      flex-direction: column;
+      padding: 0.85rem 1.25rem;
+      border: 1px solid var(--vp-c-border);
+      border-radius: 8px;
+      background: var(--vp-c-bg-elv);
+      text-decoration: none;
+      transition: border-color 0.2s, background-color 0.2s, transform 0.15s;
+    }
+
+    .VPDocFooter-pagerItem:hover {
+      border-color: var(--vp-c-brand-1);
+      background-color: var(--vp-c-bg-soft);
+      text-decoration: none;
+      transform: translateY(-2px);
+    }
+
+    .VPDocFooter-pagerItem.next {
+      text-align: right;
+      align-items: flex-end;
+      grid-column: 2;
+    }
+
+    .VPDocFooter-pagerDesc {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--vp-c-text-3);
+      margin-bottom: 0.25rem;
+    }
+
+    .VPDocFooter-pagerTitle {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--vp-c-brand-1);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .VPDocFooter-pagerTitle svg {
+      width: 14px;
+      height: 14px;
       flex-shrink: 0;
-      color: var(--color-primary);
-      transition: transform 0.2s ease;
+      transition: transform 0.2s;
     }
 
-    .pagination-btn.prev:hover .pagination-arrow {
+    .VPDocFooter-pagerItem.prev:hover .VPDocFooter-pagerTitle svg {
       transform: translateX(-3px);
     }
 
-    .pagination-btn.next:hover .pagination-arrow {
+    .VPDocFooter-pagerItem.next:hover .VPDocFooter-pagerTitle svg {
       transform: translateX(3px);
     }
 
-    .prose .pagination-btn img,
-    .prose .doc-pagination img,
     .pagination-icon {
-      width: 18px !important;
-      height: 18px !important;
-      min-width: 18px !important;
-      min-height: 18px !important;
-      max-width: 18px !important;
-      max-height: 18px !important;
-      object-fit: contain !important;
-      flex-shrink: 0 !important;
-      margin: 0 !important;
-      border: none !important;
-      border-radius: 0 !important;
-      box-shadow: none !important;
-      display: inline-block !important;
-      vertical-align: middle !important;
+      width: 16px;
+      height: 16px;
+      object-fit: contain;
+      flex-shrink: 0;
     }
 
-    @media (max-width: 640px) {
-      .doc-pagination {
-        flex-direction: column;
+    /* ==========================================================================
+       Global Site Footer (VPFooter)
+       ========================================================================== */
+    .VPFooter {
+      padding: 2.5rem 1.5rem;
+      border-top: 1px solid var(--vp-c-border);
+      background: var(--vp-c-bg-alt);
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--vp-c-text-3);
+      margin-top: auto;
+    }
+
+    .VPFooter-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    /* ==========================================================================
+       Search Modal (DocSearch Dialog)
+       ========================================================================== */
+    .DocSearch-Modal-Overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 200;
+      display: none;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 5rem 1rem 2rem 1rem;
+    }
+
+    .DocSearch-Modal-Overlay.open {
+      display: flex;
+    }
+
+    .DocSearch-Modal {
+      width: 100%;
+      max-width: 600px;
+      background: var(--vp-c-bg-elv);
+      border: 1px solid var(--vp-c-border);
+      border-radius: 12px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      animation: modalFadeIn 0.15s ease-out;
+    }
+
+    @keyframes modalFadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.97) translateY(-10px);
       }
-      .pagination-btn {
-        width: 100%;
-      }
-      .pagination-btn.next {
-        margin-left: 0;
-        align-items: flex-start;
-        text-align: left;
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
       }
     }
 
+    .DocSearch-SearchBar {
+      display: flex;
+      align-items: center;
+      padding: 0.85rem 1.25rem;
+      border-bottom: 1px solid var(--vp-c-border);
+      gap: 0.75rem;
+      background: var(--vp-c-bg);
+    }
 
-    /* Theme Toggle */
-    .theme-toggle {
+    .DocSearch-SearchInput {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-family: inherit;
+      font-size: 1rem;
+      color: var(--vp-c-text-1);
+    }
+
+    .DocSearch-SearchInput::placeholder {
+      color: var(--vp-c-text-3);
+    }
+
+    .DocSearch-ClearBtn {
       background: none;
       border: none;
-      color: var(--text-muted);
+      color: var(--vp-c-text-3);
       cursor: pointer;
+      padding: 4px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+    }
+
+    .DocSearch-ClearBtn:hover {
+      color: var(--vp-c-text-1);
+    }
+
+    .DocSearch-Dropdown {
+      max-height: 400px;
+      overflow-y: auto;
       padding: 0.5rem;
-      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .DocSearch-Hit {
+      display: block;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--vp-c-text-1);
+      transition: background-color 0.1s;
+    }
+
+    .DocSearch-Hit:hover,
+    .DocSearch-Hit.selected {
+      background: var(--vp-c-bg-soft);
+      text-decoration: none;
+    }
+
+    .DocSearch-Hit-Title {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--vp-c-brand-1);
       display: flex;
       align-items: center;
-      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 0.2rem;
     }
 
-    .theme-toggle:hover {
-      color: var(--text-main);
-      background: var(--code-bg);
-    }
-
-    /* Step Indicators (Ordered Lists) */
-    ol {
-      list-style: none;
-      padding-left: 2rem;
-      counter-reset: step-counter;
-    }
-
-    ol li {
-      position: relative;
-      margin-bottom: 1.5rem;
-    }
-
-    ol li::before {
-      content: counter(step-counter);
-      counter-increment: step-counter;
-      position: absolute;
-      left: -2.5rem;
-      top: 0.1rem;
-      width: 1.6rem;
-      height: 1.6rem;
-      background: var(--color-primary);
-      color: var(--text-inverse);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .DocSearch-Hit-Excerpt {
       font-size: 0.8rem;
-      font-weight: 700;
+      color: var(--vp-c-text-2);
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
-    /* Custom Buttons */
-    .btn {
+
+    .DocSearch-Hit-Excerpt mark {
+      background: rgba(99, 161, 255, 0.25);
+      color: #ffffff;
+      border-radius: 2px;
+      padding: 0 2px;
+    }
+
+    .DocSearch-Empty {
+      padding: 2.5rem 1rem;
+      text-align: center;
+      color: var(--vp-c-text-3);
+      font-size: 0.9rem;
+    }
+
+    .DocSearch-Footer {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 1.25rem;
+      padding: 0.6rem 1.25rem;
+      border-top: 1px solid var(--vp-c-border);
+      background: var(--vp-c-bg);
+      font-size: 0.75rem;
+      color: var(--vp-c-text-3);
+    }
+
+    .DocSearch-Footer span {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.5rem;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: all 0.2s;
-      border: none;
-      text-decoration: none;
-      margin: 1rem 0;
+      gap: 0.35rem;
     }
 
-    .btn-primary {
-      background: var(--color-primary);
-      color: var(--text-inverse) !important;
+    .DocSearch-Footer kbd {
+      background: var(--vp-c-bg-elv);
+      border: 1px solid var(--vp-c-border);
+      border-radius: 3px;
+      padding: 1px 4px;
+      font-size: 0.68rem;
+      font-family: inherit;
     }
 
-    .btn-primary:hover {
-      opacity: 0.9;
-      transform: translateY(-1px);
+    /* Mobile Sidebar Overlay */
+    .VPSidebarOverlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 95;
+      display: none;
+    }
+
+    .VPSidebarOverlay.visible {
+      display: block;
+    }
+
+    /* ==========================================================================
+       Responsive Breakpoints
+       ========================================================================== */
+    @media (max-width: 1200px) {
+      .VPDocAside {
+        display: none;
+      }
+      .VPDoc-container {
+        max-width: var(--vp-doc-max-width);
+      }
+    }
+
+    @media (max-width: 860px) {
+      .VPHamburger {
+        display: flex;
+      }
+      .VPSidebar {
+        position: fixed;
+        left: -280px;
+        top: var(--vp-nav-height);
+        height: calc(100vh - var(--vp-nav-height));
+        width: 280px;
+        z-index: 99;
+        transition: left 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        background-color: var(--vp-c-bg-elv);
+        box-shadow: 10px 0 25px rgba(0, 0, 0, 0.5);
+      }
+      .VPSidebar.open {
+        left: 0;
+      }
+      .VPNavBarMenu {
+        display: none;
+      }
+      .VPDoc {
+        padding: 1.5rem 1rem 3rem 1rem;
+      }
+      .DocSearch-Button {
+        width: 130px;
+      }
+      .DocSearch-Button-Keys {
+        display: none;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .VPNavBarTitle span {
+        display: none;
+      }
+      .DocSearch-Button {
+        width: 36px;
+        padding: 0.4rem;
+        justify-content: center;
+      }
+      .DocSearch-Button-Placeholder {
+        display: none;
+      }
+      .VPDocFooter-pager {
+        grid-template-columns: 1fr;
+      }
+      .VPDocFooter-pagerItem.next {
+        grid-column: 1;
+        text-align: left;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
 
 <body>
-  <div class="app-container">
-    <header class="topbar">
-      <div class="topbar-left">
-        <button id="sidebar-toggle" aria-label="Toggle Sidebar">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
-          </svg>
-        </button>
-        <a href="index.html" class="topbar-left">
-          <img src="static/logo.png" alt="Hammer 5 Tools Logo">
-          <span>Hammer 5 Tools</span>
-        </a>
-      </div>
-      <div class="topbar-right">
-        <div class="search-container">
-          <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg>
-          <input type="text" id="search-input" class="search-input" placeholder="Search docs... (Ctrl + K)">
-          <div id="search-results"></div>
+  <div class="VPApp">
+    <!-- Top Navigation -->
+    <header class="VPNav">
+      <div class="VPNavBar">
+        <div class="VPNavBar-left">
+          <button class="VPHamburger" id="hamburger-toggle" aria-label="Toggle Sidebar Menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+          <a href="index.html" class="VPNavBarTitle">
+            <img src="static/logo.png" alt="Hammer 5 Tools Logo">
+            <span>Hammer 5 Tools</span>
+          </a>
         </div>
-        <nav style="display: flex; gap: 2rem; align-items: center; margin: 0 1.5rem;">
-          <a href="vsmart-library.html" style="text-decoration: none; color: var(--text-muted); font-weight: 500; font-size: 0.95rem;">VSmart Library</a>
-        </nav>
-        <a href="https://github.com/dertwist/Hammer5Tools" class="theme-toggle" aria-label="GitHub">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path
-              d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-            </path>
-          </svg>
-        </a>
-        <button class="theme-toggle" id="theme-toggle" title="Toggle color theme">
-          <svg class="sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="5"></circle>
-            <line x1="12" y1="1" x2="12" y2="3"></line>
-            <line x1="12" y1="21" x2="12" y2="23"></line>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-            <line x1="1" y1="12" x2="3" y2="12"></line>
-            <line x1="21" y1="12" x2="23" y2="12"></line>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-          </svg>
-        </button>
+
+        <div class="VPNavBar-right">
+          <!-- Search Trigger -->
+          <button type="button" class="DocSearch-Button" id="search-trigger" aria-label="Search">
+            <span class="DocSearch-Button-Container">
+              <svg class="DocSearch-Search-Icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <span class="DocSearch-Button-Placeholder">Search</span>
+            </span>
+            <span class="DocSearch-Button-Keys">
+              <kbd class="DocSearch-Button-Key">Ctrl</kbd>
+              <kbd class="DocSearch-Button-Key">K</kbd>
+            </span>
+          </button>
+
+          <!-- Navigation Menu -->
+          <ul class="VPNavBarMenu">
+            <li><a href="#introduction" class="VPNavBarMenuLink">Guides</a></li>
+            <li><a href="index.html#tools" class="VPNavBarMenuLink">Tools</a></li>
+            <li><a href="vsmart-library.html" class="VPNavBarMenuLink">VSmart Library</a></li>
+            <li>
+              <a href="https://github.com/dertwist/Hammer5Tools/releases" target="_blank" rel="noreferrer" class="VPNavBarMenuLink">
+                <span>Releases</span>
+                <svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+              </a>
+            </li>
+          </ul>
+
+          <div class="VPNavBar-divider"></div>
+
+          <!-- Theme Appearance Switch -->
+          <button class="VPSwitch VPSwitchAppearance" id="theme-switch" type="button" role="switch" title="Toggle Appearance" aria-label="Toggle Appearance">
+            <span class="check">
+              <span class="icon">
+                <!-- Sun Icon for Light Mode -->
+                <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="5"></circle>
+                  <line x1="12" y1="1" x2="12" y2="3"></line>
+                  <line x1="12" y1="21" x2="12" y2="23"></line>
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                  <line x1="1" y1="12" x2="3" y2="12"></line>
+                  <line x1="21" y1="12" x2="23" y2="12"></line>
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <!-- Moon Icon for Dark Mode -->
+                <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+              </span>
+            </span>
+          </button>
+
+          <!-- Social Links -->
+          <div class="VPSocialLinks">
+            <a href="https://github.com/Hammer5Tools/hammer5tools.github.io" target="_blank" rel="noopener" class="VPSocialLink" aria-label="GitHub Repository">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+            </a>
+            <a href="https://discord.com/invite/DvCXEyhssd" target="_blank" rel="noopener" class="VPSocialLink" aria-label="Discord Community">
+              <svg viewBox="0 0 24 24">
+                <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.093.252-.19.372-.287a.075.075 0 0 1 .077-.01c3.931 1.793 8.18 1.793 12.061 0a.077.077 0 0 1 .079.009c.12.098.245.195.372.288a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
       </div>
     </header>
 
-    <aside class="sidebar">
-      <nav>
-        <div class="nav-group">
-          <div class="nav-group-title">Getting Started</div>
-          <ul class="nav-links">
-            <li><a href="#introduction" class="nav-link"><img src="icon/editors/introduction.svg" class="nav-icon" alt=""><span>Introduction</span></a></li>
-            <li><a href="#installation" class="nav-link"><img src="icon/editors/installation.svg" class="nav-icon" alt=""><span>Installation & Setup</span></a></li>
-            <li><a href="#quick-start" class="nav-link"><img src="icon/editors/quick_start.svg" class="nav-icon" alt=""><span>Quick Start</span></a></li>
-          </ul>
-        </div>
-        <div class="nav-group">
-          <div class="nav-group-title">Visual Editors</div>
-          <ul class="nav-links">
-            <li><a href="#smart-prop-editor" class="nav-link"><img src="icon/editors/smartprop_editor.png" class="nav-icon" alt=""><span>SmartProp Editor</span></a></li>
-            <li><a href="#sound-editor" class="nav-link"><img src="icon/editors/soundevent_editor.png" class="nav-icon" alt=""><span>SoundEvent Editor</span></a></li>
-            <li><a href="#audio-editor" class="nav-link"><img src="icon/editors/audio_editor.png" class="nav-icon" alt=""><span>Audio Editor</span></a></li>
-            <li><a href="#detail-prop-editor" class="nav-link"><img src="icon/editors/detail_prop_editor.png" class="nav-icon" alt=""><span>DetailProp Editor</span></a></li>
-            <li><a href="#asset-group-maker" class="nav-link"><img src="icon/editors/assetgroup_maker.png" class="nav-icon" alt=""><span>AssetGroup Maker</span></a></li>
-            <li><a href="#hotkey-editor" class="nav-link"><img src="icon/editors/hotkey_editor.png" class="nav-icon" alt=""><span>Hotkey Editor</span></a></li>
-            <li><a href="#loading-editor" class="nav-link"><img src="icon/editors/loading_editor.png" class="nav-icon" alt=""><span>Loading Editor</span></a></li>
-          </ul>
-        </div>
-        <div class="nav-group">
-          <div class="nav-group-title">Build & Workflow</div>
-          <ul class="nav-links">
-            <li><a href="#map-builder" class="nav-link"><img src="icon/editors/map_builder.png" class="nav-icon" alt=""><span>Map Builder</span></a></li>
-            <li><a href="#git-sync" class="nav-link"><img src="icon/editors/git_sync.svg" class="nav-icon" alt=""><span>Git Sync & VMAP Merge</span></a></li>
-            <li><a href="#addon-manager" class="nav-link"><img src="icon/editors/addon_manager.svg" class="nav-icon" alt=""><span>Addon Manager & Exporter</span></a></li>
-            <li><a href="#cleanup" class="nav-link"><img src="icon/editors/cleanup.svg" class="nav-icon" alt=""><span>Cleanup & Maintenance</span></a></li>
-          </ul>
-        </div>
-        <div class="nav-group">
-          <div class="nav-group-title">Porting Tools</div>
-          <ul class="nav-links">
-            <li><a href="#unreal-porter" class="nav-link"><img src="icon/editors/unreal_porter.png" class="nav-icon" alt=""><span>UnrealPorter</span></a></li>
-            <li><a href="#source-porter" class="nav-link"><img src="icon/editors/source_porter.png" class="nav-icon" alt=""><span>SourcePorter</span></a></li>
-          </ul>
-        </div>
-        <div class="nav-group">
-          <div class="nav-group-title">Guides & Examples</div>
-          <ul class="nav-links">
-            <li><a href="#smartprop-guide" class="nav-link"><img src="icon/editors/smartprop_guide.svg" class="nav-icon" alt=""><span>SmartProp Guide</span></a></li>
-            <li><a href="#radio-sound" class="nav-link"><img src="icon/editors/radio_sound.png" class="nav-icon" alt=""><span>Radio & Audio Looping</span></a></li>
-            <li><a href="#vsmart-examples" class="nav-link"><img src="icon/editors/vsmart_examples.png" class="nav-icon" alt=""><span>VSmart Examples</span></a></li>
-            <li><a href="#writing-docs" class="nav-link"><img src="icon/editors/writing_docs.svg" class="nav-icon" alt=""><span>Writing Documentation</span></a></li>
-          </ul>
-        </div>
-        <div class="nav-group">
-          <div class="nav-group-title">Reference</div>
-          <ul class="nav-links">
-            <li><a href="#preferences" class="nav-link"><img src="icon/editors/preferences.svg" class="nav-icon" alt=""><span>Preferences & Settings</span></a></li>
-            <li><a href="#faq" class="nav-link"><img src="icon/editors/faq.svg" class="nav-icon" alt=""><span>FAQ & Troubleshooting</span></a></li>
-          </ul>
-        </div>
-      </nav>
-    </aside>
+    <div class="VPContent">
+      <!-- Mobile Sidebar Overlay -->
+      <div class="VPSidebarOverlay" id="sidebar-overlay"></div>
 
-    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+      <!-- Left Sidebar -->
+      <aside class="VPSidebar" id="sidebar">
+        <nav class="VPSidebar-nav">
+          <div class="VPSidebarGroup">
+            <ul class="VPSidebarGroup-items">
+              <li class="VPSidebarItem"><a href="#introduction" class="VPSidebarLink"><div class="indicator"></div><img src="icon/editors/introduction.svg" class="icon" alt=""><span>Introduction</span></a></li>
+              <li class="VPSidebarItem"><a href="#installation" class="VPSidebarLink"><div class="indicator"></div><img src="icon/editors/installation.svg" class="icon" alt=""><span>Installation & Setup</span></a></li>
+              <li class="VPSidebarItem"><a href="#quick-start" class="VPSidebarLink"><div class="indicator"></div><img src="icon/editors/quick_start.svg" class="icon" alt=""><span>Quick Start</span></a></li>
+            </ul>
+          </div>
 
-    <main class="content">
-      <article class="prose" id="main-content">
-        <div style="padding: 2rem; color: var(--text-muted);">Loading documentation...</div>
-      </article>
+          <div class="VPSidebarGroup">
+            <div class="VPSidebarGroup-title">Visual Editors</div>
+            <ul class="VPSidebarGroup-items">
+              <li class="VPSidebarItem"><a href="#smart-prop-editor" class="VPSidebarLink"><div class="indicator"></div><img src="icon/editors/smartprop_editor.png" class="icon" alt=""><span>SmartProp Editor</span></a></li>
+              <li class="VPSidebarItem"><a href="#sound-editor" class="VPSidebarLink"><div class="indicator"></div><img src="icon/editors/soundevent_editor.png" class="icon" alt=""><span>SoundEvent Editor</span></a></li>
+              <li class="VPSidebarItem"><a href="#audio-editor" class="VPSidebarLink"><div class="indicator"></div><img src="icon/editors/audio_editor.png" class="icon" alt=""><span>Audio Editor</span></a></li>
+              <li class="VPSidebarItem"><a href="#detail-prop-editor" class="VPSidebarLink"><div class="indicator"></div><img src="icon/editors/detail_prop_editor.png" class="icon" alt=""><span>DetailProp Editor</span></a></li>
+              <li class="VPSidebarItem"><a href="#asset-group-maker" class="VPSidebarLink"><div class="indicator"></div><img src="icon/editors/assetgroup_maker.png" class="icon" alt=""><span>AssetGroup Maker</span></a></li>
+              <li class="VPSidebarItem"><a href="#hotkey-editor" class="VPSidebarLink"><div class="indicator"></div><img src="icon/editors/hotkey_editor.png" class="icon" alt=""><span>Hotkey Editor</span></a></li>
+              <li class="VPSidebarItem"><a href="#loading-editor" class="VPSidebarLink"><div class="indicator"></div><img src="icon/editors/loading_editor.png" class="icon" alt=""><span>Loading Editor</span></a></li>
+            </ul>
+          </div>
 
-      <aside class="toc-panel" id="toc-panel">
-        <div class="toc-title">On this page</div>
-        <ul class="toc-list" id="toc-list">
-          <!-- TOC items injected here -->
-        </ul>
+          <div class="VPSidebarGroup">
+            <div class="VPSidebarGroup-title">Build & Workflow</div>
+            <ul class="VPSidebarGroup-items">
+              <li class="VPSidebarItem"><a href="#map-builder" class="VPSidebarLink"><div class="indicator"></div><img src="icon/editors/map_builder.png" class="icon" alt=""><span>Map Builder</span></a></li>
+              <li class="VPSidebarItem"><a href="#git-sync" class="VPSidebarLink"><div class="indicator"></div><img src="icon/editors/git_sync.svg" class="icon" alt=""><span>Git Sync & VMAP Merge</span></a></li>
+              <li class="VPSidebarItem"><a href="#addon-manager" class="VPSidebarLink"><div class="indicator"></div><img src="icon/editors/addon_manager.svg" class="icon" alt=""><span>Addon Manager & Exporter</span></a></li>
+              <li class="VPSidebarItem"><a href="#cleanup" class="VPSidebarLink"><div class="indicator"></div><img src="icon/editors/cleanup.svg" class="icon" alt=""><span>Cleanup & Maintenance</span></a></li>
+            </ul>
+          </div>
+
+          <div class="VPSidebarGroup">
+            <div class="VPSidebarGroup-title">Porting Tools</div>
+            <ul class="VPSidebarGroup-items">
+              <li class="VPSidebarItem"><a href="#unreal-porter" class="VPSidebarLink"><div class="indicator"></div><img src="icon/editors/unreal_porter.svg" class="icon" alt=""><span>UnrealPorter</span></a></li>
+              <li class="VPSidebarItem"><a href="#source-porter" class="VPSidebarLink"><div class="indicator"></div><img src="icon/editors/source_porter.png" class="icon" alt=""><span>SourcePorter</span></a></li>
+            </ul>
+          </div>
+
+          <div class="VPSidebarGroup">
+            <div class="VPSidebarGroup-title">Guides & Examples</div>
+            <ul class="VPSidebarGroup-items">
+              <li class="VPSidebarItem"><a href="#smartprop-guide" class="VPSidebarLink"><div class="indicator"></div><img src="icon/editors/smartprop_guide.svg" class="icon" alt=""><span>SmartProp Guide</span></a></li>
+              <li class="VPSidebarItem"><a href="#radio-sound" class="VPSidebarLink"><div class="indicator"></div><img src="icon/editors/radio_sound.png" class="icon" alt=""><span>Radio & Audio Looping</span></a></li>
+              <li class="VPSidebarItem"><a href="#vsmart-examples" class="VPSidebarLink"><div class="indicator"></div><img src="icon/editors/vsmart_examples.png" class="icon" alt=""><span>VSmart Examples</span></a></li>
+              <li class="VPSidebarItem"><a href="#writing-docs" class="VPSidebarLink"><div class="indicator"></div><img src="icon/editors/writing_docs.svg" class="icon" alt=""><span>Writing Documentation</span></a></li>
+            </ul>
+          </div>
+
+          <div class="VPSidebarGroup">
+            <div class="VPSidebarGroup-title">Reference</div>
+            <ul class="VPSidebarGroup-items">
+              <li class="VPSidebarItem"><a href="#preferences" class="VPSidebarLink"><div class="indicator"></div><img src="icon/editors/preferences.svg" class="icon" alt=""><span>Preferences & Settings</span></a></li>
+              <li class="VPSidebarItem"><a href="#faq" class="VPSidebarLink"><div class="indicator"></div><img src="icon/editors/faq.svg" class="icon" alt=""><span>FAQ & Troubleshooting</span></a></li>
+            </ul>
+          </div>
+        </nav>
       </aside>
-    </main>
+
+      <!-- Main Document Area -->
+      <main class="VPDoc">
+        <div class="VPDoc-container">
+          <div class="VPDoc-main">
+            <!-- Breadcrumbs -->
+            <div class="VPBreadcrumbs" id="breadcrumbs">
+              <span>Documentation</span>
+              <span class="divider">/</span>
+              <span class="current" id="breadcrumb-current">Introduction</span>
+            </div>
+
+            <!-- Markdown Document Content -->
+            <article class="vp-doc" id="doc-content">
+              <div style="padding: 2rem 0; color: var(--vp-c-text-3);">Loading documentation...</div>
+            </article>
+
+            <!-- Doc Footer with Edit Link and Pagers -->
+            <footer class="VPDocFooter" id="doc-footer">
+              <div class="VPDocFooter-editInfo">
+                <a href="https://github.com/Hammer5Tools/hammer5tools.github.io/edit/main/docs/introduction.md" target="_blank" rel="noreferrer" class="VPDocFooter-editLink" id="edit-link">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 20h9"></path>
+                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                  </svg>
+                  <span>Edit this page on GitHub</span>
+                </a>
+              </div>
+
+              <div class="VPDocFooter-pager" id="pager-container">
+                <!-- Injected Prev/Next Pagers -->
+              </div>
+            </footer>
+          </div>
+
+          <!-- Right Aside TOC (without download button as requested) -->
+          <aside class="VPDocAside" id="aside-panel">
+            <div class="VPDocAsideOutline">
+              <div class="VPDocAsideOutline-title">On this page</div>
+              <div class="VPDocAsideOutline-list" id="aside-toc">
+                <div class="VPDocAsideOutline-marker" id="outline-marker"></div>
+                <!-- TOC Links Injected -->
+              </div>
+            </div>
+          </aside>
+        </div>
+      </main>
+    </div>
+
+    <!-- Global Footer -->
+    <footer class="VPFooter">
+      <div class="VPFooter-container">
+        <p class="message">This project is not affiliated with Valve Software. Source 2 is a trademark and/or registered trademark of Valve Corporation.</p>
+        <p class="copyright">Released under the MIT License.</p>
+      </div>
+    </footer>
   </div>
 
+  <!-- Search Modal -->
+  <div class="DocSearch-Modal-Overlay" id="search-modal">
+    <div class="DocSearch-Modal">
+      <div class="DocSearch-SearchBar">
+        <svg class="DocSearch-Search-Icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="modal-search-input" class="DocSearch-SearchInput" placeholder="Search documentation..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+        <button type="button" class="DocSearch-ClearBtn" id="modal-search-clear" aria-label="Clear Search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="DocSearch-Dropdown" id="modal-search-results">
+        <div class="DocSearch-Empty">Type a query to search across all guides and tools.</div>
+      </div>
+      <div class="DocSearch-Footer">
+        <span><kbd>↑</kbd> <kbd>↓</kbd> to navigate</span>
+        <span><kbd>↵</kbd> to select</span>
+        <span><kbd>ESC</kbd> to close</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Documentation Application Logic -->
   <script>
-    // Metadata and structure
     const contentMap = {
-      'introduction': { file: 'introduction.md', title: 'Introduction', next: 'installation', icon: 'icon/editors/introduction.svg' },
-      'installation': { file: 'installation.md', title: 'Installation & Setup', prev: 'introduction', next: 'quick-start', icon: 'icon/editors/installation.svg' },
-      'quick-start': { file: 'quick-start.md', title: 'Quick Start', prev: 'installation', next: 'smart-prop-editor', icon: 'icon/editors/quick_start.svg' },
-      'smart-prop-editor': { file: 'smart-prop-editor.md', title: 'SmartProp Editor', prev: 'quick-start', next: 'sound-editor', icon: 'icon/editors/smartprop_editor.png' },
-      'sound-editor': { file: 'sound-editor.md', title: 'SoundEvent Editor', prev: 'smart-prop-editor', next: 'audio-editor', icon: 'icon/editors/soundevent_editor.png' },
-      'audio-editor': { file: 'audio-editor.md', title: 'Audio Editor', prev: 'sound-editor', next: 'detail-prop-editor', icon: 'icon/editors/audio_editor.png' },
-      'detail-prop-editor': { file: 'detail-prop-editor.md', title: 'DetailProp Editor', prev: 'audio-editor', next: 'asset-group-maker', icon: 'icon/editors/detail_prop_editor.png' },
-      'asset-group-maker': { file: 'asset-group.md', title: 'AssetGroup Maker', prev: 'detail-prop-editor', next: 'hotkey-editor', icon: 'icon/editors/assetgroup_maker.png' },
-      'hotkey-editor': { file: 'hotkey-editor.md', title: 'Hotkey Editor', prev: 'asset-group-maker', next: 'loading-editor', icon: 'icon/editors/hotkey_editor.png' },
-      'loading-editor': { file: 'loading-editor.md', title: 'Loading Editor', prev: 'hotkey-editor', next: 'map-builder', icon: 'icon/editors/loading_editor.png' },
-      'map-builder': { file: 'map-builder.md', title: 'Map Builder', prev: 'loading-editor', next: 'git-sync', icon: 'icon/editors/map_builder.png' },
-      'git-sync': { file: 'git-sync.md', title: 'Git Sync & VMAP Merge', prev: 'map-builder', next: 'addon-manager', icon: 'icon/editors/git_sync.svg' },
-      'addon-manager': { file: 'addon-manager.md', title: 'Addon Manager & Exporter', prev: 'git-sync', next: 'cleanup', icon: 'icon/editors/addon_manager.svg' },
-      'cleanup': { file: 'cleanup.md', title: 'Cleanup & Maintenance', prev: 'addon-manager', next: 'unreal-porter', icon: 'icon/editors/cleanup.svg' },
-      'unreal-porter': { file: 'unreal-porter.md', title: 'UnrealPorter', prev: 'cleanup', next: 'source-porter', icon: 'icon/editors/unreal_porter.png' },
-      'source-porter': { file: 'source-porter.md', title: 'SourcePorter', prev: 'unreal-porter', next: 'smartprop-guide', icon: 'icon/editors/source_porter.png' },
-      'smartprop-guide': { file: 'guides/smartprop-guide.md', title: 'SmartProp Guide', prev: 'source-porter', next: 'radio-sound', icon: 'icon/editors/smartprop_guide.svg' },
-      'radio-sound': { file: 'guides/radio-sound.md', title: 'Radio & Audio Looping', prev: 'smartprop-guide', next: 'vsmart-examples', icon: 'icon/editors/radio_sound.png' },
-      'vsmart-examples': { file: 'vsmart-examples.md', title: 'VSmart Examples', prev: 'radio-sound', next: 'writing-docs', icon: 'icon/editors/vsmart_examples.png' },
-      'writing-docs': { file: 'guides/writing-docs.md', title: 'Writing Documentation', prev: 'vsmart-examples', next: 'preferences', icon: 'icon/editors/writing_docs.svg' },
-      'preferences': { file: 'preferences.md', title: 'Preferences & Settings', prev: 'writing-docs', next: 'faq', icon: 'icon/editors/preferences.svg' },
-      'faq': { file: 'faq.md', title: 'FAQ & Troubleshooting', prev: 'preferences', icon: 'icon/editors/faq.svg' }
+      'introduction': { file: 'introduction.md', title: 'Introduction', next: 'installation', icon: 'icon/editors/introduction.svg', category: 'Getting Started' },
+      'installation': { file: 'installation.md', title: 'Installation & Setup', prev: 'introduction', next: 'quick-start', icon: 'icon/editors/installation.svg', category: 'Getting Started' },
+      'quick-start': { file: 'quick-start.md', title: 'Quick Start', prev: 'installation', next: 'smart-prop-editor', icon: 'icon/editors/quick_start.svg', category: 'Getting Started' },
+      'smart-prop-editor': { file: 'smart-prop-editor.md', title: 'SmartProp Editor', prev: 'quick-start', next: 'sound-editor', icon: 'icon/editors/smartprop_editor.png', category: 'Visual Editors' },
+      'sound-editor': { file: 'sound-editor.md', title: 'SoundEvent Editor', prev: 'smart-prop-editor', next: 'audio-editor', icon: 'icon/editors/soundevent_editor.png', category: 'Visual Editors' },
+      'audio-editor': { file: 'audio-editor.md', title: 'Audio Editor', prev: 'sound-editor', next: 'detail-prop-editor', icon: 'icon/editors/audio_editor.png', category: 'Visual Editors' },
+      'detail-prop-editor': { file: 'detail-prop-editor.md', title: 'DetailProp Editor', prev: 'audio-editor', next: 'asset-group-maker', icon: 'icon/editors/detail_prop_editor.png', category: 'Visual Editors' },
+      'asset-group-maker': { file: 'asset-group.md', title: 'AssetGroup Maker', prev: 'detail-prop-editor', next: 'hotkey-editor', icon: 'icon/editors/assetgroup_maker.png', category: 'Visual Editors' },
+      'hotkey-editor': { file: 'hotkey-editor.md', title: 'Hotkey Editor', prev: 'asset-group-maker', next: 'loading-editor', icon: 'icon/editors/hotkey_editor.png', category: 'Visual Editors' },
+      'loading-editor': { file: 'loading-editor.md', title: 'Loading Editor', prev: 'hotkey-editor', next: 'map-builder', icon: 'icon/editors/loading_editor.png', category: 'Visual Editors' },
+      'map-builder': { file: 'map-builder.md', title: 'Map Builder', prev: 'loading-editor', next: 'git-sync', icon: 'icon/editors/map_builder.png', category: 'Build & Workflow' },
+      'git-sync': { file: 'git-sync.md', title: 'Git Sync & VMAP Merge', prev: 'map-builder', next: 'addon-manager', icon: 'icon/editors/git_sync.svg', category: 'Build & Workflow' },
+      'addon-manager': { file: 'addon-manager.md', title: 'Addon Manager & Exporter', prev: 'git-sync', next: 'cleanup', icon: 'icon/editors/addon_manager.svg', category: 'Build & Workflow' },
+      'cleanup': { file: 'cleanup.md', title: 'Cleanup & Maintenance', prev: 'addon-manager', next: 'unreal-porter', icon: 'icon/editors/cleanup.svg', category: 'Build & Workflow' },
+      'unreal-porter': { file: 'unreal-porter.md', title: 'UnrealPorter', prev: 'cleanup', next: 'source-porter', icon: 'icon/editors/unreal_porter.svg', category: 'Porting Tools' },
+      'source-porter': { file: 'source-porter.md', title: 'SourcePorter', prev: 'unreal-porter', next: 'smartprop-guide', icon: 'icon/editors/source_porter.png', category: 'Porting Tools' },
+      'smartprop-guide': { file: 'guides/smartprop-guide.md', title: 'SmartProp Guide', prev: 'source-porter', next: 'radio-sound', icon: 'icon/editors/smartprop_guide.svg', category: 'Guides & Examples' },
+      'radio-sound': { file: 'guides/radio-sound.md', title: 'Radio & Audio Looping', prev: 'smartprop-guide', next: 'vsmart-examples', icon: 'icon/editors/radio_sound.png', category: 'Guides & Examples' },
+      'vsmart-examples': { file: 'vsmart-examples.md', title: 'VSmart Examples', prev: 'radio-sound', next: 'writing-docs', icon: 'icon/editors/vsmart_examples.png', category: 'Guides & Examples' },
+      'writing-docs': { file: 'guides/writing-docs.md', title: 'Writing Documentation', prev: 'vsmart-examples', next: 'preferences', icon: 'icon/editors/writing_docs.svg', category: 'Guides & Examples' },
+      'preferences': { file: 'preferences.md', title: 'Preferences & Settings', prev: 'writing-docs', next: 'faq', icon: 'icon/editors/preferences.svg', category: 'Reference' },
+      'faq': { file: 'faq.md', title: 'FAQ & Troubleshooting', prev: 'preferences', icon: 'icon/editors/faq.svg', category: 'Reference' }
     };
 
     const app = {
@@ -988,6 +1758,9 @@
       currentPath: '#introduction',
       fuse: null,
       searchData: [],
+      headings: [],
+      activeHeadingIdx: 0,
+      searchSelectedIndex: -1,
 
       init() {
         if (window.location.protocol === 'file:') {
@@ -995,97 +1768,71 @@
           return;
         }
         this.configureMarked();
-        this.bindEvents();
         this.initTheme();
+        this.bindEvents();
         this.handleRouting();
         this.preloadSearch();
-
-        // Responsive Sidebar Listeners
-        const toggleBtn = document.getElementById('sidebar-toggle');
-        const sidebar = document.querySelector('.sidebar');
-        const overlay = document.getElementById('sidebar-overlay');
-
-        if (toggleBtn) {
-          toggleBtn.addEventListener('click', () => {
-            sidebar.classList.toggle('open');
-            overlay.classList.toggle('visible');
-            document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : '';
-          });
-        }
-
-        if (overlay) {
-          overlay.addEventListener('click', () => {
-            sidebar.classList.remove('open');
-            overlay.classList.remove('visible');
-            document.body.style.overflow = '';
-          });
-        }
-
-        // Close sidebar on anchor clicks
-        window.addEventListener('hashchange', () => {
-          this.handleRouting();
-          sidebar.classList.remove('open');
-          overlay.classList.remove('visible');
-          document.body.style.overflow = '';
-        });
+        this.initScrollSpy();
       },
 
       showLocalFileError() {
-        const contentArea = document.getElementById('main-content');
+        const contentArea = document.getElementById('doc-content');
         contentArea.innerHTML = `
-          <div style="padding: 2rem; background: var(--color-caution); color: white; border-radius: 8px; margin: 2rem;">
-            <h2 style="margin-top: 0;">Local Server Required</h2>
-            <p>You are viewing this documentation via the <code>file://</code> protocol. Browser security restrictions prevent <code>fetch()</code> from loading local markdown files.</p>
-            <p><strong>To fix this:</strong></p>
-            <ol style="color: white; list-style: decimal; padding-left: 1.5rem;">
-              <li>Open your terminal in this project directory.</li>
-              <li>Run <code>npm start</code> (requires Node.js).</li>
-              <li>Access the docs at the URL provided in your terminal (usually <code>http://localhost:3000</code>).</li>
+          <div class="custom-block danger">
+            <div class="custom-block-title">Local Server Required</div>
+            <p>You are viewing this documentation via the <code>file://</code> protocol. Browser security restrictions prevent loading local markdown files via fetch.</p>
+            <p><strong>To run locally:</strong></p>
+            <ol style="margin-top: 0.5rem; padding-left: 1.5rem;">
+              <li>Open a terminal in the repository folder.</li>
+              <li>Run <code>npx serve .</code> or <code>npm start</code>.</li>
+              <li>Open <code>http://localhost:3000/docs.html</code> in your browser.</li>
             </ol>
-            <p style="font-size: 0.9rem; opacity: 0.9;">Alternatively, you can use any static web server (e.g., Live Server in VS Code).</p>
           </div>
         `;
       },
 
-      // Helper to resolve paths correctly
       getBasePath() {
         return 'docs/';
       },
 
       configureMarked() {
-        // Custom renderer for Callouts and Media
         const renderer = new marked.Renderer();
         const originalBlockquote = renderer.blockquote.bind(renderer);
         const originalImage = renderer.image.bind(renderer);
+        const originalCode = renderer.code.bind(renderer);
+        const originalHeading = renderer.heading.bind(renderer);
 
-        // Blockquote override for [!NOTE] callouts
+        // Heading with anchor link
+        renderer.heading = (obj) => {
+          const text = obj.text || '';
+          const level = obj.depth || 2;
+          const raw = obj.raw || text;
+          const slug = raw.toLowerCase().replace(/<[^>]*>/g, '').replace(/[^\w\s-]/g, '').trim().replace(/\s+/g, '-');
+          return `<h${level} id="${slug}">${text}<a class="header-anchor" href="#${slug}" aria-label="Permalink to ${text}">#</a></h${level}>`;
+        };
+
+        // Callout alerts [!NOTE], [!TIP], [!WARNING], [!CAUTION], [!INFO]
         renderer.blockquote = (obj) => {
           const tokens = obj.tokens || [];
           if (tokens.length > 0 && tokens[0].type === 'paragraph') {
             const firstToken = tokens[0];
             const text = firstToken.text;
-            const regex = /^\[!(NOTE|WARNING|TIP|CAUTION)\]\s*/i;
+            const regex = /^\[!(NOTE|INFO|TIP|WARNING|CAUTION|DANGER)\]\s*/i;
             const match = text.match(regex);
             
             if (match) {
               const type = match[1].toLowerCase();
               const title = match[1].charAt(0).toUpperCase() + match[1].slice(1).toLowerCase();
-              
-              // Remove indicator from first token’s text
               const firstTokenRaw = firstToken.raw.replace(regex, '').trim();
-              
-              // Parse the first line's markdown content
               const firstLineHTML = marked.parseInline(firstTokenRaw);
-              
-              // Handle any additional tokens (extra paragraphs etc)
               let extraHTML = '';
               if (tokens.length > 1) {
                 extraHTML = marked.parser(tokens.slice(1));
               }
               
               return `
-                <div class="callout callout-${type}">
-                  <div class="callout-title">${title}</div>
+                <div class="custom-block ${type}">
+                  <div class="custom-block-title">${title}</div>
                   <p>${firstLineHTML}</p>
                   ${extraHTML}
                 </div>`;
@@ -1094,7 +1841,7 @@
           return originalBlockquote(obj);
         };
 
-        // Image override to support video formats
+        // Video & Image renderer
         renderer.image = function (obj) {
           const { href, title, text } = obj;
           if (href && (href.endsWith('.mp4') || href.endsWith('.webm'))) {
@@ -1107,18 +1854,167 @@
           return originalImage(obj);
         };
 
+        // Code block with copy button and language tag
+        renderer.code = function (obj) {
+          const code = obj.text || '';
+          const lang = (obj.lang || 'text').toLowerCase();
+          const escapedCode = code.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+          
+          return `
+            <div class="vp-code-block">
+              <span class="vp-code-lang">${lang}</span>
+              <button class="vp-code-copy" onclick="app.copyCode(this)" data-code="${escapedCode}" title="Copy code" aria-label="Copy code">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+              </button>
+              <pre><code class="language-${lang}">${code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>
+            </div>`;
+        };
+
         marked.setOptions({ renderer });
       },
 
+      copyCode(btn) {
+        const code = btn.getAttribute('data-code');
+        navigator.clipboard.writeText(code).then(() => {
+          const oldSvg = btn.innerHTML;
+          btn.innerHTML = `
+            <svg viewBox="0 0 24 24" fill="none" stroke="#5ea886" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>`;
+          setTimeout(() => {
+            btn.innerHTML = oldSvg;
+          }, 2000);
+        });
+      },
+
       initTheme() {
-        const saved = localStorage.getItem('theme') || 'dark';
+        const saved = localStorage.getItem('vitepress-theme-appearance') || 'dark';
         this.setTheme(saved);
       },
 
       setTheme(theme) {
         this.theme = theme;
         document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
+        localStorage.setItem('vitepress-theme-appearance', theme);
+        
+        const btn = document.getElementById('theme-switch');
+        if (btn) {
+          btn.setAttribute('aria-checked', theme === 'dark' ? 'true' : 'false');
+        }
+      },
+
+      toggleTheme() {
+        const nextTheme = this.theme === 'dark' ? 'light' : 'dark';
+        this.setTheme(nextTheme);
+      },
+
+      bindEvents() {
+        // Theme switch
+        const themeBtn = document.getElementById('theme-switch');
+        if (themeBtn) {
+          themeBtn.addEventListener('click', () => {
+            this.toggleTheme();
+          });
+        }
+
+        // Mobile hamburger toggle
+        const hamburgerBtn = document.getElementById('hamburger-toggle');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
+
+        if (hamburgerBtn && sidebar && overlay) {
+          hamburgerBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('visible');
+            document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : '';
+          });
+
+          overlay.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('visible');
+            document.body.style.overflow = '';
+          });
+        }
+
+        // Search modal events
+        const searchTrigger = document.getElementById('search-trigger');
+        const searchModal = document.getElementById('search-modal');
+        const searchInput = document.getElementById('modal-search-input');
+        const searchClear = document.getElementById('modal-search-clear');
+
+        const openSearch = () => {
+          if (searchModal) {
+            searchModal.classList.add('open');
+            setTimeout(() => searchInput && searchInput.focus(), 50);
+          }
+        };
+
+        const closeSearch = () => {
+          if (searchModal) {
+            searchModal.classList.remove('open');
+            if (searchInput) searchInput.value = '';
+            this.renderSearchResults([]);
+          }
+        };
+
+        if (searchTrigger) searchTrigger.addEventListener('click', openSearch);
+        if (searchClear) {
+          searchClear.addEventListener('click', () => {
+            if (searchInput) {
+              searchInput.value = '';
+              searchInput.focus();
+              this.renderSearchResults([]);
+            }
+          });
+        }
+
+        if (searchModal) {
+          searchModal.addEventListener('click', (e) => {
+            if (e.target === searchModal) closeSearch();
+          });
+        }
+
+        // Keyboard shortcuts: Ctrl+K, Cmd+K, Escape
+        window.addEventListener('keydown', (e) => {
+          if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            if (searchModal && searchModal.classList.contains('open')) {
+              closeSearch();
+            } else {
+              openSearch();
+            }
+          } else if (e.key === 'Escape' && searchModal && searchModal.classList.contains('open')) {
+            closeSearch();
+          } else if (searchModal && searchModal.classList.contains('open')) {
+            this.handleSearchModalKeydown(e);
+          }
+        });
+
+        if (searchInput) {
+          searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.trim();
+            if (query.length < 2) {
+              this.renderSearchResults([]);
+              return;
+            }
+            if (this.fuse) {
+              const results = this.fuse.search(query);
+              this.renderSearchResults(results, query);
+            }
+          });
+        }
+
+        // Hash router listener
+        window.addEventListener('hashchange', () => {
+          this.handleRouting();
+          if (sidebar) sidebar.classList.remove('open');
+          if (overlay) overlay.classList.remove('visible');
+          document.body.style.overflow = '';
+          closeSearch();
+        });
       },
 
       async preloadSearch() {
@@ -1127,76 +2023,104 @@
         for (const [id, meta] of Object.entries(contentMap)) {
           try {
             const res = await fetch(base + meta.file);
-            const text = await res.text();
-            // Extract h1 for title
-            const titleMatch = text.match(/^#\s+(.+)$/m);
-            const title = meta.title || (titleMatch ? titleMatch[1] : id);
-            data.push({ id, title, body: text });
-          } catch (e) { console.error(`Search preload failed for ${id}`); }
+            if (res.ok) {
+              const text = await res.text();
+              const titleMatch = text.match(/^#\s+(.+)$/m);
+              const title = meta.title || (titleMatch ? titleMatch[1] : id);
+              data.push({ id, title, category: meta.category || 'Guides', body: text });
+            }
+          } catch (e) {
+            console.warn(`Search preload failed for ${id}`);
+          }
         }
         this.searchData = data;
-        this.initSearch();
+        if (typeof Fuse !== 'undefined') {
+          this.fuse = new Fuse(this.searchData, {
+            keys: ['title', 'category', 'body'],
+            threshold: 0.35,
+            ignoreLocation: true,
+            minMatchCharLength: 2
+          });
+        }
       },
 
-      initSearch() {
-        if (typeof Fuse === 'undefined') {
-          console.warn('Fuse.js not loaded. Search will be disabled.');
+      renderSearchResults(results, query = '') {
+        const container = document.getElementById('modal-search-results');
+        if (!container) return;
+        this.searchSelectedIndex = -1;
+
+        if (!query || results.length === 0) {
+          container.innerHTML = query 
+            ? '<div class="DocSearch-Empty">No matching documents found.</div>' 
+            : '<div class="DocSearch-Empty">Type a query to search across all guides and tools.</div>';
           return;
         }
-        this.fuse = new Fuse(this.searchData, {
-          keys: ['title', 'body'],
-          threshold: 0.3,
-          ignoreLocation: true
-        });
 
-        const searchInput = document.getElementById('search-input');
-        const resultsDropdown = document.getElementById('search-results');
+        const escapeHtml = (str) => str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        const highlightQuery = (text, q) => {
+          if (!q) return escapeHtml(text);
+          const regex = new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+          return escapeHtml(text).replace(regex, '<mark>$1</mark>');
+        };
 
-        searchInput.addEventListener('input', (e) => {
-          const query = e.target.value.trim();
-          if (query.length < 2) {
-            resultsDropdown.style.display = 'none';
-            return;
-          }
-
-          const results = this.fuse.search(query);
-          if (results.length === 0) {
-            resultsDropdown.innerHTML = '<div style="padding: 1rem; color: var(--text-muted);">No results found.</div>';
+        container.innerHTML = results.slice(0, 8).map((r, idx) => {
+          const item = r.item;
+          const meta = contentMap[item.id] || {};
+          const iconHtml = meta.icon ? `<img src="${meta.icon}" style="width:16px;height:16px;object-fit:contain;flex-shrink:0;">` : '';
+          
+          let snippet = '';
+          const lowerBody = item.body.toLowerCase();
+          const queryIdx = lowerBody.indexOf(query.toLowerCase());
+          if (queryIdx !== -1) {
+            const start = Math.max(0, queryIdx - 40);
+            const end = Math.min(item.body.length, queryIdx + 100);
+            snippet = (start > 0 ? '...' : '') + item.body.substring(start, end).replace(/\n/g, ' ') + (end < item.body.length ? '...' : '');
           } else {
-            resultsDropdown.innerHTML = results.map(r => {
-              const itemMeta = contentMap[r.item.id];
-              const iconHtml = itemMeta && itemMeta.icon ? `<img src="${itemMeta.icon}" style="width:16px;height:16px;object-fit:contain;flex-shrink:0;">` : '';
-              return `
-              <a href="#${r.item.id}" style="display: block; padding: 0.75rem 1rem; text-decoration: none; border-bottom: 1px solid var(--border-color);">
-                <div style="display: flex; align-items: center; gap: 0.5rem; font-weight: 600; color: var(--color-primary); font-size: 0.9rem;">
-                  ${iconHtml}
-                  <span>${r.item.title}</span>
-                </div>
-                <div style="font-size: 0.8rem; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 0.2rem;">${r.item.body.substring(0, 100)}...</div>
-              </a>
-            `;
-            }).join('');
+            snippet = item.body.substring(0, 110).replace(/\n/g, ' ') + '...';
           }
-          resultsDropdown.style.display = 'block';
-        });
 
-        document.addEventListener('click', (e) => {
-          if (!e.target.closest('.search-container')) resultsDropdown.style.display = 'none';
-        });
+          return `
+            <a href="#${item.id}" class="DocSearch-Hit" data-index="${idx}">
+              <div class="DocSearch-Hit-Title">
+                ${iconHtml}
+                <span>${highlightQuery(item.title, query)}</span>
+                <span style="font-size:0.75rem; color:var(--vp-c-text-3); font-weight:normal; margin-left:auto;">${item.category}</span>
+              </div>
+              <div class="DocSearch-Hit-Excerpt">${highlightQuery(snippet, query)}</div>
+            </a>
+          `;
+        }).join('');
       },
 
-      bindEvents() {
-        document.getElementById('theme-toggle').addEventListener('click', () => {
-          this.setTheme(this.theme === 'dark' ? 'light' : 'dark');
-        });
+      handleSearchModalKeydown(e) {
+        const hits = document.querySelectorAll('.DocSearch-Hit');
+        if (!hits.length) return;
+
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          this.searchSelectedIndex = (this.searchSelectedIndex + 1) % hits.length;
+          this.updateSearchSelected(hits);
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          this.searchSelectedIndex = (this.searchSelectedIndex - 1 + hits.length) % hits.length;
+          this.updateSearchSelected(hits);
+        } else if (e.key === 'Enter') {
+          if (this.searchSelectedIndex >= 0 && this.searchSelectedIndex < hits.length) {
+            e.preventDefault();
+            hits[this.searchSelectedIndex].click();
+          }
+        }
       },
 
-      getPageTitle(id) {
-        if (!id) return '';
-        if (contentMap[id] && contentMap[id].title) return contentMap[id].title;
-        const link = document.querySelector(`.nav-link[href="#${id}"] span`);
-        if (link && link.textContent.trim()) return link.textContent.trim();
-        return id.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ');
+      updateSearchSelected(hits) {
+        hits.forEach((hit, idx) => {
+          if (idx === this.searchSelectedIndex) {
+            hit.classList.add('selected');
+            hit.scrollIntoView({ block: 'nearest' });
+          } else {
+            hit.classList.remove('selected');
+          }
+        });
       },
 
       async handleRouting() {
@@ -1204,23 +2128,33 @@
         this.currentPath = hash;
         const pageId = hash.substring(1);
 
-        // TOC Scroll Anchor support
-        if (pageId.startsWith('heading-')) {
-          const el = document.getElementById(pageId);
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
-          return;
+        // Heading anchor scroll support within current page
+        if (pageId.includes('-') && !contentMap[pageId]) {
+          const targetHeading = document.getElementById(pageId);
+          if (targetHeading) {
+            targetHeading.scrollIntoView({ behavior: 'smooth' });
+            return;
+          }
         }
 
         const meta = contentMap[pageId];
-        const contentArea = document.getElementById('main-content');
+        const contentArea = document.getElementById('doc-content');
+        const breadcrumbCurrent = document.getElementById('breadcrumb-current');
+        const editLink = document.getElementById('edit-link');
+        const pagerContainer = document.getElementById('pager-container');
 
-        // Sidebar UI update
-        document.querySelectorAll('.nav-link').forEach(link => {
-          link.classList.toggle('active', link.getAttribute('href') === hash);
+        // Sidebar active item update
+        document.querySelectorAll('.VPSidebarLink').forEach(link => {
+          const href = link.getAttribute('href');
+          link.classList.toggle('active', href === `#${pageId}`);
         });
 
         if (!meta) {
-          contentArea.innerHTML = `<h1>404</h1><p>The page <code>${pageId}</code> was not found.</p>`;
+          contentArea.innerHTML = `
+            <h1>404 - Page Not Found</h1>
+            <p>The documentation page <code>${pageId}</code> could not be found.</p>
+            <p><a href="#introduction">Return to Introduction</a></p>
+          `;
           return;
         }
 
@@ -1228,105 +2162,170 @@
           const url = this.getBasePath() + meta.file;
           const res = await fetch(url);
           if (!res.ok) throw new Error(`HTTP Error: ${res.status} ${res.statusText}`);
-          let text = await res.text();
-          // Construct Breadcrumbs based on sidebar
-          const activeLink = document.querySelector('.nav-link.active');
-          let breadcrumbPrefix = '';
-          if (activeLink) {
-            const group = activeLink.closest('.nav-group');
-            const title = group ? group.querySelector('.nav-group-title').textContent : '';
-            const linkSpan = activeLink.querySelector('span');
-            const linkText = linkSpan ? linkSpan.textContent : activeLink.textContent;
-            breadcrumbPrefix = `${title} &rsaquo; ${linkText.trim()}`;
+          const text = await res.text();
+
+          // Render markdown
+          contentArea.innerHTML = marked.parse(text);
+
+          // Update breadcrumbs
+          if (breadcrumbCurrent) {
+            breadcrumbCurrent.textContent = meta.title || pageId;
           }
 
-          // Construct Full HTML with Breadcrumbs and Pagination
-          let rendered = `<div class="breadcrumb">${breadcrumbPrefix}</div>`;
-          rendered += marked.parse(text);
-          
-          // Add Pagination
-          if (meta.prev || meta.next) {
-            rendered += '<div class="doc-pagination">';
-            if (meta.prev) {
-              const p = contentMap[meta.prev];
-              const prevTitle = (p && p.title) || this.getPageTitle(meta.prev);
-              const prevIcon = p && p.icon ? `<img src="${p.icon}" class="pagination-icon" alt="">` : '';
-              rendered += `<a href="#${meta.prev}" class="pagination-btn prev">
-                <span class="pagination-label">Previous</span>
-                <span class="pagination-title">
-                  <svg class="pagination-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                  ${prevIcon}
-                  <span class="pagination-title-text">${prevTitle}</span>
-                </span>
-              </a>`;
-            }
-            if (meta.next) {
-              const n = contentMap[meta.next];
-              const nextTitle = (n && n.title) || this.getPageTitle(meta.next);
-              const nextIcon = n && n.icon ? `<img src="${n.icon}" class="pagination-icon" alt="">` : '';
-              rendered += `<a href="#${meta.next}" class="pagination-btn next">
-                <span class="pagination-label">Next</span>
-                <span class="pagination-title">
-                  <span class="pagination-title-text">${nextTitle}</span>
-                  ${nextIcon}
-                  <svg class="pagination-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                </span>
-              </a>`;
-            }
-            rendered += '</div>';
+          // Update edit link to Hammer5Tools/hammer5tools.github.io
+          if (editLink) {
+            editLink.href = `https://github.com/Hammer5Tools/hammer5tools.github.io/edit/main/docs/${meta.file}`;
           }
 
-          contentArea.innerHTML = rendered;
+          // Update pagers
+          if (pagerContainer) {
+            let pagerHtml = '';
+            if (meta.prev && contentMap[meta.prev]) {
+              const prevItem = contentMap[meta.prev];
+              const prevIcon = prevItem.icon ? `<img src="${prevItem.icon}" class="pagination-icon" alt="">` : '';
+              pagerHtml += `
+                <a href="#${meta.prev}" class="VPDocFooter-pagerItem prev">
+                  <span class="VPDocFooter-pagerDesc">Previous page</span>
+                  <span class="VPDocFooter-pagerTitle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                    ${prevIcon}
+                    <span>${prevItem.title}</span>
+                  </span>
+                </a>
+              `;
+            } else {
+              pagerHtml += `<div></div>`;
+            }
 
-          // Table wrapping for responsive scroll - Phase 5
+            if (meta.next && contentMap[meta.next]) {
+              const nextItem = contentMap[meta.next];
+              const nextIcon = nextItem.icon ? `<img src="${nextItem.icon}" class="pagination-icon" alt="">` : '';
+              pagerHtml += `
+                <a href="#${meta.next}" class="VPDocFooter-pagerItem next">
+                  <span class="VPDocFooter-pagerDesc">Next page</span>
+                  <span class="VPDocFooter-pagerTitle">
+                    <span>${nextItem.title}</span>
+                    ${nextIcon}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                  </span>
+                </a>
+              `;
+            }
+            pagerContainer.innerHTML = pagerHtml;
+          }
+
+          // Wrap tables in responsive scrollers
           contentArea.querySelectorAll('table').forEach(table => {
-            const wrapper = document.createElement('div');
-            wrapper.style.cssText = 'overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 1.5rem 0; background: var(--bg-sidebar); border-radius: 8px; border: 1px solid var(--border-color);';
-            table.parentNode.insertBefore(wrapper, table);
-            wrapper.appendChild(table);
-            table.style.margin = '0';
-            table.style.minWidth = '600px';
+            if (!table.parentElement.classList.contains('vp-table-wrap')) {
+              const wrapper = document.createElement('div');
+              wrapper.className = 'vp-table-wrap';
+              table.parentNode.insertBefore(wrapper, table);
+              wrapper.appendChild(table);
+            }
           });
 
+          // Scroll to top
           window.scrollTo(0, 0);
-          this.generateTOC();
+
+          // Build TOC & refresh scroll spy
+          this.buildTOC();
         } catch (e) {
-          console.error(`[Docs Error] Failed to load "${meta.file}" at ${this.getBasePath() + meta.file}`, e);
-          contentArea.innerHTML = `<h1>Error</h1><p>Failed to load doc: ${meta.file}</p><p style="font-size:0.8rem; color:var(--text-muted);">${e.message}</p>`;
+          console.error(`[Docs Error] Failed to load doc ${meta.file}`, e);
+          contentArea.innerHTML = `
+            <h1>Error Loading Document</h1>
+            <p>Could not load <code>${meta.file}</code>.</p>
+            <p style="font-size:0.85rem; color:var(--vp-c-text-3);">${e.message}</p>
+          `;
         }
       },
 
-      generateTOC() {
-        const tocList = document.getElementById('toc-list');
-        const contentArea = document.getElementById('main-content');
-        tocList.innerHTML = '';
+      buildTOC() {
+        const asideToc = document.getElementById('aside-toc');
+        const contentArea = document.getElementById('doc-content');
+        if (!asideToc || !contentArea) return;
 
-        const headings = contentArea.querySelectorAll('h2, h3');
-        headings.forEach((heading, idx) => {
-          const id = `heading-${idx}`;
-          heading.id = id;
-          const li = document.createElement('li');
-          li.className = 'toc-item';
-          li.style.paddingLeft = heading.tagName === 'H3' ? '2rem' : '1rem';
-          const a = document.createElement('a');
-          a.href = `#${id}`;
-          a.className = 'toc-link';
-          a.textContent = heading.textContent;
-          a.onclick = (e) => {
+        // Keep marker
+        const marker = document.getElementById('outline-marker');
+        asideToc.innerHTML = '';
+        if (marker) asideToc.appendChild(marker);
+
+        const headingEls = contentArea.querySelectorAll('h2, h3');
+        this.headings = Array.from(headingEls);
+
+        if (this.headings.length === 0) {
+          const noHeaders = document.createElement('div');
+          noHeaders.style.cssText = 'color: var(--vp-c-text-3); font-size: 0.8rem;';
+          noHeaders.textContent = 'No sections on this page.';
+          asideToc.appendChild(noHeaders);
+          if (marker) marker.classList.remove('visible');
+          return;
+        }
+
+        this.headings.forEach((h, idx) => {
+          const item = document.createElement('div');
+          item.className = 'VPDocAsideOutline-item' + (h.tagName === 'H3' ? ' nested' : '');
+          
+          const link = document.createElement('a');
+          link.href = `#${h.id}`;
+          link.className = 'VPDocAsideOutline-link';
+          link.textContent = h.textContent.replace(/#$/, '').trim();
+          link.addEventListener('click', (e) => {
             e.preventDefault();
-            const parentDetails = heading.closest('details');
-            if (parentDetails) {
-              parentDetails.open = true;
+            h.scrollIntoView({ behavior: 'smooth' });
+            history.replaceState(null, null, `#${h.id}`);
+            this.setActiveHeading(idx);
+          });
+
+          item.appendChild(link);
+          asideToc.appendChild(item);
+        });
+
+        this.setActiveHeading(0);
+      },
+
+      initScrollSpy() {
+        window.addEventListener('scroll', () => {
+          if (!this.headings || this.headings.length === 0) return;
+          const scrollPos = window.scrollY + 120;
+          let currentIdx = 0;
+
+          for (let i = 0; i < this.headings.length; i++) {
+            if (this.headings[i].offsetTop <= scrollPos) {
+              currentIdx = i;
+            } else {
+              break;
             }
-            heading.scrollIntoView({ behavior: 'smooth' });
-            history.replaceState(null, null, `#${id}`);
-          };
-          li.appendChild(a);
-          tocList.appendChild(li);
+          }
+          this.setActiveHeading(currentIdx);
+        }, { passive: true });
+      },
+
+      setActiveHeading(idx) {
+        if (!this.headings || idx < 0 || idx >= this.headings.length) return;
+        this.activeHeadingIdx = idx;
+        const links = document.querySelectorAll('.VPDocAsideOutline-link');
+        const marker = document.getElementById('outline-marker');
+
+        links.forEach((link, i) => {
+          if (i === idx) {
+            link.classList.add('active');
+            if (marker) {
+              marker.classList.add('visible');
+              marker.style.top = `${link.offsetTop}px`;
+              marker.style.height = `${link.offsetHeight}px`;
+            }
+          } else {
+            link.classList.remove('active');
+          }
         });
       }
     };
 
+    // Initialize application
     app.init();
   </script>
 </body>

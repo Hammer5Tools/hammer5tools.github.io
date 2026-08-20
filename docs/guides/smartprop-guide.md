@@ -10,7 +10,7 @@ SmartProps are an intuitive system in Source 2 used to group objects and attach 
 ---
 
 <details>
-<summary><h2>How to Use SmartProps in Hammer</h2></summary>
+<summary>How to Use SmartProps in Hammer</summary>
 
 Activate the **Selection Tool** (`Shift + S` or `Q`) in the Hammer viewport to display and interact with SmartProp control widgets.
 
