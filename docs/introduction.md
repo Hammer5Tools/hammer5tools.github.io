@@ -1,22 +1,18 @@
 # Introduction
 
-Welcome to the **Hammer 5 Tools** documentation. Hammer 5 Tools is a comprehensive, open-source desktop suite engineered to streamline the Counter-Strike 2 Workshop workflow for level designers, environment artists, audio designers, and technical modders.
+Welcome to the **Hammer 5 Tools** documentation. Hammer 5 Tools is an open-source set of desktop tools for the Counter-Strike 2 Workshop. It helps level designers, environment artists, audio designers, and modders with their workflow.
 
 ![Hero Video](videos/hero.mp4)
-
-> [!NOTE]
-> **Built for Source 2 & Counter-Strike 2**
-> Hammer 5 Tools is purpose-built to operate alongside the Counter-Strike 2 Workshop Tools, interfacing directly with Valve's KeyValues3 (KV3), VPK, and compiled asset formats.
 
 ---
 
 ## Core Toolkit Architecture
 
-Hammer 5 Tools unifies multiple specialized editors and utilities into a single integrated environment:
+Hammer 5 Tools includes the following editors and utilities:
 
 ### Visual Editors
 - <img src="icon/editors/smartprop_editor.png" class="inline-icon" alt=""> **[SmartProp Editor](#smart-prop-editor)**: Node-based visual editor for procedural props (`.vsmart`), supporting real-time 3D viewport previews, expressions, and deformers.
-- <img src="icon/editors/soundevent_editor.png" class="inline-icon" alt=""> **[SoundEvent Editor](#sound-editor)**: Comprehensive editor for `soundevents_addon.vsndevts`, featuring live NetConsole playback, curve visualizers, and base game soundevent decompilation.
+- <img src="icon/editors/soundevent_editor.png" class="inline-icon" alt=""> **[SoundEvent Editor](#sound-editor)**: Editor for `soundevents_addon.vsndevts`, featuring live NetConsole playback, curve visualizers, and base game soundevent decompilation.
 - <img src="icon/editors/audio_editor.png" class="inline-icon" alt=""> **[Audio Editor](#audio-editor)**: Built-in audio editor for inspecting waveforms, setting RIFF cue loop points, and applying DSP volume and fade ramps.
 - <img src="icon/editors/detail_prop_editor.png" class="inline-icon" alt=""> **[DetailProp Editor](#detail-prop-editor)**: Visual management of `scripts/detail_prop_types.vdata` for procedural grass, rocks, and clutter bound to material layers.
 - <img src="icon/editors/assetgroup_maker.png" class="inline-icon" alt=""> **[AssetGroup Maker](#asset-group-maker)**: Batch asset generator creating hundreds of Source 2 materials, models, and batch compile scripts from templates.

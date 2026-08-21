@@ -18,7 +18,7 @@ The editor window is organized into docked workspaces:
 
 | Panel | Description |
 |---|---|
-| **Explorer Dock (Left)** | File browser rooted at your addon's content folder for quickly opening `.vsmart` and `.vdata` files. |
+| **Explorer Dock (Left)** | File browser rooted at your addon's content folder for quickly opening `.vsmart` and `.vdata` files. Features an enhanced **Quick VSmart** generator with support for variables, modifiers, and categories. |
 | **Document Tabs (Center Top)** | Multi-document tab bar allowing multiple `.vsmart` files to be open concurrently. |
 | **Hierarchy Panel (Center Left)** | Tree view representing the element graph (`CSmartPropElement_*` nodes). |
 | **Properties Panel (Center Right)** | Inspector for element properties, attached modifiers (operators/filters), and selection criteria. |

@@ -1,12 +1,12 @@
 # UnrealPorter
 
-A comprehensive bridge and export pipeline for converting Unreal Engine 5 levels, static meshes, PBR materials, textures, and lighting into Source 2 and Counter-Strike 2.
+A bridge and export pipeline for converting Unreal Engine 5 levels, static meshes, PBR materials, textures, and lighting into Source 2 and Counter-Strike 2.
 
 ---
 
 ## Overview
 
-Unreal Engine has become a premier ecosystem for high-quality environment art, Megascans assets, and modular kits. **UnrealPorter** provides a complete automation pipeline to transfer UE scenes and assets directly into Counter-Strike 2 Workshop addons.
+**UnrealPorter** provides an automated pipeline to transfer UE scenes and assets directly into Counter-Strike 2 Workshop addons.
 
 Key capabilities:
 - **Level & Actor Conversion**: Converts Unreal Engine `.umap` levels into Source 2 `.vmap` files, placing all meshes, lights, decals, and instances at exact world transforms.

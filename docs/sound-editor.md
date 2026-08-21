@@ -1,6 +1,6 @@
 # SoundEvent Editor
 
-Create, modify, preview, and manage sound events for Counter-Strike 2. The editor directly reads and writes `soundevents_addon.vsndevts` in your addon's content folder, providing live NetConsole previewing, internal sound decompilation, and seamless integration with the built-in [Audio Editor](#audio-editor).
+Create, modify, preview, and manage sound events for Counter-Strike 2. The editor directly reads and writes `soundevents_addon.vsndevts` in your addon's content folder, providing live NetConsole previewing, internal sound decompilation, and integration with the built-in [Audio Editor](#audio-editor).
 
 ---
 

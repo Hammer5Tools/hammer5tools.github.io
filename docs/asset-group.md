@@ -16,8 +16,8 @@ The **AssetGroup Maker** reads source folders, applies global and local variable
 
 | Area | Description |
 |---|---|
-| **Explorer (Left)** | Manage configuration profiles and select target source asset directories. |
-| **Editor (Center)** | Template editor containing the base KV3 file structure with replacement tokens. |
+| **Explorer (Left)** | Manage configuration profiles and select target source asset directories. Dock layout and pane sizes are persistently saved. |
+| **Editor (Center)** | Template editor containing the base KV3 file structure. Now includes a split view with a scrollable **Multi-Template Card Manager** and expanded **Slot Mapping Presets** (with default slot pills) for advanced generation. |
 | **Process Actions (Right)** | Define matching algorithms, ignore lists, and trigger batch generation. |
 
 ---
@@ -63,3 +63,12 @@ The editor evaluates special macro variables when generating each asset:
 - **One-to-One**: Generates one output file for every matched source file.
 - **Referenced File**: Automatically re-generates assets whenever the referenced source template changes.
 - **Ignore List**: Excludes specific patterns (e.g. `*_lod*`, `*.tmp`).
+
+---
+
+## Advanced Features
+
+- **Multi-Template Support**: Add and manage multiple templates simultaneously using the scrollable card manager. Supports generating diverse asset types from the same source folder in a single pass.
+- **Slot Mappings & Conditional Generation**: Configure slot mapping presets with default slot pills for dynamic, rule-based asset generation.
+- **KV3 Batch Format**: Uses the optimized KV3 batch format for rapid processing.
+- **Watch Toggles**: Automatically monitor target directories and rebuild assets dynamically when source files change.

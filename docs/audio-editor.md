@@ -1,6 +1,6 @@
 # Audio Editor
 
-A dedicated, built-in waveform audio editor for Counter-Strike 2 sound design. The Audio Editor provides visual inspection, cue-marker loop editing, DSP processing (gain and fade ramps), and seamless conversion for Source 2 audio assets.
+A dedicated, built-in waveform audio editor for Counter-Strike 2 sound design. The Audio Editor provides visual inspection, cue-marker loop editing, DSP processing (gain and fade ramps), and converts your audio for Source 2.
 
 ---
 
