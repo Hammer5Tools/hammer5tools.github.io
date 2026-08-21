@@ -175,7 +175,7 @@ You can customize the default value, min/max range, and display category for eac
 
 ## Practical Tutorial: Creating a Dust 2 Crate PickOne SmartProp
 
-In this tutorial, we will build a versatile crate selector containing multiple Dust 2 crate models. It will support both manual model selection via a slider and automatic randomization, along with optional random scaling and horizontal yaw rotation.
+In this tutorial, we will build a versatile crate selector containing multiple Dust 2 crate models. It will support both manual model selection via a slider and automatic randomization, along with optional random scaling and horizontal spin rotation.
 
 ![PickOne Crate Demo](docs/images/smartprop_guide/smartprop-crate-example-demo.gif)
 
@@ -257,9 +257,9 @@ Expose the **Min Scale** and **Max Scale** properties in the Random Scale modifi
 ![Scale Min/Max Properties](docs/images/smartprop_guide/smartprop-random-scale-minmax.png)
 
 ### Step 13: Create a Vector2D Variable for Rotation
-For rotation, we only want horizontal rotation around the Z (yaw) axis. Rather than creating two separate float variables for min and max angles, create a single **Vector2D** variable where:
-- `X` = Minimum yaw angle
-- `Y` = Maximum yaw angle
+For rotation, we only want horizontal rotation around the Z (spin) axis. Rather than creating two separate float variables for min and max angles, create a single **Vector2D** variable where:
+- `X` = Minimum spin angle
+- `Y` = Maximum spinangle
 
 ![Vector2D Variable](docs/images/smartprop_guide/smartprop-vector2d-var.png)
 
