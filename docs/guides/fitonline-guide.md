@@ -239,9 +239,3 @@ To create smooth curved bends in Hammer, we introduce the **BendDeformer** eleme
 You now have a complete, fully interactive procedural pipe SmartProp!
 
 ![Final Pipe Demo](docs/images/fitonline_guide/fitonline-hero-demo.webp)
-
-### What You Can Do in Hammer:
-- **Stretch**: Drag sizer arrows to lengthen straight runs with automatic model scaling and UV compensation.
-- **Bend**: Rotate the bend widget to sweep pipes smoothly along 90-degree curves.
-- **Branch**: Click or cycle the PickOne widget to spawn T-junctions, cross-sections, or corners.
-- **Cap**: Switch to end caps to seal off open pipe terminations.
