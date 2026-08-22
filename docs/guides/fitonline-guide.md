@@ -28,6 +28,10 @@ Before building a procedural pipe system, the source 3D meshes must be prepared 
    
    ![Clean Dimensions](docs/images/fitonline_guide/fitonline-clean-dimensions.png)
 
+> [!TIP]
+> **Consistent Alignment Axis**
+> Align all pipe meshes along the same primary axis (e.g., Z-up) with matching cross-sectional diameters. This ensures that straight pieces, corners, and end caps seamlessly snap together without transform discrepancies.
+
 For this tutorial, we will use a custom modular pipe kit built in Blender:
 
 ![Blender Mesh Set](docs/images/fitonline_guide/fitonline-blender-mesh-set.png)
@@ -42,6 +46,10 @@ Instead of manually configuring dozens of `.vmdl` files in Hammer, we will use *
 > **AssetGroup Maker** allows you to edit a single reference asset and automatically propagate materials, collision hulls, and surface properties to all other models in the group.
 
 1. Launch CS2 with `-netconport 2121` (or launch via Hammer5Tools).
+
+> [!NOTE]
+> Setting `-netconport 2121` in your CS2 launch options allows Hammer5Tools to communicate directly with Hammer and trigger live resource recompilations automatically.
+
 2. Place the unpacked FBX files into your addon's content directory (e.g. `content/csgo_addons/<addon>/models/pipe_kit/`).
    
    ![Addon Folder](docs/images/fitonline_guide/fitonline-addon-folder.png)
@@ -92,6 +100,11 @@ Instead of manually configuring dozens of `.vmdl` files in Hammer, we will use *
 
 ### Adding an Interactive Sizer Handle (`CreateSizer`)
 7. Create a new Group element and attach a **CreateSizer** modifier to it.
+
+> [!TIP]
+> **Modifier Grouping Best Practice**
+> Placing `CreateSizer` in an empty parent group keeps the hierarchy clean and prevents sizer transforms from unexpectedly shifting the local coordinate origin of the child `FitOnLine` element.
+
 8. Create a float variable named `SizerLengthZ` (uncheck *Show in editor*).
 9. In the CreateSizer modifier:
    - Set **Output Variable Max Z** to `SizerLengthZ`.
@@ -101,6 +114,10 @@ Instead of manually configuring dozens of `.vmdl` files in Hammer, we will use *
    ![CreateSizer Setup](docs/images/fitonline_guide/fitonline-create-sizer-modifier.png)
    
    ![Sizer Bounds](docs/images/fitonline_guide/fitonline-sizer-bounds-config.png)
+
+> [!TIP]
+> **Setting Sizer Constraints**
+> Always configure **Constraint Min Z** and **Constraint Max Z** on your `CreateSizer` modifier to prevent mappers from accidentally inverting or over-stretching the pipe beyond reasonable level boundaries.
 
 10. In your `FitOnLine` element, change the **End.Z** property from constant `128` to the `SizerLengthZ` variable.
 11. In the Hammer viewport (`Shift + S`), drag the sizer arrow handle to dynamically lengthen the pipe:
@@ -115,6 +132,11 @@ To prevent stepped gaps between fixed-size meshes, enable dynamic scaling:
     ```text
     LinearScale()
     ```
+
+> [!NOTE]
+> **What does `LinearScale()` do?**
+> The `LinearScale()` expression dynamically computes the scale multiplier applied by `FitOnLine` to fill the remaining span. Referencing it in expressions allows child elements (like caps or connectors) to offset automatically by the scaled dimensions.
+
 14. In the model's **Selection Criteria: LinearLength**, set **Allow Scale** to `true`, **Min Length** to `64`, and **Max Length** to `192`.
     
     ![Scale Mode LinearScale](docs/images/fitonline_guide/fitonline-scale-mode-linearscale.png)
@@ -146,7 +168,10 @@ To allow pipes to continuously branch and change directions, we can nest the Sma
 4. **Self-Referencing SmartProp**:
    - Add a `SmartProp` element under the **End** `PickOne`.
    - Set its SmartProp path to the current `.vsmart` file itself.
-   - **Crucial**: Ensure the parent `PickOne` selection mode is set to **`FIRST`** (with the closed cap as the first child) so that placed props do not spawn infinite recursive copies.
+
+> [!WARNING]
+> **Preventing Infinite Recursion**
+> When creating self-referencing SmartProps, always set the parent `PickOne` selection mode to **`FIRST`** and ensure a non-recursive terminator (like a closed cap) is the first item. Setting the selection mode to `RANDOM` will cause the SmartProp to spawn endless recursive copies upon placement, causing the editor to freeze.
    
    ![Nested Self Reference](docs/images/fitonline_guide/fitonline-nested-self-reference.png)
 
@@ -182,6 +207,10 @@ To create smooth curved bends in Hammer, we introduce the **BendDeformer** eleme
    
    ![Bend Rotator Setup](docs/images/fitonline_guide/fitonline-bend-rotator-setup.png)
 
+> [!TIP]
+> **Enforcing Angle Limits**
+> Always check **Enforce Limits** on your `CreateRotator` (`Min = -90°`, `Max = 90°`) to prevent mappers from accidentally twisting pipes into non-physical inverted geometries.
+
 4. Reorganize and clean up the hierarchy:
    - Move the main picker and sizer handles to the top level.
    - Ensure sizer constraints on Z are properly bounded (e.g. `Constraint Max Z = 192`).
@@ -197,10 +226,11 @@ To create smooth curved bends in Hammer, we introduce the **BendDeformer** eleme
 
 ### The Rigid Deformation Modifier
 
-> [!IMPORTANT]
-> When child elements (like PickOne handles or nested SmartProps) sit inside a `BendDeformer`, the deformation math would normally skew and distort their interactive control handles.
+> [!WARNING]
+> **Why is Rigid Deformation required?**
+> When child elements (such as `PickOne` handles or nested SmartProp instances) sit inside a `BendDeformer`, the deformation math would normally skew and distort their interactive viewport widgets into angled ellipses.
 > 
-> To prevent this, add a **`Rigid Deformation`** modifier to each control handle group. This preserves clean, non-deformed transform handles while still bending the mesh geometry underneath!
+> To prevent this, attach a **`Rigid Deformation`** modifier to each control group. This preserves clean, non-deformed transform handles in the viewport while still curving the mesh geometry underneath.
 
 ---
 
