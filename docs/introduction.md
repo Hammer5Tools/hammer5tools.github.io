@@ -1,37 +1,42 @@
 # Introduction
 
-Welcome to the **Hammer 5 Tools** documentation. Hammer 5 Tools is an open-source set of desktop tools for the Counter-Strike 2 Workshop. It helps level designers, environment artists, audio designers, and modders with their workflow.
+Hammer5Tools is a desktop toolset for Counter-Strike 2 Workshop projects.
 
-![Hero Video](videos/hero.mp4)
+<div style="position: relative; width: 100%; padding-top: 56.25%; overflow: hidden; border-radius: 8px;">
+  <iframe src="https://www.youtube.com/embed/-xIHW65kNYA" title="Hammer5Tools video" style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
 
----
+## Editors and utilities
 
-## Core Toolkit Architecture
+- [SmartProp Editor](#smart-prop-editor)
+- [SoundEvent Editor](#sound-editor)
+- [Audio Editor](#audio-editor)
+- [DetailProp Editor](#detail-prop-editor)
+- [AssetGroup Maker](#asset-group-maker)
+- [Hotkey Editor](#hotkey-editor)
+- [Loading Editor](#loading-editor)
+- [Map Builder](#map-builder)
+- [UnrealPorter](#unreal-porter)
+- [SourcePorter](#source-porter)
+- [Git](#git-sync)
+- [Addon Export](#addon-manager)
+- [Cleanup Tool](#cleanup)
+- [NavMesh Radar](#navmesh-radar)
+- [Explorer](#explorer)
+- [Preferences & Settings](#preferences)
 
-Hammer 5 Tools includes the following editors and utilities:
+## Main window
 
-### Visual Editors
-- <img src="icon/editors/smartprop_editor.png" class="inline-icon" alt=""> **[SmartProp Editor](#smart-prop-editor)**: Node-based visual editor for procedural props (`.vsmart`), supporting real-time 3D viewport previews, expressions, and deformers.
-- <img src="icon/editors/soundevent_editor.png" class="inline-icon" alt=""> **[SoundEvent Editor](#sound-editor)**: Editor for `soundevents_addon.vsndevts`, featuring live NetConsole playback, curve visualizers, and base game soundevent decompilation.
-- <img src="icon/editors/audio_editor.png" class="inline-icon" alt=""> **[Audio Editor](#audio-editor)**: Built-in audio editor for inspecting waveforms, setting RIFF cue loop points, and applying DSP volume and fade ramps.
-- <img src="icon/editors/detail_prop_editor.png" class="inline-icon" alt=""> **[DetailProp Editor](#detail-prop-editor)**: Visual management of `scripts/detail_prop_types.vdata` for procedural grass, rocks, and clutter bound to material layers.
-- <img src="icon/editors/assetgroup_maker.png" class="inline-icon" alt=""> **[AssetGroup Maker](#asset-group-maker)**: Batch asset generator creating hundreds of Source 2 materials, models, and batch compile scripts from templates.
-- <img src="icon/editors/hotkey_editor.png" class="inline-icon" alt=""> **[Hotkey Editor](#hotkey-editor)**: Customizable shortcut manager and preset switcher for Hammer, ModelDoc, and other Source 2 tools.
-- <img src="icon/editors/loading_editor.png" class="inline-icon" alt=""> **[Loading Editor](#loading-editor)**: Multi-resolution loading screen screenshot generator, history timeline, and map icon / description manager.
+The addon selector sets the addon used by every editor and utility. Save open files before switching addons.
 
-### Build & Migration Pipeline
-- <img src="icon/editors/map_builder.png" class="inline-icon" alt=""> **[Map Builder](#map-builder)**: Fast, full, and batch compile manager for `.vmap` files with live telemetry (CPU/RAM) and automated cubemap baking via NetConsole.
-- <img src="icon/editors/unreal_porter.svg" class="inline-icon" alt=""> **[UnrealPorter](#unreal-porter)**: Full-featured bridge converting Unreal Engine 5 levels, meshes, PBR materials, textures, and lights into Source 2 assets.
-- <img src="icon/editors/source_porter.png" class="inline-icon" alt=""> **[SourcePorter](#source-porter)**: Automated porting suite converting GoldSrc and Source 1 BSP maps, models, materials, and textures into Source 2 with issue auto-repair.
-- <img src="icon/editors/git_sync.svg" class="inline-icon" alt=""> **[Git Sync & VMAP Merge](#git-sync)**: Team collaboration system with an intelligent 3-way merge driver specifically built for Source 2 `.vmap` files.
-- <img src="icon/editors/addon_manager.svg" class="inline-icon" alt=""> **[Addon Manager & Exporter](#addon-manager)**: Package, export, import, and organize CS2 addon projects with dependency resolution and clean release archiving.
-- <img src="icon/editors/cleanup.svg" class="inline-icon" alt=""> **[Cleanup Tool](#cleanup)**: Sweeps unused assets from the addon content directory and purges the `_vrad3` lightmap cache.
+Use **Launch Addon** to start the CS2 tools. Use the adjacent addon menu to create, import, export, delete, or open an addon and to edit launch parameters.
 
----
+The Git button opens the active addon's sync workflow. **Map Builder** opens the map build queue. The **Utilities** menu opens SourcePorter, UnrealPorter, NavMesh Radar, Cleanup Content, and Cleanup _vrad3 cache.
 
-## Explore Community Assets
+Closing the window sends it to the notification area when **Minimize on Close** is enabled. Open **Preferences** to change that setting.
 
-<a href="vsmart-library.html" class="btn btn-primary" style="display: inline-flex; align-items: center; text-decoration: none; padding: 0.6rem 1.2rem; border-radius: 6px; font-weight: 600; background: var(--color-primary); color: white;">
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-  Explore VSmart Library
-</a>
+## About and updates
+
+The About window shows the installed version and links to the documentation, guides, feedback, and project pages. Use **Don't show on startup** to hide it when Hammer5Tools opens.
+
+The Updater shows the installed and available versions. Click **ReleaseNotes** to read the changes. Click **Update** to install the offered release.

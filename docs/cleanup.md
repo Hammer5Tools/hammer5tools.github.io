@@ -1,56 +1,30 @@
-# Cleanup & Maintenance
+# Cleanup Tool
 
-Tools to sweep unreferenced assets from your addon directory and purge corrupted lightmap caches to keep projects lean and error-free.
+Cleanup Tool finds content files that are not referenced by the selected addon assets.
 
----
+Open it from **Utilities > Cleanup Content**.
 
-## Overview
+## Scan
 
-Over the course of developing a Counter-Strike 2 map, hundreds of test models, unused textures, old sound variations, and orphaned material files accumulate in the addon folder.
+Enable **Scan source mesh files (.fbx, .dmx) for material references** when source meshes contain material names that must be kept.
 
-Hammer5Tools provides two essential cleanup utilities:
-1. **Cleanup Content**: Recursively scans `.vmap` dependencies and removes unreferenced source assets from `content/csgo_addons/<addon>/`.
-2. **Cleanup _vrad3 Cache**: Deletes stale lightmap bake caches from `game/csgo_addons/*/_vrad3/` to resolve baking artifacts and force full lighting recalculations.
+Click **Open .dirtlist** to load a saved list of files. Use **Search / Filter by name** and **File Type** to narrow the results.
 
----
+Click **Recalculate** after changing the addon content. The summary shows the scanned files and cleanup candidates.
 
-## 1. Cleanup Content Tool
+## Review files
 
-Access via **Utilities > Cleanup Content** in the bottom toolbar.
+Use the checkboxes to choose files. Right-click a result to select it, deselect it, or open its folder in Explorer.
 
-### How It Works
-1. Parses `maps/<addon_name>.vmap` and resolves all active entity references, brush materials, models, SmartProps, sounds, and blend layers.
-2. Scans every file inside the addon's `content/` folder.
-3. Compares the two lists and flags files that have **zero references** as deletion candidates.
+Click **Verify** to compile the selected assets. The verification dialog reports files that fail compilation. Fix or remove those entries from the selection before deletion.
 
-### Filters & Selection
-- **Search Bar**: Substring search by path/filename.
-- **File Type Filter**: Filter candidate list by extension (`.vmat`, `.vtex`, `.vmdl`, `.vsnd`, `.vsmart`).
-- **File Table**: Multi-select rows with checkboxes to selectively protect specific files.
-- **Stats Bar**: Displays total selected files, visible files, and total reclaimed disk space.
+## Delete files
 
-### Actions
-- **Delete Selected Files**: Permanently deletes checked files from the content directory.
-- **Recalculate**: Re-parses the `.vmap` from disk if you just saved new changes in Hammer.
+Click **Delete Selected Files**. Read the confirmation and check the listed paths before continuing.
+
+## Clean the VRAD3 cache
+
+Choose **Utilities > Cleanup _vrad3 cache** to remove cached VRAD3 data for the active addon. Run a new lighting build after clearing it.
 
 > [!WARNING]
-> File deletion is permanent. Make sure to commit your work to Git or create an export archive before deleting files.
-
----
-
-## 2. Cleanup `_vrad3` Lightmap Cache
-
-Access via **Utilities > Cleanup _vrad3 cache** in the bottom toolbar.
-
-### Why Clean VRAD3 Cache?
-When iteratively baking lightmaps with VRAD3, cached texels are stored in:
-```
-game/csgo_addons/<addon_name>/_vrad3/
-```
-If you make major changes to world geometry, move light sources, or encounter strange lighting seams/corruption, the cached lightmap texels may not invalidate properly.
-
-### Execution
-1. Click **Utilities > Cleanup _vrad3 cache**.
-2. A confirmation prompt displays all detected `_vrad3` directories across your installed addons.
-3. Confirm deletion — Hammer5Tools safely deletes the cache folders.
-4. The next compile will perform a clean, 100% fresh lightmap bake without ghost shadows or stale artifacts.
+> Cleanup deletion changes files on disk. Commit or back up the addon before deleting files.

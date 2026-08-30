@@ -1,6 +1,6 @@
-# Guide: Creating Looping Radio & Music Sounds
+# Looping Radio
 
-Learn how to create seamless looping music, ambient radios, and soundscapes for Counter-Strike 2 using the built-in [Audio Editor](#audio-editor) and [SoundEvent Editor](#sound-editor).
+Learn how to prepare looping music, ambient radios, and soundscapes for Counter-Strike 2 using the built-in [Audio Editor](#audio-editor) and [SoundEvent Editor](#sound-editor).
 
 ---
 
@@ -13,7 +13,7 @@ Counter-Strike 2 uses **RIFF Cue Markers** stored directly within `.wav` files t
 3. Listen to the track and find your loop start and loop end points:
    - Click on the waveform where the loop begins and press **`M`** (Add Marker).
    - Click on the waveform where the loop ends and press **`M`** (Add Marker).
-4. You now have **Marker 1** and **Marker 2** defining your seamless loop region.
+4. **Marker 1** and **Marker 2** now define the loop region.
 5. Press **Ctrl+S** to save the audio file. Hammer5Tools writes the cue points directly into the WAV header.
 
 > [!TIP]
@@ -42,4 +42,4 @@ Counter-Strike 2 uses **RIFF Cue Markers** stored directly within `.wav` files t
 1. In Hammer Editor, create a `point_soundevent` entity.
 2. Set **Soundevent Name** to your custom event (`radio.music_loop_01`).
 3. Set **Start On Spawn** to `true`.
-4. Run or compile your map — your radio music will now play and loop smoothly in Counter-Strike 2!
+4. Run or compile the map. The radio music starts and loops in Counter-Strike 2.

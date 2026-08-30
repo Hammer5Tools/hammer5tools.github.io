@@ -46,3 +46,11 @@ After creating the `\.md` file:
 1. Open `docs.html`.
 2. Add a `<li>` to the sidebar HTML in the appropriate category.
 3. Add an entry to the `contentMap` variable in the `<script>` block to enable routing and next/prev navigation.
+
+## 5. Accuracy and Style
+
+Documentation describes the shipped application. Verify UI labels, shortcuts, settings keys, file paths, command-line flags, and data fields against the source before publishing them. If a feature cannot be verified, leave it out.
+
+Use the labels and terminology the application uses. Do not invent shortcut tables, settings tables, or implementation details to make a page feel more complete.
+
+Keep the prose direct. Avoid promotional or vague wording such as “seamless,” “intelligent,” “comprehensive,” “robust,” “powerful,” “complete,” “essential,” “effortless,” “tedious,” and “notorious.” Use “automatically” only when the behavior genuinely requires no user action. Do not add a preamble about the difficulty of doing the task manually, and do not close instructional text with an exclamation mark.

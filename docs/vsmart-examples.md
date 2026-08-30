@@ -11,7 +11,7 @@ Find even more examples and the latest updates in the GitHub repository:
 
 ## Fit on Line
 
-This example shows how to distribute objects along a line and automatically fit them to the line's length.
+This example shows how to distribute objects along a line and fit them to the line's length.
 
 ![Fit on Line Example](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjR4cnk5eTU0NHJlNTYwc2Y2cjM4ZWl0cTJiNzR0Y3YxYnB3aHg5YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/iGE2yUyc6vNzucsvRB/giphy.gif)
 

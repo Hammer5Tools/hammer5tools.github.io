@@ -1,6 +1,6 @@
-# Procedural Pipes (FitOnLine & BendDeformer)
+# FitOnLine Guide
 
-In this guide, we will build a versatile, production-ready modular pipe SmartProp in Counter-Strike 2. You will learn how to combine **`FitOnLine`**, **`BendDeformer`**, **`CreateSizer`**, **`CreateRotator`**, and **nested self-referencing SmartProps** to build pipes that can dynamically stretch to any length, branch in different directions, bend smoothly along curves, and automatically place end caps.
+This guide builds a modular pipe SmartProp in Counter-Strike 2 using **`FitOnLine`**, **`BendDeformer`**, **`CreateSizer`**, **`CreateRotator`**, and nested SmartProps.
 
 ![Procedural Pipe Overview](docs/images/fitonline_guide/fitonline-hero-demo.webp)
 
@@ -16,7 +16,7 @@ In this guide, we will build a versatile, production-ready modular pipe SmartPro
 
 Before building a procedural pipe system, the source 3D meshes must be prepared according to specific guidelines:
 
-1. **Pivot Placement**: The origin pivot must be placed precisely at the start or end border of the mesh along the connection axis (typically Z or Y).
+1. **Pivot Placement**: Place the origin pivot at the start or end border of the mesh along the connection axis, such as Z or Y.
    
    ![Pivot Requirement](docs/images/fitonline_guide/fitonline-pivot-requirement.png)
 
@@ -24,13 +24,13 @@ Before building a procedural pipe system, the source 3D meshes must be prepared 
    
    ![Segment Density](docs/images/fitonline_guide/fitonline-segment-density.png)
 
-3. **Grid-Aligned Sizing**: Models should have clean, predictable unit lengths (e.g. 32, 64, 128, 192 units) rather than arbitrary dimensions. This makes length and selection criteria calculations straightforward.
+3. **Grid-Aligned Sizing**: Use predictable unit lengths such as 32, 64, 128, or 192 units. These values keep the length and selection criteria calculations direct.
    
    ![Clean Dimensions](docs/images/fitonline_guide/fitonline-clean-dimensions.png)
 
 > [!TIP]
 > **Consistent Alignment Axis**
-> Align all pipe meshes along the same primary axis (e.g., Z-up) with matching cross-sectional diameters. This ensures that straight pieces, corners, and end caps seamlessly snap together without transform discrepancies.
+> Align all pipe meshes along the same primary axis (for example, Z-up) with matching cross-sectional diameters.
 
 For this tutorial, we will use a custom modular pipe kit built in Blender:
 
@@ -43,12 +43,12 @@ For this tutorial, we will use a custom modular pipe kit built in Blender:
 Instead of manually configuring dozens of `.vmdl` files in Hammer, we will use **AssetGroup Maker** to batch-generate and synchronize our models.
 
 > [!TIP]
-> **AssetGroup Maker** allows you to edit a single reference asset and automatically propagate materials, collision hulls, and surface properties to all other models in the group.
+> Check AssetGroup Maker's generated files after changing a reference asset.
 
 1. Launch CS2 with `-netconport 2121` (or launch via Hammer5Tools).
 
 > [!NOTE]
-> Setting `-netconport 2121` in your CS2 launch options allows Hammer5Tools to communicate directly with Hammer and trigger live resource recompilations automatically.
+> Set `-netconport 2121` in CS2 launch options when a workflow requires a NetConsole connection.
 
 2. Place the unpacked FBX files into your addon's content directory (e.g. `content/csgo_addons/<addon>/models/pipe_kit/`).
    
@@ -64,7 +64,7 @@ Instead of manually configuring dozens of `.vmdl` files in Hammer, we will use *
    
    ![Generated VMDLs](docs/images/fitonline_guide/fitonline-vmdl-generated.png)
 
-7. Right-click the `.hbat` file and choose **Open Reference Asset**. Any changes made to collision hulls, physics, or material assignments on the reference asset will automatically sync to all models in the kit:
+7. Right-click the `.hbat` file and choose **Open Reference Asset**. Review the generated models after changing collision hulls, physics, or material assignments:
    
    ![Open Reference Asset](docs/images/fitonline_guide/fitonline-open-reference-asset.png)
    
@@ -135,7 +135,7 @@ To prevent stepped gaps between fixed-size meshes, enable dynamic scaling:
 
 > [!NOTE]
 > **What does `LinearScale()` do?**
-> The `LinearScale()` expression dynamically computes the scale multiplier applied by `FitOnLine` to fill the remaining span. Referencing it in expressions allows child elements (like caps or connectors) to offset automatically by the scaled dimensions.
+> The `LinearScale()` expression returns the scale multiplier used by `FitOnLine` to fill the remaining span. Reference it to offset child caps or connectors by the scaled dimensions.
 
 14. In the model's **Selection Criteria: LinearLength**, set **Allow Scale** to `true`, **Min Length** to `64`, and **Max Length** to `192`.
     
@@ -157,7 +157,7 @@ To prevent stepped gaps between fixed-size meshes, enable dynamic scaling:
 
 ## Step 3: Branching with Nested SmartProps
 
-To allow pipes to continuously branch and change directions, we can nest the SmartProp inside itself!
+To allow pipes to branch and change direction, nest the SmartProp inside itself.
 
 1. Create a `PickOne` element named **End**.
 2. Place the Cap `PickOne` and connector meshes (`pipe_01_32_a`, `pipe_01_32_b`) under **End**.
@@ -236,6 +236,6 @@ To create smooth curved bends in Hammer, we introduce the **BendDeformer** eleme
 
 ## Final Result & Workflow Recap
 
-You now have a complete, fully interactive procedural pipe SmartProp!
+You now have a procedural pipe SmartProp to test in Hammer.
 
 ![Final Pipe Demo](docs/images/fitonline_guide/fitonline-hero-demo.webp)

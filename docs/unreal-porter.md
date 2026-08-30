@@ -1,82 +1,56 @@
 # UnrealPorter
 
-A bridge and export pipeline for converting Unreal Engine 5 levels, static meshes, PBR materials, textures, and lighting into Source 2 and Counter-Strike 2.
+UnrealPorter imports Unreal project data into a selected CS2 addon.
 
----
+Open it from **Utilities > UnrealPorter**.
 
-## Overview
+## Select a project
 
-**UnrealPorter** provides an automated pipeline to transfer UE scenes and assets directly into Counter-Strike 2 Workshop addons.
+Select the Unreal project's `.uproject` file and the **Target Addon**. The **Editor Instance** field shows the Unreal Engine installation assigned to that project.
 
-Key capabilities:
-- **Level & Actor Conversion**: Converts Unreal Engine `.umap` levels into Source 2 `.vmap` files, placing all meshes, lights, decals, and instances at exact world transforms.
-- **Static Mesh Pipeline**: Converts `.uasset` static meshes to `.fbx` and builds `.vmdl` files complete with collision shapes and material slot bindings.
-- **PBR Material Converter**: Translates Unreal Engine material graphs and material instances into Source 2 `.vmat` files using standard PBR shaders (`vr_complex.vfx`).
-- **Texture Extraction & Packing**: Extracts diffuse/albedo, normal maps, roughness, metallic, ambient occlusion, and opacity masks, packing them for Source 2's texture pipeline.
-- **Lighting Translation**: Converts UE Directional Lights, Point Lights, Spot Lights, and Rect Lights into Source 2 light entities (`light_environment`, `light_omni`, `light_spot`, `light_rect`) with lumen/candela intensity curve adjustments.
-- **Foliage & Instancing**: Converts UE Foliage and Hierarchical Instanced Static Meshes into `.vsmart` SmartProps or discrete instance groups.
-- **UE Plugin Bridge**: Automates export directly from within the Unreal Engine Editor using background Python automation scripts.
+UnrealPorter supports projects assigned to Unreal Engine 4.27 or 5.x. Set a custom Unreal path in Settings when the installation is not detected.
 
----
+Click **Re-analyze** after changing the project. Analysis reads the available maps, models, materials, textures, and their references.
 
-## Launching UnrealPorter
+## Select assets
 
-Open the tool via **Utilities > UnrealPorter** in the Hammer5Tools bottom bar.
+Click **Select assets** after analysis. Check individual assets in the project tree or filter the list by asset type.
 
----
+Referenced assets are added to the selection. A selected map brings in its meshes. A selected mesh brings in its materials. A selected material brings in its textures.
 
-## Setup & Prerequisites
+## General settings
 
-1. **Unreal Engine 5** installed (UE 5.0 through 5.5 supported).
-2. **Target CS2 Addon** selected in Hammer5Tools.
-3. **Bridge Installation**:
-   - In UnrealPorter, select your Unreal Engine installation directory.
-   - Click **Install Script into Project** to place the automation bridge scripts into your UE project folder.
+Enable **Source 2 naming style** to remove Unreal type prefixes, split PascalCase names, and use lowercase Source 2 file names.
 
----
+The map settings control **Import light**, **Import sky**, **Import cubemaps**, **Import decals**, and **Mirror negative scaled actors**. The mirror option writes a mirrored model for actors whose negative scale would render inside-out in Source 2.
 
-## Interface & Configuration Tabs
+## Models
 
-UnrealPorter organizes conversion into modular tabs:
+Set **Unit Scale** to **cm** to keep Unreal's unit count or **inch** to convert centimeters to inches. Set **Apply Mode** to **FBX** to scale the geometry or **Vmdl** to store the import scale in the VMDL.
 
-### 1. Paths & Project Selection
-- **Unreal Engine Root**: Path to your UE engine installation (e.g. `C:\Program Files\Epic Games\UE_5.4`).
-- **Unreal Project (`.uproject`)**: Path to the `.uproject` file you wish to export from.
-- **Target Addon**: The destination CS2 addon in `content/csgo_addons/`.
+Enable **LODs** to import `_LOD0` through `_LODN` meshes. Enable **Collision** to use `UCX_` and `UBX_` collision meshes. **Fallback material** assigns the graybox fallback material instead of converted materials.
 
-### 2. Level & Scene Settings
-- **Level (`.umap`) Selection**: Choose the specific map/level to export.
-- **Unit Scale**: Default is `1.0` (Unreal 1 cm = Source 2 1 inch scaling conversion can be toggled).
-- **Coordinate Conversion**: Automatically flips coordinates between UE (Z-up, Left-Handed) and Source 2 (Z-up, Right-Handed).
+## Textures
 
-### 3. Mesh & Geometry Options
-- **Generate Collision Meshes**: Automatically creates simple convex collision hulls or uses UE custom collision hulls.
-- **FBX Mesh Flattening**: Merges multi-part static mesh LODs and applies transforms.
-- **Skip Nanite Proxy Geometry**: Exports high-poly source meshes instead of degraded runtime Nanite proxies.
+Choose **tga** or **png** as the texture output. Enable **Invert Y-Normal** to invert the green channel of Unreal normal maps for Source 2.
 
-### 4. Materials & Shader Schemas
-- **Master Material Mapping**: Maps UE master material parent graphs to Source 2 shader schemas.
-- **Texture Packing Mode**: Standard Source 2 packing (RGB = Color, A = Roughness/Alpha, etc.).
-- **Decal Handling**: Automatically maps UE Decal actors to Source 2 projected decal entities.
+## Materials
 
----
+The Materials tab lists each Unreal master material and its instances. Check the master materials to convert and choose a target CS2 shader.
 
-## Execution Workflow
+Open **Shader Remapper** to assign texture parameters to CS2 texture slots. Set shader features and parameter overrides, then click **Save**. Use **Reset to Auto** to discard the manual mappings for that material.
 
-1. Click **Analyze Project**: UnrealPorter surveys the project and lists all meshes, materials, textures, and levels without booting the full editor.
-2. Review the detected assets and uncheck any assets you do not wish to port.
-3. Click **Export & Convert**:
-   - The background worker executes the Unreal Engine automation script.
-   - Assets are exported to the temporary staging directory.
-   - Hammer5Tools converts geometry to `.vmdl`, textures to `.vtex`, materials to `.vmat`, and the level to `.vmap`.
-4. Open Hammer Editor via **Edit Map** to load your newly converted level!
+Click **Re-convert Materials** after changing shader or slot mappings. This processes materials without converting the maps and models again.
 
----
+## Workflow
 
-## Cache Management
+1. Select the project and target addon.
+2. Analyze the project.
+3. Select the assets and their dependencies.
+4. Set map, model, texture, and material options.
+5. Click **Convert**.
+6. Read the console and open the output in Hammer.
 
-Converted raw assets are staged in:
-```
-content/csgo_addons/<addon>/hammer5tools/unrealporter/tmp/
-```
-Click **Clean Cache** at any time to remove temporary files without affecting your compiled addon resources.
+Right-click the console to choose **Clear Console** or **Save log...**. Click **Clean cache** to remove the addon's Unreal export cache before a clean conversion.
+
+Check geometry, transforms, materials, collision, lighting, and entity placement in Hammer.

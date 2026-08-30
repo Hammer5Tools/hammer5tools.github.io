@@ -1,6 +1,6 @@
 # SmartProp Editor
 
-A visual node-based editor for creating and modifying Valve `.vsmart` and `.vdata` procedural prop files for Counter-Strike 2.
+SmartProp Editor creates and edits Valve `.vsmart` and `.vdata` procedural prop files for Counter-Strike 2.
 
 ---
 
@@ -8,7 +8,7 @@ A visual node-based editor for creating and modifying Valve `.vsmart` and `.vdat
 
 SmartProps represent Source 2's procedural placement and asset variation system. A `.vsmart` file defines a hierarchical graph of elements (models, scatters, grids, deformable lines) altered by operators (transforms, traces, color tints) and controlled by user-facing variables.
 
-Instead of writing verbose KeyValues3 text files by hand, the **SmartProp Editor** provides a rich interface with full undo/redo history, variable binding, expression evaluation, 3D viewport previewing, and instantaneous compilation on save.
+The editor provides a hierarchy, property controls, variables, choices, history, and a 3D viewport.
 
 ---
 
@@ -24,6 +24,32 @@ The editor window is organized into docked workspaces:
 | **Properties Panel (Center Right)** | Inspector for element properties, attached modifiers (operators/filters), and selection criteria. |
 | **Variables Panel** | Exposes configurable parameters (Strings, Bools, Floats, Vectors, Colors, Materials, Angles) to Hammer users. |
 | **Choices Panel** | Manages weighted variations when a `PickOne` element is selected. |
+
+The **Manual** dock edits the current document as text. The **History** dock lists undoable edits.
+
+## Documents
+
+Click **Create New** or press `Ctrl+N` to create a SmartProp. Click **Open File** or press `Ctrl+O` to open a `.vsmart` or `.vdata` file.
+
+Use **File > Save**, **Save As**, or **Save All** to write changes. An asterisk on a document tab marks unsaved changes. Closing a changed document opens a save prompt.
+
+Right-click a document tab to choose **Save Current Layout as Default** or **Reset Layout**.
+
+## Hierarchy commands
+
+Right-click the hierarchy to add an element or create one from a preset. The same menu provides **Remove**, **Duplicate**, **Group selected**, **Copy**, **Cut**, **Paste**, and **Paste with replacement**.
+
+**Paste with replacement** opens Find and Replace before inserting the copied data. Use it when duplicated elements need a new model path, variable name, or category.
+
+Use **Bulk Model Importer** to create model elements from several VMDL files. Use **Load Vmap...** to add supported VMAP objects to the hierarchy.
+
+Select an element and choose **Isolate in 3D viewport** or press `Ctrl+H` to hide the other hierarchy branches from the preview.
+
+## Docks and layout
+
+The **View** menu opens Explorer, Hierarchy, Properties, Variables, Choices, Viewport, Manual, and History. Drag dock headers to rearrange them.
+
+Choose **Save Current Layout as Default** after arranging the docks. Choose **Reset Layout** to restore the supplied layout.
 
 ---
 
@@ -62,7 +88,7 @@ Modifiers attach to elements in the Properties panel and execute sequentially fr
 - **State Management**: `SaveState`, `RestoreState`, `SavePosition`, `SaveDirection`, `SaveScale`, `SetVariable`.
 
 ### Filters
-Filters decide whether an element should be evaluated or skipped:
+Filters decide whether an element is evaluated or skipped:
 - **Probability**: Spawns element with a random chance (0.0 to 1.0).
 - **Expression**: Spawns element if a mathematical/logical expression evaluates to true (e.g. `InstanceIndex() % 2 == 0`).
 - **SurfaceAngle**: Restricts placement based on terrain slope angle.
@@ -98,7 +124,6 @@ In Expression filters and math operators, use built-in functions:
 
 ---
 
-## Realtime Saving & Transparency
+## Undo and redo
 
-- **Realtime Save**: When enabled in the toolbar, Hammer5Tools auto-saves modified documents to disk whenever you make an edit (delay configurable in **Settings > SmartProp**).
-- **Window Transparency**: When enabled in settings, the window becomes semi-transparent during live editing so you can see Hammer updating directly behind it.
+Use `Ctrl+Z` and `Ctrl+Y` to move through document edits. The History dock shows the recorded operations for the current document.

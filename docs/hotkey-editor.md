@@ -1,40 +1,32 @@
 # Hotkey Editor
 
-Customize, manage, and switch keyboard shortcut profiles across Source 2 tools (Hammer Editor, ModelDoc, Material Editor, and Particle Editor).
+Hotkey Editor creates and applies keybinding presets for the CS2 tools.
 
----
+## Choose an editor
 
-## Overview
+Select the target editor above **Keybindings presets**. The available targets include Hammer, ModelDoc Editor, AnimGraph Editor, Particle Editor, Post Process Editor, Subrect Editor, Asset Browser, Property Editor, Workshop Manager, Shared Tool, Help System, and Global.
 
-Source 2 stores keybindings across various tool configuration files in the user profile. The **Hotkey Editor** provides a centralized interface to search for tool commands, rebind shortcuts, create custom keybinding presets, and swap configurations between projects or team members.
+Presets are stored separately for each target.
 
----
+## Open or create a preset
 
-## Interface Layout
+Select a preset in the left panel and click **Open preset**. Click **New preset** to create a preset from the target editor's default bindings.
 
-The Hotkey Editor tab is divided into two sections:
+The binding tree groups commands by their Source 2 context. Use **Command filter** to find a command. Use the Input filter to find commands assigned to a key.
 
-| Section | Description |
-|---|---|
-| **Editor Selector (Left)** | Choose which Source 2 editor profile to configure (Hammer, ModelDoc, Material Editor, Subrect Editor). |
-| **Keybindings Table (Right)** | Searchable table of commands, assigned key combinations, and modifiers. |
+## Change a binding
 
----
+Click the current key beside a command. In **Change keybinding**, select a named input or press a key. Enable **Ctrl**, **Shift**, or **Alt** when the binding needs a modifier.
 
-## Keybinding Profiles & Presets
+Clear the input to leave the command unbound. Check the filtered tree for another command using the same input.
 
-- **Set Current**: Activates the selected preset for the chosen editor.
-- **New Preset**: Creates a clean preset template based on default Valve hotkeys.
-- **Open Preset**: Loads an exported keybinding configuration file.
-- **Save Preset**: Persists changes to your user profile (`.keybinds`).
-- **Set and Restart**: Saves changes and automatically restarts the Source 2 tool to apply bindings immediately.
+## Save and apply
 
----
+Click **Save preset** or press `Ctrl+S` to update the open preset.
 
-## Searching & Rebinding
+Click **Set current** to copy the selected preset into the CS2 tools keybinding folder. The new bindings take effect after that editor restarts.
 
-1. Select your target tool (e.g. **Map Editor**).
-2. Use the **Command Filter** to find actions (e.g. `Clip Tool`, `Vertex Tool`, `Grid Increase`).
-3. Double-click the hotkey cell or press the new key combination.
-4. Conflicts with existing bindings will be highlighted automatically.
-5. Click **Save Preset**.
+Click **Set and restart** to save the open preset, apply it, and restart the CS2 tools.
+
+> [!WARNING]
+> Restarting closes the running CS2 tools. Save work in Hammer and the other tools first.

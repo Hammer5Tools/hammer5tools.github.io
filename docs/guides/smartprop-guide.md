@@ -75,18 +75,18 @@ A SmartProp is constructed from **Elements**, **Modifiers**, **Selection Criteri
 
 SmartProp files describe procedural rules and relationships for models (`.vmdl`). These definitions are stored in `.vsmart` files formatted in KeyValues3 (KV3).
 
-Valve did not include a visual editor for `.vsmart` files, and standard CS2 Hammer does not compile them with default settings. **Hammer5Tools** solves both problems by providing a full visual editor for the `.vsmart` format and automatically configuring CS2 Hammer to compile them.
+Hammer5Tools provides a visual editor for `.vsmart` files and includes compiler configuration support.
 
 > [!TIP]
-> Launch CS2 Hammer at least once through Hammer5Tools so it can automatically configure CS2 Hammer compiler settings for `.vsmart` files.
+> Launch CS2 Hammer through Hammer5Tools before relying on its `.vsmart` compiler configuration.
 
 ### Experimental Properties
 
 > [!WARNING]
-> SmartProps are actively developed in Source 2, and some experimental schema properties may not be fully functional in community Hammer builds.
-> You can inspect the complete Source 2 SmartProp schema on the [S2V Schema Explorer](https://s2v.app/SchemaExplorer/cs2/smartprops/CSmartPropElement_Model).
+> Community Hammer builds do not expose or run every experimental SmartProp schema property.
+> The [S2V Schema Explorer](https://s2v.app/SchemaExplorer/cs2/smartprops/CSmartPropElement_Model) provides Source 2 SmartProp schema references.
 
-Hammer5Tools includes all properties from the Source 2 schema, but experimental and unverified properties are hidden by default. To unhide them, go to **Settings → SmartProp Editor** and uncheck **`Hide experimental properties and elements`**. If you find an experimental property that works well, please let us know on Discord so we can mark it as verified!
+Hammer5Tools includes the properties from the Source 2 schema. Experimental and unverified properties are hidden by default. To show them, go to **Settings → SmartProp Editor** and uncheck **`Hide experimental properties and elements`**. Report working experimental properties on Discord so they can be marked as verified.
 
 ---
 
@@ -179,7 +179,7 @@ In this tutorial, we will build a versatile crate selector containing multiple D
 
 ![PickOne Crate Demo](docs/images/smartprop_guide/smartprop-crate-example-demo.gif)
 
- **[Download Completed dust_crate.vsmart](static/vsmart-examples/dust_crate.vsmart)**
+ **[Download dust_crate.vsmart](static/vsmart-examples/dust_crate.vsmart)**
 
 ---
 
@@ -237,7 +237,7 @@ SelectionMode != 'SPECIFIC'
 
 ![Selection Mode Logic](docs/images/smartprop_guide/smartprop-selection-mode-logic.png)
 
-The selection logic is now complete!
+The selection logic is configured.
 
 ### Step 10: Add Randomization Modifiers
 To add variation, attach **Random Scale** and **Random Rotation** modifiers to the root element.
@@ -275,4 +275,4 @@ In the Random Rotation modifier, switch the Z min and max rotation fields to **E
 
 ![Mouse Wheel Drag](docs/images/smartprop_guide/smartprop-mousewheel-drag-values.gif)
 
-You now have a fully functional, customizable SmartProp ready to place in CS2 maps!
+Save the SmartProp and place it in a CS2 map.

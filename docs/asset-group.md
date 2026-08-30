@@ -1,74 +1,37 @@
 # AssetGroup Maker
 
-Batch-create hundreds of Source 2 models (`.vmdl`), materials (`.vmat`), and configuration scripts simultaneously using dynamic text templates.
+AssetGroup Maker creates a set of Source 2 assets from files in one folder. Each `.hbat` profile stores the input rules, templates, replacements, and output directory.
 
----
+## Create or open a profile
 
-## Overview
+Select a folder in Explorer and click **New Config for Selected Folder**. Use **Create New Config...** when the profile belongs somewhere else. Use **Open Config...** to open an existing `.hbat` file.
 
-When setting up large asset libraries (e.g. modular building kits, trim sheets, prop collections), manually authoring individual `.vmdl` or `.vmat` files is tedious.
+Each profile opens in its own tab. Use `Ctrl+S` or **Save** to save the current profile.
 
-The **AssetGroup Maker** reads source folders, applies global and local variable substitutions to user-defined template strings, and generates complete Source 2 asset files in bulk.
+## Templates
 
----
+Select a reference asset through **Asset Browser...** or **Browse...**. Click the adjacent CS2 button to open the reference in its Source 2 editor.
 
-## Interface Layout
+Click **+ Add Template** to create more than one output for each input asset. Templates can create VMDL, VMAT, VSMART, and other text assets supported by the processor.
 
-| Area | Description |
-|---|---|
-| **Explorer (Left)** | Manage configuration profiles and select target source asset directories. Dock layout and pane sizes are persistently saved. |
-| **Editor (Center)** | Template editor containing the base KV3 file structure. Now includes a split view with a scrollable **Multi-Template Card Manager** and expanded **Slot Mapping Presets** (with default slot pills) for advanced generation. |
-| **Process Actions (Right)** | Define matching algorithms, ignore lists, and trigger batch generation. |
+Click **Edit Slot Mappings...** to map companion files and replacement tokens. For an FBX template, click **Research FBX Materials** to read its material slots. Map each source slot to a VMAT or add a remap with **+ Add Remap**.
 
----
+Use **Exclude (Blacklist)** to skip matching extensions and file names. Use **Include (Whitelist)** to process only the listed extensions and files. Global filters apply to every template in the profile.
 
-## Dynamic Replacement Tokens
+## Review assets
 
-The editor evaluates special macro variables when generating each asset:
+The asset table shows each input, its selected template, detected slots, target output, and processing status. Use **Search**, **Status**, and **Template** to filter the table.
 
-| Variable | Description |
-|---|---|
-| `#$ASSET_NAME$#` | Name of the current source file being processed (without extension). |
-| `#$FOLDER_PATH$#` | Relative folder path inside the addon content directory. |
-| `#$ADDON_NAME$#` | Current active addon name. |
+Right-click an asset to choose **Show in Explorer**, **Open in CS2 Tools**, **Copy Asset Name**, or **Copy Output Path**.
 
-### Example Template (Model Generation)
-```kv3
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-3596-4313-a41f-70c3226768f9} -->
-{
-    rootNode = 
-    {
-        _class = "RootNode"
-        children = 
-        [
-            {
-                _class = "RenderMeshList"
-                children = 
-                [
-                    {
-                        _class = "RenderMeshFile"
-                        filename = "#$FOLDER_PATH$#/#$ASSET_NAME$#.fbx"
-                    }
-                ]
-            }
-        ]
-    }
-}
-```
+## Process a batch
 
----
+Set **Output Directory** when generated files belong outside the input folder. Click **Process Batch** and review the reported asset count.
 
-## Processing Algorithms
+Click **Revert Batch** to delete files created by the last process. Reference templates are kept.
 
-- **One-to-One**: Generates one output file for every matched source file.
-- **Referenced File**: Automatically re-generates assets whenever the referenced source template changes.
-- **Ignore List**: Excludes specific patterns (e.g. `*_lod*`, `*.tmp`).
+## Monitoring
 
----
+Enable **Watch the changes** to watch the profile's input files. A changed input is processed again with the saved profile.
 
-## Advanced Features
-
-- **Multi-Template Support**: Add and manage multiple templates simultaneously using the scrollable card manager. Supports generating diverse asset types from the same source folder in a single pass.
-- **Slot Mappings & Conditional Generation**: Configure slot mapping presets with default slot pills for dynamic, rule-based asset generation.
-- **KV3 Batch Format**: Uses the optimized KV3 batch format for rapid processing.
-- **Watch Toggles**: Automatically monitor target directories and rebuild assets dynamically when source files change.
+Use **Settings > AssetGroupMaker > Folders to monitor** to control which folders can be watched. Restart Hammer5Tools after changing that list.

@@ -1,67 +1,25 @@
 # FAQ & Troubleshooting
 
-Common questions, operational requirements, and troubleshooting solutions for Hammer 5 Tools.
+## CS2 is not found
 
----
+Open **Settings** and select the Counter-Strike 2 installation directory. The selected directory must contain `game/bin/win64/cs2.exe`.
 
-### The application will not launch or crashes on startup
-1. Ensure the **.NET 8 Desktop Runtime (x64)** is installed on Windows.
-2. Verify that Counter-Strike 2 Workshop Tools are installed and updated in Steam.
-3. Check that your GPU drivers support OpenGL 3.3+ (required for 3D viewport rendering).
+## NetConsole features do not connect
 
----
+Start CS2 with a NetConsole port such as `-netconport 2121`, then confirm that local connections to that port are allowed.
 
-### CS2 path is not detected automatically
-Open **Settings > General > CS2 Path** and browse manually to your Counter-Strike 2 root directory:
-```text
-C:\Program Files (x86)\Steam\steamapps\common\Counter-Strike Global Offensive
-```
+## Configuring VMAP merges
 
----
+The merge-driver script is `Hammer5ToolsGUI/gui/gitvmapmerge.py`. Configure Git with paths appropriate for your installation; do not copy a developer-machine path.
 
-### Live Sound Playback / Cubemap Baking is not responding
-These features communicate with Counter-Strike 2 via NetConsole.
-- Ensure CS2 is launched with the launch option `-netconport 2121`.
-- Verify no firewall software is blocking local loopback connections on port 2121.
-- You can configure custom ports in **Settings > SoundEvent > NetConsole Port**.
-
----
-
-### SmartProp files fail to compile when saving
-To compile `.vsmart` or `.vdata` files, Hammer5Tools uses `resourcecompiler.exe` from your CS2 game directory.
-- Verify the active addon matches the folder structure where your file is located.
-- If editing files across different addons, switch the active addon via the toolbar dropdown or respond **Switch Addon** when prompted.
-
----
-
-### How do I configure Git for `.vmap` 3-way merging?
-Hammer5Tools includes a custom merge driver (`src/gitvmapmerge.py`). To enable it for your Git repository, add the following to your addon repository's `.git/config`:
 ```ini
 [merge "vmapmerge"]
-    name = Valve Source 2 VMAP 3-way merge driver
-    driver = python "D:/CG/Projects/Other/Hammer5Tools/src/gitvmapmerge.py" %O %A %B %P
-```
-And add this line to your repository's `.gitattributes` file:
-```text
-*.vmap merge=vmapmerge
+    name = Hammer5Tools VMAP merge driver
+    driver = python "C:/path/to/Hammer5Tools/Hammer5ToolsGUI/gui/gitvmapmerge.py" %A %B --base %O --output %A
 ```
 
----
+Add `*.vmap merge=vmapmerge` to `.gitattributes`. Test the configuration on a disposable branch before using it for team work.
 
-### UnrealPorter cannot find Unreal Engine installations
-- Ensure Unreal Engine 5 is installed through the Epic Games Launcher.
-- If using a custom source-built engine, manually browse to the engine root folder (containing `Engine/Binaries/Win64/UnrealEditor.exe`).
-- Ensure the automation script bridge is installed by clicking **Install Script into Project** in UnrealPorter.
+## UnrealPorter cannot find Unreal Engine
 
----
-
-### How do I fix missing textures or materials in SourcePorter?
-After porting a legacy `.bsp` map, click **Find Missing** in SourcePorter. The tool will scan for broken material, model, and texture references and provide a one-click **Import Assets** dialog to extract them from your legacy game folder.
-
----
-
-### Strange lightmap seams or artifacts in my compiled map
-If lightmaps look corrupted after moving geometry:
-1. Go to **Utilities > Cleanup _vrad3 cache**.
-2. Confirm deletion of the cached lightmap files.
-3. Recompile the map using **Map Builder** with **Full Compile** or **Lighting Only**.
+Choose an Unreal Engine installation or project in UnrealPorter. For a custom engine, select an installation that contains `Engine/Binaries/Win64/UnrealEditor.exe`.
