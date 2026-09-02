@@ -1,5 +1,115 @@
 [
   {
+    "id": "fit-on-line-example",
+    "title": "Fit on Line",
+    "author": "Twist",
+    "authorLink": "https://x.com/der_twist",
+    "description": "Learn how to align and fit multiple assets along a definable line.",
+    "tags": [
+      "example"
+    ],
+    "badges": [
+      {
+        "label": "Example",
+        "color": "#a78bfa",
+        "bg": "rgba(167, 139, 250, 0.1)"
+      }
+    ],
+    "videoPreview": "videos/vsmart-examples/fit_on_line.mp4",
+    "videoFull": "videos/vsmart-examples/fit_on_line.mp4",
+    "downloadUrl": "static/vsmart-examples/fit_on_line.vsmart",
+    "downloadLabel": "Download",
+    "isDirectFile": true
+  },
+  {
+    "id": "variable-set-example",
+    "title": "Set Variable",
+    "author": "Twist",
+    "authorLink": "https://x.com/der_twist",
+    "description": "Learn how to use variables to dynamically change SmartProp properties at runtime.",
+    "tags": [
+      "example"
+    ],
+    "badges": [
+      {
+        "label": "Example",
+        "color": "#a78bfa",
+        "bg": "rgba(167, 139, 250, 0.1)"
+      }
+    ],
+    "videoPreview": "videos/vsmart-examples/variable_set.mp4",
+    "videoFull": "videos/vsmart-examples/variable_set.mp4",
+    "downloadUrl": "static/vsmart-examples/variable_set.vsmart",
+    "downloadLabel": "Download",
+    "isDirectFile": true
+  },
+  {
+    "id": "expressions-example",
+    "title": "Expressions",
+    "author": "Twist",
+    "authorLink": "https://x.com/der_twist",
+    "description": "Explore mathematical and logic expressions that drive SmartProp behavior.",
+    "tags": [
+      "example"
+    ],
+    "badges": [
+      {
+        "label": "Example",
+        "color": "#a78bfa",
+        "bg": "rgba(167, 139, 250, 0.1)"
+      }
+    ],
+    "videoPreview": "videos/vsmart-examples/expressions.gif",
+    "videoFull": "videos/vsmart-examples/expressions.mp4",
+    "downloadUrl": "static/vsmart-examples/expressions.vsmart",
+    "downloadLabel": "Download",
+    "isDirectFile": true
+  },
+  {
+    "id": "trace-direction-example",
+    "title": "Trace in Direction",
+    "author": "Twist",
+    "authorLink": "https://x.com/der_twist",
+    "description": "Use trace logic to detect surface geometry and align props automatically.",
+    "tags": [
+      "example"
+    ],
+    "badges": [
+      {
+        "label": "Example",
+        "color": "#a78bfa",
+        "bg": "rgba(167, 139, 250, 0.1)"
+      }
+    ],
+    "videoPreview": "videos/vsmart-examples/example_choices.mp4",
+    "videoFull": "videos/vsmart-examples/example_choices.mp4",
+    "downloadUrl": "static/vsmart-examples/trace_direction.vsmart",
+    "downloadLabel": "Download",
+    "isDirectFile": true
+  },
+  {
+    "id": "bend-deformer-example",
+    "title": "Bend Deformer",
+    "author": "Twist",
+    "authorLink": "https://x.com/der_twist",
+    "description": "Understand how to use the bend deformer to warp geometry along paths and curves.",
+    "tags": [
+      "example"
+    ],
+    "badges": [
+      {
+        "label": "Example",
+        "color": "#a78bfa",
+        "bg": "rgba(167, 139, 250, 0.1)"
+      }
+    ],
+    "videoPreview": "videos/vsmart-examples/bend_deformer.mp4",
+    "videoFull": "videos/vsmart-examples/bend_deformer.mp4",
+    "downloadUrl": "static/vsmart-examples/bend_deformer.vsmart",
+    "downloadLabel": "Download",
+    "isDirectFile": true
+  },
+  {
     "id": "tracescatter",
     "title": "TraceScatter",
     "author": "Twist",
