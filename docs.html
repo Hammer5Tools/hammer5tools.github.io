@@ -1757,6 +1757,36 @@
       'faq': { file: 'faq.md', title: 'FAQ & Troubleshooting', prev: 'preferences', icon: 'icon/editors/faq.svg', category: 'Reference' }
     };
 
+    // These pages have moved to the Source2 Wiki. Set WIKI_REDIRECT = true once the
+    // wiki pages are live to send visitors there instead of showing a banner.
+    const WIKI_BASE = 'https://www.source2.wiki/';
+    const WIKI_REDIRECT = false;
+    const wikiMap = {
+      'introduction': 'ExternalTools/Hammer5Tools',
+      'installation': 'ExternalTools/Hammer5Tools#installation',
+      'smartprop-guide': 'CommunityGuides/smartProps',
+      'fitonline-guide': 'CommunityGuides/fitOnLine',
+      'radio-sound': 'CommunityGuides/loopingRadio',
+      'smart-prop-editor': 'ExternalTools/Hammer5Tools/editors/smart-prop-editor',
+      'sound-editor': 'ExternalTools/Hammer5Tools/editors/sound-editor',
+      'audio-editor': 'ExternalTools/Hammer5Tools/editors/audio-editor',
+      'detail-prop-editor': 'ExternalTools/Hammer5Tools/editors/detail-prop-editor',
+      'asset-group-maker': 'ExternalTools/Hammer5Tools/editors/asset-group',
+      'hotkey-editor': 'ExternalTools/Hammer5Tools/editors/hotkey-editor',
+      'loading-editor': 'ExternalTools/Hammer5Tools/editors/loading-editor',
+      'explorer': 'ExternalTools/Hammer5Tools/utilities/explorer',
+      'map-builder': 'ExternalTools/Hammer5Tools/utilities/map-builder',
+      'git-sync': 'ExternalTools/Hammer5Tools/utilities/git-sync',
+      'addon-manager': 'ExternalTools/Hammer5Tools/utilities/addon-manager',
+      'cleanup': 'ExternalTools/Hammer5Tools/utilities/cleanup',
+      'navmesh-radar': 'ExternalTools/Hammer5Tools/utilities/navmesh-radar',
+      'unreal-porter': 'ExternalTools/Hammer5Tools/porting/unreal-porter',
+      'source-porter': 'ExternalTools/Hammer5Tools/porting/source-porter',
+      'writing-docs': 'HowToEdit/editing-the-wiki',
+      'preferences': 'ExternalTools/Hammer5Tools/settings',
+      'faq': 'ExternalTools/Hammer5Tools/faq'
+    };
+
     const app = {
       theme: 'dark',
       currentPath: '#introduction',
@@ -2162,6 +2192,12 @@
           return;
         }
 
+        const wikiUrl = wikiMap[pageId] ? WIKI_BASE + wikiMap[pageId] : null;
+        if (wikiUrl && WIKI_REDIRECT) {
+          window.location.replace(wikiUrl);
+          return;
+        }
+
         try {
           const url = this.getBasePath() + meta.file;
           const res = await fetch(url);
@@ -2170,6 +2206,14 @@
 
           // Render markdown
           contentArea.innerHTML = marked.parse(text);
+
+          if (wikiUrl) {
+            contentArea.insertAdjacentHTML('afterbegin', `
+              <div class="custom-block tip">
+                <div class="custom-block-title">This page has moved</div>
+                <p>Hammer 5 Tools documentation now lives on the <a href="${wikiUrl}" target="_blank" rel="noreferrer">Source2 Wiki</a>. This copy is kept for reference only.</p>
+              </div>`);
+          }
 
           // Update breadcrumbs
           if (breadcrumbCurrent) {
